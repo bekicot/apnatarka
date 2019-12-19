@@ -1,0 +1,166 @@
+#home-page
+  .heading
+    font: 24px/32px "cf_jack_storyregular"
+    text-transform: uppercase
+    letter-spacing: 1px
+    border: none
+    margin: 0
+    color: $black
+    display: block
+    padding: 0 0 10px
+
+  .order-area .btn, .download-menu .btn
+    color: $white
+    border-color: $white
+    font-size: 25px
+    line-height: 35px
+    border-radius: 0
+    &:hover
+      background: $light-yellow
+      color: $black
+      border-color: $light-yellow
+
+  .download-menu .btn
+    background: $light-yellow
+    color: $black
+    border-color: $light-yellow
+    &:hover
+      background: $white
+      color: $black
+      border-color: $white
+
+  h2
+    font-weight: bold
+    margin: 0 0 40px
+    font: 48px/60px "cf_jack_storyregular", cursive
+    color: $light-yellow
+
+  .three-blocks
+    background: url(asset-path('background.jpg')) no-repeat
+    background-size: cover
+    position: relative
+
+    h2
+      color: $white
+
+    .box
+      border-radius: 6px
+      background: $light-yellow
+      padding: 15px
+      min-height: 300px
+      transition: ease all 0.8s
+      display: block
+      color: $black
+
+      &:hover
+        background: $dark-blue-rgba
+        color: $white
+        text-decoration: none
+        transition: ease all 0.8s
+
+        img
+          transform: scale(1.2)
+          transition: ease all 0.8s
+
+      img
+        width: 50%
+        display: block
+        margin: 0 auto 20px
+        transition: transform .2s
+
+      .title
+        display: block
+        font: 30px/45px "cf_jack_storyregular"
+
+      p
+        font: 14px/18px "jaldiregular"
+
+  .inner-section
+    background: $dark-blue-rgba-light
+    padding: 50px 0 140px
+
+  .about-info
+    background: $white
+    padding: 50px 0 140px
+    position: relative
+    background: $white
+    font: 24px/30px "cf_jack_storyregular"
+
+    .btn
+      border: 2px solid $light-yellow
+      display: inline-block
+      vertical-align: top
+      border-radius: 0
+      background: $dark-blue
+      color: $white
+      margin: 20px 0
+      font-size: 20px
+
+      &:hover
+        background: $light-yellow
+        color: $dark-blue
+        border-color: $dark-blue
+
+    p
+      margin: 0 0 30px
+      text-align: left
+
+      &:last-child
+        margin: 0
+
+  .scroll-btn
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    z-index: 9
+    margin: 0 auto
+
+    &:hover
+      transform: scale(1.2)
+
+    img
+      width: 100%
+
+@media only screen and (max-width: 1024px)
+  #home-page
+    .three-blocks
+      .box
+        .title
+          font: 20px/34px "cf_jack_storyregular"
+
+@media only screen and (max-width: 767px)
+  #home-page
+    .banner
+      strong, span
+        font-size: 16px
+        line-height: 16px
+
+    .inner-section
+      padding: 20px 10px
+
+    .about-info
+      padding: 50px 0
+      .holder p
+        font-size: 16px
+
+      p
+        font-size: 16px
+        margin: 15px 0
+
+    h2
+      font-size: 30px
+      line-height: 36px
+
+    .order-area .btn, .download-menu .btn
+      font-size: 16px
+      line-height: 18px
+
+  .carousel-inner > .item > img
+    height: auto
+
+  .scroll-btn
+    display: none
+
+  .carousel-caption
+    padding-top: 10px

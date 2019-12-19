@@ -1,0 +1,21 @@
+en:
+  home:
+    carousel:
+      caption:
+        en: "Going light or going heavy?"
+        ar: "على الخفيف أو على الثقيل؟"
+
+    menu_section:
+      our_menu: "Our menu"
+      delicious_food: "Try our delicious food"
+      appetizers: "Appetizers"
+      line_1: "Perfect party Appetizers the easy way. See several tasty appetizers with photos and tips on how to eat them."
+      main_course: "Main Course"
+      line_2: "Hundreds of main dish recipes. Choose from top-rated comfort food, healthy, and vegetarian options."
+      desserts: "Desserts"
+      line_3: " Whether you crave sweet, savoury, decadent or healthy, we have hundreds of top-rated dessert recipes to satisfy your taste buds."
+      drinks: "Drinks"
+      line_4: "From cocktails to punch for kids, find the perfect party drink. Plus videos, photos, and reviews to help you mix drinks right."
+
+    location:
+      office: "Office"

@@ -1,0 +1,43 @@
+#message_us
+  .text-center
+    strong.heading.showcase-left
+      = t('message_us.lets_talk')
+    h2.showcase-right
+      = t('message_us.heading')
+  .container
+    = form_for @contact_request, url: contact_request_visitors_path, html: { class: 'form clearfix twenty-forty-public-form', "data-parsley-validate" => true } do |f|
+      .form-group.row
+        .col-sm-4.mob-b-20.arabic-right
+          = f.label :name, class: 'col-form-label showcase-left'
+            = t('message_us.name')
+            | &nbsp;:
+          .showcase-right
+            = f.text_field :name, class: 'input form-control', id: "Country", required: true
+        .col-sm-4.mob-b-20.arabic-right
+          = f.label :phone, class: 'col-form-label showcase-left'
+            = t('message_us.phone')
+            | &nbsp;:
+          .showcase-right
+            = f.text_field :phone, class: 'input form-control', id: "inputText", required: true
+        .col-sm-4.arabic-right
+          = f.label :email, class: 'col-form-label showcase-left'
+            = t('message_us.email')
+            | &nbsp;:
+          .showcase-right
+            = f.email_field :email, class: 'input form-control', id: "inputText", required: true
+      .form-group.row
+        .col-sm-12
+          = f.label :message, class: 'col-form-label showcase-left'
+            = t('message_us.message')
+            | &nbsp;:
+          .showcase-right
+            = f.text_area :message, class: 'form-control', id: "input-message", required: true
+      .form-group.row
+        .col-sm-12
+          = f.label :message, class: 'col-form-label showcase-left'
+            | &nbsp;
+          .showcase-right
+            = recaptcha_tags site_key: Rails.application.secrets.recaptcha_site_key
+      .form-group.showcase-right
+        .pull-right
+          = f.submit t('message_us.submit'), class: 'btn btn-large text-uppercase text-center'

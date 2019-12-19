@@ -1,0 +1,25 @@
+.single-menu-btn
+  button.close aria-label="Close" data-dismiss="modal" type="button"
+    span aria-hidden="true"  &times;
+.modal-body.clearfix
+  .col-sm-12
+    .box
+      = image_tag menu_item.avatar.url, class: 'img-responsive item-image'
+      strong.item-heading= menu_item.title
+      p.item-description= menu_item.description
+      p.item-description= "$#{number_with_precision(menu_item.price, precision: 2)}"
+  .col-sm-4.col-sm-offset-4
+    .txt-holder
+      - if item_in_cart?(menu_item.id)
+        = t("delivery.item_added_to_cart")
+      - else
+        = form_tag add_to_cart_delivery_index_path(menu_item: menu_item.id), remote: true, method: :get do
+          row
+            .price-box
+              .col-sm-6.text-center
+                h3 = t("delivery.quantity")
+              .col-sm-6
+                .button
+                  = number_field_tag :quantity, 1, min: 1, class: 'text'
+            .sub-btn
+              = submit_tag t("delivery.add_to_cart"), class: 'btn submit-btn btn-primary'

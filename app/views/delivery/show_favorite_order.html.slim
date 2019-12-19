@@ -1,0 +1,28 @@
+#order-details
+  .clearfix
+    .container-fluid
+      .row
+        .col-md-12
+          .card.m-b-30.custom-card
+            .card-body.block-head
+              .order-detail
+                h2 = t("delivery.order_details")
+                .product
+                  strong = t("header.menu_items")
+                  strong.special-request = t("delivery.special_request")
+                  strong.amount = t("delivery.total")
+                - @order.order_items.each do |order_item|
+                  .item
+                    span
+                      .img-box
+                        = image_tag order_item.menu_item.avatar.url
+                      h4= "#{order_item.menu_item.title} x  #{order_item.quantity}"
+                    span class="price" = "$#{number_with_precision(order_item.menu_item.price*order_item.quantity, precision: 2)}"
+                    span.special-request-message
+                      = MenuItem.special_request(order_item)&.truncate(30)
+                      - if MenuItem.special_request(order_item)&.length > 30
+                          = link_to "javascript:void(0)", "data-toggle": "tooltip", title: MenuItem.special_request(order_item) do
+                            i.fa.fa-exclamation-circle
+          .center-part
+            .favorite
+              = link_to t("order.back"), all_favorite_orders_delivery_index_path, class: "btn btn-primary"

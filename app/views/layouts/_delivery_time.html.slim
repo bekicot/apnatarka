@@ -1,0 +1,7 @@
+div#new_address_fields
+p.text-center = t("order.delivery_time")
+#datetimepicker1.input-group.date
+  input#pick_time.datetimepicker1.form-control type="text" placeholder=t("order.time")
+  span.input-group-addon
+    span.glyphicon.glyphicon-calendar
+a#delivery_later_btn.pull-right.btn.address-submit-btn = t("order.submit")

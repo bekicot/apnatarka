@@ -1,0 +1,16 @@
+- if current_user&.addresses.count > 0
+  div#new_address_box.select-box
+  div#mapCanvas
+  div
+    = form_for Address.new, url: set_delivery_address_address_index_path, html: { "data-parsley-validate" => true }, remote: true do |f|
+      .form-holder.clearfix.showcase-right
+        .form-group.row.clearfix
+          .col-sm-12.mob-b-15.arabic-right
+            .form-group
+              = f.label t("address.existing_address")
+              = f.select(:direction, options_for_select(current_user.addresses.uniq.map{|adr| [adr.direction, adr.id]}, I18n.locale), {prompt: t("order.select_existing_address"), required: true}, {id: 'existing_direction', class: 'form-control'})
+          .col-sm-12.mob-b-15.arabic-right
+            .form-group
+              = f.submit t("order.submit"), class: 'btn custom-btn btn-primary pull-right'
+- else
+  p.text-center = t("order.no_address")

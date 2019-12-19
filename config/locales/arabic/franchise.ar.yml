@@ -1,0 +1,12 @@
+ar:
+  franchise:
+    heading: "معلومات الاتصال"
+    register: "سجل لك مصلحة"
+    first_name: "الاسم الاول"
+    last_name: "الكنية"
+    mobile_number: "رقم الهاتف"
+    email: "البريد الإلكتروني"
+    city: "مدينة"
+    country: "بلد"
+    submit: "خضع"
+

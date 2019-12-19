@@ -1,0 +1,56 @@
+- unless (params[:controller] == 'visitors' && params[:action] =~ /feedback|franchise/i)
+  footer#footer.clearifx
+    .footer-holder.clearifx.text-center
+      .container
+        .row
+
+        .row
+          .col-sm-4.mob-b-20.arabic-right
+            strong.title.text-capitalize
+              = t('footer.contact_info')
+            address.info
+              p
+                span
+                  = t('footer.website')
+                  | :&nbsp;
+                a www.eat2040.com
+              p
+                span
+                  = t('footer.email')
+                  | :&nbsp;
+                = mail_to "info@eat2040.com", "info@eat2040.com"
+              p
+                span
+                  = t('footer.contact_number')
+                  | :&nbsp;
+                a +966 11 4003344
+
+
+          .col-sm-4.arabic-right
+            a.footer-logo
+              = image_tag 'logo-2.png', class: 'img-responsive'
+
+
+          .col-sm-4.arabic-right
+            strong.title.text-capitalize
+              = t('footer.opening_time')
+            address.info
+              p
+                span
+                  = t('footer.mon_thu_time')
+              p
+                span
+                  = t('footer.fri_sat_time')
+
+
+    .footer-frame.clearifx
+      .container
+        ul.text-capitalize.text-center
+          li
+            = link_to t("header.about_us"), root_path(anchor: "about_us")
+          li
+            = link_to t("header.menu"), root_path(anchor: "complete_menu")
+          li
+            = link_to t("header.delivery"), delivery_index_path
+          li
+            = link_to t("header.location"), root_path(anchor: "location")

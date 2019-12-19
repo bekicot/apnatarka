@@ -1,0 +1,46 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-info-circle
+        | Franchise Requests
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | First Name
+                th
+                  | Last Name
+                th
+                  | Email
+                th
+                  | Phone
+                th
+                  | City
+                th
+                  | Country
+                th
+                  | Action
+            tbody
+            - @franchises.each do |franchise|
+              tr
+                td
+                  = franchise.first_name
+                td
+                  = franchise.last_name
+                td
+                  = franchise.email
+                td
+                  = franchise.phone_number
+                td
+                  = franchise.city
+                td
+                  = franchise.country
+                td
+                  = link_to admin_franchise_path(franchise), class: 'btn btn-primary btn-xs' do
+                    i.fa.fa-eye
+                  - unless current_user.moderator_user?
+                      = link_to admin_franchise_path(franchise), method: :delete, data: {confirm: "Are you sure!"}, class: 'btn btn-danger btn-xs' do
+                        i.fa.fa-times

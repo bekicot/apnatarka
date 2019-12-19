@@ -1,0 +1,26 @@
+.container-fluid
+  .card-box
+    .card-body.clearfix
+      .button
+        = link_to "Back", admin_users_path, class: "btn custom-btn btn-primary pull-right"
+      .col-sm-12
+        .table-responsive
+          .col-sm-2
+            = image_tag "no-image.png", class: "img-responsive"
+          .col-sm-4
+            .basic-data
+              h3 = @user.first_name
+              p = @user.last_name
+          .col-sm-6
+            table.table.table-hover.mb-0.show-page-table
+              tr
+                td
+                  strong Email
+                td
+                  = @user.email
+              tr
+                td
+                  strong Role
+                td
+                  = @user.role_name
+                  

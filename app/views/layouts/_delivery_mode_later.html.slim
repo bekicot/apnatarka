@@ -1,0 +1,11 @@
+div.address-box
+  #ordermap
+  div.select-location
+    h3.text-center = t("order.select_branch")
+    i.fa.fa-sort-down
+    =<> select_tag :location, options_for_select(@franchise_locations.map{|loc| [loc.address, loc.id]}, I18n.locale), class: 'change-location form-control'
+#datetimepicker1.input-group.date
+  input#pick_time.datetimepicker1.form-control type="text" placeholder=t("order.time")
+  span.input-group-addon
+    span.glyphicon.glyphicon-calendar
+a#new_address_btn.pull-right.btn.address-submit-btn = t("order.submit")

@@ -1,0 +1,14 @@
+.form-section
+  span class="heading" = t("order.at")
+  .row
+    .col-xs-6
+      .input-group
+        span.input-group-addon.beautiful
+          input type="radio" name="address" class="address" data-attr="new_address" = t("order.new_address")
+    .col-xs-6
+      - if current_user.present?
+        .input-group
+          span.input-group-addon.beautiful
+            input type="radio" name="address" class="address" data-attr="existing_address" = t("order.existing_address")
+  div#new_or_exist
+

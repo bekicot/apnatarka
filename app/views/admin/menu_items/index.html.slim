@@ -1,0 +1,45 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-align-justify
+        | Menu Items
+      = link_to "Add Menu Item", new_admin_menu_item_path, class: 'btn custom-btn btn-primary pull-right'
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Category
+                th
+                  | Title
+                th
+                  | Image
+                th
+                  | Description
+                th
+                  | Price
+                th
+                  | Action
+            tbody
+            - @menu_items.each do |menu_item|
+              tr
+                td
+                  = menu_item.category.title
+                td
+                  = menu_item.title
+                td
+                  = image_tag menu_item.avatar.url, class: "menu-img"
+                td
+                  = menu_item.description
+                td
+                  = menu_item.price
+                td
+                  = link_to admin_menu_item_path(menu_item), class: 'btn btn-primary btn-xs' do
+                    i.fa.fa-eye
+                  = link_to edit_admin_menu_item_path(menu_item), class: 'btn btn-success btn-xs' do
+                    i.fa.fa-pencil
+                  - unless current_user.moderator_user?
+                      = link_to admin_menu_item_path(menu_item), method: :delete, data: {confirm: "Are you sure!"}, class: 'btn btn-danger btn-xs' do
+                        i.fa.fa-times

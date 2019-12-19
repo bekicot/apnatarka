@@ -1,0 +1,78 @@
+#feedback-area
+	.banner.text-center.clearfix
+		.showcase-bottom
+			strong.heading.text-uppercase
+				= t("feedback.share_your")
+				| &nbsp;
+			 	= t("feedback.experience")
+		h2.text-capitalize.showcase-left = t("feedback.heading")
+
+	.share-exprience.clearfix.twenty-forty-public-form
+		.container
+			= form_for @feedback, url: submit_feedback_visitors_path, html: { class: 'form clearfix twenty-forty-public-form.showcase-right', "data-parsley-validate" => true } do |f|
+
+				.form-holder.clearfix.showcase-right
+					.form-group.row.clearfix
+						.col-sm-4.mob-b-15.arabic-right
+							= f.label :name
+								= t('feedback.name')
+								| :
+							= f.text_field :name, class: 'input form-control', required: true
+						.col-sm-4.mob-b-15.arabic-right
+							= f.label :mobile_number
+								= t('feedback.mobile_numb')
+								| :
+							= f.text_field :mobile_number, class: 'input form-control', required: true
+						.col-sm-4.arabic-right
+							= f.label :email
+								= t('feedback.email')
+								| :
+							= f.text_field :email, class: 'input form-control', required: true
+
+				.form-group.row.clearfix.showcase-left
+					.col-sm-6.mob-b-15.arabic-right
+						= f.label :gender
+								= t('feedback.gender')
+								| :
+						= f.select :gender, options_for_select(Feedback.genders.map {|k, v| [k, k]}), {}, {class: "form-control", required: true, "data-parsley-error-message": "Please select the Gender"}
+					.col-sm-6.arabic-right
+						= f.label :profession
+								= t('feedback.profession')
+								| :
+						= f.select :profession, options_for_select(Feedback.professions.map {|k, v| [k, k]}), {}, {class: "form-control", required: true, "data-parsley-error-message": "Please select the Profession"}
+
+				.form-group.row.clearfix.showcase-right
+					.col-sm-6.mob-b-15.arabic-right
+						= f.label :hear_through
+								= t('feedback.question_1')
+								| :
+						= f.select :hear_through, options_for_select(Feedback.hear_throughs.map {|k, v| [k, k]}), {}, {class: "form-control", required: true, "data-parsley-error-message": "Please select one option"}
+					.col-sm-6.arabic-right
+						= f.label :preference
+								= t('feedback.preference_order')
+								| :
+						= f.select :preference, options_for_select(Feedback.preferences.map {|k, v| [k, k]}), {}, {class: "form-control", required: true, "data-parsley-error-message": "Please select one option"}
+
+				.form-group.row.clearfix.showcase-right
+					.col-sm-6.mob-b-15.arabic-right
+						= f.label :experience
+								= t('feedback.question_2')
+								| :
+						= f.select :experience, options_for_select(Feedback.experiences.map {|k, v| [k, k]}), {}, {class: "form-control", required: true, "data-parsley-error-message": "Please select one option"}
+					.col-sm-6.arabic-right
+						= f.label :contact_through
+							= t('feedback.question_3')
+							| :
+						= f.select :contact_through, options_for_select(Feedback.contact_throughs.map {|k, v| [k, k]}), {}, {class: "form-control", required: true, "data-parsley-error-message": "Please select one option"}
+
+				.form-group.row.clearfix.showcase-left
+					.col-sm-12
+						= f.label :name
+							= t('feedback.question_4')
+							| :
+						= f.text_area :comments, class: 'input form-control', required: true
+
+				.form-group.row.clearfix.text-center.showcase-right
+					.col-sm-12
+						span.thankyou-text.pull-left = t("feedback.thanks_note")
+						= f.submit t('feedback.submit'), class: 'btn btn-primary text-uppercase pull-right'

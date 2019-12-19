@@ -1,0 +1,27 @@
+#order-details
+  .clearfix
+    .container-fluid
+      .row
+        .col-md-12
+          .page-title-box
+            h2 = t("order.fav_title")
+      .row
+        .col-md-12
+          .card.m-b-30.custom-card
+            .card-body.block-head
+              - if @orders.present?
+                .table-responsive
+                  table
+                    thead
+                      tr
+                        th = t("delivery.order_number")
+                        th = t("delivery.total")
+                        th = t("order.action")
+                    tbody
+                    - @orders.each do |order|
+                      tr
+                        td = order.order_number
+                        td = order.sub_total
+                        td = link_to t("order.show"), show_favorite_order_delivery_path(order.id), class: "login"
+              - else
+                h4 = t("order.favorite")

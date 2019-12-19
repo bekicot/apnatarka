@@ -1,0 +1,28 @@
+table.table.table-hover.mb-0
+  thead
+    tr
+      th
+        | Title
+      th
+        | Description
+      th
+        | Status
+      th
+        | Action
+  tbody
+    - @abouts.each do |about|
+      tr
+        td
+          = about.heading
+        td
+          = about.description
+        td
+          = check_box_tag "about_status", about.is_active, about.is_active, class: 'about_status', data: {id: about.id}, disabled: about.is_active
+        td
+          = link_to admin_about_path(about), class: 'btn btn-primary btn-xs' do
+            i.fa.fa-eye
+          = link_to edit_admin_about_path(about), class: 'btn btn-success btn-xs' do
+            i.fa.fa-pencil
+          - unless current_user.moderator_user?
+              = link_to admin_about_path(about), method: :delete, data: {confirm: "Are you sure!"}, class: 'btn btn-danger btn-xs' do
+                i.fa.fa-times

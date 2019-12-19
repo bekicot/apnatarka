@@ -1,0 +1,4 @@
+= link_to delivery_index_path
+  .fa.fa-shopping-cart.fa-2x
+  - if (session[:cart].present? && (session[:cart].count > 0))
+    span.cart-number = session[:cart].count

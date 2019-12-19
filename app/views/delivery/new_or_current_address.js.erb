@@ -1,0 +1,94 @@
+var draggable;
+
+<% if @address == "new_address" %>
+  draggable = true;
+  $('#new_or_exist').html('<%= escape_javascript(render(partial: "layouts/new_address")) %>');
+<% else %>
+  draggable = false;
+  $('#new_or_exist').html('<%= escape_javascript(render(partial: "layouts/existing_address")) %>');
+<% end %>
+
+var geocoder = new google.maps.Geocoder();
+
+map_initialize(24.7537, 46.6098, draggable);
+
+$("body").on('change', '#direction', function(){
+  var address = document.getElementById('direction').value;
+  getLatitudeLongitude(showResult, address)
+});
+
+$("body").on('change', '#existing_direction', function(){
+  var address = document.getElementById('existing_direction').options[document.getElementById('existing_direction').selectedIndex].text;
+  getLatitudeLongitude(showResult, address)
+});
+
+function geocodePosition(pos) {
+  geocoder.geocode({
+    latLng: pos
+  }, function(responses) {
+    if (responses && responses.length > 0) {
+      updateMarkerAddress(responses[0].formatted_address);
+    } else {
+      updateMarkerAddress('Cannot determine address at this location.');
+    }
+  });
+}
+
+function updateMarkerAddress(str) {
+  document.getElementById('direction').value = str;
+}
+
+function map_initialize(lat, lng, draggable) {
+  var latLng = new google.maps.LatLng(lat, lng);
+  var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+    zoom: 17,
+    center: latLng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  var marker = new google.maps.Marker({
+    position: latLng,
+    title: 'Point A',
+    map: map,
+    draggable: draggable
+  });
+
+  // Update current position info.
+  geocodePosition(latLng);
+
+  // Add dragging event listeners.
+  google.maps.event.addListener(marker, 'dragstart', function() {
+    updateMarkerAddress('Dragging...');
+  });
+
+  google.maps.event.addListener(marker, 'dragend', function() {
+    geocodePosition(marker.getPosition());
+  });
+
+  google.maps.event.addListener(map, 'click', function(e) {
+    geocodePosition(marker.getPosition());
+    marker.setPosition(e.latLng);
+  });
+
+  google.maps.event.addDomListener(window, 'load', map_initialize);
+
+}
+
+function showResult(result) {
+  var lat = result.geometry.location.lat();
+  var lng = result.geometry.location.lng();
+  map_initialize(lat, lng, draggable);
+}
+
+function getLatitudeLongitude(callback, address) {
+  address = address || 'Ferrol, Galicia, Spain';
+  geocoder = new google.maps.Geocoder();
+  if (geocoder) {
+    geocoder.geocode({
+      'address': address
+    }, function (results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        callback(results[0]);
+      }
+    });
+  }
+}

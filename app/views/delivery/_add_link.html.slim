@@ -1,0 +1,11 @@
+- if item_in_cart?(menu_item.id)
+  .box.custom-pointer
+    .holder
+      .fa.fa-check
+      span.txt.show.text-center
+        = @selected_item_text.present? ? @selected_item_text : t('delivery.already_added') 
+- else
+  = link_to add_to_cart_delivery_index_path(menu_item: menu_item.id, add_more: true), remote: true, class: 'text-center' do
+    .box
+      .holder
+        .fa.fa-cart-plus

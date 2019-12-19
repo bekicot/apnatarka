@@ -1,0 +1,89 @@
+#header.clearifx
+  .container-fluid
+    .logo.pull-left
+      = link_to root_path
+        = image_tag 'logo-2.png', class: 'img-responsive'
+    .pull-right.top-corner
+      ul.nav
+        li#cart_count
+          = render "layouts/cart"
+        li
+          = link_to "#", class: "change-language", title: "EN", data: {language: "en"} do
+            span EN
+        li
+          = link_to "#", class: "change-language", title: "AR", data: {language: "ar"} do
+            span AR
+      .phonenumber
+        a
+          i.fa.fa-phone
+          | 966 11 4003344
+      - if current_user.present?
+        .dropdown.login
+          a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+            = current_user.first_name.capitalize
+            span.caret
+          .dropdown-menu.custom-dropdown aria-labelledby="dropdownMenuLink"
+            - if current_user.super_admin? || current_user.moderator_user?
+              = link_to t("header.dashboard"), admin_dashboards_path
+            = link_to t("header.favorites"), all_favorite_orders_delivery_index_path
+            = link_to t("header.logout"), destroy_user_session_path, method: :delete
+
+      - elsif session[:guest_order].present?
+        = link_to t("header.logout"), logout_guest_visitors_path, class: "login hidden-xs"
+      - else
+        = link_to t("header.login"), login_page_visitors_path, remote: true, class: "login hidden-xs"
+    nav.navbar.navbar-default.text-center.clearfix
+      .navbar-header
+        button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li[class="#{active_class(root_path(anchor: 'about_us'))}"]
+            = link_to t("header.about_us"), root_path(anchor: 'about_us'), class: "page-load"
+
+          li[class="#{active_class(root_path(anchor: 'complete_menu'))}"]
+            = link_to t("header.menu"), root_path(anchor: 'complete_menu'), class: "page-load"
+
+          li[class="#{active_class(delivery_index_path)}"]
+            = link_to t("header.delivery"), delivery_index_path, class: "page-load"
+
+          - if false
+            li[class="#{active_class(franchise_visitors_path)}"]
+              = link_to t("header.franchise"), franchise_visitors_path, class: "page-load"
+
+          li[class="#{active_class(root_path(anchor: 'location'))}"]
+            = link_to t("header.location"), root_path(anchor: 'location'), class: "page-load"
+
+          li.dropdown[class="#{active_class(feedback_visitors_path, root_path(anchor: 'message_us'))}"]
+            a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              = t("header.share_with_us")
+              span.caret
+
+            ul.dropdown-menu
+              li[class="#{active_class(feedback_visitors_path)}"]
+                = link_to t("header.feedback"), feedback_visitors_path, class: "page-load"
+
+              li
+                = link_to t("header.message_us"), root_path(anchor: 'message_us'), class: "page-load"
+
+          li.hidden-lg.hidden-md.hidden-sm
+            - if current_user.present?
+              = link_to t("header.logout"), destroy_user_session_path, method: :delete, class: "login"
+            - elsif session[:guest_order].present?
+              = link_to t("header.logout"), logout_guest_visitors_path, class: "login"
+            - else
+              = link_to t("header.login"), login_page_visitors_path, remote: true, class: "login"
+
+  ul.social-icons
+    li
+      a
+        i.fa.fa-tumblr
+    li
+      a
+        i.fa.fa-instagram
+    li
+      a
+        i.fa.fa-facebook-f

@@ -1,0 +1,26 @@
+.error-page
+	#bg-img
+	  .overlay
+	  .caption
+	    .container
+	      .box
+	        .holder
+	          h1.text-capitalize
+	            | error 
+	            span 500
+	          h2.subtitle.text-capitalize Internal server error
+	          #loader-wrapper
+	            #loader
+	            .img-holder
+	              = image_tag 'logo-2.png'
+	          p
+	          	| It looks like the page you are trying to find doesn't exist.
+	          ul.footer-links
+		          li[class="#{active_class(about_us_visitors_path)}"]
+		            = link_to t("header.about_us"), about_us_visitors_path, class: "page-load"
+		          li[class="#{active_class(delivery_index_path)}"]
+		            = link_to t("header.delivery"), delivery_index_path, class: "page-load"
+		          li[class="#{active_class(location_index_path)}"]
+		            = link_to t("header.location"), location_index_path, class: "page-load"
+		          li[class="#{active_class(contact_us_visitors_path)}"]
+		            = link_to t("header.contact_us"), contact_us_visitors_path, class: "page-load"

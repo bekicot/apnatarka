@@ -1,0 +1,18 @@
+.container-fluid
+  .card-box
+    .card.m-b-30
+      .card-body
+        .table-responsive
+          table.table.table-hover.mb-0.show-page-table
+            thead
+              tr
+                th Heading
+                th Description
+            tbody
+              tr
+                td
+                  = @about.heading
+                td
+                  = @about.description
+                  
+    = link_to "Back", admin_abouts_path, class: "btn custom-btn btn-primary"

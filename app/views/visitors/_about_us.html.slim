@@ -1,0 +1,17 @@
+#about_us.about-info.text-center.clearfix
+  .container
+  	.text-center.clearfix
+	    .showcase-bottom
+	      strong.text-capitalize.heading
+	        = t('about_us.heading')
+    h2.title.text-capitalize.showcase-left
+      = t("about_us.description")
+
+    .row
+      .col-sm-5.arabic-right
+        = image_tag 'home/booth.png', class: 'img-responsive'
+      .col-sm-7.arabic-left
+        - @about.description.split('.').in_groups(3, false).each do |about|
+          p= "#{about.join('.').squish}." if about.present?
+
+  = link_to image_tag('bar1.png'), root_path(anchor: 'complete_menu'), class: 'scroll-btn'

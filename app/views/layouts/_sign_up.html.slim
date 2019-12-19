@@ -1,0 +1,55 @@
+div.modal.fade id="sign-up-modal" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      button class="close" data-dismiss="modal" aria-label="Close"
+        span aria-hidden="true" ×
+      .modal-body.clearfix
+        .modal-box.nice-scroll.signup-body
+          h2
+            span
+              = t('signin_signup.sign_up')
+
+          p
+            span
+              = t("signin_signup.fill_up_message")
+          .form-section
+            = form_for :user, url: registration_path(:user), html: {"data-parsley-validate" => true} do |f|
+              .row
+                .col-sm-6
+                  .form-group
+                    = f.label t("signin_signup.first_name")
+                    = f.text_field :first_name, class: 'form-control', required: true
+                .col-sm-6
+                  .form-group
+                    = f.label t("signin_signup.last_name")
+                    = f.text_field :last_name, class: 'form-control', required: true
+              .row
+                .col-sm-6
+                  .form-group
+                    = f.label t("signin_signup.phone")
+                    = f.text_field :phone, class: 'form-control', required: true, "data-parsley-type": "number"
+                .col-sm-6
+                  .form-group
+                    = f.label t("signin_signup.email")
+                    = f.email_field :email, class: 'form-control', id: 'check-signup-email', required: true
+                    span#email-availability
+              .row
+                .col-sm-12
+                  .form-group
+                    = f.label t("signin_signup.address")
+                    = f.text_field :address, class: 'form-control', id: "user_address", required: true
+                    #mapCanvas
+              .row
+                .col-sm-6
+                  .form-group
+                    = f.label t("signin_signup.password")
+                    = f.password_field :password, class: 'form-control', required: true, "data-parsley-minlength": 6, id: 'signup-password'
+                .col-sm-6
+                  .form-group
+                    = f.label t("signin_signup.password_confirmation")
+                    = f.password_field :password_confirmation, class: 'form-control', required: true, "data-parsley-equalto": "#signup-password"
+              .row
+                .col-sm-12
+                  .form-group
+                    = f.submit t('signin_signup.sign_up'), class: 'btn btn-primary'
+                    = link_to t("signin_signup.already_have_account"), "javascript:void(0);", id: 'show-sign-in-modal'

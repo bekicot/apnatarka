@@ -1,0 +1,9 @@
+ar:
+  message_us:
+    heading: "رسالة"
+    lets_talk: "يتيح لك التحدث"
+    name: "اسم"
+    email: "البريد الإلكتروني"
+    phone: "هاتف"
+    message: "رسالة"
+    submit: "ارسل رسالة"

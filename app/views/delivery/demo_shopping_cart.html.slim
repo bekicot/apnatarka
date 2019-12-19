@@ -1,0 +1,50 @@
+#checkout
+  .banner.text-center.clearfix
+    .container
+      .stepwizard
+        .stepwizard-step
+          button.btn.btn-default.btn-circle.active type="button"  1
+          p = t("delivery.shopping_cart")
+        .stepwizard-step
+          button.btn.btn-default.btn-circle type="button"  2
+          p = t("delivery.checkout")
+        .stepwizard-step
+          button.btn.btn-default.btn-circle type="button"  3
+          p = t("delivery.order_complete")
+  .center-part  
+    .container  
+      .table-responsive
+        table
+          thead
+            tr
+              th =t("delivery.product")
+              th =t("delivery.price")
+              th =t("delivery.quantity")
+              th =t("delivery.total")
+              th =t("delivery.actions")
+          tbody
+            tr 
+              td 
+                .img-box
+                  = image_tag 'burger.png' 
+                .text-box 
+                  h4 Burger
+              td $25.0
+              td = number_field_tag :number, 1
+              td $25.0
+              td = link_to t("delivery.remove_item"), "javascript:void(0);"
+    .lower-part.clearfix
+      .container
+        .row
+          .col-sm-6.pull-right.cart-block
+            .card-box
+              .cart-total
+                h3 = t("delivery.cart_total")
+                .sub-total
+                  h4 = t("delivery.sub_total")
+                  p $25.00
+                .total
+                  h4 = t("delivery.total")
+                  p $25.00
+              .buttons
+                = link_to t("delivery.proceed_to_checkout"), demo_checkout_delivery_index_path, class: 'btn btn-default'

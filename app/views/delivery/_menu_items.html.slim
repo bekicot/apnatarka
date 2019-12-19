@@ -1,0 +1,16 @@
+.tab-content.container-fluid.clearfix
+  - @categories.each_with_index do |category, index|
+    div[class="tab-panel tab fade #{'in active' if index == 0}" id="tab#{category.id}"]
+      - menu_items = category&.menu_items
+      - if menu_items.present?
+          ul.full-menus.text-center
+            - menu_items.each do |menu_item|
+              li.col-md-4.col-sm-6
+                .img-box
+                  = image_tag menu_item.avatar.url(:medium), class: 'img-responsive'
+                  .order type="button" class="btn btn-primary btn-lg" id=("add-more-item-#{menu_item.id}")
+                    = render "add_link", menu_item: menu_item
+                .txt-holder.clearfix
+                  .price $558
+                  span.title.text-capitalize= menu_item.title
+                  span.title.text-capitalize= "$#{number_with_precision(menu_item.price, precision: 2)}"

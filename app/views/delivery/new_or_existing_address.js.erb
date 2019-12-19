@@ -1,0 +1,16 @@
+$('.address-box').addClass('hide');
+$('#ordermap').addClass('hide');
+$('#new_or_existing_check').html('<%= escape_javascript(render(partial: "layouts/new_or_existing")) %>');
+
+$('.address').on('click', function() {
+  var address_type;
+  address_type = $(this).data('attr');
+  $.ajax('/delivery/new_or_current_address', {
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      address_type: address_type
+    }
+  });
+});
+

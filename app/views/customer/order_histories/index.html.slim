@@ -1,0 +1,31 @@
+.clearfix
+  .container-fluid
+    .row
+      .col-md-12
+        .page-title-box
+          h4 Order History
+    .row
+      .col-md-12
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            - if @orders.present?
+              .table-responsive
+                table.table.table-hover.order-history
+                  thead
+                    tr
+                      th Order #
+                      th Menu Item
+                      th Total Price
+                      th Action
+                  tbody
+                  - @orders.each do |order|
+                    tr
+                      td = order.order_number
+                      td = order_item_names(order)
+                      td = order.sub_total
+                      td = link_to "show", customer_order_history_path(order.id), class: "btn btn-xs btn-primary"
+            - else
+              p
+                | You don't have any orders.
+
+

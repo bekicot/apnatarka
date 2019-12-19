@@ -1,0 +1,15 @@
+= form_for [:admin, @category], html: { "data-parsley-validate" => true } do |f|
+  - if @category.errors.full_messages.any? 
+      - @category.errors.full_messages.each do |error_message| 
+          = error_message if @category.errors.full_messages.first == error_message
+  - Category.globalize_attribute_names.each do |lang|
+    .form-group.clearfix
+      .col-sm-12
+        = f.label lang, class: 'show'
+        = f.text_field lang, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :image, class: 'show'
+      = f.file_field  :avatar, class: 'form-control', required: @category.avatar.blank?
+  .col-sm-12
+    = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'

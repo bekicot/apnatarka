@@ -1,0 +1,24 @@
+.container-fluid
+  .card-box
+    .card-body.clearfix
+      .button
+      = link_to "Back", admin_feedbacks_path, class: "btn custom-btn btn-primary pull-right"
+      .col-sm-12
+        .table-responsive
+          .col-sm-2
+            = image_tag "no-image.png", class: "img-responsive"
+          .col-sm-4
+            .basic-information
+              h3 = @contact_request.name
+              p = @contact_request.email
+              p = @contact_request.phone
+          .col-sm-6
+              table      
+                tr
+                  td
+                    strong Message Details
+                tr
+                    td
+                      = @contact_request.message
+
+         

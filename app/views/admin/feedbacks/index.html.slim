@@ -1,0 +1,38 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-info-circle
+        | Feedback
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Name
+                th
+                  | Email
+                th
+                  | Phone
+                th
+                  | Comments
+                th
+                  | Action
+            tbody
+            - @feedbacks.each do |feedback|
+              tr
+                td
+                  = feedback.name
+                td
+                  = feedback.email
+                td
+                  = feedback.mobile_number
+                td
+                  = feedback.comments
+                td
+                  = link_to admin_feedback_path(feedback), class: 'btn btn-primary btn-xs' do
+                    i.fa.fa-eye
+                  - unless current_user.moderator_user?
+                      = link_to admin_feedback_path(feedback), method: :delete, data: {confirm: "Are you sure!"}, class: 'btn btn-danger btn-xs' do
+                        i.fa.fa-times

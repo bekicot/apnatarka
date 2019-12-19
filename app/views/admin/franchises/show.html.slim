@@ -1,0 +1,43 @@
+.container-fluid
+  .col-sm-6.col-sm-offset-3
+    .card-box
+      .card-body.clearfix
+        .col-sm-12
+          .button
+            h2.pull-left
+              | Franchise Request
+            = link_to "Back", admin_franchises_path, class: "btn custom-btn btn-primary pull-right"
+          .table-responsive
+            table
+              tr
+                td
+                  strong Last Name:
+                td
+                  = @franchise.first_name
+              tr
+                td
+                  strong First Name:
+                td
+                  = @franchise.last_name
+              tr
+                td
+                  strong Email:
+                td
+                  =  @franchise.email
+              tr
+                td
+                  strong Phone:
+                td
+                  =  @franchise.phone_number
+              tr
+                td
+                  strong City:
+                td
+                  =  @franchise.city
+              tr
+                td
+                  strong Country:
+                td
+                  =  @franchise.country
+
+

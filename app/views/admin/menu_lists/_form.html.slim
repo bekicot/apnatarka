@@ -1,0 +1,10 @@
+= form_for [:admin, @menu], html: { "data-parsley-validate" => true } do |f|
+  - if @menu.errors.full_messages.any?
+      - @menu.errors.full_messages.each do |error_message|
+          = error_message if @menu.errors.full_messages.first == error_message
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :menu_file, class: 'show'
+      = f.file_field  :menu_file, class: 'form-control', required: @menu.menu_file.blank?
+  .col-sm-12
+    = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'

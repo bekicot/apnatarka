@@ -1,0 +1,4 @@
+div#new_address_box.select-box
+div#mapCanvas
+div
+  = select_tag :address, options_for_select(current_user.addresses.uniq.map{|adr| [adr.direction, adr.id]}, I18n.locale, {prompt: "--select address--"}), id: 'direction', class: 'form-control'

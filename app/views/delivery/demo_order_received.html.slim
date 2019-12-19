@@ -1,0 +1,58 @@
+#order-details
+  .banner.text-center.clearfix
+    .container
+      .stepwizard
+        .stepwizard-step
+          button.btn.btn-default.btn-circle.active type="button"  1
+          p = t("delivery.shopping_cart")
+        .stepwizard-step
+          button.btn.btn-default.btn-circle.active type="button"  2
+          p = t("delivery.checkout")
+        .stepwizard-step
+          button.btn.btn-default.btn-circle.active type="button"  3
+          p = t("delivery.order_complete")
+        .title-box
+          .img-box
+            = image_tag 'tick.png'
+          .text-box
+            h2 = t("delivery.order_received")
+            p = t("delivery.order_thanks")
+  .center-part  
+    .container  
+      .table-responsive
+        table
+          thead
+            tr
+              th = t("delivery.order_number")
+              th = t("delivery.date")
+              th = t("delivery.total")
+              th = t("delivery.payment_method")
+          tbody
+            tr 
+              td 645
+              td JANUARY 1, 2018
+              td $25.00
+              td Debit/Credit Card
+      .order-detail
+        h2 = t("delivery.order_details")
+        .product
+          strong = t("delivery.total")
+          strong class="amount" = t("delivery.product")
+        .item
+          span Country Burger x 1
+          span class="price" $25.00
+        .subtotal
+          strong = t("delivery.subtotal")
+          span $25.00
+        .payment
+          strong = t("delivery.payment_method")
+          span Debit/Credit Card
+        .total
+          strong = t("delivery.total")
+          span $25.00
+      .address
+        h2 = t("delivery.billing_address")
+        strong 2nd Industrial Area
+        span +966 11 265 3030
+        p Riyadh
+        p Saudi Arabia

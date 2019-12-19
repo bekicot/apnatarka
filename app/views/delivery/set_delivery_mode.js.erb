@@ -1,0 +1,90 @@
+<% if @delivery_mode.eql? Order.delivery_modes.keys[0] %>
+  $('#delivery_modes').html('<%= escape_javascript(render(partial: "layouts/delivery_mode_carry_out")) %>');
+<% elsif @delivery_mode.eql? Order.delivery_modes.keys[1] %>
+  $('#delivery_modes').html('<%= escape_javascript(render(partial: "layouts/delivery_mode_delivery")) %>');
+<% end %>
+<% if @want_it_for == "carry_out_now" %>
+  $('#c_o_mode').html('<%= escape_javascript(render(partial: "layouts/delivery_mode_now")) %>');
+<% elsif @want_it_for == "carry_out_later" %>
+  $('#c_o_mode').html('<%= escape_javascript(render(partial: "layouts/delivery_mode_later")) %>');
+  $('.datetimepicker1').datetimepicker({
+    format: 'YYYY-MM-DD HH:mm'
+  });
+<% elsif @want_it_for == "delivery_now" %>
+  $('#c_o_mode').html('<%= escape_javascript(render(partial: "layouts/new_or_existing")) %>');
+
+<% elsif @want_it_for == "delivery_later" %>
+  $('#c_o_mode').html('<%= escape_javascript(render(partial: "layouts/delivery_time")) %>');
+  $('.datetimepicker1').datetimepicker({
+    format: 'YYYY-MM-DD HH:mm'
+  });
+<% end %>
+
+$('.delivery').on('click', function() {
+  var want_it_for;
+  want_it_for = $(this).data('attr');
+  return $.ajax('/delivery/set_delivery_mode', {
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      want_it_for: want_it_for
+    }
+  });
+});
+
+$('.address').on('click', function() {
+  var address_type;
+  address_type = $(this).data('attr');
+  $.ajax('/delivery/new_or_current_address', {
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      address_type: address_type
+    }
+  });
+});
+
+initialize(24.7537, 46.6098)
+
+function initialize(lat, lng) {
+  var map = new google.maps.Map(document.getElementById('ordermap'), {
+    zoom: 17,
+    center: new google.maps.LatLng(lat, lng),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  var infowindow = new google.maps.InfoWindow();
+  var newMarker = new google.maps.Marker({
+    position: new google.maps.LatLng(lat, lng),
+    map: map
+  });
+}
+
+function showResult(result) {
+  var lat = result.geometry.location.lat();
+  var lng = result.geometry.location.lng();
+  initialize(lat, lng);
+}
+
+function getLatitudeLongitude(callback, address) {
+  address = address || 'Ferrol, Galicia, Spain';
+  geocoder = new google.maps.Geocoder();
+  if (geocoder) {
+    geocoder.geocode({
+      'address': address
+    }, function (results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        callback(results[0]);
+      }
+    });
+  }
+}
+
+$('body').on('change', '.change-location', function(){
+    var address = $(this).find(":selected").text();
+    getLatitudeLongitude(showResult, address)
+});
+
+$('body').on('click', '#find_location_btn', function(){
+    var address = $('#order_loc').val();
+    getLatitudeLongitude(showResult, address)
+});

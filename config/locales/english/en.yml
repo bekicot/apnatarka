@@ -1,0 +1,243 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello World"
+
+  order:
+    now: "Order Now"
+    start_order: "Start Your Order"
+    want: "I want"
+    carry: "CarryOut"
+    delivery: "Delivery"
+    order_now: "Now"
+    order_later: "Later"
+    new_address: "New Address"
+    existing_address: "Existing Address"
+    select_address: "- Select Address Type -"
+    select_existing_address: "- Select Address -"
+    no_address: "You have not created an address yet."
+    for: "for"
+    at: "at"
+    delivery_time: "Please Enter Delivery Time"
+    select_branch: "Select Branch"
+    submit: "Submit"
+    time: "Enter Date and Time"
+    more_food: "Add More Food"
+    action: "Action"
+    show: "Show"
+    favorite: "You don't have any favorite orders yet."
+    fav_title: "Your Favorite Orders"
+    back: "Back"
+  menu:
+    download: "Download Menu"
+
+  header:
+    dashboard: "Dashboard"
+    users: "Users"
+    menu_categories: "Menu Categories"
+    menu_items: "Menu Items"
+    message_requests: "Message Requests"
+    logout: "Logout"
+    languages: "Languages"
+    share_with_us: "Share with us"
+    feedback: "Feedbacks"
+    franchise: "Franchise"
+    message_us: "Message us"
+    about_us: "About us"
+    menu: "Menu"
+    delivery: "Delivery"
+    location: "Location"
+    contact_us: "Contact us"
+    call: "Call"
+    about_us: "About us"
+    language: "Language"
+    english: "English"
+    arabic: "عربى"
+    franchise_requests: "Franchise Requests"
+    menu_lists: "Menu Brochure"
+    share_us: "Share with Us"
+    back_to_admin: "Admin Dashboard"
+    order_histories: "Order History"
+    my_order_history: "My Order History"
+    customer_order_history: "Customers Order History"
+    login: "Login"
+    logout: "Logout"
+    signin_with_facebook: "Signin with facebook"
+    signin_with_google: "Signin with google"
+    email_or_phone: "Email/Phone"
+    favorites: "Favorite Orders"
+
+  crud:
+    access_denied: "Access Denied"
+    show: "Show"
+    edit: "Edit"
+    delete: "Delete"
+    #user flash messages
+    user_created: "User Created and email sent to that user"
+    user_update: "User Updated successfully"
+    user_update_error: "User updated successfully"
+    creating_error: "Failed to create"
+    user_delete: "User Deleted successfully"
+    #about flash messages
+    about_created: "about Created successfully"
+    about_update: "about Updated successfully"
+    about_update_error: "Failed to update"
+    creating_error: "Failed to create"
+    about_delete: "about Deleted successfully"
+    error_about_delete: "Unable to delete"
+    # categories flash messages
+    category_created: "Category Created successfully"
+    category_update: "Category Updated successfully"
+    category_update_error: "Failed to update"
+    creating_error: "Failed to create"
+    category_delete: "Category Deleted successfully"
+    error_category_delete: "Unable to delete"
+    # Menu Items flash messages
+    menu_item_created: "Menu item created successfully"
+    menu_item_update: "Menu item updated successfully"
+    menu_item_delete: "Menu_item deleted successfully"
+    error_menu_item_delete: "Unable to delete"
+    # Location flash messages
+    location_created: "Location created successfully"
+    location_update: "Location updated successfully"
+    location_delete: "Location deleted successfully"
+    error_location_delete: "Unable to delete"
+    #menu list(file)
+    create_menu_list: "Menu List created Successfully"
+
+  footer:
+    follow_us: "follow us"
+    contact_info: "contact info"
+    website: "Website"
+    email: "Email"
+    contact_number: "Contact number"
+    unit: "Unit # 3 - Hitteen Square"
+    address: "Address"
+    address_desc: "Prince Turki Ibn Abdulaziz Al Awwal Road, Riyadh, 13513"
+    opening_time: "Opening Time"
+    mon_thu_time: "Mon - Thu 11:30 - 22:00"
+    fri_sat_time: "Fri - Sat 11:30 - 24:00"
+
+  delivery:
+    sub_total: "Sub-total"
+    total: "Total"
+    cart_total: "Cart Total"
+    proceed_to_checkout: "Proceed To Checkout"
+    product: "Product"
+    base: "Base Price"
+    price: "Price"
+    quantity: "Quantity"
+    actions: "Actions"
+    remove_item: "Click to remove the item"
+    shopping_cart: "Shopping Cart"
+    checkout: "Checkout"
+    order_complete: "Order Complete"
+    billing_details: "Billing Details"
+    your_order: "Your Order"
+    first_name: "First name"
+    last_name: "Last Name"
+    email: "Email"
+    phone: "Phone"
+    address: "Address"
+    town_city: "Town/City"
+    state_country: "State/Country"
+    zip_postcode: "Zip/Postcode"
+    order_received: "Order Received"
+    order_thanks: "Thank you. Your order has been received"
+    order_number: "Order Number"
+    date: "Date"
+    payment_method: "Payment Method"
+    order_details: "Order Details"
+    billing_address: "Billing Address"
+    terms: "I've read and accept the terms & conditions"
+    place_order: "Place Order"
+    longitude: "Longitude"
+    latitude: "Latitude"
+    check_loc_msg: "Please select this option if you want to share your current location"
+    vat: "VAT"
+    add_to_cart: "Add to Cart"
+    item_added_to_cart: "Item already added in cart"
+    no_items: "No Items in Cart"
+    no_items_desc: "Your cart is empty, please add some items to place your order"
+    debit_credit: "Pay Through Debit/Credit Card"
+    pick_from_branch: "Pickup From Branch"
+    debited_credited: "Paid Through Debit/Credit Card"
+    picked_from_branch: "To be Picked From Branch"
+    including: "including"
+    add_more: "Click to add more items"
+    special_request: "Special Request"
+    special_request_placeholder: "Max length 255 characters"
+    already_added: "Already Added!"
+    added: "Added!"
+    branch: "Branch"
+    pick_time: "Pick Time"
+    add_favorite: "Add to Favorite"
+    added_favorite: "You have added this order to your favorites."
+    delivery_time: "Delivery Time"
+    add_more_food: "Add More Food"
+    carry_out: "Carry Out"
+    delivery: "Delivery"
+    payment: "Payment"
+    payment_reference: "Payment Reference"
+    incomplete_payment: "Your Payment was unsuccessful. Please Pay Again"
+    payment_again: "Pay Through Pay Tabs"
+    paytabs: "Pay Through PayTabs"
+
+  signin_signup:
+    sign_in: "Sign in"
+    sign_in_message: "You need to sign in before placing order."
+    email: "Email"
+    password: "Password"
+    no_account_message: "Don't have an account?"
+    note: "Note*:  Please confirm your email first if you have not confirmed yet."
+    first_name: "First name"
+    last_name: "Last name"
+    phone: "Phone"
+    address: "Address"
+    password_confirmation: "Password confirmation"
+    already_have_account: "Already have an account?"
+    fill_up_message: "Please fill in the details to sign up"
+    sign_up: "Sign up"
+    guest_order: "Sign up as Guest"
+    resend_confirmation_instructions: "Resend confirmation instructions"
+    error_prohibited_this_user_from_being_saved: "error prohibited this user from being saved"
+
+  address:
+    address_type: "Address Type"
+    building_name: "Building Name"
+    building_number: "Building Number"
+    room_no: "Room No"
+    direction: "Directions"
+    delivery_time: "Delivery Time"
+    submit: "Submit"
+    branch: "Branch"
+    existing_address: "Select Existing Address"

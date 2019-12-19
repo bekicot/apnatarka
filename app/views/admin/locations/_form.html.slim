@@ -1,0 +1,27 @@
+= form_for [:admin, @location], html: { "data-parsley-validate" => true } do |f|
+  - if @location.errors.full_messages.any?
+      - @location.errors.full_messages.each do |error_message|
+          = error_message if @location.errors.full_messages.first == error_message
+  - Location.globalize_attribute_names.each do |lang|
+    .form-group.clearfix
+      .col-sm-12
+        = f.label lang, class: 'show'
+        = f.text_field lang, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :phone, class: 'show'
+      = f.text_field :phone, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :postal_code, class: 'show'
+      = f.text_field :postal_code, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :latitude, class: 'show'
+      = f.text_field :lat, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :longitude, class: 'show'
+      = f.text_field :lng, required: true, class: 'form-control'
+  .col-sm-12
+    = f.submit "Submit", class: 'pull-right btn custom-btn btn-primary'

@@ -1,0 +1,22 @@
+.container-fluid
+  .card-box
+    .card.m-b-30
+      .card-body.clearfix
+        .button
+          a= link_to "Back", admin_categories_path, class: "btn custom-btn btn-primary pull-right"
+        .col-sm-12
+          .table-responsive
+            .col-sm-5.image
+              = image_tag @category.avatar.url, style: "width: 250px"
+            .col-sm-7
+              table.table.table-hover.mb-0
+                tbody
+                  tr
+                    td Title
+                    td
+                      = @category.title
+                  tr
+                    td Description
+                    td
+                      = @category.description
+                  

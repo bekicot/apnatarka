@@ -1,0 +1,1571 @@
+////********************BILLING DETAILS PORTION START********************////
+////********************BILLING DETAILS PORTION START********************////
+
+#current_location
+  margin: 0 0 0 22px
+  font-family: 'jaldiregular'
+
+#billing-details
+  background: url(asset-path('blackboard-wallpapers.jpg')) no-repeat
+  background-size: 100% 100%
+  overflow: hidden
+  padding: 140px 0 0
+
+  .checkbox-label
+    font-size: 12px !important
+    margin: -7px 0px 19px !important
+    width: 90%
+    display: inline-block
+    vertical-align: top
+
+  .stepwizard
+    display: inline-block
+    vertical-align: top
+    position: relative
+    width: 100%
+    margin-bottom: 40px
+    font-family: "cf_jack_storyregular"
+
+    &:after
+      content: '',
+      height: 8px
+      position: absolute
+      right: 15%
+      left: 15%
+      top: 38px
+      background: $white
+      z-index: 1
+      border-top: 2px solid $light-yellow
+      border-bottom: 2px solid $light-yellow
+
+    .stepwizard-step
+      display: inline-block
+      vertical-align: top
+      position: relative
+      z-index: 2
+      width: 33.33%
+
+      p
+        margin-top: 10px
+        color: $light-yellow
+        font-size: 25px
+        font-weight: bold
+
+      .btn-circle
+        width: 80px
+        height: 80px
+        text-align: center
+        padding: 0
+        font-size: 50px
+        line-height: 1.428571429
+        border-radius: 50%
+        border: 2px solid $light-yellow
+        color: $light-yellow
+
+      .active
+        background-color: $light-yellow
+        border-color: $light-yellow
+        color: $white
+
+  .twenty-forty-public-form
+    h2
+      color: $light-yellow
+      position: relative
+      display: inline-block
+      vertical-align: top
+      margin: 0 0 20px
+      font-size: 40px
+      font-family: "cf_jack_storyregular"
+
+      &:after
+        content: '',
+        position: absolute
+        bottom: -8px
+        right: 13px
+        left: 13px
+        height: 5px
+        background-color: $light-yellow
+
+    .arabic-right
+      .form-group
+        label
+          font-weight: normal
+          margin: 5px 0 15px
+          font-family: 'jaldiregular'
+          letter-spacing: 2px
+
+        .first
+          margin-bottom: 30px
+
+        .code
+          margin: 30px 0 20px
+        .form-control
+          height: 45px
+        .pointer
+          cursor: default
+
+    .order
+      h2
+        margin-bottom: 70px
+      .card-box
+        padding: 20px
+        background-color: $white
+        overflow: hidden
+        margin-bottom: 30px
+        .product-price
+          overflow: hidden
+          margin-bottom: 5px
+          padding-bottom: 5px
+          border-bottom: 1px solid $light-gray
+          .product
+            border-bottom: 1px solid $light-gray
+            overflow: hidden
+            h3
+              margin-top: 10px
+              margin-bottom: 8px
+              padding-bottom: 8px
+              font-size: 18px
+              font-weight: bold
+            h4
+              margin-top: 10px
+              margin-bottom: 8px
+              padding-bottom: 8px
+              font-size: 18px
+              font-weight: bold
+
+          .price
+            margin: 10px 0
+            .item-box
+              strong
+                font-weight: bold
+                span
+                  color: $dark-gray
+                  font-size: 17px
+                  margin-left: 20px
+              h4
+                font-size: 16px
+                font-weight: bold
+                margin-bottom: 0
+              p
+                color: $dark-gray
+            .item-holder
+              h4
+                font-size: 16px
+                font-weight: bold
+                margin-bottom: 0
+              p
+                color: $dark-gray
+
+            h3
+              margin-bottom: 10px
+              padding-bottom: 10px
+              border-bottom: 2px solid
+        .sub-total
+          margin-bottom: 5px
+          padding-bottom: 5px
+          border-bottom: 1px solid $light-gray
+
+          h4
+            font-weight: bold
+          p
+            margin: 10px 0
+            font-size: 16px
+        .total
+          h4
+            font-weight: bold
+          p
+            margin: 10px 0
+            font-weight: bold
+            font-size: 16px
+        .form-check
+          margin: 20px 0
+
+          label
+            color: $black
+
+            input[type="radio"]
+              margin: 0 10px 0 0
+
+          h4
+            display: inline-block
+            margin: 0 5px 5px
+            font-weight: bold
+            font-size: 16px
+            a
+              margin-left: 5px
+              font-style: italic
+            a:hover
+              color: $light-gray
+              text-decoration: underline
+              font-style: italic
+          p
+            margin: 0 10px 0 20px
+            display: inline-block
+            color: $dark-gray
+          .text
+            margin: 0 5px 0 5px
+            font-size: 13px
+            color: $dark-gray
+            line-height: 15px
+            display: inline-block
+            vertical-align: top
+            span
+              color: $black
+              span
+                color: #ef0000
+                font-size: 22px
+        .text-holder
+          margin: 20px 0 5px
+        .button
+          text-align: center
+          .btn-primary
+            border: 2px solid $light-yellow
+            background: $light-yellow
+            color: $black
+            padding: 5px 10px
+            display: block
+            width: 100%
+            border-radius: 0
+            &:hover
+              background-color: $black
+              color: $white
+        #parsley-id-multiple-orderterms
+          li
+            background-color: $light-yellow !important
+            color: black !important
+
+//******************media query******************//
+//******************media query******************//
+//******************media query******************//
+
+@media only screen and (max-width: 1023px)
+  #billing-details
+
+    .stepwizard
+      &:after
+        right: 85px
+        left: 85px
+
+    .twenty-forty-public-form
+
+      .order
+
+        h2
+          margin-bottom: 65px
+
+        .card-box
+          padding: 10px
+
+          .form-check
+
+            .text
+              margin: 0 0 10px 5px
+              font-size: 10px
+
+          .text-holder
+            padding: 0
+            margin: 0
+
+          .button
+            text-align: center
+
+            .btn-primary
+              padding: 5px 10px
+              display: block
+              width: 100%
+
+
+//******************media query******************//
+//******************media query******************//
+//******************media query******************//
+
+@media only screen and (max-width: 767px)
+  #billing-details
+    padding: 40px 0 0
+
+    .stepwizard
+      &:after
+        right: 70px
+        left: 70px
+        top: 21px
+
+      .stepwizard-step
+        p
+          font-size: 15px
+        .btn-circle
+          font-size: 25px
+          width: 50px
+          height: 50px
+
+    .twenty-forty-public-form
+
+      .order
+        margin: 0 15px
+
+        h2
+          margin-bottom: 40px
+
+        .card-box
+          padding: 10px
+
+          .form-check
+
+            .text
+              margin: 0 0 15px 5px
+              font-size: 13px
+
+          .text-holder
+            padding: 0
+            margin: 0
+
+          .button
+            text-align: center
+
+            .btn-primary
+              padding: 5px 10px
+              display: block
+              width: 100%
+
+////********************BILLING DETAILS PORTION START********************////
+////********************BILLING DETAILS PORTION START********************////
+////********************BILLING DETAILS PORTION START********************////
+
+
+
+////********************ORDER DETAILS PORTION START********************////
+////********************ORDER DETAILS PORTION START********************////
+////********************ORDER DETAILS PORTION START********************////
+
+#order-details
+  background: url(asset-path('blackboard-wallpapers.jpg')) no-repeat
+  background-size: 100% 100%
+  overflow: hidden
+  padding: 140px 0 50px
+  font-family: "cf_jack_storyregular"
+
+  .stepwizard
+    display: inline-block
+    vertical-align: top
+    position: relative
+    width: 100%
+    margin-bottom: 20px
+    font-family: "cf_jack_storyregular"
+
+    &:after
+      content: '',
+      height: 8px
+      position: absolute
+      right: 15%
+      left: 15%
+      top: 38px
+      background: $white
+      z-index: 1
+      border-top: 2px solid $light-yellow
+      border-bottom: 2px solid $light-yellow
+
+    .stepwizard-step
+      display: inline-block
+      vertical-align: top
+      position: relative
+      z-index: 2
+      width: 33.33%
+
+      p
+        margin-top: 10px
+        color: $light-yellow
+        font-size: 25px
+        font-weight: bold
+
+      .btn-circle
+        width: 80px
+        height: 80px
+        text-align: center
+        padding: 0
+        font-size: 50px
+        line-height: 1.428571429
+        border-radius: 50%
+        border: 2px solid $light-yellow
+        color: $light-yellow
+
+      .active
+        background-color: $light-yellow
+        border-color: $light-yellow
+        color: $white
+
+    .title-box
+      .img-box
+        margin: 10px 0
+
+        img
+          display: block
+          width: 144px
+          height: 144px
+          margin: 0 auto
+
+      .text-box
+        h2
+          margin: 0
+          color: $white
+          font-family: "cf_jack_storyregular"
+        p
+          font-size: 28px
+          margin: 0
+
+  .center-part
+    .favorite
+      margin: 0 0 20px
+      .btn
+        font: 20px/24px "cf_jack_storyregular"
+        margin: 0
+        padding: 0
+        z-index: 999
+        display: inline-block
+        vertical-align: middle
+        padding: 12px 20px 8px
+        background: $light-yellow
+        border: 1px solid $light-yellow
+        border-radius: 10px
+        color: #000
+        text-decoration: none
+        &:hover
+          background: inherit
+          text-decoration: none
+          color: $white
+      h3
+        color: $white
+        margin: 0
+
+
+  .table-responsive
+    overflow-x: inherit
+    border: 2px solid $light-yellow
+    padding: 30px
+    margin-bottom: 60px
+    table
+      width: 100%
+      thead
+        tr
+          th
+            color: $white
+            padding: 0 30px 0
+            text-align: left
+            width: 25%
+            font-weight: bold
+            font-size: 18px
+            font-family: "cf_jack_storyregular"
+            letter-spacing: 2px
+      tbody
+        tr
+          td
+            color: $white
+            padding: 20px 30px 0
+            text-align: left
+            width: 25%
+            font-weight: normal
+            font-size: 17px
+            font-family: "cf_jack_storyregular"
+            letter-spacing: 2px
+
+  .order-detail
+    color: $white
+    h2
+      font-family: 'cf_jack_storyregular'
+    .product
+      border-bottom: 2px solid $light-yellow
+      margin: 20px 0 30px
+      .amount
+        width: 33%
+        float: right
+      .special-request
+        width: 33%
+        float: right
+      strong
+        font-size: 20px
+    .item
+      border-bottom: 2px solid $light-yellow
+      padding: 0 0 30px
+      margin-bottom: 30px
+      .img-box
+        display: inline-block
+        vertical-align: middle
+        width: 110px
+        height: 110px
+        border-radius: 100%
+        border: 5px solid $light-yellow
+        margin: 0 10px 0 0
+        img
+          display: block
+          width: 100px
+          height: 100px
+          border-radius: 100%
+      .price
+        width: 33%
+      .special-request-message
+        width: 33%
+        a
+          margin-left: 5px
+          text-decoration: none
+          color: $light-yellow
+        .tooltip-inner
+          word-wrap: break-word
+          font-family: 'cf_jack_storyregular'
+      span
+        font-size: 18px
+        display: inline-block
+        vertical-align: middle
+        width: 34%
+
+        h4
+          font-size: 28px
+          width: 65%
+          display: inline-block
+          vertical-align: middle
+    .subtotal
+      padding-bottom: 15px
+      strong
+        font-size: 18px
+      span
+        font-size: 18px
+        width: 50%
+        float: right
+    .payment
+      padding-bottom: 15px
+      strong
+        font-size: 18px
+      span
+        font-size: 18px
+        width: 50%
+        float: right
+    .total
+      padding-bottom: 40px
+      margin-bottom: 20px
+      border-bottom: 2px solid $light-yellow
+      strong
+        font-size: 18px
+      span
+        font-size: 18px
+        width: 50%
+        float: right
+    .address
+      color: $white
+      margin-bottom: 40px
+      margin-bottom: 20px
+      overflow: hidden
+      .phone
+        padding-bottom: 15px
+        overflow: hidden
+        strong
+          font-size: 18px
+        span
+          font-size: 18px
+          width: 50%
+          float: right
+      .city
+        padding-bottom: 15px
+        overflow: hidden
+        strong
+          font-size: 18px
+        span
+          font-size: 18px
+          width: 50%
+          float: right
+      .state
+        padding-bottom: 15px
+        overflow: hidden
+        strong
+          font-size: 18px
+        span
+          font-size: 18px
+          width: 50%
+          float: right
+      .adress-type
+        padding-bottom: 15px
+        overflow: hidden
+        strong
+          font-size: 18px
+        span
+          font-size: 18px
+          width: 50%
+          float: right
+      .building-name
+        padding-bottom: 15px
+        overflow: hidden
+        strong
+          font-size: 18px
+        span
+          font-size: 18px
+          width: 50%
+          float: right
+      .building-number
+        padding-bottom: 15px
+        overflow: hidden
+        strong
+          font-size: 18px
+        span
+          font-size: 18px
+          width: 50%
+          float: right
+      .room-number
+        padding-bottom: 15px
+        overflow: hidden
+        strong
+          font-size: 18px
+        span
+          font-size: 18px
+          width: 50%
+          float: right
+      .direction
+        padding-bottom: 40px
+        margin-bottom: 20px
+        border-bottom: 2px solid $light-yellow
+        overflow: hidden
+        strong
+          font-size: 18px
+        span
+          font-size: 18px
+          width: 50%
+          float: right
+      h2
+        font-family: 'cf_jack_storyregular'
+
+////********************ORDER DETAILS PORTION STOP********************////
+////********************ORDER DETAILS PORTION STOP********************////
+////********************ORDER DETAILS PORTION STOP********************////
+
+//******************media query******************//
+//******************media query******************//
+//******************media query******************//
+
+@media only screen and (max-width: 1199px)
+  #order-details
+    .center-part
+      .table-responsive
+        overflow-x: inherit
+        border: 1px solid $white
+        padding: 30px
+        margin-bottom: 60px
+        table
+          width: 100%
+          thead
+            tr
+              th
+                padding: 0
+          tbody
+            tr
+              td
+                padding: 20px 0 0
+
+//******************media query******************//
+//******************media query******************//
+//******************media query******************//
+
+@media only screen and (max-width: 1023px)
+  #order-details
+    .center-part
+      .table-responsive
+        overflow-x: inherit
+        border: 1px solid $white
+        padding: 30px
+        margin-bottom: 60px
+        table
+          width: 100%
+          thead
+            tr
+              th
+                font-size: 15px
+          tbody
+            tr
+              td
+                font-size: 15px
+
+//******************media query******************//
+//******************media query******************//
+//******************media query******************//
+
+@media only screen and (max-width: 767px)
+  #order-details
+    padding: 40px 0 0
+    .stepwizard
+      &:after
+        content: '',
+        height: 8px
+        position: absolute
+        right: 15%
+        left: 15%
+        top: 21px
+        background: $white
+        z-index: 1
+        border-top: 2px solid $light-yellow
+        border-bottom: 2px solid $light-yellow
+
+      .stepwizard-step
+        display: inline-block
+        vertical-align: top
+        position: relative
+        z-index: 2
+        width: 33.33%
+
+        p
+          font-size: 15px
+        .btn-circle
+          width: 50px
+          height: 50px
+          font-size: 27px
+      .title-box
+        .img-box
+          margin: 0
+        .text-box
+          h2
+            font-size: 30px
+          p
+            font-size: 15px
+            margin: 0
+    .center-part
+      .table-responsive
+        overflow-x: auto
+        padding: 10px
+        margin-bottom: 10px
+        table
+          table-layout: inherit
+          thead
+            tr
+              th
+                vertical-align: top
+                padding: 10px
+                min-width: 170px
+          tbody
+            tr
+              td
+                vertical-align: top
+                padding: 10px
+                min-width: 170px
+      .order-detail
+        color: $white
+        text-align: center
+        h2
+          font-size: 25px
+          margin-top: 0
+        .product
+          margin: 0 0 10px
+          .amount
+            width: 50%
+            float: right
+          strong
+            font-size: 15px
+            width: 33.33% !important
+        .item
+          border-bottom: 1px solid $white
+          padding: 0 0 15px
+          margin-bottom: 15px
+
+          .img-box
+            width: 50px
+            height: 50px
+            img
+              width: 100%
+              height: 100%
+          .price
+            float: none
+            display: inline-block
+            vertical-align: middle
+            width: 32%
+          span
+            font-size: 14px
+            display: inline-block
+            vertical-align: middle
+            width: 32% !important
+            word-break: break-word
+
+            h4
+              font-size: 17px
+              width: 100%
+
+        .subtotal
+          padding-bottom: 15px
+          strong
+            font-size: 15px
+          span
+            font-size: 15px
+            width: 50%
+            float: right
+        .payment
+          padding-bottom: 15px
+          strong
+            font-size: 15px
+          span
+            font-size: 15px
+            width: 50%
+            float: right
+        .total
+          padding-bottom: 20px
+          margin-bottom: 20px
+          border-bottom: 1px solid $white
+          strong
+            font-size: 15px
+          span
+            font-size: 15px
+            width: 50%
+            float: right
+      .address
+        color: $white
+        margin-bottom: 40px
+        text-align: center
+        h2
+        strong
+          display: block
+          font-weight: normal
+          font-size: 16px
+          margin-bottom: 10px
+        span
+          font-size: 16px
+          margin-bottom: 10px
+          display: block
+        p
+          margin: 0
+          font-size: 16px
+          margin-bottom: 10px
+////********************CHECKOUT PORTION START********************////
+////********************CHECKOUT PORTION START********************////
+////********************CHECKOUT PORTION START********************////
+
+#checkout
+  background: url(asset-path('blackboard-wallpapers.jpg')) no-repeat
+  background-size: 100% 100%
+  overflow: hidden
+  padding: 140px 0 0
+  font-family: "cf_jack_storyregular"
+
+  .stepwizard
+    display: inline-block
+    vertical-align: top
+    position: relative
+    width: 100%
+    margin-bottom: 40px
+    font-family: "cf_jack_storyregular"
+
+    &:after
+      content: '',
+      height: 8px
+      position: absolute
+      right: 170px
+      left: 170px
+      top: 38px
+      background: $white
+      z-index: 1
+      border-top: 2px solid $light-yellow
+      border-bottom: 2px solid $light-yellow
+
+    .stepwizard-step
+      display: inline-block
+      vertical-align: top
+      position: relative
+      z-index: 2
+      width: 33.33%
+
+      p
+        margin-top: 10px
+        color: $light-yellow
+        font-size: 25px
+        font-weight: bold
+
+      .btn-circle
+        width: 80px
+        height: 80px
+        text-align: center
+        padding: 0
+        font-size: 50px
+        line-height: 1.428571429
+        border-radius: 50%
+        border: 2px solid $light-yellow
+        color: $light-yellow
+
+      .active
+        background-color: $light-yellow
+        border-color: $light-yellow
+        color: $white
+  .center-part
+    #empty-cart
+      border: 2px solid $light-yellow
+      margin-bottom: 40px
+      padding: 30px
+      span
+        .fa
+          color: $light-yellow
+      h2, p
+        color: $white
+        font-family: "cf_jack_storyregular"
+      .btn
+        color: $white
+        border-color: $white
+        font-size: 25px
+        line-height: 35px
+        border-radius: 0
+        background: transparent
+        padding: 5px 52px
+        margin-bottom: 20px
+        font-family: "cf_jack_storyregular"
+        &:hover
+          background: $light-yellow
+          color: $black
+          border-color: $light-yellow
+      .btn-primary
+        border: 2px solid $light-yellow
+        color: $light-yellow
+        margin-top: 20px
+
+    #confirmation-message
+      border: 2px solid $light-yellow
+      margin-bottom: 40px
+      padding: 30px
+      text-align: center
+      span
+      h2, p
+        color: $white
+        font-family: "cf_jack_storyregular"
+      ul
+        list-style: none
+        padding: 0
+        li
+          color: $white
+      .btn
+        color: $light-yellow
+        border-color: $light-yellow
+        font-size: 25px
+        line-height: 35px
+        border: 2px solid
+        border-radius: 0
+        background: transparent
+        padding: 5px 52px
+        margin-bottom: 20px
+        font-family: "cf_jack_storyregular"
+        transition: ease all 0.5s
+        text-decoration: none
+        &:hover
+          background: $light-yellow
+          color: $black
+          border-color: $light-yellow
+
+      .two-buttons
+        overflow: hidden
+        a
+          margin: 14px 0
+          color: $white
+        .button
+          color: $white
+          border-color: $white
+          border: 1px solid
+          font-size: 25px
+          line-height: 35px
+          border-radius: 0
+          background: transparent
+          padding: 5px 52px
+          margin-bottom: 20px
+          margin-top: 0
+          font-family: "cf_jack_storyregular"
+          transition: ease all 0.5s
+          text-decoration: none
+          &:hover
+            background: $light-yellow
+            color: $black
+            border-color: $light-yellow
+
+      .facebook-link
+        display: inline-block
+        background: #2e55c1
+        border: 2px solid #2e55c1
+        color: $white
+        padding: 6px 12px
+        margin: 10px
+        width: 200px
+        text-align: center
+        text-decoration: none
+        &:hover
+          background-color: inherit
+          color: $white
+
+      .google-link
+        display: inline-block
+        background: #ed1212
+        border: 2px solid #ed1212
+        color: $white
+        padding: 6px 12px
+        margin: 10px
+        width: 200px
+        text-align: center
+        text-decoration: none
+        &:hover
+          background-color: inherit
+          color: $white
+
+      .seperation
+        text-align: center
+        position: relative
+        display: block
+        margin: 10px 0
+        color: $white
+        &:before
+          content: ""
+          position: absolute
+          top: 10px
+          left: 15%
+          background-color: #fff
+          height: 2px
+          width: 30%
+
+        &:after
+          content: ""
+          position: absolute
+          top: 10px
+          right: 15%
+          background-color: #fff
+          height: 2px
+          width: 30%
+
+      .btn-primary
+        border: 2px solid $light-yellow
+        color: $light-yellow
+        margin-top: 20px
+        text-decoration: none
+
+      .edit_user
+        .field
+          margin: 10px 0
+          .field_with_errors
+            #user_email
+              width: 76%
+
+    .cart-table
+      width: 100%
+
+      .field
+        border-top: 1px solid $light-yellow
+        padding: 10px 0 0
+        margin: 10px 0 0
+
+        &:first-child
+          border: none
+          padding: 0
+          margin: 0
+
+      .table-head
+        border-bottom: 3px solid $light-yellow
+        overflow: hidden
+
+        span
+          color: $white
+          padding-bottom: 20px
+          text-align: center
+          width: 15%
+          font-size: 24px
+          font-family: "cf_jack_storyregular"
+          float: left
+
+          &:first-child
+            width: 25%
+
+        .mobile-cart-header
+          display: none
+
+      .table-body
+        border-bottom: 3px solid $light-yellow
+
+        .box
+          color: $white
+          padding-bottom: 30px
+          text-align: center
+          padding-top: 30px
+          font-family: "cf_jack_storyregular"
+          vertical-align: middle
+          font-size: 25px
+          width: 15%
+          display: inline-block
+
+          &:first-child
+            text-align: left
+            width: 25%
+
+          a
+            color: $white
+
+          input[type="number"]
+            color: $white
+            line-height: 25px
+            border-radius: 0
+            text-align: center
+            border: none
+            background: inherit
+            border-bottom: 2px solid $white
+            width: 70px
+
+          input[type="text"]
+            color: $black
+            width: 100%
+            height: auto
+            padding: 8px 5px 5px
+            font-size: 12px
+            line-height: 18px
+
+          .img-box
+            display: block
+            width: 110px
+            height: 110px
+            border-radius: 100%
+            border: 5px solid $light-yellow
+            margin: 0 auto
+
+            img
+              display: block
+              width: 100px
+              height: 100px
+              border-radius: 100%
+
+          .text-box
+            display: block
+            margin-left: 0
+            width: 100%
+            text-align: center
+            margin: 10px 0 0
+
+            h4
+              font-size: 25px
+              margin-top: 0
+              font-family: "cf_jack_storyregular"
+
+            .box
+              margin-bottom: 20px
+              strong
+                display: block
+                font-size: 20px
+              span
+                display: block
+                font-size: 18px
+
+          .table-icon
+            width: 30px
+            height: 30px
+            background-color: $light-yellow
+            border-radius: 100%
+            display: inline-block
+            vertical-align: top
+            padding: 5px 0
+            margin: 0 5px
+            color: $black
+            font-size: 16px
+            line-height: 21px
+            font-family: "cf_jack_storyregular"
+            text-align: center
+
+    .lower-part
+      margin: 20px 0
+      .buttons
+        margin: 20px 0
+        overflow: hidden
+        .btn
+          color: $white
+          border-color: $white
+          font-size: 25px
+          line-height: 35px
+          border-radius: 0
+          background: transparent
+          padding: 5px 52px
+          float: right
+
+          &:hover
+            background: $light-yellow
+            color: $black
+            border-color: $light-yellow
+        .btn-primary
+          border: 2px solid $white
+          color: $white
+          margin-right: 20px
+        .btn-default
+          border: 2px solid $light-yellow
+          color: $light-yellow
+
+      .button-block
+        .add-more-btn
+            color: $light-yellow
+            border-color: $white
+            font-size: 25px
+            line-height: 35px
+            border-radius: 0
+            background: transparent
+            padding: 5px 52px
+            margin: 20px 0 10px
+
+            &:hover
+              background: $light-yellow
+              color: $black
+            border-color: $light-yellow
+
+      .cart-total
+        h3
+          color: $white
+          margin: 20px 0 10px
+          font-size: 28px
+          line-height: 36px
+          padding: 0 0 10px
+          position: relative
+          display: inline-block
+          vertical-align: top
+          &:after
+            content: '',
+            position: absolute
+            bottom: 0
+            right: 10px
+            left: 10px
+            height: 4px
+            background-color: $light-yellow
+        .sub-total
+          color: $white
+          border-bottom: 2px solid $light-yellow
+          overflow: hidden
+          h4
+            display: inline-block
+            font-size: 20px
+          p
+            display: inline-block
+            float: right
+            margin: 8px 0
+            font-size: 20px
+        .custom-sub
+          border-bottom: none
+        .total
+          color: $white
+          h4
+            display: inline-block
+            font-size: 20px
+          p
+            display: inline-block
+            float: right
+            margin: 10px 0 0
+            font-size: 20px
+
+////********************CHECKOUT PORTION STOP********************////
+////********************CHECKOUT PORTION STOP********************////
+////********************CHECKOUT PORTION STOP********************////
+
+//******************media query******************//
+//******************media query******************//
+//******************media query******************//
+
+@media only screen and (max-width: 1199px)
+  #checkout
+    .center-part
+      .lower-part
+        .buttons
+          .btn
+            padding: 5px 27px
+
+//******************media query******************//
+//******************media query******************//
+//******************media query******************//
+
+@media only screen and (max-width: 1023px)
+  #checkout .center-part
+  #checkout
+    padding: 120px 0 0
+    .center-part
+      .lower-part
+        .buttons
+          .btn
+            padding: 0 23px
+            font-size: 17px
+    .stepwizard
+      &:after
+        top: 23px
+        right: 15%
+        left: 15%
+      .stepwizard-step
+        p
+          font-size: 15px
+        .btn-circle
+          width: 50px
+          height: 50px
+          font-size: 25px
+  .center-part
+    .lower-part
+      .cart-total
+        width: 336px
+        overflow: hidden
+        h3
+          &:after
+            content: '',
+            position: absolute
+            bottom: 105px
+            right: 260px
+            left: 20px
+            height: 4px
+            background-color: $light-yellow
+    .table-responsive
+      table
+        thead
+          tr
+            th
+              width: 25%
+              padding-bottom: 15px
+        tbody
+          tr
+            td
+              padding: 15px 0 0
+              .img-box
+                img
+                  width: 50px
+              .text-box
+                margin: 10px
+                h4
+                  font-size: 18px
+                  font-weight: bold
+                .box
+                  strong
+                    font-size: 15px
+                  span
+                    font-size: 15px
+              input
+                width: 67%
+    .cart-table
+      .table-body
+        .box
+          .text-box
+            width: 100% !important
+            margin-left: 0 !important
+            text-align: center !important
+            display: block !importantsss
+          .img-box
+            margin: 0 auto !important
+            display: block !important
+
+  //******************media query******************//
+  //******************media query******************//
+  //******************media query******************//
+
+@media only screen and (max-width: 767px)
+  #checkout
+    padding: 40px 0 0
+    .center-part
+      .lower-part
+        .buttons
+          text-align: center
+          .btn
+            padding: 0 11px
+            font-size: 17px
+            float: none
+            display: inline-block
+            vertical-align: top
+            margin: 0 4px
+      .cart-table
+        overflow: hidden
+
+        .table-head
+          border: none
+
+          span
+            display: none
+
+          .mobile-cart-header
+            display: block
+            background: $light-yellow
+            padding: 10px
+
+            h3
+              margin: 0
+
+        .table-body
+          border: 3px solid $light-yellow
+          padding: 10px 15px
+          .box
+            font-size: 18px
+            padding-bottom: 15px
+            padding-top: 15px
+            width: 50%
+            text-align: left
+
+            &.mobile-right
+              text-align: right
+
+            &:first-child
+              text-align: center
+              width: 50%
+
+            input[type="number"]
+              width: 100%
+
+            input[type="text"]
+              font-size: 11px
+
+            .img-box
+              width: 100px
+              height: 100px
+              border: 2px solid $light-yellow
+              margin: 0 2px !important
+
+              img
+                width: 80px
+                height: 80px
+                margin: 8px auto
+
+            .text-box
+              width: 100%
+
+              h4
+                margin: 0
+                font-size: 18px
+                text-align: left
+
+            .table-icon
+              margin: 0 0 0 10px
+
+    .stepwizard
+      &:after
+        top: 23px
+        right: 15%
+        left: 15%
+      .stepwizard-step
+        p
+          font-size: 15px
+        .btn-circle
+          width: 50px
+          height: 50px
+          font-size: 25px
+  .center-part
+    .lower-part
+      .cart-total
+        float: none
+        width: 100%
+    .table-responsive
+      overflow-x: auto
+      padding: 10px
+      margin-bottom: 10px
+      table
+        table-layout: inherit
+        thead
+          tr
+            th
+              vertical-align: top
+              padding: 10px
+              min-width: 170px
+        tbody
+          tr
+            td
+              vertical-align: top
+              padding: 10px
+              min-width: 170px
+              .img-box
+                display: block
+                width: 100%
+              .text-box
+                display: block
+                width: 100%
+                h4
+                  font-size: 18px !important
+                  font-weight: bold !important
+                .box
+                  strong
+                    font-size: 15px !important
+                  span
+                    font-size: 15px !important
+              input
+                width: 67%
+
+  .cart-block
+    float: none !important
+    padding: 0
+
+#add-more-items-modal
+  .menu-block
+    .nav-tabs
+      li
+        width: 50%
+        max-width: 200px
+        display: inline-block
+        vertical-align: top
+        float: none
+        margin: 2%
+
+  .menu-block
+    padding: 0
+
+    .tab-content
+      .full-menus
+        li
+          min-height: 350px
+
+          .img-box
+            width: 220px
+            height: 220px
+
+            img
+              width: 200px
+              height: 200px
+
+    .scroll-btn
+      display: none
+
+  .close
+    color: #000
+    opacity: 1
+    background: $light-yellow
+    border-radius: 100%
+    width: 30px
+    height: 30px
+    margin: -15px -13px
+    position: relative
+    z-index: 9
+
+    span
+      margin: -3px 0 0
+      display: block
+
+.text-white
+  color: $white
+
+.modal-body
+  .box
+    text-align: center
+    .item-heading
+      font-size: 40px
+      line-height: 45px
+      color: $white
+      margin: 20px 0 0
+      display: block
+    .item-description
+      font-size: 18px
+      color: $white
+  .txt-holder
+    .price-box
+      overflow: hidden
+      margin: 0 0 20px
+      h3
+        margin: 8px 0 0
+        color: $white
+        font-size: 18px
+      .button
+        width: 100%
+
+        input
+          width: 60px
+          font-size: 20px
+          color: #fff
+          line-height: 25px
+          border-radius: 0
+          text-align: center
+          border: none
+          background: inherit
+          border-bottom: 2px solid #fff
+
+    .sub-btn
+      margin: 0 0 10px
+      .btn
+        padding: 2px 12px
+        font-size: 16px !important
+      .submit-btn
+        font: 20px/24px "cf_jack_storyregular"
+        z-index: 999
+        display: inline-block
+        vertical-align: middle
+        padding: 12px 20px 8px
+        background: #fdc741
+        border: 1px solid #fdc741
+        border-radius: 10px !important
+        color: #000
+        text-decoration: none

@@ -1,0 +1,260 @@
+.menu-block
+  overflow: hidden
+  background: url(asset-path('menu-bg.jpg'))
+  position: relative
+  z-index: 2
+  padding: 0 0 100px
+
+  &:after
+    content: '',
+    background: url(asset-path('menu-top.png')) repeat-x
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    width: 100%
+    height: 154px
+    z-index: -1
+
+  .tabs-block
+    padding: 170px 0 0
+
+  h1
+    margin: 0 0 60px
+
+  .nav-tabs
+    border: none
+    margin: 0
+    padding: 0
+    list-style: none
+    font-size: 14px
+    line-height: 20px
+
+    li
+      position: relative
+      width: 25%
+      transition: ease all 0.5s
+
+      &.active
+        a
+          background: url(asset-path('menu-tile-yellow.png')) no-repeat
+          background-size: 100% 100%
+          color: $dark-blue
+
+      .img-box
+        overflow: hidden
+
+        img
+          width: 50%
+          height: auto
+          border-radius: 100%
+          display: block
+          margin: 0 auto 20px
+          transition-duration: .6s
+
+      .title
+        display: block
+        font-weight: normal
+        font: 30px/34px "cf_jack_storyregular"
+
+      .btn
+        font: 24px/28px "cf_jack_storyregular"
+        color: $black
+        display: inline-block
+        vertical-align: top
+        background: $white
+        border-radius: 0
+        padding: 5px 25px
+        border: none
+
+      a
+        border: none
+        background: url(asset-path('menu-tile-blue.png')) no-repeat
+        background-size: 100% 100%
+        color: $white
+        border-radius: 4px
+        padding: 20px
+        transition: ease all 0.5s
+
+        &:hover, &:focus
+          background: url(asset-path('menu-tile-yellow.png')) no-repeat
+          background-size: 100% 100%
+          color: $dark-blue
+          border: none
+          img
+            transform: scale(1.2)
+
+  .tab-content
+    font: 20px/25px "jaldiregular"
+    position: relative
+
+    .tab-panel
+      display: none
+      &.in.active
+        display: block
+
+    .full-menus
+      margin: 0
+      padding: 50px 0 0
+      list-style: none
+
+      li
+        padding-bottom: 50px
+        min-height: 400px
+        transition: ease all 0.5s
+
+        .img-box
+          overflow: hidden
+          border-radius: 100%
+          width: 280px
+          height: 280px
+          margin: 0 auto
+          position: relative
+          z-index: 1
+          border: 10px solid $light-yellow
+          background: url(asset-path('blackboard-wallpapers.jpg')) no-repeat
+          background-size: 100% 100%
+
+          img
+            display: block
+            width: 260px
+            height: 260px
+            border-radius: 100%
+            border: 10px solid $white
+            transition-duration: .6s
+
+
+        .txt-holder
+          background: rgba(89,89,90,0.9)
+          color: $white
+          padding: 10px
+          margin: -55px 0 0
+          border-top: 2px solid transparent
+
+        .price
+          border-radius: 100%
+          width: 70px
+          height: 70px
+          margin: -50px auto 25px
+          background: $white
+          padding: 24px 0
+          font-family: "cf_jack_storyregular"
+          letter-spacing: 1px
+          color: $dark-blue
+
+        .title
+          font: 24px/28px "cf_jack_storyregular"
+          display: block
+          margin: 0 0 12px
+
+        p
+          margin: 0
+          height: 50px
+          overflow: hidden
+
+        &:hover
+          transition: ease all 0.5s
+          .order
+            visibility: visible
+            opacity: 1
+            z-index: 1
+            transform: translateY(0%)
+            transition-delay: 0s, 0s, 0.1s
+
+          img
+            transform: scale(1.2)
+
+          .txt-holder
+            border-top: 2px solid #212739
+
+      .order
+        @include position
+        background: rgba(0,0,0,0.3)
+        visibility: hidden
+        opacity: 0
+        transform: translateY(0)
+        z-index: -1
+        transition: all 0.50s linear 0s, visibility 0s linear 0.50s, z-index 0s linear 0.50s
+        color: $white
+        font-size: 48px
+
+        a
+          font: 48px/52px "cf_jack_storyregular"
+          color: $white
+
+        .custom-pointer
+          cursor: default
+
+        .box
+          display: table
+          width: 100%
+          height: 100%
+
+        .holder
+
+          @include boxcenter
+
+          .fa-check
+            color: #17ef17
+
+          .txt
+            font-size: 24px
+            background: rgba(0,0,0,0.6)
+            line-height: 42px
+            font-family: "cf_jack_storyregular"
+
+@media only screen and (max-width: 1024px)
+  .menu-block
+    .nav-tabs
+      .img-box
+          img
+            height: 90px
+
+      li
+        .title
+          font: 20px/34px "cf_jack_storyregular"
+
+    .tab-content .full-menus li
+      .img-box
+        width: 200px
+        height: 200px
+        img
+          width: 180px
+          height: 180px
+
+@media only screen and (max-width: 767px)
+  .menu-block
+    padding: 0
+
+    &:after
+      display: none
+
+    .nav-tabs
+      li
+        width: 48%
+        margin: 0 1% 30px
+
+        .title
+          font-size: 20px
+
+    .tabs-block
+      padding: 25px 15px
+    .tab-content
+      .full-menus
+        padding: 0
+
+        li
+          min-height: 350px
+
+@media only screen and (max-width: 400px)
+  .menu-block
+    .nav-tabs
+      li
+        margin: 0 1% 20px
+        a
+          padding: 5px
+          min-height: 44px
+
+        .title
+          font-size: 16px
+

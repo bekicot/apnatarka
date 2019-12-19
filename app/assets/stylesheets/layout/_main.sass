@@ -1,0 +1,1252 @@
+html, body
+  height: 100%
+
+/*****************************************/
+/*********** FONT STYLES BELOW ***********/
+/*****************************************/
+
+@font-face
+  font-family: 'kenzoitalic'
+  src: asset-url('kenzo_regular_italic-webfont.woff2') format('woff2'), asset-url('kenzo_regular_italic-webfont.woff') format('woff')
+  font-weight: normal
+  font-style: normal
+
+@font-face
+  font-family: 'cf_jack_storyregular'
+  src: asset-url('cfjackstory-regular-webfont.woff2') format('woff2'), asset-url('cfjackstory-regular-webfont.woff') format('woff')
+  font-weight: normal
+  font-style: normal
+
+@font-face
+  font-family: 'jaldiregular'
+  src: asset-url('jaldi-regular-webfont.woff2') format('woff2'), asset-url('jaldi-regular-webfont.woff') format('woff')
+  font-weight: normal
+  font-style: normal
+
+/********************************************************/
+/*************** ARABIC FONT STYLES BELOW ***************/
+/********************************************************/
+
+@font-face
+  font-family: 'BZiba'
+  src: asset-url('BZiba.ttf') format('truetype'), asset-url('bziba-webfont.woff2') format('woff2'), asset-url('bziba-webfont.woff') format('woff')
+  font-weight: bold
+  font-style: bold
+
+@font-face
+  font-family: 'BKoodkBd'
+  src: asset-url('BKoodkBd.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+
+
+/********************************************/
+/*********** GENERIC STYLES BELOW ***********/
+/********************************************/
+
+body
+  font-family: 'jaldiregular'
+  color: $black
+  background: url(asset-path('about-us-bg.jpg'))
+  background-size: cover
+
+a
+  cursor: pointer
+  transition: ease all 0.5s
+
+#wrapper
+  position: relative
+  width: 100%
+  overflow: hidden
+
+.additional-wrapper
+  overflow: hidden
+  width: 100%
+  height: 100%
+  position: relative
+
+.w1.home
+  position: relative
+  max-height: auto
+  overflow: hidden
+
+  .banner
+    .holder
+      vertical-align: middle
+
+.w1
+  overflow: hidden
+
+  .caption
+    @include position
+
+  .carousel-caption
+    right: 0
+    left: 0
+    top: 0
+    bottom: 0
+    background: rgba(0,0,0,0.1)
+
+.carousel-inner
+  > .item
+    > img
+      height: 100vh
+      width: 100%
+
+
+#header
+  padding: 20px 0
+  position: fixed
+  top: 0
+  right: 0
+  left: 0
+  z-index: 999
+  transition: ease all 0.8s
+
+  .form-control
+    height: auto
+    padding: 10px 0
+    font: 24px/28px 'cf_jack_storyregular'
+    color: $black
+    background-color: inherit
+    background-image: none
+    border: none
+    box-shadow: none
+    border-radius: 0
+    width: 80px
+    -webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
+
+  .select-area
+    position: relative
+    border: 2px solid $light-yellow
+    border-radius: 10px
+    padding: 1px 15px
+
+    &:after
+      content: '\f107',
+      font-family: FontAwesome
+      position: absolute
+      right: 10px
+      top: 12px
+      font-size: 16px
+
+.fixed-header
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  padding: 10px 0 !important
+  transition: ease all 0.5s
+  background-color: rgba(255,255,255,0.95) !important
+  border-bottom: 2px dotted $black
+
+  .navbar, .phonenumber
+    margin: 12px 0 0
+
+.logo
+  max-width: 70px
+  position: relative
+  z-index: 9999
+
+.navbar-default
+  .navbar-nav
+    li
+      .caret
+        margin-left: 10px
+        margin-top: -8px
+
+      .dropdown-menu
+        background-color: $light-yellow
+        border: none
+        border-radius: 0
+        min-width: 100%
+        border-radius: 0 0 10px 10px
+        margin: -8px 0 0
+        text-align: center
+
+        li
+          margin: 0
+          display: block
+
+          a
+            padding: 10px
+            border-radius: 0 !important
+            border: none !important
+
+            &:hover
+              box-shadow: none
+              background: $black !important
+              color: $white !important
+
+.navbar
+  border: none
+  font: 18px/22px 'cf_jack_storyregular'
+  margin: 12px 0
+
+.navbar-collapse
+  padding: 0 !important
+
+.phonenumber
+  margin: 10px 0
+  font: 20px/24px 'cf_jack_storyregular'
+  padding: 10px 0
+  position: relative
+  z-index: 9999
+
+  strong
+    display: inline-block
+    vertical-align: top
+    margin: 0 12px 0 0
+
+  a
+    color: $black
+    font-size: 18px
+    display: inline-block
+    vertical-align: top
+
+.banner
+  color: $white
+  height: 100%
+
+  .box
+    display: table
+    width: 100%
+    height: 100%
+
+  .holder
+    @include boxcenter
+    vertical-align: bottom
+
+  strong
+    display: block
+    font: 52px/53px 'cf_jack_storyregular'
+
+  .home-arabic
+    display: block
+    margin: 0 0 20px
+    font: 58px/60px 'BZiba'
+    font-weight: bold
+
+  .heading
+    font: 24px/32px "cf_jack_storyregular"
+    text-transform: uppercase
+    letter-spacing: 1px
+    border: none
+    margin: 0
+    color: $black
+    display: block
+    padding: 0 0 10px
+
+  h2
+    font-weight: bold
+    margin: 0 0 40px
+    font: 48px/60px "cf_jack_storyregular", cursive
+    color: $light-yellow
+
+.order-area, .download-menu
+  padding: 50px 0 0
+
+  .btn
+    font: 48px/52px 'cf_jack_storyregular'
+    color: $white
+    border: 2px solid $white
+    &:hover
+      color: $light-yellow
+      border: 2px solid $light-yellow
+
+.download-menu
+  padding: 25px 0 0
+
+h1
+  margin: 0 0 30px
+  font: 72px/77px 'cf_jack_storyregular'
+
+.about-block
+  padding: 30px 0
+  font: 24px/32px 'cf_jack_storyregular'
+
+  p
+    margin: 0 0 30px
+
+#footer
+  background-color: $dark-gray
+  color: $white
+
+.footer-holder
+  padding: 40px 0
+  font-size: 16px
+  line-height: 22px
+
+  .footer-logo
+    img
+      display: inline-block
+      vertical-align: top
+
+  .title
+    display: block
+    font-size: 20px
+    line-height: 23px
+    margin: 0 0 30px
+    font-weight: normal
+
+  .info
+    margin: 0
+    word-break: break-word
+
+    a
+      color: $white
+
+      &:hover
+        color: $light-yellow
+        text-decoration: none
+
+.footer-frame
+  background-color: $black
+  padding: 30px 0
+  font: 16px/20px 'cf_jack_storyregular'
+
+  ul
+    margin: 0
+    padding: 0
+    list-style: none
+
+    li
+      display: inline-block
+      vertical-align: top
+      margin: 0 0 0 30px
+
+      a
+        color: $white
+        display: block
+
+        &:hover
+          color: $light-yellow
+          text-decoration: none
+
+.error-page
+  height: 100%
+  color: #fff
+  font-size: 22px
+
+  #bg-img
+    text-align: center
+    padding: 0
+    background: url(asset-path('9.jpg')) no-repeat
+    background-size: cover
+    position: relative
+    height: 100%
+
+  .container
+    height: 100%
+
+  h2.subtitle
+    color: #fff
+    font-size: 40px
+    margin: 0 0 3%
+
+  .overlay
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    z-index: 1
+    background-color: rgba(0, 0, 0, 0.8)
+
+  .caption
+    position: relative
+    z-index: 2
+    height: 100%
+
+  .box
+    display: table
+    width: 100%
+    height: 100%
+
+  .holder
+    display: table-cell
+    vertical-align: middle
+    width: 100%
+    height: 100%
+
+  h1
+    color: #fff
+    margin: 0 0 3%
+    font-size: 60px
+    font-weight: bold
+    span
+      color: $light-yellow
+
+  #loader-wrapper
+    transition: all 0.4s ease-out 0s
+    z-index: 1000
+    .img-holder
+      display: inline-block
+      vertical-align: top
+      border: 1px dashed #FFCD26
+      margin: -216px 0 0
+      border-radius: 100%
+      padding: 30px
+
+  #loader
+    -moz-border-bottom-colors: none
+    -moz-border-left-colors: none
+    -moz-border-right-colors: none
+    -moz-border-top-colors: none
+    animation: 3s linear 0s normal none infinite running spin
+    border-color: #FFCD26 transparent transparent
+    border-image: none
+    border-radius: 100%
+    border-style: solid
+    border-width: 4px
+    display: block
+    height: 220px
+    left: 0
+    right: 0
+    margin: 0 auto
+    position: relative
+    top: 50%
+    width: 220px
+    z-index: 1001
+
+  @keyframes spin
+    0%
+      transform: rotate(0deg)
+
+    100%
+      transform: rotate(360deg)
+
+
+  #loader-wrapper .loader-section
+    background: #fff none repeat scroll 0 0
+    height: 100%
+    position: fixed
+    top: 0
+    width: 51%
+    z-index: 1000
+    &.section-left
+      display: none
+      left: 0
+    &.section-right
+      display: none
+      right: 0
+
+  .loaded
+    #loader-wrapper .loader-section
+      &.section-left, &.section-right
+        background: transparent none repeat scroll 0 0
+        transition: all 0.9s ease-out 0s
+    #loader
+      opacity: 0
+    #loader-wrapper
+      background: transparent none repeat scroll 0 0
+      visibility: hidden
+
+  p
+    margin: 0 0 3%
+
+  .footer-links
+    list-style: none
+    margin: 0
+    padding: 0
+
+    li
+      display: inline-block
+      vertical-align: middle
+      margin: 0 20px
+      opacity: 0.6
+
+      &:hover
+        opacity: 1
+
+      &:before
+        content: '',
+        border-radius: 100%
+        height: 6px
+        width: 6px
+        margin: 0 6px 0 0
+        background-color: $white
+        display: inline-block
+        vertical-align: middle
+
+      a
+        color: $white
+
+.google-map-wrapper
+  overflow: hidden
+  position: relative
+
+#map-canvas
+  width: 100%
+  height: 500px
+
+ul.social-icons
+  margin: -50px 0 0
+  padding: 0
+  list-style: none
+  font-size: 20px
+  position: fixed
+  top: 50%
+  right: 15px
+  background: $dark-blue-rgba
+
+  li
+    display: block
+    margin: 0 0 10px
+
+    &:last-child
+      margin: 0
+
+    a
+      color: $white
+      display: block
+      width: 40px
+      height: 40px
+      border-radius: 100%
+      text-align: center
+      padding: 7px 0
+      transition: transform .2s
+
+      &:hover
+        text-decoration: none
+        background: $light-yellow
+        transform: scale(1.5)
+        color: $dark-blue
+
+
+/*.carousel-fade
+  .carousel-inner
+    background: #000
+  .carousel-control
+    z-index: 2
+  .item
+    opacity: 0
+    -webkit-transition-property: opacity
+    -moz-transition-property: opacity
+    -o-transition-property: opacity
+    transition-property: opacity
+  .next.left, .prev.right, .item.active
+    opacity: 1
+  .active
+    &.left, &.right
+    left: 0
+    opacity: 1
+    z-index: 1*/
+
+  /*.carousel-fade .carousel-inner > .item
+    &.next, &.active.right, &.prev, &.active.left
+      opacity: 0
+      -webkit-transform: translate3d(0, 0, 0)
+      transform: translate3d(0, 0, 0)
+    &.next.left, &.prev.right, &.active
+      opacity: 1
+      -webkit-transform: translate3d(0, 0, 0)
+      transform: translate3d(0, 0, 0)*/
+
+
+.loader-block
+  max-width: 350px
+  margin: 0 auto
+
+
+#locationModal
+  .modal-dialog
+    width: 100%
+    padding: 0 30px
+
+#sign-up-modal
+  padding: 0 !important
+
+  .modal-dialog
+    margin: 15px auto !important
+
+    .form-group
+      margin-bottom: 10px
+
+#sign-in-modal, #sign-up-modal, #delivery_details_modal
+  color: $black
+  font-family: 'cf_jack_storyregular'
+  letter-spacing: 2px
+  #show-sign-up-modal, #show-sign-in-modal
+    color: $white
+    margin-left: 10px
+  .first-half
+    width: 48%
+    margin-right: 15px
+  .second-half
+    width: 48%
+
+  .form-section
+    font-family: 'jaldiregular'
+
+    .form-group
+      label
+        font-size: 17px
+        color: $white
+
+      .form-control
+        font-size: 18px
+        height: 45px
+        border-radius: 0
+
+#menuItemModel
+  .box
+    width: 280px
+    margin: 0 auto
+
+@media only screen and (max-width: 1199px)
+  .carousel-inner
+    > .item
+      > img
+        height: auto
+        width: 100%
+
+    .banner
+      .home-arabic
+        font: 40px/50px "BZiba"
+
+      strong
+        font: 42px/40px "cf_jack_storyregular"
+
+  #header
+    position: static
+    background-color: rgba(0, 0, 0, 0.9) !important
+
+@media only screen and (max-width: 1023px)
+  .carousel-inner
+    > .item
+      > img
+        height: auto
+        width: 100%
+
+    .banner
+      .home-arabic
+        font: 30px/30px "BZiba"
+
+      strong
+        font: 30px/30px "cf_jack_storyregular"
+
+  .order-area
+    padding: 20px 0 0 !important
+
+  #home-page .order-area .btn,
+  #home-page .download-menu .btn
+    font-size: 20px !important
+    line-height: 25px !important
+
+  #home-page
+    .download-menu
+      padding: 15px 0 0 !important
+
+@media only screen and (max-width: 767px)
+  #sign-in-modal, #sign-up-modal, #delivery_details_modal
+    .datetimepicker1
+      color: $black
+    #show-sign-up-modal, #show-sign-in-modal
+      color: $white
+      margin-left: 10px
+    .first-half
+      width: 100%
+    .second-half
+      width: 100%
+
+  .order-area
+    padding: 20px 0 0 !important
+
+  #home-page .order-area .btn,
+  #home-page .download-menu .btn
+    font-size: 12px !important
+    line-height: 15px !important
+
+
+#sign-in-modal
+  .modal-body
+    padding: 10px 15px !important
+
+#menuItemModel, #locationModal, #sign-in-modal, #sign-up-modal, #delivery_details_modal
+  .modal-content
+    .modal-body
+      .order-heading
+        color: $white
+        text-align: center
+        h2
+          margin: 10px 0
+
+      h2
+        color: $white
+      p
+        color: $white
+
+  .order-type-modal
+    margin: 150px auto
+    .modal-header
+      position: relative
+      background-color: $black
+      border-bottom: none
+      h2
+        text-align: center
+        color: $white
+        margin: 0
+
+      .close
+        color: #000
+        opacity: 1
+        background: #fdc741
+        border-radius: 100%
+        width: 20px
+        height: 20px
+        margin: -25px 0
+        font-size: 12px
+        i
+          position: absolute
+          top: 4.5px
+          right: 5.5px
+          z-index: 9
+
+    .modal-body
+
+      #new_or_exist
+        margin: 20px 0
+
+      .first-row
+        margin-bottom: 20px
+      .heading
+        text-align: center
+        display: block
+        margin: 10px 0
+        color: $white
+
+      .address-box
+        margin-top: 10px
+        padding: 10px 0
+        background: inherit
+
+        h3
+          margin: 10px 0
+          color: $white
+
+        .address-btn
+          text-align: center
+          display: block
+          width: 30%
+          margin: 10px auto
+          padding: 6px 10px
+          font-size: 12px
+          background: #fdc741
+          border: 1px solid #fdc741
+          border-radius: 0
+          color: $black
+          text-decoration: none
+          &:hover
+            background: inherit
+            color: $white
+
+        span
+          display: block
+          text-align: center
+          margin: 10px 0
+          position: relative
+          color: $white
+          &:after
+            content: ''
+            position: absolute
+            width: 70px
+            height: 1px
+            top: 9px
+            right: 200px
+            background-color: $white
+          &:before
+            content: ''
+            position: absolute
+            width: 70px
+            height: 1px
+            top: 9px
+            left: 200px
+            background-color: $white
+
+        .location-field
+          display: block
+          width: 30%
+          margin: 10px auto
+          border: 1px solid #fdc741
+          color: $black
+          border-radius: 0
+          &:focus
+            -webkit-box-shadow: none
+            box-shadow: none
+
+          &::placeholder
+            color: #555555
+            opacity: 1
+
+          &:-ms-input-placeholder
+            color: #555555
+
+          &::-ms-input-placeholder
+            color: #555555
+
+        .select-location
+          text-align: center
+          margin: 10px 0
+          position: relative
+          overflow: hidden
+
+          i
+            position: absolute
+            top: 53px
+            right: 17px
+            color: $black
+
+          .now-dropdown-arrow
+            position: absolute
+            top: 17px
+            right: 17px
+            color: $black
+
+          select
+            display: block
+            width: 100%
+            margin: 10px auto
+            border: 1px solid #fdc741
+            color: $black
+            border-radius: 0
+            padding: 6px 15px
+            background: #fdc741
+
+          .change-language
+            margin: 0
+
+          .address-text-field
+            border-radius: 0
+            height: 34px
+
+      .address-submit-btn
+        margin: 10px 0
+
+      #datetimepicker1
+        .input-group-addon
+          border: 1px solid
+
+      .select-box
+        margin: 10px 0
+        .select-field
+          margin: 10px 0
+          overflow: hidden
+          .select-holder
+            width: 70%
+            display: inline-block
+            float: right
+            margin: 0
+            select
+              width: 100%
+              height: 30px
+              padding: 6px 12px
+              background: $white
+              color: #555555
+
+        .building-name
+          margin: 10px 0
+          overflow: hidden
+          width: 100%
+          span
+            float: left
+          .building-field
+            width: 70%
+            display: inline-block
+            float: right
+            height: 30px
+            border-radius: 0
+            color: $black
+            &:focus
+            -webkit-box-shadow: none
+            box-shadow: none
+
+            &::placeholder
+              color: #555555
+              opacity: 1
+
+            &:-ms-input-placeholder
+              color: #555555
+
+            &::-ms-input-placeholder
+              color: #555555
+
+        .submit-btn
+          text-align: center
+          display: block
+          width: 30%
+          margin: 10px auto
+          padding: 6px 10px
+          font-size: 12px
+          background: #fdc741
+          border: 1px solid #fdc741
+          border-radius: 0
+          color: $black
+          text-decoration: none
+          &:hover
+            background: inherit
+            color: $white
+
+
+      .input-group
+        .input-group-addon
+          background-color: inherit
+          border: none
+          color: $white
+
+          i
+            margin-right: 5px
+
+          input
+            margin-right: 5px
+            vertical-align: top
+
+  .modal-body
+    background: url(asset-path('blackboard-wallpapers.jpg')) no-repeat
+    background-size: 100% 100%
+    padding: 10px 0
+
+
+
+    .seperation
+      text-align: center
+      position: relative
+      display: block
+      margin: 10px 0
+      color: $white
+      &:before
+        content: ""
+        position: absolute
+        top: 10px
+        left: 15%
+        background-color: #fff
+        height: 2px
+        width: 30%
+
+      &:after
+        content: ""
+        position: absolute
+        top: 10px
+        right: 15%
+        background-color: #fff
+        height: 2px
+        width: 30%
+
+  .signup-body
+    overflow: auto
+    height: 650px
+    padding: 0 15px
+    margin: 5px 0 0
+
+    &::-webkit-scrollbar
+      width: 8px
+
+    &::-webkit-scrollbar-track
+      background: #f1f1f1
+
+    &::-webkit-scrollbar-thumb
+      background: #888
+      &:hover
+        background: #555
+
+    h2
+      margin: 15px 0 10px
+
+  .nicescroll-rails > div
+    border: none !important
+    background-color: #777777 !important
+    border-radius: 0 !important
+
+  .img-box
+    width: 280px
+    height: 280px
+    border-radius: 100%
+    overflow: hidden
+    margin: 0 auto 20px
+    border: 10px solid $light-yellow
+    transition: ease all 0.5s
+
+    img
+      width: 260px
+      height: 260px
+      border-radius: 100%
+      border: 10px solid $white
+      transition-duration: .6s
+
+    &:hover img
+      transform: scale(1.2)
+      transition: ease all 0.5s
+
+  .close
+    color: $black
+    opacity: 1
+    background: $light-yellow
+    border-radius: 100%
+    width: 30px
+    height: 30px
+    margin: -15px -13px
+    position: relative
+    z-index: 9
+    font-family: 'jaldiregular'
+
+    span
+      display: block
+      margin: -3px 0 0
+
+    &:focus
+      outline: none
+
+  .btn
+    background: $light-yellow
+    border: 2px solid $light-yellow
+    color: $black
+    margin-left: 0
+    margin-bottom: 10px
+    border-radius: 0
+    font-size: 20px
+
+    &:hover
+      background-color: inherit
+      color: $white
+
+  .facebook-link
+    display: inline-block
+    background: #2e55c1
+    border: 2px solid #2e55c1
+    color: $white
+    padding: 6px 12px
+    margin: 5px
+    text-align: center
+    text-decoration: none
+
+    i
+      padding-right: 5px
+
+    &:hover
+      background-color: inherit
+      color: $white
+
+  .google-link
+    display: inline-block
+    background: #ed1212
+    border: 2px solid #ed1212
+    color: $white
+    padding: 6px 12px
+    margin: 5px
+    text-align: center
+    text-decoration: none
+
+    i
+      padding-right: 5px
+
+    &:hover
+      background-color: inherit
+      color: $white
+
+  .txt-holder
+    font-size: 18px
+    line-height: 25px
+    color: $white
+    text-align: center
+
+    .item-heading
+      font-size: 40px
+      line-height: 45px
+      color: $white
+
+    ul
+      list-style: none
+      margin: 0
+      padding: 0
+
+      li
+        display: inline-block
+        vertical-align: top
+        margin-right: 5px
+
+        i
+          color: $light-yellow
+
+  .breadcrumbs
+    margin: 0
+    padding: 0
+    list-style: none
+    font-size: 18px
+    line-height: 22px
+
+    li
+      display: inline-block
+      vertical-align: middle
+
+      &:before
+        content: ">",
+        display: inline-block
+        vertical-align: top
+        margin: 0 10px
+
+      &:first-child
+        &:before
+          display: none
+
+.gm-style .gm-style-iw
+  width: 200px !important
+
+  .marker-tooltip
+    font: 20px/24px 'cf_jack_storyregular'
+
+.gm-style-pbc.detail-map-view
+  transition: opacity ease-in-out
+  background: url(asset-path('bg-black.jpg')) no-repeat
+  background-size: cover
+  text-align: center
+  opacity: 1 !important
+
+  &:after
+    content: '',
+    background: url(asset-path('map.png')) no-repeat
+    background-position: 50% 50%
+    width: 100%
+    height: 90%
+    position: absolute
+    left: 0
+    right: 0
+    margin: 0 auto
+    background-size: contain
+    pointer-events: none
+
+
+.gmnoprint
+  opacity: 1 !important
+
+.custom-space
+  margin: 0 10px 0 0 !important
+#mapCanvas
+  width: 100%
+  height: 215px
+  margin: 10px auto
+
+#ordermap
+  width: 100%
+  height: 300px
+  margin: 0 auto
+
+.jq-toast-wrap
+  .jq-toast-single
+    font-family: 'jaldiregular'
+    h2
+      font-family: 'jaldiregular'
+
+.top-corner
+  .dropdown
+    padding: 0 !important
+    a
+      text-decoration: none
+      color: $black
+      padding: 12px 20px 8px
+      display: block
+      &:hover
+        color: $white
+  .custom-dropdown
+    position: absolute
+    top: 50px
+    left: -30px
+    background-color: #fdc741
+    border: none
+    border-radius: 0
+    text-align: center
+    a
+      color: $black !important
+      &:hover
+        box-shadow: none
+        background: $black !important
+        color: $white !important
+        transform: none !important
+        border-radius: 0 !important
+
+
+#order-details
+  .custom-card
+    .block-head
+      h4
+        text-align: center
+        color: $white
+        margin: 20px 0
+
+  .page-title-box
+    h2
+      color: $white
+      text-align: center
+      font: 48px/60px "cf_jack_storyregular", cursive
+
+  .login
+    font: 14px/10px "cf_jack_storyregular"
+    margin: 0
+    padding: 0
+    z-index: 999
+    display: inline-block
+    vertical-align: middle
+    padding: 10px 10px
+    background: #fdc741
+    border: 1px solid #fdc741
+    border-radius: 10px
+    color: #000
+    text-decoration: none
+    &:hover
+      background: inherit
+      text-decoration: none
+      color: #fff
+
+// .order-type-modal
+//  .radio
+//    &:checked, &:not(:checked)
+//      position: absolute
+//      left: -9999px
+//    &:checked + label, &:not(:checked) + label
+//      position: relative
+//      padding-left: 28px
+//      cursor: pointer
+//      line-height: 20px
+//      display: inline-block
+//      color: #666
+//    &:checked + label:before, &:not(:checked) + label:before
+//      content: ''
+//      position: absolute
+//      left: 0
+//      top: 0
+//      width: 18px
+//      height: 18px
+//      border: 1px solid #ddd
+//      border-radius: 100%
+//      background: #fff
+//    &:checked + label:after
+//      content: ''
+//      width: 12px
+//      height: 12px
+//      background: #F87DA9
+//      position: absolute
+//      top: 4px
+//      left: 4px
+//      border-radius: 100%
+//      -webkit-transition: all 0.2s ease
+//      transition: all 0.2s ease
+//    &:not(:checked) + label:after
+//      content: ''
+//      width: 12px
+//      height: 12px
+//      background: #F87DA9
+//      position: absolute
+//      top: 4px
+//      left: 4px
+//      border-radius: 100%
+//      -webkit-transition: all 0.2s ease
+//      transition: all 0.2s ease
+//      opacity: 0
+//      -webkit-transform: scale(0)
+//      transform: scale(0)
+//    &:checked + label:after
+//      opacity: 1
+//      -webkit-transform: scale(1)
+//      transform: scale(1)
+

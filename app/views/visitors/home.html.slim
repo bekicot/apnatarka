@@ -1,0 +1,57 @@
+#home-page
+  #myCarousel.carousel.slide.clearfix data-ride="carousel" data-lang="#{session[:locale] == "ar" ? true : false}"
+    .carousel-inner role="listbox"
+      .item.active
+        = image_tag "home/burger-home-#{session[:locale] || "en"}.jpg", class: 'img-responsive'
+        .carousel-caption
+          .banner.text-left.clearfix
+            .box
+              .holder
+                .container-fluid
+                  .showcase-right
+                    span.home-arabic= t('home.carousel.caption.ar')
+                  .showcase-left
+                    strong= t('home.carousel.caption.en')
+                  .order-area.clearfix.text-left.text-capitalize
+                    = link_to delivery_index_path, class: "btn" do
+                      = t("order.now")
+                  .download-menu.clearfix.text-left.text-capitalize
+                    
+
+      .item
+        = image_tag "home/sandwich-home-#{session[:locale] || "en"}.jpg", class: 'img-responsive'
+        .carousel-caption
+          .banner.text-left.clearfix
+            .box
+              .holder
+                .container-fluid
+                  span.home-arabic= t('home.carousel.caption.ar')
+                  strong= t('home.carousel.caption.en')
+                  .order-area.clearfix.text-left.text-capitalize
+                    = link_to delivery_index_path, class: "btn" do
+                      = t("order.now")
+                  .download-menu.clearfix.text-left.text-capitalize
+                    
+
+      .item
+        = image_tag "home/dessert-home-#{session[:locale] || "en"}.jpg", class: 'img-responsive'
+        .carousel-caption
+          .banner.text-left.clearfix
+            .box
+              .holder
+                .container-fluid
+                  span.home-arabic= t('home.carousel.caption.ar')
+                  strong= t('home.carousel.caption.en')
+                  .order-area.clearfix.text-left.text-capitalize
+                    = link_to delivery_index_path, class: "btn" do
+                      = t("order.now")
+                  .download-menu.clearfix.text-left.text-capitalize
+                    
+
+    = link_to image_tag('bar.png'), root_path(anchor: 'about_us'), class: 'scroll-btn'
+
+  = render 'visitors/about_us'
+
+  = render 'menu/menu'
+
+  = render 'visitors/location'

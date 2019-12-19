@@ -1,0 +1,137 @@
+#order-details
+  - if @order.paid? || @order.location.present?
+    .banner.text-center.clearfix
+      .container
+        .stepwizard
+          .stepwizard-step
+            button.btn.btn-default.btn-circle.active type="button"  1
+            p = t("delivery.shopping_cart")
+          .stepwizard-step
+            button.btn.btn-default.btn-circle.active type="button"  2
+            p = t("delivery.checkout")
+          .stepwizard-step
+            button.btn.btn-default.btn-circle.active type="button"  3
+            p = t("delivery.order_complete")
+          .title-box
+            .img-box
+              = image_tag 'tick.png'
+            .text-box
+              h2 = t("delivery.order_received")
+              p = t("delivery.order_thanks")
+    .center-part
+      .container
+        .favorite.text-center
+          - if user_signed_in?
+            - unless @order.is_favorite
+              = link_to t("delivery.add_favorite"), add_to_favorite_delivery_path(@order), class: 'btn btn-default'
+            - else
+              h3 = t("delivery.added_favorite")
+
+  - elsif @order.address.present? && @order.unpaid?
+    .banner.text-center.clearfix
+      .container
+        .stepwizard
+          .stepwizard-step
+            button.btn.btn-default.btn-circle.active type="button"  1
+            p = t("delivery.shopping_cart")
+          .stepwizard-step
+            button.btn.btn-default.btn-circle.active type="button"  2
+            p = t("delivery.checkout")
+          .stepwizard-step
+            button.btn.btn-default.btn-circle type="button"  3
+            p = t("delivery.order_complete")
+          .title-box
+            .img-box
+              = image_tag 'cancel.png'
+            .text-box
+              p = t("delivery.incomplete_payment")
+      .center-part
+        .container
+          .favorite.text-center
+              = link_to t("delivery.payment_again"), re_payment_delivery_index_path(order: @order), class: 'btn btn-default'
+  .clearfix
+    .container
+      .table-responsive
+        table
+          thead
+            tr
+              th = t("delivery.order_number")
+              th = t("delivery.date")
+              th = t("delivery.delivery_time")
+              th = t("delivery.total")
+              th = t("delivery.payment_method")
+              - if @order.debit_credit_card?
+                th = t("delivery.payment")
+                th = t("delivery.payment_reference")
+          tbody
+            tr
+              td = @order.order_number
+              td = @order.created_at.strftime("%B %d, %Y")
+              td = @order&.delivery_time&.strftime("%m-%d-%Y %I:%M") || Time.now.strftime("%m-%d-%Y %I:%M")
+              td = "$#{number_with_precision(@order.sub_total, precision: 2)}"
+              td = payment_method_translation(@order.payment_method)
+              - if @order.debit_credit_card?
+                td = @order.status.capitalize
+                td = @order&.payment_reference || 'N/A'
+      .order-detail
+        h2 = t("delivery.order_details")
+        .product
+          strong = t("header.menu_items")
+          strong.special-request = t("delivery.special_request")
+          strong.amount = t("delivery.total")
+        - @order.order_items.each do |order_item|
+          .item
+            span
+              .img-box
+                = image_tag order_item.menu_item.avatar.url
+              h4= "#{order_item.menu_item.title} x  #{order_item.quantity}"
+            span class="price" = "$#{number_with_precision(order_item.menu_item.price*order_item.quantity, precision: 2)}"
+            span.special-request-message
+              = MenuItem.special_request(order_item)&.truncate(30)
+              - if MenuItem.special_request(order_item)&.length > 30
+                  = link_to "javascript:void(0)", "data-toggle": "tooltip", title: MenuItem.special_request(order_item) do
+                    i.fa.fa-exclamation-circle
+
+
+        .subtotal
+          strong = t("delivery.sub_total")
+          span = "$#{number_with_precision(@order.sub_total, precision: 2)} #{t('delivery.including')} #{Order::VAT_DISPLAY} #{t("delivery.vat")}"
+        .payment
+          strong = t("delivery.payment_method")
+          span = payment_method_translation(@order.payment_method)
+        .total
+          strong = t("delivery.total")
+          span = "$#{number_with_precision(@order.sub_total, precision: 2)}"
+        .address
+          h2 = t("delivery.billing_address")
+          .phone
+            span = @order.phone
+            strong = t("delivery.phone")
+          .city
+            span = @order.city.humanize
+            strong = t("delivery.city")
+          .state
+            span = @order.state.humanize
+            strong = t("delivery.state")
+
+          - if @order.address.present?
+            .adress-type
+              span = @order.address&.address_type || "N/A"
+              strong = t("address.address_type")
+            .building-name
+              span = @order.address&.building_name || "N/A"
+              strong = t("address.building_name")
+            .building-number
+              span = @order.address&.building_number || "N/A"
+              strong = t("address.building_number")
+            .room-number
+              span = @order.address&.room_no || "N/A"
+              strong = t("address.room_no")
+            .direction
+              span = @order.address&.direction || "N/A"
+              strong = t("address.direction")
+
+          - elsif @order.location.present?
+            .direction
+              span = @order.location&.address || "N/A"
+              strong = t("address.branch")

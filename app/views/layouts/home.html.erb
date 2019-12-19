@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TwentyForty</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= include_gon %>
+  </head>
+
+  <body class="twenty-forty <%= session[:locale] %> <%= params[:action] %>">
+    <%= render 'layouts/loader' %>
+    <div id="wrapper">
+      <div class="w1 home">
+        <%= render 'layouts/home_header' %>
+        <%= yield %>
+        <%= render 'layouts/home_footer' %>
+      </div>
+    </div>
+
+    <!-- render modals -->
+    <% %w(menuItemModel locationModal).each do |id| %>
+      <%= render partial: 'layouts/modals', locals: { id: id } %>
+    <% end %>
+
+    <div id="login_signup_modals">
+    </div>
+    <div id="order_type_modal">
+      <%= render partial: 'layouts/get_delivery_details' if session[:delivery_details].blank? && session[:address].blank? && !(%w[order_received feedback all_favorite_orders show_favorite_order].include?(params[:action])) %>
+    </div>
+    <%= javascript_include_tag 'application' %>
+    <% flash.each do |message_type, message| %>
+      <%= javascript_tag "$.toast({
+            heading: '#{message_type.titleize}',
+            text: '#{message}',
+            position: {
+              top: 97,
+              right: 11
+            },
+            showHideTransition: 'slide',
+            hideAfter: 7000,
+            bgColor: '#{message_type == "success" ? "#00a300" : message_type == "alert" ? "#ed1212" : "#fdc741"}',
+            textColor: '#fff',
+            loaderBg: '#{message_type == "success" ? "rgb(22, 124, 22)" : message_type == "alert" ? "rgb(200, 0, 0)" : "#fdc741"}',
+        })"
+      %>
+    <% end %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_wdQT1_A4ou626VaXz-D6hfIC1BYvyKM" async defer></script>
+    <script src="http://www.google.com/jsapi" type="text/javascript" async defer></script>
+  </body>
+</html>

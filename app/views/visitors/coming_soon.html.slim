@@ -1,0 +1,30 @@
+.coming_soon
+  .container
+    .banner.text-center.clearfix
+      .arabic
+        span
+          = t('coming_soon.are_you.ar')
+        em
+          = t("coming_soon.heading.ar")
+      .showcase-bottom
+        strong.text-capitalize.heading
+          = t('coming_soon.are_you.en')
+      h2.title.text-capitalize.showcase-left
+        = t("coming_soon.heading.en")
+
+  .coming-soon.clearfix
+    .col-sm-12
+      .box.clearfix
+        .holder.clearfix
+          .frame.text-center
+            .truck-img
+              .move-me
+                = image_tag 'truck-gif.gif', class: 'img-responsive'
+
+            .truck-row
+              span.text-left
+                strong = image_tag("40-circle-nobg.png")
+              span.text-center
+                strong = image_tag("20-circle-nobg.png")
+              span.text-right
+                strong = image_tag("0-circle-nobg.png")

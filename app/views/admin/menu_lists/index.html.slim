@@ -1,0 +1,32 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-info-circle
+        | Menu Brochure
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | File Name
+                th
+                  | File
+                th
+                  | Action
+            tbody
+            - @menus.each do |menu|
+              tr
+                td
+                  = menu.menu_file_file_name
+                td
+                  = menu.menu_file_content_type
+                td
+                  = link_to  menu.menu_file.url, download: menu.menu_file.original_filename, class: "btn btn-primary btn-xs" do
+                    i class="fa fa-download"
+                  = link_to menu.menu_file.url, target: :_blank, class: "btn btn-warning btn-xs" do
+                    i class="fa fa-eye"
+                  = link_to edit_admin_menu_list_path(menu), class: "btn btn-success btn-xs" do
+                    i class="fa fa-pencil"
+

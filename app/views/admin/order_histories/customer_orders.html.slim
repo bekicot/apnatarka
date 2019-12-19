@@ -1,0 +1,73 @@
+.clearfix
+  .container-fluid
+    .row
+      .col-md-12
+        .page-title-box
+          h4 Customer's Order History
+    .row
+      .col-md-12
+        .card.m-b-30.custom-card
+          .card-body.block-head.order-height
+            - if @reg_orders.present?
+              h4.mt-0.m-b-15.header-title
+                | Registered Customer's Orders
+              .table-responsive
+                table.table.table-hover.order-history
+                  thead
+                    tr
+                      th Order #
+                      th Menu Item
+                      th Payment Status
+                      th Total Price
+                      th Actions
+                  tbody
+                  - @reg_orders.each do |order|
+                    tr
+                      td = order.order_number
+                      td = order_item_names(order)
+                      td = form_for order, url: change_status_admin_order_history_path(order), method: :post, remote: true do |f|
+                            .col-sm-8
+                              = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
+                            .col-sm-4
+                              = f.submit 'Update', class: 'btn btn-primary btn-xs'
+                      td = order.sub_total
+                      td = link_to "show", admin_order_history_path(order.id), class: "btn btn-xs btn-primary"
+                = will_paginate @reg_orders, param_name: 'reg_page'
+            - else
+              p
+                | No registered user has ordered yet.
+
+    .row
+      .col-md-12
+        .card.m-b-30.custom-card
+          .card-body.block-head.order-height
+            - if @guest_orders.present?
+              h4.mt-0.m-b-15.header-title
+                | Guest Customer's Orders
+              .table-responsive
+                table.table.table-hover.order-history
+                  thead
+                    tr
+                      th Order #
+                      th Menu Item
+                      th Payment Status
+                      th Total Price
+                      th Actions
+                  tbody
+                    - @guest_orders.each do |order|
+                      tr
+                        td = order.order_number
+                        td = order_item_names(order)
+                        td = form_for order, url: change_status_admin_order_history_path(order), method: :post, remote: true do |f|
+                            .col-sm-8
+                              = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
+                            .col-sm-4
+                              = f.submit 'Update', class: 'btn btn-primary btn-xs'
+                        td = order.sub_total
+                        td = link_to "show", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
+                = will_paginate @guest_orders, param_name: 'guest_page'
+            - else
+              p
+                | No guest user has ordered yet.
+
+

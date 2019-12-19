@@ -1,0 +1,14 @@
+$("#login_signup_modals").html("<%= escape_javascript(render(partial: 'layouts/sign_in')) %>");
+$("#login_signup_modals").append("<%= escape_javascript(render(partial: 'layouts/sign_up')) %>");
+
+$('#sign-in-modal').modal('show');
+$('.nice-scroll').niceScroll();
+login_signup_modals();
+
+
+var geocoder = new google.maps.Geocoder();
+
+map_initialize(24.8061, 46.6908);
+
+
+

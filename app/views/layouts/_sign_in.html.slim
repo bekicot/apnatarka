@@ -1,0 +1,44 @@
+div.modal.fade id="sign-in-modal" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      button class="close" data-dismiss="modal" aria-label="Close"
+        span aria-hidden="true" ×
+      .modal-body.clearfix
+        h2
+          span
+            = t('signin_signup.sign_in')
+
+
+        p
+          span
+            - if session[:cart].present?
+              = t("signin_signup.sign_in_message")
+        .form-section.col-sm-12
+          = form_for :user, url: session_path(:user), html: {"data-parsley-validate" => true, class: 'form-horizontal'} do |f|
+            .form-group
+              = f.label t("header.email_or_phone")
+              = f.text_field :login, class: 'form-control', required: true
+
+            .form-group
+              = f.label t("signin_signup.password")
+              = f.password_field :password, class: 'form-control', required: true, "data-parsley-minlength": 6
+
+            .form-group.clearfix
+              = f.submit t('signin_signup.sign_in'), class: 'btn btn-primary'
+              = link_to t("signin_signup.guest_order"), guest_order_delivery_index_path, class: 'btn btn-primary pull-right guest-checktout'
+              = link_to t("signin_signup.no_account_message"), "javascript:void(0);", id: 'show-sign-up-modal'
+
+          .row.text-center
+
+            span.seperation OR
+
+            = link_to user_facebook_omniauth_authorize_path, class: "facebook-link btn" do
+              i.fa.fa-facebook
+              span
+                = t('header.signin_with_facebook')
+
+            = link_to user_google_oauth2_omniauth_authorize_path, class: "google-link btn" do
+              i.fa.fa-google
+              span
+                = t('header.signin_with_google')
+

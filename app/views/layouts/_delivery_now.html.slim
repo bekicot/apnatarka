@@ -1,0 +1,13 @@
+div#new_address_fields
+  div.address-box
+    p.text-center Use your current location or enter a new dilevery address
+    = link_to "New Address", new_or_existing_address_delivery_index_path, class: "address-btn", remote: true
+    span or
+    p.text-center Find your location
+    input type="text" class="form-control location-field" id="order_loc" placeholder="location"
+    #ordermap
+    a.address-btn#find_location_btn Search
+    .select-box
+      a#current_address_btn.submit-btn.pull-right = t("order.submit")
+  div#new_or_existing_check
+

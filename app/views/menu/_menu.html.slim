@@ -1,0 +1,19 @@
+#complete_menu.menu-block
+  .tabs-block
+    .text-center
+      .showcase-left
+        strong.heading= t('menu.heading')
+      .showcase-right
+        h2= t('menu.sub_heading')
+    .container
+      ul.nav.nav-tabs.text-center
+        - @categories.each_with_index do |category, index|
+          li class=(['menu-col col-sm-3', 'showcase-left', index == 0 ? 'active' : ''].compact.join(' '))
+            = link_to "#tab#{category.id}", class: "text-capitalize menu_category", data: {'id': category.id, 'toggle': "tab"}
+              strong.title.text-capitalize
+                = category.title
+
+  .menu#menu-items
+    = render partial: 'menu/menu_items'
+
+  = link_to image_tag('bar1.png'), root_path(anchor: 'location'), class: 'scroll-btn'

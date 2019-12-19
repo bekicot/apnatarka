@@ -1,0 +1,8 @@
+$("#locationModal .modal-content").html("<%= escape_javascript(render(partial: 'map')) %>");
+
+$.initializeMap(JSON.parse("<%= j(render(inline: @map_data)) %>"));
+
+setTimeout((function() {
+  return $('.loader-area').hide();
+}), 500);
+$("#locationModal").modal("show");

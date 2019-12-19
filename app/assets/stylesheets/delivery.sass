@@ -1,0 +1,83 @@
+.delivery-page
+  background: url(asset-path('blackboard-wallpapers.jpg')) no-repeat
+  background-size: 100% 100%
+  overflow: hidden
+  padding: 140px 0 0
+  height: 100vh
+
+  .banner
+    height: auto
+    h2
+      margin: 0 0 20px
+    .heading
+      padding: 140px 0 0
+
+  .coming-soon
+    font: 30px/40px 'cf_jack_storyregular'
+    color: $white
+
+    strong
+      display: block
+      margin: 0 0 20px
+      font: 34px/48px "BZiba"
+
+    span
+      display: block
+      margin: 0 0 20px
+
+  .truck-img
+    margin: 50px auto 0
+    position: relative
+    overflow: hidden
+    border-bottom: 4px dashed $light-yellow
+
+    marquee
+      display: block
+      img
+        width: 300px
+
+    .move-me
+      display: block
+      position: relative
+      animation: move-in-steps 25s infinite
+      img
+        width: 300px
+
+  .truck-row
+    span
+      width: 33.33%
+      display: inline-block
+      strong
+        display: inline-block
+        text-align: center
+        margin-top: 5px
+        img
+          max-width: 75px
+
+  @keyframes move-in-steps
+    0%
+      left: 100%
+
+    100%
+      left: -300px
+.special_request
+  color: black
+  width: 149px
+
+@media only screen and (max-width: 1024px)
+  .delivery-page
+    .coming-soon
+      font: 20px/30px 'cf_jack_storyregular'
+    .truck-img marquee img, .truck-img .move-me img
+      width: 200px
+
+    @keyframes move-in-steps
+      0%
+        left: 100%
+
+      100%
+        left: -200px
+
+@media only screen and (max-width: 767px)
+  .delivery-page
+    padding: 50px 0 0

@@ -1,0 +1,38 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-info-circle
+        | Contact Request
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Name
+                th
+                  | Email
+                th
+                  | Phone
+                th
+                  | message
+                th
+                  | Action
+            tbody
+            - @contact_requests.each do |contact_request|
+              tr
+                td
+                  = contact_request.name
+                td
+                  = contact_request.email
+                td
+                  = contact_request.phone
+                td
+                  = contact_request.message
+                td
+                  = link_to admin_contact_request_path(contact_request), class: 'btn btn-primary btn-xs' do
+                    i.fa.fa-eye
+                  - unless current_user.moderator_user?
+                      = link_to admin_contact_request_path(contact_request), method: :delete, data: {confirm: "Are you sure!"}, class: 'btn btn-danger btn-xs' do
+                        i.fa.fa-times

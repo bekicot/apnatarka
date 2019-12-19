@@ -1,0 +1,299 @@
+.twenty-forty
+	#header
+		padding: 10px 0 6px
+		background-color: rgba(0,0,0,0.20)
+
+	.fixed-header
+		padding: 5px 0 !important
+		background-color: rgba(0, 0, 0, 0.8) !important
+
+	.navbar-right
+		margin-right: 0
+
+	.navbar-default
+		background-color: inherit
+		border-color: none
+		.navbar-nav
+			float: none
+			margin: 0 95px
+			> li
+				margin: 0 0 0 10px
+				float: none
+				display: inline-block
+				vertical-align: top
+				position: relative
+				a
+					color: $white
+					display: block
+					border: none
+					padding-top: 10px
+					padding-bottom: 10px
+					font-size: 17px !important
+					background: transparent
+
+					&:after
+						display: block
+						content: "",
+						height: 4px
+						position: absolute
+						left: 50%
+						bottom: 0
+						width: 0
+						transition: all 0.5s ease-in-out
+						background: $light-yellow
+
+					&:focus
+						background: inherit !important
+					&:hover
+						color: $white !important
+						background: transparent
+
+				&:hover
+					a
+						&:after
+							border-color: $light-yellow
+							width: 80%
+							left: 10%
+
+				&.active
+					border-bottom: 4px solid $light-yellow
+					a
+						background: inherit
+						padding-bottom: 6px
+						&:hover
+							&:after
+								display: none
+
+				.dropdown-menu
+					border-radius: 0
+
+					a
+						color: $black
+
+				.caret
+					margin-top: 0
+
+	.phonenumber
+		font: 20px/24px "cf_jack_storyregular"
+		margin: 0 10px 0 0
+		padding: 0
+		z-index: 999
+		display: inline-block
+		vertical-align: middle
+		a
+			padding: 12px 12px 8px
+			background: $light-yellow
+			border: 1px solid $light-yellow
+			border-radius: 10px
+
+			&:hover
+				background: inherit
+				text-decoration: none
+				color: $white
+		i
+			margin-right: 5px
+			animation: shake 0.5s
+			animation-iteration-count: infinite
+
+	.login
+		font: 20px/24px "cf_jack_storyregular"
+		margin: 0
+		padding: 0
+		z-index: 999
+		display: inline-block
+		vertical-align: middle
+		padding: 12px 20px 8px
+		background: $light-yellow
+		border: 1px solid $light-yellow
+		border-radius: 10px
+		color: $black
+		text-decoration: none
+
+		&:hover
+			background: inherit
+			text-decoration: none
+			color: $white
+
+	.navbar
+		margin: 13px 0 6px
+		overflow: visible
+
+	.top-corner
+		position: relative
+		z-index: 1040
+		margin: 10px 0
+
+		ul
+			display: inline-block
+			vertical-align: middle
+			margin: 0 10px 0 0
+			font-size: 17px
+
+			li
+				display: inline-block
+				vertical-align: middle
+
+				a
+					padding: 10px 8px
+					color: $white
+
+					&:hover
+						background: inherit
+						border-radius: 30px
+						transform: scale(1.5)
+
+				img
+					width: 25px
+
+
+				.fa
+					color: $light-yellow
+					margin-right: 10px
+
+				&#cart_count
+					position: relative
+
+					.cart-number
+						position: absolute
+						top: 3px
+						right: 11px
+						display: block
+						width: 18px
+						height: 18px
+						border-radius: 100%
+						background: $white
+						color: $black
+						font-size: 13px
+						text-align: center
+
+		@keyframes shake
+			0%
+				transform: translate(1px, 1px) rotate(0deg)
+			10%
+				transform: translate(-1px, -2px) rotate(-1deg)
+			20%
+				transform: translate(-3px, 0px) rotate(1deg)
+			30%
+				transform: translate(3px, 2px) rotate(0deg)
+			40%
+				transform: translate(1px, -1px) rotate(1deg)
+			50%
+				transform: translate(-1px, 2px) rotate(-1deg)
+			60%
+				transform: translate(-3px, 1px) rotate(0deg)
+			70%
+				transform: translate(3px, 1px) rotate(-1deg)
+			80%
+				transform: translate(-1px, -1px) rotate(1deg)
+			90%
+				transform: translate(1px, 2px) rotate(0deg)
+			100%
+				transform: translate(1px, -2px) rotate(-1deg)
+
+@media only screen and (max-width: 1023px)
+	.twenty-forty
+		.top-corner
+			ul
+				padding-right: 10px !important
+				font-size: 16px
+
+				li
+					a
+						padding: 10px 0px 10px 5px
+
+@media only screen and (max-width: 767px)
+	.twenty-forty
+		.navbar-default
+			.navbar-toggle
+				position: absolute
+				right: 0
+				z-index: 1040
+				top: 4px
+
+			.navbar-nav
+				> li
+					display: block
+					margin: 0
+
+					&.dropdown
+						a
+							color: $white
+						.dropdown-menu
+							margin: -4px 6px 6px -5px
+							li
+								margin: 5px 0
+				> .open
+					> a
+						background-color: transparent
+					.dropdown-menu > li > a
+						color: $dark-blue
+
+			.navbar-collapse
+				background: $dark-blue-rgba
+				margin: 20px 0 0
+				ul > li
+					> a
+						color: $white
+						margin: 10px 20px 10px 10px
+						font-size: 16px
+					&.active > a, &:visited > a
+						color: $white
+						border: 0
+
+		.top-corner
+			float: left !important
+			margin: 20px auto
+			width: 100%
+			text-align: center
+
+			ul
+				margin: 0 5px 0 0
+
+				li .fa
+				margin-right: 0
+
+		.social-icons
+			margin: 10px auto
+			width: 180px
+
+			li:last-child
+				margin: 0 10px
+
+		.banner .heading
+			margin: 30px 0
+
+@media only screen and (max-width: 400px)
+	.twenty-forty
+		.container-fluid
+			padding-left: 5px
+			padding-right: 5px
+
+		.logo
+			left: 5px
+
+		.navbar-default
+			.navbar-toggle
+				right: 0
+				top: 3px
+
+		.top-corner
+			ul
+				margin: 0 0 10px
+				overflow: hidden
+				width: 100%
+				li a
+					padding: 10px 5px
+
+			.phonenumber
+				font: 12px/24px "cf_jack_storyregular"
+				a
+					padding: 10px
+
+		.social-icons
+			margin: 0 auto
+			width: 180px
+
+			li:last-child
+				margin: 0 10px
+
+

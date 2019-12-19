@@ -1,0 +1,22 @@
+div.modal.fade id="delivery_details_modal" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document" class="order-type-modal"
+    .modal-content
+      button class="close" data-dismiss="modal" aria-label="Close"
+        span aria-hidden="true" ×
+      .modal-body.clearfix
+        .col-lg-12
+          .order-heading
+            h2 = t("order.start_order")
+        .form-section.col-sm-12.first-row
+          span class="heading" = t("order.want")
+          .row
+            .col-xs-6
+              .input-group
+                span.input-group-addon.beautiful
+                  input type="radio" name="d_mode" class="d_mode" data-attr="carry_out" = t("order.carry")
+            .col-xs-6
+              .input-group
+                span.input-group-addon.beautiful
+                  input type="radio" name="d_mode" class="d_mode" data-attr="delivery" = t("order.delivery")
+
+        div#delivery_modes

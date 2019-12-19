@@ -1,0 +1,20 @@
+<% if (current_user.blank? && session[:guest_order].blank?) %>
+  $("#login_signup_modals").html("<%= escape_javascript(render(partial: 'layouts/sign_in')) %>");
+  $("#login_signup_modals").append("<%= escape_javascript(render(partial: 'layouts/sign_up')) %>");
+
+  $('#sign-in-modal').modal('show');
+  login_signup_modals();
+
+  var geocoder = new google.maps.Geocoder();
+
+  map_initialize(24.8061, 46.6908);
+<% elsif session[:delivery_details].blank? && session[:address].blank? %>
+  $('#delivery_details_modal').modal('show');
+<% else %>
+  $("#menuItemModel .modal-content").html("<%= escape_javascript(render(partial: 'single_item', locals: { menu_item: @menu_item })) %>");
+  $("#menuItemModel").modal("show");
+<% end %>
+
+setTimeout((function() {
+  return $('.loader-area').hide();
+}), 500);

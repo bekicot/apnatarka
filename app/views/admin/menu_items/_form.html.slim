@@ -1,0 +1,23 @@
+= form_for [:admin, @menu_item], html: { "data-parsley-validate" => true } do |f|
+  - if @menu_item.errors.full_messages.any? 
+    - @menu_item.errors.full_messages.each do |error_message| 
+        = error_message if @menu_item.errors.full_messages.first == error_message
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :Category, class: 'show'
+      = f.select :category_id, options_for_select(@categories.map{|category| [category.title, category.id ]}, selected: @menu_item.category_id), {include_blank: "-- Select Category --"}, required: true, class: 'form-control'
+  - MenuItem.globalize_attribute_names.each do |lang|
+    .form-group.clearfix
+      .col-sm-12
+        = f.label lang, class: 'show'
+        = f.text_field lang, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :image, class: 'show'
+      = f.file_field  :avatar, required: @menu_item.avatar.blank?, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :Price, class: 'show'
+      = f.number_field :price, required: true, class: 'form-control'
+  .col-sm-12
+    = f.submit "Submit", class: 'pull-right btn custom-btn btn-primary'

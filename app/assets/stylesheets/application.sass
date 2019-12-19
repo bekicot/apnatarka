@@ -1,0 +1,41 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *= require toast
+ *= require bootstrap-datetimepicker
+ */
+
+@charset "UTF-8"
+@import "bootstrap-sprockets"
+@import "bootstrap"
+@import "font-awesome-sprockets"
+@import "font-awesome"
+@import "jquery-ui"
+
+@import 'help/all_helpers'
+@import 'layout/all_layouts'
+@import 'responsive/all_responsives'
+
+@import "custom"
+@import "delivery"
+@import "order"
+
+@import 'twenty_forty/_twenty_forty_layout'
+@import "twenty_forty/banner"
+@import "twenty_forty/feedback"
+@import "twenty_forty/message_us"
+@import "twenty_forty/menu"
+@import "twenty_forty/location"
+@import "twenty_forty/franchise"
+
+@import parsley
+
+@import "twenty_forty/arabic_rtl"

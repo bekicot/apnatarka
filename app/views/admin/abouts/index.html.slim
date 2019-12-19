@@ -1,0 +1,12 @@
+.container-fluid
+  .card-box
+		.heading-bar.clearfix
+			h4.pull-left
+				i.fa.fa-info-circle
+				| About
+			= link_to "Add About us", new_admin_about_path, class: "btn custom-btn btn-primary pull-right"
+		.card-body
+        .table-responsive
+          #about-us-info'
+            = render partial: "about_us", locals: {abouts: @abouts}
+

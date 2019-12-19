@@ -1,0 +1,32 @@
+@mixin placeholder
+  &::-webkit-input-placeholder
+    @content
+  &:-moz-placeholder
+    @content
+  &::-moz-placeholder
+    @content
+  &:-ms-input-placeholder
+    @content
+
+@mixin boxcenter
+  display: table-cell
+  vertical-align: middle
+  height: 100%
+  width: 100%
+
+@mixin imgstyles
+  display: block
+  width: 100%
+  height: auto
+
+@mixin userlist
+  margin: 0
+  padding: 0
+  list-style: none
+
+@mixin position
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0

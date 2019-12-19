@@ -1,0 +1,35 @@
+= form_for [:admin, @user], html: { "data-parsley-validate" => true, class: 'admin-form' } do |f|
+  - if @user.errors.full_messages.any?
+      - @user.errors.full_messages.each do |error_message|
+          = error_message if @user.errors.full_messages.first == error_message
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :first_name, class: 'show'
+      = f.text_field :first_name, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :last_name, class: 'show'
+      = f.text_field :last_name, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :email, class: 'show'
+      = f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :role, class: 'show'
+      = f.select :role, options_for_select(User.user_roles.except(:super_admin), selected: @user.role), {}, { class: 'form-control' }
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :password, class: 'show'
+      = f.password_field :password, autocomplete: "off", required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :password_confirmation, class: 'show'
+      = f.password_field :password_confirmation, autocomplete: "off", required: true, class: 'form-control'
+  .col-sm-12
+    / = f.submit "Submit", class: 'btn btn-primary pull-right'
+    = f.button :submit, class: 'btn custom-btn btn-primary pull-right'
+      i.fa.fa-paper-plane
+
+      span
+        | Submit

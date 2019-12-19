@@ -1,0 +1,16 @@
+#checkout
+  .banner.text-center.clearfix
+    .container
+      .stepwizard
+        .stepwizard-step
+          button.btn.btn-default.btn-circle.active type="button"  1
+          p = t("delivery.shopping_cart")
+        .stepwizard-step
+          button.btn.btn-default.btn-circle type="button"  2
+          p = t("delivery.checkout")
+        .stepwizard-step
+          button.btn.btn-default.btn-circle type="button"  3
+          p = t("delivery.order_complete")
+  .center-part#cart_details
+      = render "cart_details"
+#add-more-items

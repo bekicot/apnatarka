@@ -1,0 +1,496 @@
+ar:
+  hello: "مرحبا بالعالم"
+
+  order:
+    now: "اطلب الان"
+    start_order: "ابدأ طلبك"
+    want: "انا اريد"
+    carry: "تنفيذ"
+    delivery: "توصيل"
+    order_now: "الآن"
+    order_later: "في وقت لاحق"
+    new_address: "العنوان الجديد"
+    existing_address: "العنوان الحالي"
+    select_address: "- اختر نوع العنوان -"
+    select_existing_address: "- اختر العنوان -"
+    no_address: "لم تقم بإنشاء عنوان حتى الآن."
+    for: "إلى عن على"
+    at: "في"
+    delivery_time: "يرجى إدخال وقت التسليم"
+    select_branch: "اختر الفرع"
+    submit: "خضع"
+    time: "أدخل التاريخ والوقت"
+    more_food: "إضافة المزيد من الغذاء"
+    action: "عمل"
+    show: "تبين"
+    favorite: "ليس لديك أي أوامر مفضلة حتى الآن"
+    fav_title: "طلباتك المفضلة"
+    back: "الى الخلف"
+
+  menu:
+    download: "تحميل القائمة"
+
+  header:
+    dashboard: 'لوحات'
+    users: 'المستخدمين'
+    menu_categories: 'فئات القائمة'
+    message_requests: 'طلبات الرسائل'
+    menu_items: 'عناصر القائمة'
+    about_us: "معلومات عنا"
+    menu: "قائمة طعام"
+    delivery: "توصيل"
+    location: "موقعك"
+    contact_us: "اتصل بنا"
+    call: "مكالمة"
+    language: "لغة"
+    about_us: "عنا"
+    english: "English"
+    arabic: "عربى"
+    logout: "الخروج"
+    languages: "اللغات"
+    share_with_us: "شارك معنا"
+    feedback: "ردود الفعل"
+    franchise: "الامتياز التجاري"
+    message_us: "رسالة لنا"
+    franchise_requests: "طلبات الامتياز"
+    menu_lists: "كتيب القائمة"
+    share_us: "شارك معنا"
+    back_to_admin: "لوحة تحكم المشرف"
+    order_histories: "تاريخ الطلب"
+    my_order_history: "سجل طلبي"
+    customer_order_history: "سجل طلبات العملاء"
+    login: "تسجيل الدخول"
+    logout: "الخروج"
+    signin_with_facebook: "الدخول مع لفيسبوك"
+    signin_with_google: "الدخول مع جوجل"
+    email_or_phone: "بريد الكتروني او هاتف"
+    favorites: "الطلبات المفضلة"
+
+  crud:
+    access_denied: "تم الرفض"
+    show: "تبين"
+    edit: "تصحيح"
+    delete: "حذف"
+    user_created: "تم إنشاء المستخدم وإرسال البريد الإلكتروني إلى هذا المستخدم"
+    user_update: "م تحديث المستخدم بنجاح"
+    creating_error: "فشل في انشاء"
+    user_update_error: "أخفق تحديث المستخدم"
+    create_about: "معلومات عنا إنشاء بنجاح"
+    user_delete: "تم حذف المستخدم بنجاح"
+    #about flash messages
+    about_created: "حول خلق بنجاح"
+    about_update: "حول تحديث بنجاح"
+    about_update_error: "اخفاق التحديث"
+    creating_error: "فشل في انشاء"
+    about_delete: "حول المحذوفة بنجاح"
+    error_about_delete: "تعذر الحذف"
+    # categories flash messages
+    category_created: "الفئة تم إنشاؤها بنجاح"
+    category_update: "تم تحديث الفئة بنجاح"
+    category_update_error: "اخفاق التحديث"
+    creating_error: "فشل في انشاء"
+    category_delete: "الفئة المحذوفة بنجاح"
+    error_category_delete: "غير قادر على الحذف"
+    # Menu Items flash messages
+    menu_item_created: "عنصر القائمة تم إنشاؤه بنجاح"
+    menu_item_update: "تحديث عنصر القائمة بنجاح"
+    menu_item_delete: "تم حذف عنصر القائمة بنجاح"
+    error_menu_item_delete: "غير قادر على الحذف"
+    location_created: "تم إنشاء الموقع بنجاح"
+    location_update: "تم تحديث الموقع بنجاح"
+    location_delete: "تم حذف الموقع بنجاح"
+    error_location_delete: "غير قادر على الحذف"
+    create_menu_list: "قائمة القائمة التي تم إنشاؤها بنجاح"
+
+  footer:
+    follow_us: "تابعنا"
+    contact_info: "معلومات الاتصال"
+    website: "موقع الكتروني"
+    email: "البريد الإلكتروني"
+    contact_number: "رقم الاتصال"
+    unit: "الوحدة # 3 - ميدان حطين"
+    address: "عنوان"
+    address_desc: "برينس تركي إبن عبدالعزيز أل أول رد, رياض, ١٣٥١٣"
+    opening_time: "وقت مفتوح"
+    mon_thu_time: "الاثنين - الخميس الساعة 11:30 - 22:00"
+    fri_sat_time: "الجمعة - السبت على مدار الساعة 11:30 - 24:00"
+
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'فشل التحقّق من: %{errors}'
+        restrict_dependent_destroy:
+          has_one: لا يمكن حذف السجل لوجود سجل يعتمد عليه %{record}
+          has_many: لا يمكن حذف السجل لوجود سجلات تعتمد عليه %{record}
+
+  date:
+    abbr_day_names:
+    - الأحد
+    - الإثنين
+    - الثّلاثاء
+    - الأربعاء
+    - الخميس
+    - الجمعة
+    - السّبت
+    abbr_month_names:
+    -
+    - ينا
+    - فبر
+    - مار
+    - أبر
+    - ماي
+    - يون
+    - يول
+    - أغس
+    - سبت
+    - أكت
+    - نوف
+    - ديس
+    day_names:
+    - الأحد
+    - الإثنين
+    - الثّلاثاء
+    - الأربعاء
+    - الخميس
+    - الجمعة
+    - السّبت
+    formats:
+      default: "%d-%m-%Y"
+      long: "%e %B، %Y"
+      short: "%e %b"
+    month_names:
+    -
+    - يناير
+    - فبراير
+    - مارس
+    - أبريل
+    - مايو
+    - يونيو
+    - يوليو
+    - أغسطس
+    - سبتمبر
+    - أكتوبر
+    - نوفمبر
+    - ديسمبر
+    order:
+    - :day
+    - :month
+    - :year
+
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        zero: حوالي صفر ساعات
+        one: حوالي ساعة واحدة
+        two: حوالي ساعتان
+        few: حوالي %{count} ساعات
+        many: حوالي %{count} ساعة
+        other: حوالي %{count} ساعة
+      about_x_months:
+        zero: حوالي صفر أشهر
+        one: حوالي شهر واحد
+        two: حوالي شهران
+        few: حوالي %{count} أشهر
+        many: حوالي %{count} شهر
+        other: حوالي %{count} شهر
+      about_x_years:
+        zero: حوالي صفر سنوات
+        one: حوالي سنة
+        two: حوالي سنتان
+        few: حوالي %{count} سنوات
+        many: حوالي %{count} سنة
+        other: حوالي %{count} سنة
+      almost_x_years:
+        zero: ما يقرب من صفر سنوات
+        one: تقريبا سنة واحدة
+        two: ما يقرب من سنتين
+        few: ما يقرب من %{count} سنوات
+        many: ما يقرب من %{count} سنة
+        other: ما يقرب من %{count} سنة
+      half_a_minute: نصف دقيقة
+      less_than_x_minutes:
+        zero: أقل من صفر دقائق
+        one: أقل من دقيقة
+        two: أقل من دقيقتان
+        few: أقل من %{count} دقائق
+        many: أقل من %{count} دقيقة
+        other: أقل من %{count} دقيقة
+      less_than_x_seconds:
+        zero: أقل من صفر ثواني
+        one: أقل من ثانية
+        two: أقل من ثانيتان
+        few: أقل من %{count} ثوان
+        many: أقل من %{count} ثانية
+        other: أقل من %{count} ثانية
+      over_x_years:
+        zero: أكثر من صفر سنوات
+        one: أكثر من سنة
+        two: أكثر من سنتين
+        few: أكثر من %{count} سنوات
+        many: أكثر من %{count} سنة
+        other: أكثر من %{count} سنة
+      x_days:
+        zero: صفر أيام
+        one: يوم واحد
+        two: يومان
+        few: "%{count} أيام"
+        many: "%{count} يوم"
+        other: "%{count} يوم"
+      x_minutes:
+        zero: صفر دقائق
+        one: دقيقة واحدة
+        two: دقيقتان
+        few: "%{count} دقائق"
+        many: "%{count} دقيقة"
+        other: "%{count} دقيقة"
+      x_months:
+        zero: صفر أشهر
+        one: شهر واحد
+        two: شهران
+        few: "%{count} أشهر"
+        many: "%{count} شهر"
+        other: "%{count} شهر"
+      x_seconds:
+        zero: صفر ثواني
+        one: ثانية واحدة
+        two: ثانيتان
+        few: "%{count} ثوان"
+        many: "%{count} ثانية"
+        other: "%{count} ثانية"
+    prompts:
+      day: اليوم
+      hour: ساعة
+      minute: دقيقة
+      month: الشهر
+      second: ثانية
+      year: السنة
+
+  errors:
+    format: "%{message}"
+    messages:
+      accepted: يجب أن تقبل %{attribute}
+      blank: لا يمكن أن يكون محتوى %{attribute} فارغاً
+      present:  يجب ترك حقل %{attribute} فارغاً
+      confirmation: محتوى %{attribute} لا يتوافق مع %{attribute}
+      empty: لا يمكن أن يكون محتوى %{attribute} فارغاً
+      equal_to: يجب أن يساوي طول %{attribute} %{count}
+      even: يجب أن يكون عدد %{attribute} زوجياً
+      exclusion:  حقل %{attribute} محجوز
+      greater_than: ميجب أن يكون عدد %{attribute} أكبر من %{count}
+      greater_than_or_equal_to: يجب أن يكون عدد %{attribute} أكبر أو يساوي %{count}
+      inclusion:  "%{attribute} غير وارد في القائمة"
+      invalid: محتوى %{attribute} غير صالح
+      less_than: يجب أن يكون عدد %{attribute} أصغر من %{count}
+      less_than_or_equal_to: يجب أن يكون عدد %{attribute} أصغر أو  يساوي %{count}
+      not_a_number: يجب أن يكون محتوى %{attribute} رقماً
+      not_an_integer: يجب أن يكون عدد %{attribute} عدد صحيحاً
+      odd: يجب أن يكون عدد %{attribute} عدداً فردياً
+      taken: حقل %{attribute} محجوز مسبقاً
+      too_long:
+        zero: محتوى %{attribute} أطول من اللّازم (الحد الأقصى هو ولا حرف)
+        one: محتوى %{attribute} أطول من اللّازم (الحد الأقصى هو حرف واحد)
+        two: محتوى %{attribute} أطول من اللّازم (الحد الأقصى هو حرفان)
+        few: محتوى %{attribute} أطول من اللّازم (الحد الأقصى هو %{count} حروف)
+        many: محتوى %{attribute} أطول من اللّازم (الحد الأقصى هو %{count} حرف)
+        other: محتوى %{attribute} أطول من اللّازم (الحد الأقصى هو %{count} حرف)
+      too_short:
+        zero: محتوى %{attribute} أقصر من اللّازم (الحد الأدنى هو ولا حرف)
+        one: محتوى %{attribute} أقصر من اللّازم (الحد الأدنى هو حرف واحد)
+        two: محتوى %{attribute} أقصر من اللّازم (الحد الأدنى هو حرفان)
+        few: محتوى %{attribute} أقصر من اللّازم (الحد الأدنى هو %{count} حروف)
+        many: محتوى %{attribute} أقصر من اللّازم (الحد الأدنى هو %{count} حرف)
+        other: محتوى %{attribute} أقصر من اللّازم (الحد الأدنى هو %{count} حرف)
+      wrong_length:
+        zero: طول %{attribute} غير مطابق للحد المطلوب (يجب أن يكون ولا حرف)
+        one: طول %{attribute} غير مطابق للحد المطلوب (يجب أن يكون حرف واحد)
+        two: طول %{attribute} غير مطابق للحد المطلوب (يجب أن يكون حرفان)
+        few: طول %{attribute} غير مطابق للحد المطلوب (يجب أن يكون %{count} أحرف)
+        many: طول %{attribute} غير مطابق للحد المطلوب (يجب أن يكون %{count} حرف)
+        other: طول %{attribute} غير مطابق للحد المطلوب (يجب أن يكون %{count} حرف)
+      other_than:
+        zero: طول %{attribute} يجب ألاّ يكون صفر حرف
+        one: طول %{attribute} يجب ألاّ يكون حرفاً واحداً
+        two: طول %{attribute} يجب ألاّ يكون حرفان
+        few: طول %{attribute} يجب ألاّ يكون %{count} أحرف
+        many: طول %{attribute} يجب ألاّ يكون %{count} حرفاً
+        other: طول %{attribute} يجب ألاّ يكون %{count} حرفاً
+    template:
+      body: "يُرجى التحقّق من الحقول التّالية:%{attribute}"
+      header:
+        zero: 'ليس بالامكان حفظ %{model} لسبب ولا خطأ.'
+        one: 'ليس بالامكان حفظ %{model} لسبب وجود خطأ واحد.'
+        two: 'ليس بالامكان حفظ %{model} لسبب وجود خطئان.'
+        few: 'ليس بالامكان حفظ %{model} لسبب وجود %{count} أخطاء.'
+        many: 'ليس بالامكان حفظ %{model} لسبب وجود %{count} خطأ.'
+        other: 'ليس بالامكان حفظ %{model} لسبب وجود %{count} خطأ.'
+
+  helpers:
+    select:
+      prompt: يُرجى الاختيار
+    submit:
+      create: "%{model} إنشاء"
+      submit: "%{model} حِفظ"
+      update: "%{model} تحديث"
+
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: مليار
+          million: مليون
+          quadrillion: كدريليون
+          thousand: ألفّ
+          trillion: تريليون
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            zero: Bytes
+            one: Byte
+            two: Bytes
+            few: Bytes
+            many: Bytes
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+
+  support:
+    array:
+      last_word_connector: " و "
+      two_words_connector: " و "
+      words_connector: " ، "
+
+  time:
+    am: "صباحًا"
+    formats:
+      default: "%a %b %d %H:%M:%S %Z %Y"
+      long: "%d %B, %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: "مساءً"
+
+  delivery:
+    base: "السعر الأساسي"
+    sub_total: "المجموع الفرعي"
+    total: "مجموع"
+    cart_total: "مجموع السلة"
+    proceed_to_checkout: "باشرالخروج من الفندق"
+    product: "المنتج"
+    price: "السعر"
+    quantity: "كمية"
+    actions: "أفعال"
+    remove_item: "انقر لإزالة العنصر"
+    shopping_cart: "عربة التسوق"
+    checkout: "الدفع"
+    order_complete: "الطلب جاهز"
+    billing_details: "تفاصيل الفاتورة"
+    your_order: "طلبك"
+    first_name: "الاسم الاول"
+    last_name: "الكنية"
+    email: "البريد الإلكتروني"
+    phone: "هاتف"
+    address: "عنوان"
+    town_city: "المدينة / المدينة"
+    state_country: "ولايه دوله"
+    zip_postcode: "الرمز البريدي / الرمز البريدي"
+    order_received: "طلب وارد"
+    order_thanks: "شكرا لكم. تم استلام طلبك"
+    order_number: ":رقم الأمر"
+    date: ":تاريخ"
+    payment_method: ":طريقة الدفع او السداد"
+    order_details: "تفاصيل الطلب"
+    billing_address: "عنوان وصول الفواتير"
+    terms: "لقد قرأت ووافقت على الشروط والأحكام"
+    place_order: "مكان الامر"
+    longitude: "خط الطول"
+    latitude: "خط العرض"
+    check_loc_msg: "يرجى تحديد هذا الخيار إذا كنت ترغب في مشاركة موقعك الحالي"
+    vat: "ضريبة"
+    add_to_cart: "أضف إلى السلة"
+    item_added_to_cart: "العنصر مضاف بالفعل في سلة التسوق"
+    no_items: "لا توجد عناصر في عربة"
+    no_items_desc: "سلة التسوق الخاصة بك فارغة ، يرجى إضافة بعض العناصر لوضع طلبك"
+    debit_credit: "الدفع عن طريق الخصم / بطاقة الائتمان"
+    pick_from_branch: "لاقط من فرع"
+    debited_credited: "دفع من خلال الخصم / بطاقة الائتمان"
+    picked_from_branch: "ليتم انتقاؤك من الفرع"
+    including: "بما فيها"
+    add_more: "انقر لإضافة المزيد من العناصر"
+    special_request: "طلب خاص"
+    special_request_placeholder: "الحد الأقصى لطول 255 حرفًا"
+    already_added: "تم الاضافة مسبقا!"
+    added: "وأضاف!"
+    branch: "فرع شجرة"
+    pick_time: "اختر وقت"
+    city: "مدينة"
+    state: "المحافظة"
+    add_favorite: "أضف إلى المفضلة"
+    added_favorite: "لقد أضفت هذا الطلب إلى المفضلة لديك."
+    delivery_time: "موعد التسليم"
+    carry_out: "تنفيذ"
+    delivery: "توصيل"
+    payment: "دفع"
+    payment_reference: "إشارة دفع"
+    incomplete_payment: "كان الدفع الخاص بك غير ناجح. يرجى الدفع مرة أخرى"
+    payment_again: "ادفع من خلال دفع علامات التبويب"
+    paytabs: "الدفع من خلال PayTabs"
+
+  signin_signup:
+    sign_in: "تسجيل الدخول"
+    sign_in_message: "يجب تسجيل الدخول قبل تقديم الطلب."
+    email: "البريد الإلكتروني"
+    password: "كلمه السر"
+    no_account_message: "ليس لديك حساب؟"
+    note: "ملاحظة *: يرجى تأكيد بريدك الإلكتروني أولاً إذا لم تكن قد أكدت بعد."
+    first_name: "الاسم الاول"
+    last_name: "الكنية"
+    phone: "هاتف"
+    address: "عنوان"
+    password_confirmation: "تأكيد كلمة المرور"
+    already_have_account: "هل لديك حساب؟"
+    fill_up_message: "يرجى ملء التفاصيل للاشتراك"
+    sign_up: "سجل"
+    guest_order: "اشترك كضيف"
+    resend_confirmation_instructions: "إعادة إرسال تعليمات التأكيد"
+    error_prohibited_this_user_from_being_saved: "يحظر هذا الخطأ من حفظ هذا المستخدم"
+
+  address:
+    address_type: "نوع العنوان"
+    building_name: "اسم المبنى"
+    building_number: "رقم المبنى"
+    room_no: "رقم الغرفة"
+    direction: "اتجاه"
+    delivery_time: "موعد التسليم"
+    submit: "خضع"
+    branch: "فرع شجرة"
+    existing_address: "اختر عنوان موجود"

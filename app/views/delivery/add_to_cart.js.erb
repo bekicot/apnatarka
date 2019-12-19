@@ -1,0 +1,7 @@
+<% if @add_more %>
+  $('#add-more-item-<%= @menu_item.id %>').html('<%= escape_javascript(render(partial: "add_link", locals: {menu_item: @menu_item, selected_item_text: @selected_item_text})) %>');
+  $('#cart_details').html('<%= escape_javascript(render(partial: "cart_details", locals: {menu_items: @menu_items})) %>')
+<% else %>
+  $('#menuItemModel').modal("hide");
+<% end %>
+$('#cart_count').html('<%= escape_javascript(render(partial: "layouts/cart")) %>')

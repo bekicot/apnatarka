@@ -1,0 +1,48 @@
+#message_us
+	padding: 50px 0
+	background: url(asset-path('blackboard-wallpapers.jpg')) no-repeat
+	background-size: 100% 100%
+
+	.heading
+		color: $white
+
+	h2
+		color: $light-yellow !important
+
+.twenty-forty-public-form
+	label
+		font-size: 17px
+		line-height: 30px
+		color: $white
+		text-transform: uppercase
+
+	.form-control
+		border: none
+		background: $white
+		font-size: 18px
+		border-radius: 0
+		height: 50px
+		box-shadow: none
+		color: $black
+
+	textarea.form-control
+		height: 100px
+
+	.btn
+		border: 2px solid $white
+		background: inherit
+		color: $white
+		font-size: 20px
+		border-radius: 0
+		transition: ease all 0.8s
+		font-weight: bold
+
+		&:hover
+			background: $dark-blue-rgba
+			color: $white
+
+@media only screen and (max-width: 1024px)
+	.twenty-forty-public-form
+		label
+			font-size: 14px
+			line-height: 24px

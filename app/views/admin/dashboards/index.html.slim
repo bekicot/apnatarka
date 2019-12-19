@@ -1,0 +1,149 @@
+.clearfix
+  .container-fluid
+    .row
+      .col-md-12
+        .page-title-box
+          h4 Dashboard
+    .row
+      .col-md-6
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            .table-responsive
+              .heading-bar.clearfix
+                h4.mt-0.m-b-15.header-title Menu Categories
+                = link_to "View More", admin_categories_path, class: "btn btn-xs btn-primary pull-right"
+              table.table.table-hover
+                thead
+                  tr
+                    th Title
+                    th Description
+                tbody
+                - @categories.each do |category|
+                  tr
+                    td = category.title
+                    td = category.description
+      .col-md-6
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            .table-responsive
+              .heading-bar.clearfix
+                h4.mt-0.m-b-15.header-title Menu Items
+                = link_to "View More", admin_menu_items_path, class: "btn btn-xs btn-primary pull-right" 
+              table.table.table-hover
+                thead
+                  tr
+                    th Category
+                    th Title  
+                    th Description
+                    th Price
+                tbody
+                - @menu_items.limit(5).each do |menu_item|
+                  tr
+                    td = menu_item.category.title
+                    td = menu_item.title
+                    td = menu_item.description
+                    td = menu_item.price
+      .col-md-6
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            .table-responsive
+              .heading-bar.clearfix
+                h4.mt-0.m-b-15.header-title Message Requests
+                = link_to "View More", admin_contact_requests_path, class: "btn btn-xs btn-primary pull-right"
+              table.table.table-hover
+                thead
+                  tr
+                    th Name
+                    th Email  
+                    th Phone
+                    th Message
+                tbody
+                - @contact_requests.each do |contact_request|
+                  tr
+                    td = contact_request.name
+                    td = contact_request.email
+                    td = contact_request.phone
+                    td = contact_request.message
+      .col-md-6
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            .table-responsive
+              .heading-bar.clearfix
+                h4.mt-0.m-b-15.header-title Feedbacks
+                = link_to "View More", admin_feedbacks_path, class: "btn btn-xs btn-primary pull-right"
+              table.table.table-hover
+                thead
+                  tr
+                    th Name
+                    th Email  
+                    th Phone
+                    th Comments
+                tbody
+                - @feedbacks.each do |feedback|
+                  tr
+                    td = feedback.name
+                    td = feedback.email
+                    td = feedback.mobile_number
+                    td = feedback.comments
+      .col-md-6
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            .table-responsive
+              .heading-bar.clearfix
+                h4.mt-0.m-b-15.header-title About Us
+                = link_to "View More", admin_abouts_path, class: "btn btn-xs btn-primary pull-right"
+              table.table.table-hover
+                thead
+                  tr
+                    th Title
+                    th Description
+                tbody
+                - @abouts.each do |about|
+                  tr
+                    td = about.heading
+                    td = about.description
+      .col-md-6
+          .card.m-b-30.custom-card
+            .card-body.block-head
+              .table-responsive
+                .heading-bar.clearfix
+                  h4.mt-0.m-b-15.header-title Users
+                  = link_to "View More", admin_users_path, class: "btn btn-xs btn-primary pull-right"
+                table.table.table-hover
+                  thead
+                    tr
+                      th First Name
+                      th Last Name  
+                      th Email
+                      th Role
+                  tbody
+                  - @users.each do |user|
+                    tr
+                      td = user.first_name
+                      td = user.last_name
+                      td = user.email
+                      td = user.role_name
+    .row
+      .col-md-12
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            .table-responsive
+              .heading-bar.clearfix
+                h4.mt-0.m-b-15.header-title Locations
+                = link_to "View More", admin_locations_path, class: "btn btn-xs btn-primary pull-right"
+              table.table.table-hover
+                thead
+                  tr
+                    th Address
+                    th Phone
+                    th Postal Code
+                    th Latitude
+                    th Longitude
+                tbody
+                - @locations.each do |location|
+                  tr
+                    td = location.address
+                    td = location.phone
+                    td = location.postal_code
+                    td = location.lat
+                    td = location.lng

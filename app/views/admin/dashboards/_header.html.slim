@@ -1,0 +1,88 @@
+header#topnav
+  .topbar-main
+    .container-fluid.clearfix
+      .logo
+        = link_to image_tag("logo-2.png"), root_path, class: 'logo img-responsive'
+      .button-dropdown.pull-right
+        a.dropdown-toggle.drop-icon href="javascript:void(0)"
+          i.fa.fa-user
+        ul.dropdown-menu
+          li
+            = link_to t("header.logout"), destroy_user_session_path, method: :delete
+
+  .navbar-custom
+    .container-fluid
+      #navigation
+        /! Navigation Menu
+        ul.navigation-menu
+          li[class="has-submenu #{active_class(admin_dashboards_path)}"]
+            = link_to admin_dashboards_path do
+              i.fa.fa-home
+              = t("header.dashboard")
+
+          li.dropdown
+            a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              = t("header.menu")
+              span.caret
+            ul.dropdown-menu
+              li[class="has-submenu #{active_class(admin_categories_path)}"]
+                = link_to admin_categories_path do
+                  = t("header.menu_categories")
+              li.divider role="separator"
+              li[class="has-submenu #{active_class(admin_menu_items_path)}"]
+                = link_to admin_menu_items_path do
+                  = t("header.menu_items")
+              li.divider role="separator"
+              li[class="has-submenu #{active_class(admin_menu_lists_path)}"]
+                = link_to admin_menu_lists_path do
+                  = t("header.menu_lists")
+
+          li.dropdown
+            a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              = t("header.share_us")
+              span.caret
+            ul.dropdown-menu
+
+              li[class="has-submenu #{active_class(admin_feedbacks_path)}"]
+                = link_to admin_feedbacks_path do
+                  = t("header.feedback")
+              li.divider role="separator"
+
+              - if false
+                li[class="has-submenu #{active_class(admin_contact_requests_path)}"]
+                  = link_to admin_franchises_path do
+                    = t("header.franchise_requests")
+                li.divider role="separator"
+
+              li[class="has-submenu #{active_class(admin_contact_requests_path)}"]
+                = link_to admin_contact_requests_path do
+                  = t("header.message_requests")
+
+          li[class="has-submenu #{active_class(admin_locations_path)}"]
+            = link_to admin_locations_path do
+              i.fa.fa-info-circle
+              = t("header.location")
+          li[class="has-submenu #{active_class(admin_abouts_path)}"]
+            = link_to admin_abouts_path do
+              i.fa.fa-info-circle
+              = t("header.about_us")
+          li[class="has-submenu #{active_class(admin_users_path)}"]
+            = link_to admin_users_path do
+              i.fa.fa-user
+              = t("header.users")
+          li
+            .select-area
+              =<> select_tag :language, options_for_select(language_options, I18n.locale), class: 'change-language form-control'
+          li.dropdown
+            a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              = t("header.order_histories")
+              span.caret
+            ul.dropdown-menu
+              li[class="has-submenu #{active_class(admin_order_histories_path)}"]
+                = link_to admin_order_histories_path do
+                  = t("header.my_order_history")
+              li.divider role="separator"
+              li[class="has-submenu #{active_class(customer_orders_admin_order_histories_path)}"]
+                = link_to customer_orders_admin_order_histories_path do
+                  = t("header.customer_order_history")
+

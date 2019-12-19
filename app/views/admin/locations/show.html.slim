@@ -1,0 +1,36 @@
+.container-fluid
+  .col-sm-6.col-sm-offset-3
+    .card-box
+      .card-body.clearfix
+        .col-sm-12
+          .button
+            h2.pull-left
+              | Location
+            = link_to "Back", admin_locations_path, class: "btn custom-btn btn-primary pull-right"
+          .table-responsive
+            table
+              tr
+                td
+                  strong Location:
+                td
+                  = @location.address
+              tr
+                td
+                  strong Phone:
+                td
+                  = @location.phone
+              tr
+                td.postal-code
+                  strong Postal Code:
+                td
+                  = @location.postal_code
+              tr
+                td
+                  strong Latitude:
+                td
+                  = @location.lat
+              tr
+                td
+                  strong Longitude:
+                td
+                  = @location.lng

@@ -1,0 +1,13 @@
+.form-section.col-sm-12
+  span class="heading" = t("order.for")
+  .row
+    .col-xs-6
+      .input-group
+        span.input-group-addon.beautiful
+          input type="radio" name="carry_out" class="delivery" data-attr="carry_out_now" = t("order.order_now")
+    .col-xs-6
+      .input-group
+        span.input-group-addon.beautiful
+          input type="radio" name="carry_out" class="delivery" data-attr="carry_out_later" = t("order.order_later")
+  div#c_o_mode
+

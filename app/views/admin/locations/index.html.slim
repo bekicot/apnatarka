@@ -1,0 +1,45 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-info-circle
+        | Locations
+      = link_to "Add Location", new_admin_location_path, class: "btn custom-btn btn-primary pull-right"
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Address
+                th
+                  | Phone
+                th
+                  | Postal Code
+                th
+                  | latitude
+                th
+                  | longitude
+                th
+                  | Action
+            tbody
+              - @locations.each do |location|
+                tr
+                  td
+                    = location.address
+                  td
+                    = location.phone
+                  td
+                    = location.postal_code
+                  td
+                    = location.lat
+                  td
+                    = location.lng
+                  td
+                    = link_to admin_location_path(location), class: 'btn btn-primary btn-xs' do
+                      i.fa.fa-eye
+                    = link_to edit_admin_location_path(location), class: 'btn btn-success btn-xs' do
+                      i.fa.fa-pencil
+                    - unless current_user.moderator_user?
+                        = link_to admin_location_path(location), method: :delete, data: {confirm: "Are you sure!"}, class: 'btn btn-danger btn-xs' do
+                          i.fa.fa-times

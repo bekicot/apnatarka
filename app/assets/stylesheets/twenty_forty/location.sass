@@ -1,0 +1,187 @@
+.map-block
+
+	.address-block
+		//background: url(asset-path('cartboard-bg.jpg')) no-repeat
+		background: $black-rgba
+		background-size: 100% 100%
+		padding: 50px 0
+
+		h2
+			//color: $black !important
+
+		.contact-block
+			text-align: left
+
+			.arabic-right
+				margin: 0 0 10px
+
+				.map-icons
+					cursor: pointer
+					padding: 10px
+					background: $light-yellow-rgba
+					height: 124px
+					border-radius: 10px
+					transition: ease all 0.8s
+					.txt-area
+						overflow: hidden
+						height: auto
+
+					&:hover
+						background: $light-yellow-rgba-dark
+						transition: ease all 0.8s
+
+			.iconbox
+				width: 83px
+				height: 83px
+				border: 2px solid $light-yellow
+				border-radius: 100%
+				margin: 11px 10px 11px 0
+				transition: ease all 0.8s
+
+				i
+					font-size: 32px
+					line-height: 76px
+					color: $white
+
+			.col-sm-4
+				&:hover
+					.iconbox
+						background: $light-yellow
+						transition: ease all 0.8s
+						i
+							color: $black
+							transition: ease all 0.8s
+
+.location-map
+	overflow: hidden
+	position: relative
+
+	> img
+		width: 100%
+
+	.location-caption
+		@include position
+
+	.icon-box
+		display: table
+		width: 100%
+		height: 100%
+
+	.icon-holder
+		display: table-cell
+		vertical-align: middle
+		width: 100%
+		height: 100%
+
+	.frame
+		position: relative
+		width: 200px
+		margin: 0 auto
+
+		img
+			display: block
+			margin: 0 auto
+			cursor: pointer
+
+		.tooltip-txt
+			background: $white
+			color: $black
+			padding: 20px
+			border-radius: 30px
+			position: absolute
+			top: -120px
+			left: 0
+			right: 0
+			min-height: 100px
+			font: 15px/20px "cf_jack_storyregular", cursive
+
+			&:after
+				content: '',
+				position: absolute
+				bottom: 0
+				right: 50px
+				width: 0
+				height: 0
+				border: 30px solid transparent
+				border-top-color: #fff
+				border-bottom: 0
+				border-left: 0
+				margin-left: 0
+				margin-bottom: -30px
+
+			p
+				margin: 0
+
+
+@media only screen and (max-width: 1199px)
+	.map-block
+		.address-block
+			.contact-block
+				.iconbox
+					width: 45px
+					height: 45px
+
+					i
+						font-size: 25px
+						line-height: 45px
+
+				.txt-area
+					h4
+						font-size: 16px
+
+@media only screen and (max-width: 991px)
+	.top-corner
+		.dropdown
+			a
+				padding: 12px 8px 8px
+				font-size: 13px
+
+	.twenty-forty
+		.phonenumber
+			a
+				padding: 12px 8px 8px
+				font-size: 13px
+
+		.navbar-default
+			.navbar-nav > li
+				a
+					font-size: 15px !important
+
+@media only screen and (max-width: 768px)
+	.map-block
+		.contact-block
+			.iconbox
+				margin: 0 20px 20px 0
+
+	.location-map
+		.frame
+			width: 250px
+			img
+				max-height: 45px
+
+			.tooltip-txt
+				padding: 10px 20px
+				top: -85px
+				right: 35px
+				min-height: 60px
+				font: 12px/18px "cf_jack_storyregular", cursive
+
+@media only screen and (max-width: 767px)
+	.map-block
+		.address-block
+			.contact-block
+				.arabic-right
+					.map-icons
+						height: auto
+
+
+@media only screen and (max-width: 400px)
+	.location-map
+		.frame
+			width: 200px
+			.tooltip-txt
+				padding: 10px
+				top: -65px
+				right: 8px
+				min-height: 40px
+				font: 10px/14px "cf_jack_storyregular", cursive

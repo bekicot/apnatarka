@@ -1,0 +1,6 @@
+- if current_user.present?
+    = link_to "Logout", destroy_user_session_path, method: "delete" 
+    = link_to "Message Requests", admin_contact_requests_path 
+    = link_to "Users", admin_users_path 
+    = link_to "Categories", admin_categories_path
+    = link_to "Menu Items", admin_menu_items_path

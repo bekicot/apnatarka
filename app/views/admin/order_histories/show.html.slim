@@ -1,0 +1,163 @@
+.clearfix
+  .container-fluid
+    .row
+      .col-md-12
+        .page-title-box
+          h4 Order Details
+    .row
+      .col-md-12
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            .table-responsive
+              table.table.table-hover.order-history
+                tbody
+                  tr
+                    td
+                      strong
+                        | Order #
+                    td = @order.order_number
+                  tr
+                    td
+                      strong
+                        | Name
+                    td = "#{@order.first_name} #{@order.last_name}"
+                  tr
+                    td
+                      strong
+                        | Phone
+                    td = @order.phone
+
+                  - if @order.address.present?
+                    tr
+                      td
+                        strong
+                          | Order Type
+                      td = t("delivery.delivery")
+                    tr
+                      td
+                        strong
+                          | Delivery Time
+                      td = @order&.delivery_time&.strftime("%m-%d-%Y %I:%M%p") || Time.now.strftime("%m-%d-%Y %I:%M%p")
+                    tr
+                      td
+                        strong
+                          | Address Type
+                      td = @order.address.address_type
+                    tr
+                      td
+                        strong
+                          | Building Name
+                      td = @order.address.building_name
+                    tr
+                      td
+                        strong
+                          | Building Number
+                      td = @order.address.building_number
+                    tr
+                      td
+                        strong
+                          | Room No
+                      td = @order.address.room_no
+                    tr
+                      td
+                        strong
+                          | Directions
+                      td = @order.address.direction
+                    tr
+                      td
+                        strong
+                          | Payment Status
+                      td = @order.status.capitalize
+                    tr
+                      td
+                        strong
+                          | Payment Reference
+                      td = @order&.payment_reference || 'N/A'
+
+                  - elsif @order.location.present?
+                    tr
+                      td
+                        strong
+                          | Order Type
+                      td = t("delivery.carry_out")
+                    tr
+                      td
+                        strong
+                          | Pick Time
+                      td = @order&.delivery_time&.strftime("%m-%d-%Y %I:%M%p") || Time.now.strftime("%m-%d-%Y %I:%M%p")
+                    tr
+                      td
+                        strong
+                          | Branch
+                      td = @order.location.address
+                    tr
+                      td
+                        strong
+                          | Payment Status
+                      td = @order.status.capitalize
+
+                  tr
+                    td
+                      strong
+                        | City
+                    td = @order.city
+                  tr
+                    td
+                      strong
+                        | State
+                    td = @order.state
+                  tr
+                    td
+                      strong
+                        | Zip / Post Code
+                    td = @order.post_code
+                  tr
+                    td
+                      strong
+                        | Payment Method
+                    td = @order.payment_method
+                  tr
+                    td
+                      strong
+                        | Order Items
+                    td = order_item_names(@order)
+                  tr
+                    td
+                      strong
+                        | VAT
+                    td = Order::VAT_DISPLAY
+                  tr
+                    td
+                      strong
+                        | Sub Total
+                    td = "$#{@order.sub_total}"
+    .row
+      .col-md-12
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            .table-responsive
+              table.table.table-hover.order-history
+                thead
+                  tr
+                    th Item Name
+                    th Price
+                    th Special Request
+                    th Quantity
+                    th Total
+                tbody
+                  - @order.order_items.each do |order_item|
+                    tr
+                      td = order_item.menu_item.title
+                      td = order_item.menu_item.price
+                      td
+                        = MenuItem.special_request(order_item).truncate(30)
+                        - if MenuItem.special_request(order_item)&.length > 30
+                          = link_to "javascript:void(0)", id: "order_item_tooltip", "data-toggle": "tooltip", title: MenuItem.special_request(order_item) do
+                            i.fa.fa-exclamation-circle
+                      td = order_item.quantity
+                      td = (order_item.quantity * order_item.menu_item.price)
+        .button
+          = link_to "Back", admin_order_histories_path, class: "btn custom-btn btn-primary pull-right"
+
+
+

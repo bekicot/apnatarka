@@ -1,0 +1,2 @@
+$('#add-more-items').html('<%= escape_javascript(render(partial: "menu", locals: {categories: @categories})) %>');
+$('#add-more-items-modal').modal('show');

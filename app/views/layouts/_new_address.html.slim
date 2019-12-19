@@ -1,0 +1,45 @@
+div#new_address_box.select-box
+div#mapCanvas
+div
+  = form_for Address.new, url: set_delivery_address_address_index_path, html: { "data-parsley-validate" => true, class: "form clearfix" }, remote: true do |f|
+      .form-holder.clearfix.showcase-right
+        .form-group.row.clearfix
+          .col-sm-12.mob-b-15.arabic-right
+            = f.hidden_field :new_address, value: true
+            .form-group
+              .row
+                .col-sm-3
+                  = f.label t("address.address_type")
+                .col-sm-9
+                  = f.select(:address_type, Address.address_types.map { |key, value| [key.humanize, key]}, {prompt: t("order.select_address"), required: true}, {class: 'form-control'})
+          .col-sm-12.mob-b-15.arabic-right
+            .form-group
+              .row
+                .col-sm-3
+                  = f.label t("address.building_name")
+                .col-sm-9
+                  = f.text_field :building_name, required: true, class: 'form-control', id: "building_name"
+          .col-sm-12.mob-b-15.arabic-right
+            .form-group
+              .row
+                .col-sm-3
+                  = f.label t("address.building_number")
+                .col-sm-9
+                  = f.text_field :building_number, required: true, class: 'form-control', id: "building_num"
+          .col-sm-12.mob-b-15.arabic-right
+            .form-group
+              .row
+                .col-sm-3
+                  = f.label t("address.room_no")
+                .col-sm-9
+                  = f.text_field :room_no, required: true, class: 'form-control', id: "room_no"
+          .col-sm-12.mob-b-15.arabic-right
+            .form-group
+              .row
+                .col-sm-3
+                  = f.label t("address.direction")
+                .col-sm-9
+                  = f.text_field :direction, required: true, class: 'form-control', id: "direction"
+          .col-sm-12.mob-b-15.arabic-right
+            .form-group
+              = f.submit t("address.submit"), class: 'pull-right btn address-submit-btn'

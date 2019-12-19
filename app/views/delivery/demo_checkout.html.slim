@@ -1,0 +1,91 @@
+#billing-details
+  .banner.text-center.clearfix
+    .container
+      .stepwizard
+        .stepwizard-step
+          button.btn.btn-default.btn-circle.active type="button"  1
+          p = t("delivery.shopping_cart")
+        .stepwizard-step
+          button.btn.btn-default.btn-circle.active type="button"  2
+          p = t("delivery.checkout")
+        .stepwizard-step
+          button.btn.btn-default.btn-circle type="button"  3
+          p = t("delivery.order_complete")
+
+  .share-exprience.clearfix.twenty-forty-public-form
+    .container
+      form.form.clearfix.twenty-forty-public-form.showcase-right
+        .form-holder.clearfix.showcase-right
+          .form-group.row.clearfix
+            .col-sm-8
+              .col-sm-12
+                h2 = t("delivery.billing_details")
+              .col-sm-6.mob-b-15.arabic-right
+                .form-group
+                  label for="exampleInputEmail1" = t("delivery.first_name")
+                  input type="name" class="form-control"
+              .col-sm-6.mob-b-15.arabic-right
+                .form-group
+                  label for="exampleInputEmail1" = t("delivery.last_name")
+                  input type="name" class="form-control"
+              .col-sm-6.mob-b-15.arabic-right
+                .form-group
+                  label for="exampleInputEmail1" = t("delivery.email")
+                  input type="email" class="form-control"
+              .col-sm-6.mob-b-15.arabic-right
+                .form-group
+                  label for="exampleInputEmail1" = t("delivery.phone")
+                  input type="phone" class="form-control"
+              .col-sm-12.mob-b-15.arabic-right
+                .form-group
+                  label for="exampleInputEmail1" = t("delivery.address")
+                  input type="phone" class="form-control first"
+                  input type="phone" class="form-control"
+              .col-sm-12.mob-b-15.arabic-right
+                .form-group
+                  label for="exampleInputEmail1" = t("delivery.town_city")
+                  input type="phone" class="form-control"
+              .col-sm-6.mob-b-15.arabic-right
+                .form-group
+                  label for="exampleInputEmail1" class="code" = t("delivery.state_country")
+                  input type="phone" class="form-control"
+              .col-sm-6.mob-b-15.arabic-right
+                .form-group
+                  label for="exampleInputEmail1" class="code" = t("delivery.zip_postcode")
+                  input type="phone" class="form-control"
+
+            .col-sm-4.order
+              h2 = t("delivery.your_order")
+              .card-box
+                .product-price
+                  .product
+                    h3 class="pull-left" Product
+                    h4 class="pull-right" Total
+                  .price class="pull-left"
+                    .item-box
+                      strong
+                        | x 1
+                        span
+                          | Bacon Burger
+                      h4 Base Price:
+                      p $0.00
+                  .total class="pull-right"
+                    p $25.90
+                .sub-total class="clearfix"
+                  h4 class="pull-left" Subtotal
+                  p class="pull-right" $51.80
+                .total class="clearfix"
+                  h4 class="pull-left" Total
+                  p class="pull-right" $51.80
+                .form-check
+                  input#exampleRadios1.form-check-input name="exampleRadios" type="radio" value="option1" checked="true" /
+                  h4 Pay Through Debit/Credit Card
+                .form-check.text-holder
+                  input#defaultCheck1.form-check-input type="checkbox" value="" /
+                  p class="text"
+                    span
+                      = t("delivery.terms")
+                      span
+                        | *
+                .button
+                  = link_to "Place order", demo_order_received_delivery_index_path, class: 'btn btn-primary'

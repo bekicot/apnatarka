@@ -1,0 +1,58 @@
+#franchise-area
+  .banner.text-center.clearfix
+    .showcase-bottom
+      strong.heading.text-uppercase
+        = t("franchise.register")
+    h2.text-capitalize.showcase-left = t("franchise.heading")
+
+  .share-exprience.clearfix.twenty-forty-public-form
+    .container
+      = form_for @franchise, url: submit_franchise_visitors_path, html: { class: 'form clearfix twenty-forty-public-form showcase-right', "data-parsley-validate" => true } do |f|
+
+        .form-holder.clearfix
+          .form-group.row.clearfix
+            .col-sm-6.mob-b-15.arabic-right
+              = f.label :first_name
+                = t('franchise.first_name')
+                | :
+              = f.text_field :first_name, class: 'input form-control', required: true
+            .col-sm-6.arabic-right
+              = f.label :last_name
+                = t('franchise.last_name')
+                | :
+              = f.text_field :last_name, class: 'input form-control', required: true
+
+          .form-group.row.clearfix
+            .col-sm-6.mob-b-15.arabic-right
+              = f.label :email
+                = t('franchise.email')
+                | :
+              = f.text_field :email, class: 'input form-control', required: true
+            .col-sm-6.arabic-right
+              = f.label :phone_number
+                = t('franchise.mobile_number')
+                | :
+              = f.text_field :phone_number, class: 'input form-control', required: true
+
+          .form-group.row.clearfix
+            .col-sm-6.mob-b-15.arabic-right
+              = f.label :city
+                  = t('franchise.city')
+                  | :
+              = f.text_field :city, class: 'input form-control', required: true
+            .col-sm-6.arabic-right
+              = f.label :city
+                  = t('franchise.country')
+                  | :
+              = f.text_field :country, class: 'input form-control', required: true
+
+        .form-group.row.clearfix
+          .col-sm-12
+            = f.label :message, class: 'col-form-label showcase-left'
+              | &nbsp;
+            .showcase-right
+              // = recaptcha_tags site_key: Rails.application.secrets.recaptcha_site_key
+
+        .form-group.row.clearfix.text-center
+          .col-sm-12
+            = f.submit t('franchise.submit'), class: 'btn btn-primary text-uppercase pull-right'

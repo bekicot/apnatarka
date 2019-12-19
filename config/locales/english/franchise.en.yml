@@ -1,0 +1,11 @@
+en:
+  franchise:
+    heading: "Contact Information"
+    register: "Register You Interest"
+    first_name: "First Name"
+    last_name: "Last Name"
+    mobile_number: "Phone Number"
+    email: "Email"
+    city: "City"
+    country: "Country"
+    submit: "Submit"

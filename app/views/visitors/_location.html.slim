@@ -1,0 +1,32 @@
+#location.map-block
+  .text-center.clearfix.address-block
+    .showcase-right
+      strong.heading = t('location.heading')
+    .showcase-left
+      h2.text-capitalize = t('location.sub_heading')
+
+    .contact-block
+      .container
+        .row
+          - @locations.each do |location|
+            .col-sm-6.col-md-3.clearfix.arabic-right.mob-b-20
+              .map-icons data-id=location[0] title=location[1]
+                .iconbox.text-center.pull-left
+                  i.fa.fa-map-marker
+                .txt-area
+                  h4= location[2]
+                  p= location[1]
+
+  #map2040.location-map
+    = image_tag 'map-img.jpg', class: 'img-responsive'
+    .location-caption
+      .icon-box
+        .icon-holder
+          .frame
+            .tooltip-txt data-id=@locations&.first&.first
+              p= @locations&.first&.second
+            = image_tag 'marker.png'
+
+    = link_to image_tag('bar.png'), root_path(anchor: 'message_us'), class: 'scroll-btn'
+
+  = render 'visitors/message_us'
