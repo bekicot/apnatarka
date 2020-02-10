@@ -34,6 +34,20 @@ div.modal.fade id="sign-up-modal" aria-labelledby="myModalLabel" role="dialog" t
                     = f.email_field :email, class: 'form-control', id: 'check-signup-email', required: true
                     span#email-availability
               .row
+                .col-sm-6
+                  .form-group
+                    = f.label t("signin_signup.cnic")
+                    = f.text_field :cnic, class: 'form-control', required: true
+                .col-sm-6
+                  .form-group
+                    = f.label t("signin_signup.gender")
+                    = f.select :gender, options_for_select(User.genders.map{|k,v| [k,k]}, User.genders.first), {prompt: 'Select One'}, class: 'form-control', required: true
+              .row
+                .col-sm-12
+                  .form-group
+                    = f.label 'Register As'
+                    = f.select :role, options_for_select( User.roles.keys.last(2).map{|k,v| [k.humanize ,k] }, User.roles.keys.last), {prompt: '<---------- Register As ----------->'}, class: 'form-control', required: true
+              .row
                 .col-sm-12
                   .form-group
                     = f.label t("signin_signup.address")

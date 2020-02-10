@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       get :single_item
     end
+    resources :item_chefs
   end
 
   resources :address do
@@ -76,7 +77,11 @@ Rails.application.routes.draw do
     root to: "dashboards#index"
     resources :dashboards
     resources :contact_requests
-    resources :users
+    resources :users do
+      resources :chef_categories do
+        resources :chef_category_items  
+      end
+    end
     resources :categories
     resources :menu_items
     resources :abouts
@@ -84,6 +89,7 @@ Rails.application.routes.draw do
     resources :feedbacks
     resources :franchises
     resources :menu_lists
+
     resources :order_histories, only: [:index, :show] do
       collection do
         get :customer_orders

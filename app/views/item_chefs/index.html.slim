@@ -1,0 +1,61 @@
+- menu_item = MenuItem.first
+#home-page
+  #myCarousel.carousel.slide.clearfix data-ride="carousel" data-lang="#{session[:locale] == "ar" ? true : false}"
+    .carousel-inner role="listbox"
+      .item.active
+        = image_tag "home/burger-home-#{session[:locale] || "en"}.jpg", class: 'img-responsive'
+        .carousel-caption
+          .banner.text-left.clearfix
+            .box
+              .holder
+                .container-fluid
+                  .showcase-right
+                    span.home-arabic= t('home.carousel.caption.ar')
+                  .showcase-left
+                    strong= t('home.carousel.caption.en')
+                  .order-area.clearfix.text-left.text-capitalize
+                    = link_to delivery_index_path, class: "btn" do
+                      = t("order.now")
+                  .download-menu.clearfix.text-left.text-capitalize
+  #complete_menu.menu-block
+    .tabs-block
+      .text-center
+        .showcase-left
+          strong.heading= t('menu.heading')
+        .showcase-right
+          h2= t('menu.sub_heading')
+      .container
+        .chefs
+          h5.section-title.h1 OUR TEAM
+          .row
+            /! Team member
+            .col-xs-12.col-sm-6.col-md-4
+              .image-flip ontouchstart="this.classList.toggle('hover');" 
+                .mainflip
+                  .frontside
+                    .card
+                      .card-body.text-center
+                        p
+                          img.img-fluid alt=("card image") src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" /
+                        h4.card-title Sunlimetech
+                        p.card-text This is basic card with image on top, title, description and button.
+                        a.btn.btn-primary.btn-sm href="#" 
+                          i.fa.fa-plus
+                  .backside
+                    .card
+                      .card-body.text-center.mt-4
+                        h4.card-title Sunlimetech
+                        p.card-text This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.
+                        ul.list-inline
+                          li.list-inline-item
+                            a.social-icon.text-xs-center href="#" target="_blank" 
+                              i.fa.fa-facebook
+                          li.list-inline-item
+                            a.social-icon.text-xs-center href="#" target="_blank" 
+                              i.fa.fa-twitter
+                          li.list-inline-item
+                            a.social-icon.text-xs-center href="#" target="_blank" 
+                              i.fa.fa-skype
+                          li.list-inline-item
+                            a.social-icon.text-xs-center href="#" target="_blank" 
+                              i.fa.fa-google

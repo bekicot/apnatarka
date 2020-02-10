@@ -223,6 +223,8 @@ en:
     last_name: "Last name"
     phone: "Phone"
     address: "Address"
+    cnic: "Cnic"
+    gender: "Gender"
     password_confirmation: "Password confirmation"
     already_have_account: "Already have an account?"
     fill_up_message: "Please fill in the details to sign up"

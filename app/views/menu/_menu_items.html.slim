@@ -9,7 +9,7 @@
                 .img-box
                   = image_tag menu_item.avatar.url(:medium), class: 'img-responsive'
                   .order type="button" class="btn btn-primary btn-lg"
-                    = link_to single_item_menu_path(menu_item.id), remote: true, class: 'text-center item-modal' do
+                    = link_to menu_item_chefs_path(menu_item.id), class: 'text-center item-modal' do
                       .box
                         .holder
                           .fa.fa-cutlery

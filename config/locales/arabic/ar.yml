@@ -475,6 +475,8 @@ ar:
     first_name: "الاسم الاول"
     last_name: "الكنية"
     phone: "هاتف"
+    cnic: "cnic"
+    gender: "جنس"
     address: "عنوان"
     password_confirmation: "تأكيد كلمة المرور"
     already_have_account: "هل لديك حساب؟"

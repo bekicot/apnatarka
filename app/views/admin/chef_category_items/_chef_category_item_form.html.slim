@@ -1,0 +1,19 @@
+#chef_category_item_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Add Category
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_for [:admin, @chef, @chef_category, @chef_category_item], html: { "data-parsley-validate" => true } do |f|
+          - if @chef_category_item.errors.full_messages.any? 
+              - @chef_category_item.errors.full_messages.each do |error_message| 
+                = error_message if @chef_category_item.errors.full_messages.first == error_message
+          .form-group.clearfix
+            .col-sm-12
+              = f.label :item_id, class: 'show'
+              = f.select :menu_item_id, options_for_select(@items.map{|item| [item.title, item.id]}, @selected_items.pluck(:id)), {}, class: 'form-control multi-select', required: true,multiple: true
+          .col-sm-12
+          .modal-footer
+            = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'

@@ -38,7 +38,7 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
-    if resource.super_admin? || resource.moderator_user?
+    if resource.super_admin?
       admin_dashboards_path
     elsif resource.normal_user?
       session[:cart].present? ? checkout_delivery_index_path : root_path

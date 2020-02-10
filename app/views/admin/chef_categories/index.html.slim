@@ -1,0 +1,31 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-shopping-basket
+        | Chef Categories
+      = link_to "Add Category", new_admin_user_chef_category_path(@chef), class: "btn custom-btn btn-primary pull-right", remote: true
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Category Title
+                th
+                  | Category Items
+                th
+                  | Action
+            tbody
+            - @chef_categories.each do |chef_category|
+              tr
+                td
+                  = chef_category.category.title
+                td
+                  = chef_category.menu_items.map(&:title).join(", ")
+                td 
+                  = link_to "Add Items", new_admin_user_chef_category_chef_category_item_path(@chef, chef_category), class: 'btn btn-primary btn-xs', remote: true
+                  = link_to "Delete Category", admin_user_chef_category_path(@chef, chef_category), class: 'btn btn-danger btn-xs', method: :delete
+
+#chef_category
+#chef_category_items

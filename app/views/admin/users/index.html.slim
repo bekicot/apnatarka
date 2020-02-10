@@ -25,11 +25,12 @@
               td
                 = user.email
               td
-                = user.role_name
+                = user.role.humanize
               td
+                = link_to "Categories", admin_user_chef_categories_path(user), class: 'btn btn-primary btn-xs'
                 = link_to admin_user_path(user), class: 'btn btn-primary btn-xs' do
                   i.fa.fa-eye
-                - unless User.user_roles[:super_admin].eql? user.role
+                - unless user.super_admin?
                   = link_to edit_admin_user_path(user), class: 'btn btn-success btn-xs' do
                     i.fa.fa-pencil
                   - unless current_user.moderator_user?

@@ -27,7 +27,7 @@
     <div id="login_signup_modals">
     </div>
     <div id="order_type_modal">
-      <%= render partial: 'layouts/get_delivery_details' if session[:delivery_details].blank? && session[:address].blank? && !(%w[order_received feedback all_favorite_orders show_favorite_order].include?(params[:action])) %>
+      <%#= render partial: 'layouts/get_delivery_details' if session[:delivery_details].blank? && session[:address].blank? && !(%w[order_received feedback all_favorite_orders show_favorite_order].include?(params[:action])) %>
     </div>
     <%= javascript_include_tag 'application' %>
     <% flash.each do |message_type, message| %>

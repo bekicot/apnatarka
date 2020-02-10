@@ -44,6 +44,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+gem "select2-rails"
 
 #Translation
 gem 'globalize', '~> 5.1.0.beta2'

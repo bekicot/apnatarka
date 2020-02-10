@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
-    resource.role = User.user_roles[:normal_user]
+    # resource.role = User.user_roles[:normal_user]
     resource.save
     yield resource if block_given?
     if resource.persisted?
@@ -62,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   def sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :email, :phone, :address, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :phone, :address, :gender, :role, :cnic,  :password, :password_confirmation)
   end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params

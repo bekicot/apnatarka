@@ -7,20 +7,23 @@ class User < ApplicationRecord
   has_many :orders
   has_many :addresses
 
-  enum user_role: [:super_admin, :moderator_user, :normal_user]
+  enum role: [:super_admin, :normal_user, :chef, :moderator_user]
+  enum gender: [:male, :female]
+  enum status: [:active, :inactive]
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validates_presence_of :email
   validates_uniqueness_of :phone, unless: -> { from_omniauth? }
+  has_many :chef_categories
+  has_many :categories, through: :chef_categories 
 
-  user_roles.each do |k, v|
-    define_method "#{k}?" do
-      role == v
-    end
-  end
+  # user_roles.each do |k, v|
+  #   define_method "#{k}?" do
+  #     role == v
+  #   end
+  # end
 
   def role_name
-    User.user_roles.keys[role].titleize
   end
 
   def login=(login)
