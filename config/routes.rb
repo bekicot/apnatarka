@@ -78,6 +78,9 @@ Rails.application.routes.draw do
     resources :dashboards
     resources :contact_requests
     resources :users do
+      collection do
+        get :get_cities
+      end
       resources :chef_categories do
         resources :chef_category_items  
       end

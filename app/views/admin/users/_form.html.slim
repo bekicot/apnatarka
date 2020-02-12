@@ -1,4 +1,4 @@
-= form_for [:admin, @user], html: { "data-parsley-validate" => true, class: 'admin-form' } do |f|
+= form_for [:admin, @user], html: { "data-parsley-validate" => true, class: 'admin-form' }, remote: true do |f|
   - if @user.errors.full_messages.any?
       - @user.errors.full_messages.each do |error_message|
           = error_message if @user.errors.full_messages.first == error_message
@@ -17,7 +17,28 @@
   .form-group.clearfix
     .col-sm-12
       = f.label :role, class: 'show'
-      = f.select :role, options_for_select(User.user_roles.except(:super_admin), selected: @user.role), {}, { class: 'form-control' }
+      = f.select :role, options_for_select(User.roles.map{|k,v|[k,k]}, selected: @user.role), {}, { class: 'form-control' }
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :country, class: 'show'
+      = f.text_field :country,value:'Pakistan' , required: true, class: 'form-control', disabled: true
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :state, class: 'show'
+      = f.select :state, options_for_select(@states.map{|k,v| [v,k] }), {}, { class: 'form-control' }
+  .cities    
+    .form-group.clearfix
+      .col-sm-12
+        = f.label :city, class: 'show'
+        = f.select :city, options_for_select({}.map{|k,v| [v,k] }), {}, { class: 'form-control' }
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :address, class: 'show'
+      = f.text_field :address, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :image, class: 'show'
+      = f.file_field :image, required: true, class: 'form-control'
   .form-group.clearfix
     .col-sm-12
       = f.label :password, class: 'show'

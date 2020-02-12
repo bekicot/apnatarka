@@ -5,3 +5,4 @@
 //= require scrollreveal.min
 //= require bootstrap-sprockets
 //= require select2
+//= require admin/users

@@ -9,7 +9,7 @@ gem 'rails', '~> 5.1.4'
 # Use mysql as the database for Active Record
 gem 'pg'
 gem 'puma', '~> 3.7'
-
+gem 'city-state'
 gem 'geocoder'
 gem "paperclip", "~> 5.0.0"
 gem 'paperclip-optimizer'
@@ -17,7 +17,7 @@ gem 'paperclip-optimizer'
 gem 'rubyzip', '>= 1.0.0'
 gem 'zip-zip'
 gem 'friendly_id', '~> 5.1.0'
-gem 'bundler', '~> 1.16.1'
+gem 'bundler'
 gem 'gmaps4rails'
 
 gem 'sendgrid-ruby'

@@ -20,7 +20,7 @@
       - if current_user.present?
         .dropdown.login
           a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-            = current_user.first_name.capitalize
+            = current_user&.first_name&.capitalize
             span.caret
           .dropdown-menu.custom-dropdown aria-labelledby="dropdownMenuLink"
             - if current_user.super_admin? || current_user.moderator_user?
