@@ -1,6 +1,6 @@
 #super admin and moderator user
-admin_user = User.create(first_name: 'Super Admin', last_name: 'User', email: 'admin@eat2040.com', password: 'Adm!ne@t204O', password_confirmation: 'Adm!ne@t204O', role: User.user_roles[:super_admin])
-admin_user = User.create(first_name: 'Moderator', last_name: 'User', email: 'moderator@eat2040.com', password: 'M0de@t204O', password_confirmation: 'M0de@t204O', role: User.user_roles[:moderator_user])
+admin_user = User.create(first_name: 'Super Admin', last_name: 'User', email: 'admin@eat2040.com', password: 'Adm!ne@t204O', password_confirmation: 'Adm!ne@t204O', role: User.roles[:super_admin])
+admin_user = User.create(first_name: 'Moderator', last_name: 'User', email: 'moderator@eat2040.com', password: 'M0de@t204O', password_confirmation: 'M0de@t204O', role: User.roles[:moderator_user])
 
 
 
