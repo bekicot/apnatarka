@@ -29,26 +29,23 @@
           h5.section-title.h1 OUR TEAM
           .row
             .col-md-4
-              .card.border.border-warning.card-chef
-                img.image1-chef-card src="https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/healthy-eating-ingredients-1296x728-header.jpg?w=1155&h=1528" /
-                .chef-image
-                  img.img-circle src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/03/18/15/billgates.jpg" /
-                .card-body
-                  h3.card-title
-                    strong La Sirena restaurant
-                  p.card-text $ • American, Restaurant
-                  p.textcolor-chef-card Some quick example text to build on the card title and make up the bulk of the card's content
-                  hr/
-                  .font-size
-                    h3.text-center
-                      strong Today's availability
-                    .row.mt-4
-                      .col-sm-4.text-center
-                        p 5:30pm
-                      .col-sm-4.text-center
-                        strong TO
-                      .col-sm-4.text-center
-                        p 5:30pm
-                  .
-                    button.btn.btn-block.btn-xs.btn-font Order Now
-                          
+              - @category_chef.each do |chef|
+                .card.border.border-warning.card-chef
+                  img.image1-chef-card src="https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/healthy-eating-ingredients-1296x728-header.jpg?w=1155&h=1528" /
+                  .chef-image
+                  .card-body
+                    h3.card-title
+                      = "#{chef.first_name.titleize} #{chef.last_name.titleize}"
+                    p.card-text 
+                      = "#{chef.city.titleize} ,#{chef.state.titleize} "
+                    p.textcolor-chef-card = chef.address
+                    hr/
+                    .font-size
+                      h3.text-center
+                        strong Availability
+                      .row.mt-4
+                        - chef.chef_avalibilities.each do |available|
+                            = "#{available.day} ,"
+                    .
+                      button.btn.btn-block.btn-xs.btn-font Order Now
+                            

@@ -1,0 +1,27 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+    .card-body
+      .table-responsive
+        table.table.table-hover.mb-0
+          thead
+            tr
+              th First Name
+              th Last_name
+              th Email
+              th Categories
+              th Action
+          tbody
+          - @users.each do |user|
+            tr
+              td
+                = user.first_name
+              td
+                = user.last_name
+              td
+                = user.email
+              td
+                = user.categories.map(&:title).join(", ")
+              td
+                = link_to "Chef Menu Items", chef_menu_items_admin_chef_menu_path(user), class: 'btn btn-primary btn-xs'
+                = link_to "Create Chef Mess", admin_chef_mess_index_path(user_id: user), class: 'btn btn-danger btn-xs'

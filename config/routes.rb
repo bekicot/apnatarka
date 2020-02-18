@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
@@ -76,6 +77,13 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "dashboards#index"
     resources :dashboards
+    resources :chef_mess
+    resources :chef_mess_items
+    resources :chef_menus do
+      member do
+        get :chef_menu_items
+      end
+    end
     resources :contact_requests
     resources :users do
       collection do

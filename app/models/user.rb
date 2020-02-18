@@ -6,7 +6,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2], authentication_keys: [:login]
   has_many :orders
   has_many :addresses
-
   enum role: [:super_admin, :normal_user, :chef, :moderator_user]
   enum gender: [:male, :female]
   enum status: [:active, :inactive]
@@ -16,7 +15,10 @@ class User < ApplicationRecord
   validates_uniqueness_of :phone, unless: -> { from_omniauth? }
   has_many :chef_categories
   has_many :categories, through: :chef_categories 
-
+  has_many :chef_avalibilities
+  has_many :chef_category_items, through: :chef_categories
+  has_many :mess
+  has_many :mess_items, through: :mess
   # user_roles.each do |k, v|
   #   define_method "#{k}?" do
   #     role == v

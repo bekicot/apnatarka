@@ -1,0 +1,29 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-shopping-basket
+        | Chef Categories
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Category Items
+                th
+                  | Category Avalibility
+                th
+                  | Action
+            tbody
+            - @chef_categories.each do |chef_category|
+              - chef_category.chef_category_items.each do |chef_category_item|
+                tr
+                  td
+                    = chef_category_item.menu_item.title
+                  td
+                    = chef_category_item.chef_avalibilities.map(&:day).join(", ")
+                  td 
+                    = link_to "Add Avalibility", new_admin_chef_menu_path(chef_category_item:chef_category_item, id: @user ), class: 'btn btn-primary btn-xs', remote: true
+#chef_category
+

@@ -1,0 +1,16 @@
+#chef_category_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title = params[:action]=="new" ? 'Add Mess' : 'Edit Mess'
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_for mess, url: params[:action]=="new" ? admin_chef_mess_index_path(user_id: @user.id) : admin_chef_mess_path(id: @mess.id, user_id: @user.id) , html: { "data-parsley-validate" => true } do |f|
+          .form-group.clearfix
+            .col-sm-12
+              = f.label :title, class: 'show'
+              = f.text_field :title, required: true, class: "form-control"
+          .col-sm-12
+          .modal-footer
+            = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'
