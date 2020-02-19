@@ -1,0 +1,2 @@
+module ChefMenusHelper
+end

@@ -16,7 +16,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
-    debugger
     @user = User.new(sign_up_params)
     if @user.save
       # UserMailer.delay.account_creation_email(user)

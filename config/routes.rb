@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :chef_menus
+
   resources :delivery do
     collection do
       get :demo

@@ -1,0 +1,26 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-shopping-basket
+        | Chef's Detail
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | First Name
+                th
+                  | Last Name
+                th
+                  | Action
+            tbody
+            - @chefs.each do |chefs|
+              tr
+                td
+                  = chefs.first_name
+                td
+                  = chefs.last_name
+                td
+                  = link_to "Chef Mess", '#', class: 'btn btn-primary btn-xs'

@@ -57,6 +57,9 @@
           li[class="#{active_class(root_path(anchor: 'location'))}"]
             = link_to t("header.location"), root_path(anchor: 'location'), class: "page-load"
 
+          li[class="#{active_class(chef_menus_path)}"]
+            = link_to t("header.Chef's"), chef_menus_path, class: "page-load"
+
           li.dropdown[class="#{active_class(feedback_visitors_path, root_path(anchor: 'message_us'))}"]
             a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
               = t("header.share_with_us")

@@ -13,7 +13,6 @@ class Admin::ChefMessController < Admin::BaseController
   end
 
   def create
-    debugger
     @mess = Mess.new(mess_params)
     @mess.user_id = @user.id
     if @mess.save
