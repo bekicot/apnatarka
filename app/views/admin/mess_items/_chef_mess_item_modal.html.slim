@@ -10,7 +10,7 @@
           .form-group.clearfix
             .col-sm-12
               = f.label :chef_category_item_id, class: 'show'
-              = f.select :chef_category_item_id, options_for_select(@chef_categories.map{ |category| [category.menu_item.title, category.id ] }, mess_item.chef_category_item.chef_category.category.title ), {prompt: ""}, {class: 'form-control', required: true}
+              = f.select :chef_category_item_id, options_for_select(@chef_categories.map{ |category| [category&.menu_item&.title, category.id ] }, mess_item.chef_category_item&.chef_category&.category&.title ), {prompt: ""}, {class: 'form-control', required: true}
               = f.label :day, class: 'show'
               = f.select :day, options_for_select(@days.map{|k,v| [k, k] }, mess_item.day), {prompt: ""}, class: 'form-control', required: true
               = f.label :avalible_in, class: 'show'

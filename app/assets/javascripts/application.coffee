@@ -26,3 +26,5 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require jquery.nicescroll
+//= require bootstrap/bootstrap-tooltip
+//= require item_chefs

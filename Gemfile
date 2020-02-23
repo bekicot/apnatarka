@@ -23,6 +23,7 @@ gem 'gmaps4rails'
 gem 'sendgrid-ruby'
 # Auth
 gem 'devise', '~> 4.4'
+gem 'bootstrap-tooltip-rails'
 
 # Front-end
 gem 'slim'

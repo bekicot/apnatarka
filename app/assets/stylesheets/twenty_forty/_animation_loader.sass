@@ -5,7 +5,7 @@
   background: $light-yellow-rgba-darker
 
   .twenty-forty-animation
-    background: $black
+    background: white
     -webkit-backface-visibility: hidden
     -moz-backface-visibility: hidden
     -ms-backface-visibility: hidden
@@ -17,7 +17,7 @@
     margin: 0 auto
     top: 30%
     border-radius: 100%
-    border: solid 15px $white
+    border: solid 15px black
     animation: play 1.5s ease infinite
     -webkit-backface-visibility: hidden
     -moz-backface-visibility: hidden
@@ -35,6 +35,9 @@
       position: absolute
       border-radius: 100%
       z-index: 99999 !important
+      transform: scale(0.2)
+      top: -47px
+      left: -31px
 
   &.reverse
     background: $white

@@ -57,6 +57,7 @@ class DeliveryController < ApplicationController
   end
 
   def add_to_cart
+    debugger
     if params[:menu_item].present?
       session[:cart]            = {} if session[:cart].blank?
       session[:special_request] = {} if session[:special_request].blank?

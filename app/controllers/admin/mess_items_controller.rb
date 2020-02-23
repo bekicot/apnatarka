@@ -17,7 +17,7 @@ class Admin::MessItemsController < Admin::BaseController
     @mess_item = MessItem.new(mess_item_params)
     if @mess_item.save
       flash[:success] = "You Have Added Mess Item Successfullly"
-      redirect_to admin_chef_mess_items_path(mess_id: params[:mess_item][:mess_id])
+      redirect_to admin_mess_items_path(mess_id: params[:mess_item][:mess_id])
     else
       flash[:alert] = "Something Went Wrong Try Again"
       render :back
