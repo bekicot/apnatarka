@@ -6,15 +6,15 @@
         button.close aria-label="Close" data-dismiss="modal" type="button" 
           span aria-hidden="true"  &times;
       .modal-body
-        = form_for mess_item, url: params[:action]=="new" ? admin_chef_mess_items_path : admin_chef_mess_item_path(mess_item), html: { "data-parsley-validate" => true } do |f|
+        = form_for [:admin, mess_item], html: { "data-parsley-validate" => true } do |f|
           .form-group.clearfix
             .col-sm-12
               = f.label :chef_category_item_id, class: 'show'
-              = f.select :chef_category_item_id, options_for_select(@chef_categories.map{|category|[category.menu_item.title,category.id]}),{}, class: 'form-control', required: true
+              = f.select :chef_category_item_id, options_for_select(@chef_categories.map{ |category| [category.menu_item.title, category.id ] }, mess_item.chef_category_item.chef_category.category.title ), {prompt: ""}, {class: 'form-control', required: true}
               = f.label :day, class: 'show'
-              = f.select :day, options_for_select(@days.map{|k,v| [k,k]}), {}, class: 'form-control', required: true
+              = f.select :day, options_for_select(@days.map{|k,v| [k, k] }, mess_item.day), {prompt: ""}, class: 'form-control', required: true
               = f.label :avalible_in, class: 'show'
-              = f.select :avalible_in, options_for_select(@avalible_in.map{|k,v| [k,k]}), {}, class: 'form-control', required: true
+              = f.select :avalible_in, options_for_select(@avalible_in.map{|k,v| [k, k] }, mess_item.avalible_in), {prompt: ""}, class: 'form-control', required: true
               = f.hidden_field :mess_id, value: @mess.id
           .col-sm-12
           .modal-footer

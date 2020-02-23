@@ -16,12 +16,17 @@
       = f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: 'form-control'
   .form-group.clearfix
     .col-sm-12
+      = f.label :phone, class: 'show'
+      = f.number_field :phone, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
       = f.label :role, class: 'show'
       = f.select :role, options_for_select(User.roles.map{|k,v|[k,k]}, selected: @user.role), {}, { class: 'form-control' }
   .form-group.clearfix
     .col-sm-12
       = f.label :country, class: 'show'
-      = f.text_field :country,value:'Pakistan' , required: true, class: 'form-control', disabled: true
+      = f.text_field :country,value: @country , required: true, class: 'form-control', disabled: true
+      = f.hidden_field :country, value: @country
   .form-group.clearfix
     .col-sm-12
       = f.label :state, class: 'show'
@@ -37,8 +42,8 @@
       = f.text_field :address, required: true, class: 'form-control'
   .form-group.clearfix
     .col-sm-12
-      = f.label :image, class: 'show'
-      = f.file_field :image, required: true, class: 'form-control'
+      = f.label :avatar, class: 'show'
+      = f.file_field :avatar, required: true, class: 'form-control'
   .form-group.clearfix
     .col-sm-12
       = f.label :password, class: 'show'

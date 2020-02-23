@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/thumb/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   attr_accessor :login
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2], authentication_keys: [:login]
@@ -12,7 +14,7 @@ class User < ApplicationRecord
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validates_presence_of :email
-  validates_uniqueness_of :phone, unless: -> { from_omniauth? }
+  # validates_uniqueness_of :phone, unless: -> { from_omniauth? }
   has_many :chef_categories
   has_many :categories, through: :chef_categories 
   has_many :chef_avalibilities

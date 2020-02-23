@@ -1,4 +1,4 @@
-class Admin::ChefMessItemsController < Admin::BaseController
+class Admin::MessItemsController < Admin::BaseController
   before_action :find_mess, only: [:index, :new, :edit]
   before_action :find_mess_item, only: [:edit, :destroy, :update]
   before_action :days_avaliblty_chef_categories, only: [:new, :edit]
@@ -49,6 +49,7 @@ class Admin::ChefMessItemsController < Admin::BaseController
   end
 
   private
+
   def find_mess
     @mess = Mess.find(params[:mess_id])
   end

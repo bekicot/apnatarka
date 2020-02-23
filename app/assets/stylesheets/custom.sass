@@ -126,10 +126,14 @@
     left: 112px
     width: 148px
     height: 148px
-    border-radius: 50%
-    top: 23px
+    border-radius: 77px
+    top: 26px
     box-shadow: 1px 1px 7px 2px #fdc741
     background-color: red
+    img
+      width: 148px
+      height: 148px
+      border-radius: 77px
 
 .textcolor-chef-card
   font-size: 1.9rem
@@ -143,4 +147,98 @@
 
 .image1-chef-card
   width: 100%
-  
+
+.chef-menu-chef-image
+  position: absolute
+  left: 78px
+  width: 100px
+  height: 100px
+  border-radius: 56px
+  top: 12px
+  box-shadow: 1px 1px 7px 2px #fdc741
+  img 
+    width: 100px
+    height: 100px
+    border-radius: 60px 
+
+.card-box
+  background-color: #fff
+  border: 1px solid #ccc
+  padding: 20px
+  margin-bottom: 20px
+  .button
+    margin-bottom: 60px
+    h2
+      border-bottom: 2px solid #000
+      margin: 0
+
+  table
+    // border: 1px solid #ccc
+    tbody
+      // border-top-color: #ccc
+    tr
+      height: 25px
+      th
+        background-color: #fdc741
+        color: #000
+        border: none
+        padding: 15px 12px
+        // border-left: 1px solid #ccc
+        font-weight: bold
+      .postal-code
+        width: 125px
+      td
+        // border-right: 1px solid #ccc
+        &:last-child
+          border: none
+
+  table.show-page-table
+    td
+      border: none
+      &:last-child
+        width: auto
+  .pull-left 
+    float: left !important
+
+.container-fluid
+  width: 95%
+.card-box
+  .card-body
+    .table-responsive
+      .basic-data
+        padding-bottom: 88px
+        border-right: 2px dashed
+.table
+  margin-bottom: 10px
+
+th
+  font-weight: 500
+
+.table >
+  tbody > tr > td, tfoot > tr > td, thead > tr > td
+    padding: 15px 12px
+
+.table-hover tbody tr:hover, .table-striped tbody tr:nth-of-type(odd), .thead-default th
+  background-color: #eff3f6
+
+table.focus-on tbody tr.focused
+  td, th
+    background-color: #0f9cf3
+    color: #fff
+.heading-bar
+  padding: 0 0 20px
+  h4
+  padding: 11px 0
+  color: #000
+  margin: 0
+  display: inline-block
+  i
+    margin-right: 5px
+
+body
+  margin: 0
+  font-size: 15px
+  font-family: Lato, sans-serif
+
+.chef-card-margin-top
+  margin-top: 22px

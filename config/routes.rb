@@ -22,7 +22,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chef_menus
+  resources :chef_menus, only: [:index] do
+    member do
+      get :chef_mess_items
+    end
+  end
 
   resources :delivery do
     collection do
@@ -80,7 +84,7 @@ Rails.application.routes.draw do
     root to: "dashboards#index"
     resources :dashboards
     resources :chef_mess
-    resources :chef_mess_items
+    resources :mess_items
     resources :chef_menus do
       member do
         get :chef_menu_items

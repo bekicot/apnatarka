@@ -33,19 +33,21 @@
                 .card.border.border-warning.card-chef
                   img.image1-chef-card src="https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/healthy-eating-ingredients-1296x728-header.jpg?w=1155&h=1528" /
                   .chef-image
+                    = image_tag chef.avatar.url
                   .card-body
                     h3.card-title
                       = "#{chef.first_name.titleize} #{chef.last_name.titleize}"
                     p.card-text 
                       = "#{chef.city.titleize} ,#{chef.state.titleize} "
-                    p.textcolor-chef-card = chef.address
+                    p.textcolor-chef-card = truncate(chef.address)
                     hr/
                     .font-size
                       h3.text-center
                         strong Availability
-                      .row.mt-4
-                        - chef.chef_avalibilities.each do |available|
-                            = "#{available.day} ,"
+                      .row.mt-4.text-center.textcolor-chef-card
+                        p
+                          - chef.chef_avalibilities.each do |available|
+                            = "#{available.day} "
                     .
                       button.btn.btn-block.btn-xs.btn-font Order Now
                             

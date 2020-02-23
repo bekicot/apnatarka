@@ -11,6 +11,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def new
+    @country = "Pakistan"
     @user = User.new
     @states = CS.states(:PK)
   end
@@ -32,6 +33,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def edit
+    @country = "Pakistan"
   end
 
   def update
@@ -59,7 +61,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role, :country, :state, :city, :image)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role, :country, :state, :city, :address, :avatar)
   end
 
   def check_super_admin
