@@ -28,11 +28,11 @@ class DeliveryController < ApplicationController
       @order.build_address(address_params) unless (params[:order][:address_id].present? || session[:delivery_details].present?)
       prepare_items
 
-      @menu_items.each do |menu_item|
-        quantity        = session[:cart][MenuItem.item_key_for_cart(menu_item.id)]
-        special_request = session[:special_request][MenuItem.item_key_for_cart(menu_item.id)]
-        @order.order_items.new(menu_item_id: menu_item.id, quantity: quantity,
-                               total: (quantity * menu_item.price), special_request: special_request)
+      @chef_menu_items.each do |chef_menu_item|
+        quantity        = session[:cart][ChefCategoryItem.item_key_for_cart(chef_menu_item.id)]
+        special_request = session[:special_request][ChefCategoryItem.item_key_for_cart(chef_menu_item.id)]
+        @order.order_items.new(chef_category_item_id: chef_menu_item.id, quantity: quantity,
+                               total: (quantity * chef_menu_item.menu_item.price), special_request: special_request)
       end
 
       @order.vat            = Order::VAT
@@ -51,47 +51,45 @@ class DeliveryController < ApplicationController
     end
   end
 
-  def order_received
+def order_received
     clear_all_sessions
-    @order = Order.includes(order_items: [:menu_item]).find(params[:id])
+    @order = Order.includes(order_items: [:chef_category_item]).find(params[:id])
   end
 
   def add_to_cart
-    debugger
-    if params[:menu_item].present?
+    if params[:chef_menu_item].present?
       session[:cart]            = {} if session[:cart].blank?
       session[:special_request] = {} if session[:special_request].blank?
       quantity = params[:quantity].present? ? params[:quantity].to_i : 1
-      session[:cart].merge!(MenuItem.item_to_add_in_cart(params[:menu_item], quantity))
-
+      session[:cart].merge!(ChefCategoryItem.item_to_add_in_cart(params[:chef_menu_item], quantity))
       if params[:add_more].present?
         prepare_items
         @add_more = true
-        @menu_item = MenuItem.find params[:menu_item]
+        @menu_item = ChefCategoryItem.find params[:menu_item]
         @selected_item_text = t("delivery.added")
       end
     end
   end
 
   def special_request
-    if params[:menu_item_id].present? && params[:special_request].present?
+    if params[:chef_menu_item_id].present? && params[:special_request].present?
       session[:special_request] = {} if session[:special_request].blank?
-      menu_item_id              = params[:menu_item_id]
+      chef_menu_item_id              = params[:chef_menu_item_id]
       special_request           = params[:special_request]
-      session[:special_request].merge!(MenuItem.special_request_to_add_in_cart(menu_item_id, special_request))
+      session[:special_request].merge!(ChefCategoryItem.special_request_to_add_in_cart(chef_menu_item_id, special_request))
       return render json: {data: :ok}
     end
   end
 
   def update_quantity
-    item = params[:menu_item_id]
-    key_to_update = MenuItem.item_key_for_cart(item)
+    item = params[:chef_menu_item_id]
+    key_to_update = ChefCategoryItem.item_key_for_cart(item)
     session[:cart][key_to_update] = params[:quantity].to_i
     prepare_items
   end
 
   def remove_item
-    key_to_delete = MenuItem.item_key_for_cart(params[:id])
+    key_to_delete = ChefCategoryItem.item_key_for_cart(params[:id])
     session[:cart].delete(key_to_delete)
     session[:special_request].delete(key_to_delete) if session[:special_request]&.has_key?(key_to_delete)
     redirect_to delivery_index_path
@@ -180,8 +178,8 @@ class DeliveryController < ApplicationController
 
   def prepare_items
     if session[:cart].present?
-      menu_item_ids = session[:cart].keys.map {|key| MenuItem.get_item_from_cart(key) }
-      @menu_items = MenuItem.where(id: menu_item_ids)
+      chef_menu_item_ids = session[:cart].keys.map {|key| ChefCategoryItem.get_item_from_cart(key) }
+      @chef_menu_items = ChefCategoryItem.where(id: chef_menu_item_ids)
     else
       redirect_to root_path(anchor: 'complete_menu')
     end

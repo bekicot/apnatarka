@@ -28,26 +28,28 @@
         .chefs
           h5.section-title.h1 OUR TEAM
           .row
-            - @category_chef.each do |chef|
-              .col-md-4
-                .card.border.border-warning.card-chef
-                  img.image1-chef-card src="https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/healthy-eating-ingredients-1296x728-header.jpg?w=1155&h=1528" /
-                  .chef-image
-                    = image_tag chef.avatar.url
-                  .card-body
-                    h3.card-title
-                      = "#{chef.first_name.titleize} #{chef.last_name.titleize}"
-                    p.card-text 
-                    p.textcolor-chef-card 
-                      = chef.address.truncate(40)
-                      i.fa.fa-info.information data-html="true" title=("#{ chef.address }") 
+            - @chef_category_items.each do |chef_cat_item|
+              - chef = chef_cat_item.chef_category.user
+              - if chef.present?
+                .col-md-4
+                  .card.border.border-warning.card-chef
+                    img.image1-chef-card src="https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/healthy-eating-ingredients-1296x728-header.jpg?w=1155&h=1528" /
+                    .chef-image
+                      = image_tag chef.avatar.url
+                    .card-body
+                      h3.card-title
+                        = "#{chef.first_name.titleize} #{chef.last_name.titleize}"
+                      p.card-text 
+                      p.textcolor-chef-card 
+                        = chef.address.truncate(40)
+                        i.fa.fa-info.information data-html="true" title=("#{ chef.address }") 
 
-                    hr
-                    .font-size
-                      h3.text-center
-                        strong Availability
-                      .row.mt-4
-                        - chef.chef_avalibilities.each do |available|
-                            = "#{available.day} ,"
-                      = link_to "Order Now", add_to_cart_delivery_index_path(menu_item: @menu_item), class: 'btn btn-block btn-xs btn-font', remote: true 
-                            
+                      hr
+                      .font-size
+                        h3.text-center
+                          strong Availability
+                        .row.mt-4
+                          - chef.chef_avalibilities.each do |available|
+                              = "#{available.day} ,"
+                        = link_to " Place Order", add_to_cart_delivery_index_path(chef_menu_item: chef_cat_item), class: 'btn btn-block btn-xs btn-font' , remote: true 
+                              

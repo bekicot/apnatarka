@@ -27,7 +27,8 @@
               td
                 = user.role.humanize
               td
-                = link_to "Categories", admin_user_chef_categories_path(user), class: 'btn btn-primary btn-xs'
+                - if user.chef?
+                  = link_to "Categories", admin_user_chef_categories_path(user), class: 'btn btn-primary btn-xs'
                 = link_to admin_user_path(user), class: 'btn btn-primary btn-xs' do
                   i.fa.fa-eye
                 - unless user.super_admin?

@@ -15,14 +15,14 @@ $(document).ready(function(){
   });
 
   $('body').on('change keyup', '.quantity-count', function(){
-    menu_item_id = $(this).attr('id').split('-').pop();
+    chef_menu_item_id = $(this).attr('id').split('-').pop();
     quantity = $(this).val();
     if ((quantity != $(this).data("value")) && quantity != "" && quantity != 0){
       $.ajax({
         type: 'GET',
         url: '/delivery/update_quantity',
         data: {
-          menu_item_id: menu_item_id,
+          chef_menu_item_id: chef_menu_item_id,
           quantity: quantity
         }
       });
@@ -37,7 +37,7 @@ $(document).ready(function(){
         url: '/delivery/special_request',
         method: 'GET',
         dataType: 'json',
-        data: {special_request: special_request, menu_item_id: item_id}
+        data: {special_request: special_request, chef_menu_item_id: item_id}
       })
     }
   });
@@ -85,7 +85,7 @@ $(document).ready(function(){
         type: 'GET',
         url: '/delivery/update_quantity',
         data: {
-          menu_item_id: item_id,
+          chef_menu_item_id: item_id,
           quantity: quantity+1
         }
       });

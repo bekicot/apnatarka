@@ -8,9 +8,9 @@ module DeliveryHelper
     end
   end
 
-  def special_request_message(menu_item)
-    if session[:special_request]&.has_key?(MenuItem.item_key_for_cart(menu_item))
-      key_to_find = MenuItem.item_key_for_cart(menu_item)
+  def special_request_message(chef_menu_item)
+    if session[:special_request]&.has_key?(ChefCategoryItem.item_key_for_cart(chef_menu_item))
+      key_to_find = ChefCategoryItem.item_key_for_cart(chef_menu_item)
       session[:special_request][key_to_find]
     end
   end

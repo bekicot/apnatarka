@@ -31,7 +31,6 @@ class Admin::ChefMessController < Admin::BaseController
   end
 
   def update
-    debugger
     if @mess.update(mess_params)
       flash[:success] = "You Have Updated Mess Successfullly"
       redirect_to admin_chef_mess_index_path(user_id: @user.id)

@@ -81,17 +81,17 @@
           strong.amount = t("delivery.total")
         - @order.order_items.each do |order_item|
           .item
+          - chef_menu_item = order_item.chef_category_item.menu_item
             span
               .img-box
-                = image_tag order_item.menu_item.avatar.url
-              h4= "#{order_item.menu_item.title} x  #{order_item.quantity}"
-            span class="price" = "$#{number_with_precision(order_item.menu_item.price*order_item.quantity, precision: 2)}"
+                = image_tag order_item.chef_menu_item.avatar.url
+              h4= "#{order_item.chef_menu_item.title} x  #{order_item.quantity}"
+            span class="price" = "$#{number_with_precision(order_item.chef_menu_item.price*order_item.quantity, precision: 2)}"
             span.special-request-message
-              = MenuItem.special_request(order_item)&.truncate(30)
-              - if MenuItem.special_request(order_item)&.length > 30
-                  = link_to "javascript:void(0)", "data-toggle": "tooltip", title: MenuItem.special_request(order_item) do
+              = ChefCategoryItem.special_request(order_item)&.truncate(30)
+              - if ChefCategoryItem.special_request(order_item)&.length > 30
+                  = link_to "javascript:void(0)", "data-toggle": "tooltip", title: ChefCategoryItem.special_request(order_item) do
                     i.fa.fa-exclamation-circle
-
 
         .subtotal
           strong = t("delivery.sub_total")

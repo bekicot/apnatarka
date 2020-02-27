@@ -2,7 +2,7 @@ class ChefMenusController < ApplicationController
   before_action :find_chef, only: [:chef_mess_items]
 
   def index
-    @chefs = User.chef
+    @chefs = User.chef.paginate(page: params[:page], per_page: 12)
   end
 
   def chef_mess_items

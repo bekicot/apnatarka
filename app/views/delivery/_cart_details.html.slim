@@ -11,8 +11,9 @@
         h3 = t("delivery.your_order")
     .table-body
       - total = 0
-      - @menu_items.each do |menu_item|
-        - quantity = session[:cart][MenuItem.item_key_for_cart(menu_item.id)]
+      - @chef_menu_items.each do |chef_menu_item|
+        - menu_item = chef_menu_item.menu_item
+        - quantity = session[:cart][ChefCategoryItem.item_key_for_cart(chef_menu_item.id)]
         - total = total + (quantity * menu_item.price)
         .field.clearfix
           .box
@@ -20,14 +21,19 @@
               = image_tag menu_item.avatar.url
             .text-box
               h4 = menu_item.title
+          .box
+            .img-box
+              = image_tag menu_item.avatar.url
+            .text-box
+              h4 = menu_item.title
           .box.mobile-right = "$#{menu_item.price}"
-          .box = number_field_tag :number, quantity, class: 'quantity-count', id: "menu-item-#{menu_item.id}", "data-value": quantity, min: 1
+          .box = number_field_tag :number, quantity, class: 'quantity-count', id: "menu-item-#{chef_menu_item.id}", "data-value": quantity, min: 1
           .box.mobile-right = "$#{menu_item.price * quantity}"
-          .box = text_field_tag "special-request", special_request_message(menu_item.id), "data-menu-id": menu_item.id, id: "special-request-#{menu_item.id}", class: "special-request", placeholder: t("delivery.special_request_placeholder"), maxlength: 255
+          .box = text_field_tag "special-request", special_request_message(chef_menu_item.id), "data-menu-id": chef_menu_item.id, id: "special-request-#{chef_menu_item.id}", class: "special-request", placeholder: t("delivery.special_request_placeholder"), maxlength: 255
           .box.mobile-right
-            = link_to 'javascript:void(0)', title: t('delivery.add_more'), id: "item-#{menu_item.id}", "data-value": quantity, class: "inc-quan table-icon" do
+            = link_to 'javascript:void(0)', title: t('delivery.add_more'), id: "item-#{chef_menu_item.id}", "data-value": quantity, class: "inc-quan table-icon" do
               i.fa.fa-plus
-            = link_to remove_item_delivery_path(menu_item.id), title: t('delivery.remove_item'), class: "table-icon" do
+            = link_to remove_item_delivery_path(chef_menu_item.id), title: t('delivery.remove_item'), class: "table-icon" do
               i.fa.fa-times
   .lower-part.clearfix
     .row

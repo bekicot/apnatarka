@@ -3,7 +3,7 @@ class Admin::ChefCategoryItemsController < Admin::BaseController
   before_action :find_chef_category
 
   def new
-    @items = MenuItem.all
+    @items = @chef_category.category.menu_items
     @selected_items = @chef_category.menu_items
     @chef_category_item = @chef_category.chef_category_items.new 
     respond_to do |format|

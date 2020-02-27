@@ -65,7 +65,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def check_super_admin
-    if User.user_roles[:super_admin].eql? @user.role
+    if @user.super_admin?
       flash[:alert] = t("crud.access_denied")
       redirect_back(fallback_location: root_path)
     end

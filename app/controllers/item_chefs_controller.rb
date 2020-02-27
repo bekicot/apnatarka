@@ -1,8 +1,6 @@
 class ItemChefsController < ApplicationController
-
 	def index
 		@menu_item = MenuItem.find(params[:menu_id])
-		@category = @menu_item.category
-		@category_chef = @category.chefs
+		@chef_category_items = @menu_item.chef_category_items
 	end
 end

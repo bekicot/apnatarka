@@ -16,7 +16,7 @@
       .phonenumber
         a
           i.fa.fa-phone
-          | 966 11 4003344
+          | 0303 5722505
       - if current_user.present?
         .dropdown.login
           a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
@@ -58,7 +58,7 @@
             = link_to t("header.location"), root_path(anchor: 'location'), class: "page-load"
 
           li[class="#{active_class(chef_menus_path)}"]
-            = link_to t("header.Chef's"), chef_menus_path, class: "page-load"
+            = link_to "Mess System", chef_menus_path, class: "page-load"
 
           li.dropdown[class="#{active_class(feedback_visitors_path, root_path(anchor: 'message_us'))}"]
             a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
@@ -88,5 +88,5 @@
       a
         i.fa.fa-instagram
     li
-      a
+      a href = "https://www.facebook.com/chefit24" target = "_blank"
         i.fa.fa-facebook-f

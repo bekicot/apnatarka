@@ -127,8 +127,9 @@
                     h3 class="pull-left" = t("delivery.product")
                     h4 class="pull-right" = t("delivery.total")
                   - total = 0
-                  - @menu_items.each do |menu_item|
-                    - quantity = session[:cart][MenuItem.item_key_for_cart(menu_item.id)]
+                  - @chef_menu_items.each do |chef_menu_item|
+                    - menu_item = chef_menu_item.menu_item
+                    - quantity = session[:cart][ChefCategoryItem.item_key_for_cart(chef_menu_item.id)]
                     - total = total + (quantity * menu_item.price)
                     .row
                       .col-sm-12
