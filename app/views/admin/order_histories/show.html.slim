@@ -147,15 +147,16 @@
                 tbody
                   - @order.order_items.each do |order_item|
                     tr
-                      td = order_item.menu_item.title
-                      td = order_item.menu_item.price
+                      td = order_item.chef_category_item.menu_item.title
+                      td = order_item.chef_category_item.menu_item.price
                       td
-                        = MenuItem.special_request(order_item).truncate(30)
-                        - if MenuItem.special_request(order_item)&.length > 30
-                          = link_to "javascript:void(0)", id: "order_item_tooltip", "data-toggle": "tooltip", title: MenuItem.special_request(order_item) do
+
+                        = ChefCategoryItem.special_request(order_item).truncate(30)
+                        - if ChefCategoryItem.special_request(order_item)&.length > 30
+                          = link_to "javascript:void(0)", id: "order_item_tooltip", "data-toggle": "tooltip", title: ChefCategoryItem.special_request(order_item) do
                             i.fa.fa-exclamation-circle
                       td = order_item.quantity
-                      td = (order_item.quantity * order_item.menu_item.price)
+                      td = (order_item.quantity * order_item.chef_category_item.menu_item.price)
         .button
           = link_to "Back", admin_order_histories_path, class: "btn custom-btn btn-primary pull-right"
 

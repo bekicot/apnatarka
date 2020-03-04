@@ -6,7 +6,7 @@ class Admin::OrderHistoriesController < Admin::BaseController
   end
 
   def show
-    @order = Order.includes(order_items: [:menu_item]).find(params[:id])
+    @order = Order.includes(order_items: [:chef_category_item]).find(params[:id])
   end
 
   def customer_orders

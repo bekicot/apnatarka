@@ -109,18 +109,26 @@
     height: 120px
     border-radius: 50%  
 
+.card-chef:hover
+  border: 3px solid #fdc741
 .card-chef
+  border: 3px solid white
   background: white
-  box-shadow: 1px 1px 7px 2px #fdc741
-  border: none
-  position: relative
+  border-radius: 23px
+  
+  .image1-chef-card
+    width: 100%
+    border-radius: 20px
+    position: relative
   .card-body
     padding: 10px
   .font-size
     font-size: 2.5rem
   .btn-font
-    font-size: 2.2rem
     background: #fdc741
+    border-radius: 9px !important
+    border: none
+    font-size: 18px
   .chef-image
     position: absolute
     left: 112px
@@ -134,38 +142,56 @@
       width: 148px
       height: 148px
       border-radius: 77px
+  .card-title
+    font-size: 20px
+  .chef-menu-chef-image
+    img 
+      position: absolute
+      left: 0
+      right: 0
+      top: 47px
+      height: 100px
+      width: 100px
+      border: 3px solid white
+      margin: auto
+      border-radius: 55px
+  .item-chefs-image
+    img 
+      position: absolute
+      left: 0
+      right: 0
+      top: 55px
+      height: 150px
+      width: 150px
+      border: 3px solid white
+      margin: auto
+      border-radius: 85px
 
 .textcolor-chef-card
   font-size: 1.9rem
   font-weight: 400
   color: #747373
-  i 
-    width: 21px
-    height: 21px
-    border: 2px solid
-    padding-left: 5px
-    border-radius: 30px
+  padding: 3px
+  font-style: italic
+.textcolor-chef-card2
+  font-size: 1.9rem
+  font-weight: 400
+  color: #747373
+  height: 81px
+  .btn-warning
+    margin-right: 4px
+    color: #f1ad04
+    background-color: #ffffff
+    margin-top: 3px
 
 .border-chef-card
   border-radius: 55px
   padding: 5px
   background-color: #E0E0E0
 
-.image1-chef-card
-  width: 100%
 
-.chef-menu-chef-image
-  position: absolute
-  left: 80px
-  width: 100px
-  height: 100px
-  border-radius: 56px
-  top: 26px
-  box-shadow: 1px 1px 7px 2px #fdc741
-  img 
-    width: 100px
-    height: 100px
-    border-radius: 60px 
+
+
 
 .card-box
   background-color: #fff
@@ -249,3 +275,21 @@ body
 .chef-card-margin-top
   margin-top: 22px
 
+// media queries here..
+
+@media screen and (max-width: 767px) and (min-width: 520px)
+  .card-chef
+    .chef-menu-chef-image
+      img
+        top: 150px
+        height: 150px
+        width: 150px
+        border-radius: 113px
+@media screen and (max-width: 519px) and (min-width: 340px)
+  .card-chef
+    .chef-menu-chef-image
+      img
+        top: 52px
+        height: 100px
+        width: 100px
+        border-radius: 113px

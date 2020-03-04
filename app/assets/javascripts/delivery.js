@@ -1,5 +1,26 @@
 $(document).ready(function(){
 
+  $('#order_state').on('change', function(){
+    var state = $(this).val();
+    $.ajax({
+      type: 'GET',
+      url: '/delivery/get_cities',
+      dataType: 'json',
+      data: {state: state}, 
+      success: function(data){
+        var $mySelect = $('#order_city');
+        jQuery.each(data, function(index, value) {
+        var $option = $("<option/>", {
+          value: value,
+          text: value
+        });
+        $mySelect.append($option);
+      });
+      }
+     });
+  }); 
+
+
   if ($("#load_login_modals").length > 0) {
     $.ajax({
       type: 'GET',

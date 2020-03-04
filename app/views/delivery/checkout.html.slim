@@ -93,12 +93,12 @@
                     = f.text_field :delivery_time, class: 'form-control pointer',readonly: true, value: "#{session[:delivery_time].present? ? session[:delivery_time].try(:[], 'delivery_time') : Time.now.strftime("%m-%d-%Y %I:%M")}"
               .col-sm-6.mob-b-15.arabic-right
                 .form-group
-                  = f.label t("delivery.town_city")
-                  = f.text_field :city, class: 'form-control',required: true
+                  = f.label t("delivery.state_country")
+                  = f.select :state, options_for_select(@states.map{|k,v| [v,k] }, selected: @states.first), {}, class: 'form-control', required: true
               .col-sm-6.mob-b-15.arabic-right
                 .form-group
-                  = f.label t("delivery.state_country")
-                  = f.text_field :state, class: 'form-control',required: true
+                  = f.label t("delivery.town_city")
+                  = f.select :city, options_for_select({}.map{|k,v| [v,k] }), {}, {class: 'form-control',required: true}
               .col-sm-6.mob-b-15.arabic-right
                 .form-group
                   = f.label t("delivery.zip_postcode")

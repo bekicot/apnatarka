@@ -5,3 +5,8 @@
   $('#menuItemModel').modal("hide");
 <% end %>
 $('#cart_count').html('<%= escape_javascript(render(partial: "layouts/cart")) %>')
+swal({
+    title: "your Selected Item has been Added to Cart",
+    text: "Check Delivery Menu to Process your order",
+    type: "success",
+});

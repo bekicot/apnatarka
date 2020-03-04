@@ -1,5 +1,6 @@
 class MenuItem < ApplicationRecord
 
+  @@cart_joiner = "chef_menu_item_"
   has_attached_file :avatar, convert_options: {all: "-strip -interlace Plane -density 72 -quality 70 "}, processors: [:thumbnail, :paperclip_optimizer],
   styles: {
     medium: {
@@ -22,5 +23,9 @@ class MenuItem < ApplicationRecord
   globalize_accessors attributes: [:title, :description]
 
   default_scope { includes(:translations) }
+
+  def self.item_key_for_cart(menu_item)
+   "#{@@cart_joiner}#{menu_item}"
+  end
 
 end

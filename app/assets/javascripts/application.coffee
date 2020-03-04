@@ -28,3 +28,4 @@
 //= require jquery.nicescroll
 //= require bootstrap/bootstrap-tooltip
 //= require item_chefs
+//= require sweetalert

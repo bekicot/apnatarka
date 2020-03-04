@@ -31,25 +31,25 @@
             - @chef_category_items.each do |chef_cat_item|
               - chef = chef_cat_item.chef_category.user
               - if chef.present?
-                .col-md-4
+                .col-lg-4.col-md-6.col-sm-12
                   .card.border.border-warning.card-chef
-                    img.image1-chef-card src="https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/healthy-eating-ingredients-1296x728-header.jpg?w=1155&h=1528" /
-                    .chef-image
-                      = image_tag chef.avatar.url
+                    = image_tag( "chef_background.jpg", class: "image1-chef-card" )
+                    .item-chefs-image
+                      = image_tag chef.avatar.url, class: "rounded-circle mx-auto d-block"
                     .card-body
                       h3.card-title
                         = "#{chef.first_name.titleize} #{chef.last_name.titleize}"
-                      p.card-text 
                       p.textcolor-chef-card 
-                        = chef.address.truncate(40)
+                        = chef.address.truncate(35)
                         i.fa.fa-info.information data-html="true" title=("#{ chef.address }") 
-
                       hr
                       .font-size
-                        h3.text-center
-                          strong Availability
-                        .row.mt-4
-                          - chef.chef_avalibilities.each do |available|
-                              = "#{available.day} ,"
-                        = link_to " Place Order", add_to_cart_delivery_index_path(chef_menu_item: chef_cat_item), class: 'btn btn-block btn-xs btn-font' , remote: true 
-                              
+                        h5. Available In :
+                        .row.mt-4.textcolor-chef-card2.text-center
+                          - if chef.chef_avalibilities.present?
+                            - chef.chef_avalibilities.each do |available|
+                              button.btn.btn-warning = "#{available.day}"
+                          - else
+                            button.btn.btn-warning = "Not Added Yet..!"
+                        .
+                          = link_to "Add to Cart", add_to_cart_delivery_index_path(chef_menu_item: chef_cat_item), class: 'btn btn-block btn-warning btn-font' , remote: true

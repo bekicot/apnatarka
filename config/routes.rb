@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       post :paytabs_callback
       get :re_payment
       get :all_favorite_orders
+      get :get_cities
     end
     member do
       get :remove_item

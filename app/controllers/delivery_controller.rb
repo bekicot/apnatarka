@@ -9,6 +9,7 @@ class DeliveryController < ApplicationController
   end
 
   def checkout
+    @states = CS.states(:PK)
     if session[:cart].present?
       @latitude     = request.location.latitude
       @longitude    = request.location.longitude
@@ -19,6 +20,11 @@ class DeliveryController < ApplicationController
     else
       redirect_to delivery_index_path
     end
+  end
+
+  def get_cities
+    @cities = CS.cities(params[:state], :pk)
+    render json: @cities
   end
 
   def save_order
@@ -52,6 +58,7 @@ class DeliveryController < ApplicationController
   end
 
 def order_received
+    flash[:success] = "Your Order Has Been Placed Successfully"
     clear_all_sessions
     @order = Order.includes(order_items: [:chef_category_item]).find(params[:id])
   end
