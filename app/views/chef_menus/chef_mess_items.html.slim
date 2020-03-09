@@ -24,33 +24,35 @@
         strong.heading= t('menu.heading')
       .showcase-right
         h2= t('menu.sub_heading')
-        .container-fluid
-          .card-box
-            .heading-bar.clearfix
-              h4.pull-left
+    .container-fluid
+      .row
+        .center-card
+          .card.card-chef.chef-mess-table
+            .card-body
+              h3.card-title.text-center
                 i.fa.fa-shopping-basket
                 | Chef Mess Detail
-            .card-body
-                .table-responsive
-                  table.table.table-hover.mb-0
-                    thead
+              hr
+              .table-responsive
+                table.table.table-hover.mb-0
+                  thead
+                    tr
+                      th
+                        | Title
+                      th
+                        | Item
+                      th
+                        | Day
+                      th
+                        | Time
+                  tbody
+                    - @mess_items.each do |mess_item|
                       tr
-                        th
-                          | Mess Title
-                        th
-                          | Mess Item
-                        th
-                          | Mess Day
-                        th
-                          | Mess Avalibility Time
-                    tbody
-                      - @mess_items.each do |mess_item|
-                        tr
-                          td
-                            = mess_item.mess.title
-                          td
-                            = mess_item.chef_category_item.menu_item.title
-                          td
-                            = mess_item.day
-                          td
-                            = mess_item.avalible_in
+                        td
+                          = mess_item.mess.title
+                        td
+                          = mess_item.chef_category_item.menu_item.title
+                        td
+                          = mess_item.day
+                        td
+                          = mess_item.avalible_in
