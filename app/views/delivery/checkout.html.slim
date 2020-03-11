@@ -63,34 +63,39 @@
                         .col-sm-6.mob-b-15.arabic-right
                           .form-group
                             = ff.label t("address.address_type")
-                            = ff.text_field :address_type, class: 'form-control pointer',readonly: true, value: "#{session[:address].try(:[], 'address_type').present? ? session[:address].try(:[], 'address_type') : session[:address].try(:[], 'address').try(:[], 'address_type')}"
+                            = ff.select :address_type, options_for_select(Address.address_types.map{|k,v| [k,k] }), {},class: 'form-control pointer'
+                            / ,readonly: true, value: "#{session[:address].try(:[], 'address_type').present? ? session[:address].try(:[], 'address_type') : session[:address].try(:[], 'address').try(:[], 'address_type')}"
 
                         .col-sm-6.mob-b-15.arabic-right
                           .form-group
                             = ff.label t("address.building_name")
-                            = ff.text_field :building_name, class: 'form-control pointer',readonly: true, value: "#{session[:address].try(:[], 'building_name').present? ? session[:address].try(:[], 'building_name') : session[:address].try(:[], 'address').try(:[], 'building_name')}"
+                            = ff.text_field :building_name, class: 'form-control pointer'
+                            / ,readonly: true, value: "#{session[:address].try(:[], 'building_name').present? ? session[:address].try(:[], 'building_name') : session[:address].try(:[], 'address').try(:[], 'building_name')}"
 
                       .row
                         .col-sm-6.mob-b-15.arabic-right
                           .form-group
                             = ff.label t("address.building_number")
-                            = ff.text_field :building_number, class: 'form-control pointer',readonly: true, value: "#{session[:address].try(:[], 'building_number').present? ? session[:address].try(:[], 'building_number') : session[:address].try(:[], 'address').try(:[], 'building_number')}"
+                            = ff.text_field :building_number, class: 'form-control pointer'
+                            / ,readonly: true, value: "#{session[:address].try(:[], 'building_number').present? ? session[:address].try(:[], 'building_number') : session[:address].try(:[], 'address').try(:[], 'building_number')}"
 
                         .col-sm-6.mob-b-15.arabic-right
                           .form-group
                             = ff.label t("address.room_no")
-                            = ff.text_field :room_no, class: 'form-control pointer',readonly: true, value: "#{session[:address].try(:[], 'room_no').present? ? session[:address].try(:[], 'room_no') : session[:address].try(:[], 'address').try(:[], 'room_no')}"
+                            = ff.text_field :room_no, class: 'form-control pointer'
+                            / ,readonly: true, value: "#{session[:address].try(:[], 'room_no').present? ? session[:address].try(:[], 'room_no') : session[:address].try(:[], 'address').try(:[], 'room_no')}"
 
                       .row
                         .col-sm-12.mob-b-15.arabic-right
                           .form-group
                             = ff.label t("address.direction")
-                            = ff.text_field :direction, class: 'form-control pointer',readonly: true, value: "#{session[:address].try(:[], 'direction').present? ? session[:address].try(:[], 'direction') : session[:address].try(:[], 'address').try(:[], 'direction')}"
+                            = ff.text_field :direction, class: 'form-control pointer'
+                            / ,readonly: true, value: "#{session[:address].try(:[], 'direction').present? ? session[:address].try(:[], 'direction') : session[:address].try(:[], 'address').try(:[], 'direction')}"
 
-                .col-sm-6.mob-b-15.arabic-right
-                  .form-group
-                    = f.label t("address.delivery_time")
-                    = f.text_field :delivery_time, class: 'form-control pointer',readonly: true, value: "#{session[:delivery_time].present? ? session[:delivery_time].try(:[], 'delivery_time') : Time.now.strftime("%m-%d-%Y %I:%M")}"
+                        .col-sm-6.mob-b-15.arabic-right
+                          .form-group
+                            = f.label t("address.delivery_time")
+                            = f.text_field :delivery_time, class: 'form-control pointer',readonly: true, value: "#{session[:delivery_time].present? ? session[:delivery_time].try(:[], 'delivery_time') : Time.now.strftime("%m-%d-%Y %I:%M")}"
               .col-sm-6.mob-b-15.arabic-right
                 .form-group
                   = f.label t("delivery.state_country")

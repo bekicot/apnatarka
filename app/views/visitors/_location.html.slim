@@ -9,7 +9,7 @@
       .container
         .row
           - @locations.each do |location|
-            .col-sm-6.col-md-3.clearfix.arabic-right.mob-b-20
+            .col-sm-6.col-md-4.clearfix.arabic-right.mob-b-20
               .map-icons data-id=location[0] title=location[1]
                 .iconbox.text-center.pull-left
                   i.fa.fa-map-marker
@@ -18,7 +18,7 @@
                   p= location[1]
 
   #map2040.location-map
-    = image_tag 'map-img.jpg', class: 'img-responsive'
+    = image_tag 'map-img.png', class: 'img-responsive'
     .location-caption
       .icon-box
         .icon-holder

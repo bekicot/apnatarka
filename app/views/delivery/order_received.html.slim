@@ -1,54 +1,54 @@
 #order-details
-  - if @order.paid? || @order.location.present?
-    .banner.text-center.clearfix
-      .container
-        .stepwizard
-          .stepwizard-step
-            button.btn.btn-default.btn-circle.active type="button"  1
-            p = t("delivery.shopping_cart")
-          .stepwizard-step
-            button.btn.btn-default.btn-circle.active type="button"  2
-            p = t("delivery.checkout")
-          .stepwizard-step
-            button.btn.btn-default.btn-circle.active type="button"  3
-            p = t("delivery.order_complete")
-          .title-box
-            .img-box
-              = image_tag 'tick.png'
-            .text-box
-              h2 = t("delivery.order_received")
-              p = t("delivery.order_thanks")
-    .center-part
-      .container
-        .favorite.text-center
-          - if user_signed_in?
-            - unless @order.is_favorite
-              = link_to t("delivery.add_favorite"), add_to_favorite_delivery_path(@order), class: 'btn btn-default'
-            - else
-              h3 = t("delivery.added_favorite")
+  / - if @order.paid? || @order.location.present?
+  /   .banner.text-center.clearfix
+  /     .container
+  /       .stepwizard
+  /         .stepwizard-step
+  /           button.btn.btn-default.btn-circle.active type="button"  1
+  /           p = t("delivery.shopping_cart")
+  /         .stepwizard-step
+  /           button.btn.btn-default.btn-circle.active type="button"  2
+  /           p = t("delivery.checkout")
+  /         .stepwizard-step
+  /           button.btn.btn-default.btn-circle.active type="button"  3
+  /           p = t("delivery.order_complete")
+  /         .title-box
+  /           .img-box
+  /             = image_tag 'tick.png'
+  /           .text-box
+  /             h2 = t("delivery.order_received")
+  /             p = t("delivery.order_thanks")
+  /   .center-part
+  /     .container
+  /       .favorite.text-center
+  /         - if user_signed_in?
+  /           - unless @order.is_favorite
+  /             = link_to t("delivery.add_favorite"), add_to_favorite_delivery_path(@order), class: 'btn btn-default'
+  /           - else
+  /             h3 = t("delivery.added_favorite")
 
-  - elsif @order.address.present? && @order.unpaid?
-    .banner.text-center.clearfix
-      .container
-        .stepwizard
-          .stepwizard-step
-            button.btn.btn-default.btn-circle.active type="button"  1
-            p = t("delivery.shopping_cart")
-          .stepwizard-step
-            button.btn.btn-default.btn-circle.active type="button"  2
-            p = t("delivery.checkout")
-          .stepwizard-step
-            button.btn.btn-default.btn-circle type="button"  3
-            p = t("delivery.order_complete")
-          .title-box
-            .img-box
-              = image_tag 'cancel.png'
-            .text-box
-              p = t("delivery.incomplete_payment")
-      .center-part
-        .container
-          .favorite.text-center
-              = link_to t("delivery.payment_again"), re_payment_delivery_index_path(order: @order), class: 'btn btn-default'
+  / - elsif @order.address.present? && @order.unpaid?
+  /   .banner.text-center.clearfix
+  /     .container
+  /       .stepwizard
+  /         .stepwizard-step
+  /           button.btn.btn-default.btn-circle.active type="button"  1
+  /           p = t("delivery.shopping_cart")
+  /         .stepwizard-step
+  /           button.btn.btn-default.btn-circle.active type="button"  2
+  /           p = t("delivery.checkout")
+  /         .stepwizard-step
+  /           button.btn.btn-default.btn-circle type="button"  3
+  /           p = t("delivery.order_complete")
+  /         .title-box
+  /           .img-box
+  /             = image_tag 'cancel.png'
+  /           .text-box
+  /             p = t("delivery.incomplete_payment")
+  /     .center-part
+  /       .container
+  /         .favorite.text-center
+  /             = link_to t("delivery.payment_again"), re_payment_delivery_index_path(order: @order), class: 'btn btn-default'
   .clearfix
     .container
       .table-responsive

@@ -1,5 +1,12 @@
 <% if @exists %>
   $('#email-availability').html('This email is already taken.');
+  $(".sign-up-button").attr("disabled", true);
 <% else %>
-  $('#email-availability').html('This email is available.');
+	<% if !params[:email].match?(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i) %>
+  	$('#email-availability').html('This is not a valid format of email');
+  	$(".sign-up-button").attr("disabled", true);
+  <% else %>
+  	$('#email-availability').html('This email is available.');
+  	$(".sign-up-button").attr("disabled", false);
+  <% end %>
 <% end %>

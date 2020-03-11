@@ -5,32 +5,32 @@ admin_user = User.create(first_name: 'Moderator', last_name: 'User', email: 'mod
 
 
 #categories
-category_one = Category.create(title_en: 'Appetizers', description_en: 'Perfect party appetizers the easy way, see several tasty appetizers with photos and tips on how to eat them.', title_ar: 'مقبلات', description_ar: 'مشهيات حفلات مثالية بالطريقة السهلة ، شاهد العديد من المقبلات اللذيذة مع صور ونصائح حول كيفية تناولها.', avatar: File.open(File.join(Rails.root, "/app/assets/images/home/sandwich.png")))
-puts "Created Appetizers Category."
+# category_one = Category.create(title_en: 'Appetizers', description_en: 'Perfect party appetizers the easy way, see several tasty appetizers with photos and tips on how to eat them.', title_ar: 'مقبلات', description_ar: 'مشهيات حفلات مثالية بالطريقة السهلة ، شاهد العديد من المقبلات اللذيذة مع صور ونصائح حول كيفية تناولها.', avatar: File.open(File.join(Rails.root, "/app/assets/images/home/sandwich.png")))
+# puts "Created Appetizers Category."
 
 category_two = Category.create(title_en: 'Breakfast', description_en: 'Start your day with an easy pancake or omelet breakfast. Or plan a showstopping brunch with quiches, waffles, casseroles, and more!', title_ar: 'فطور', description_ar: 'ابدأ يومك مع فطيرة سهلة أو الإفطار العجة. أو خطط لتناول وجبة بين الإفطار والغداء مع الفطائر والوافل والكاسيرول وأكثر من ذلك!', avatar: File.open(File.join(Rails.root, "/app/assets/images/home/shake.png")))
 puts "Created Breakfast Category."
 
-category_three = Category.create(title_en: 'Desserts', description_en: 'Whether you crave sweet, savoury, decadent or healthy, we have hundreds of top-rated dessert recipes to satisfy your taste buds.', title_ar: 'الصحاري', description_ar: 'سواء أكنت تتوق للحلويات ، أو الحلويات ، أو منحلة ، أو صحية ، فإن لدينا المئات من وصفات الحلويات ذات التصنيف العالي لإرضاء ذوقك.', avatar: File.open(File.join(Rails.root, "/app/assets/images/home/desert.png")))
-puts "Created Desserts Category."
+category_three = Category.create(title_en: 'Lunch', description_en: 'Whether you crave sweet, savoury, decadent or healthy, we have hundreds of top-rated dessert recipes to satisfy your taste buds.', title_ar: 'الصحاري', description_ar: 'سواء أكنت تتوق للحلويات ، أو الحلويات ، أو منحلة ، أو صحية ، فإن لدينا المئات من وصفات الحلويات ذات التصنيف العالي لإرضاء ذوقك.', avatar: File.open(File.join(Rails.root, "/app/assets/images/home/desert.png")))
+puts "Created Lunch Category."
 
-category_four = Category.create(title_en: 'Main Course', description_en: 'Hundreds of main dish recipes, choose from top-rated comfort food, healthy, and vegetarian options.', title_ar: 'الطبق الرئيسي', description_ar: 'المئات من وصفات الأطباق الرئيسية ، اختر من بين أعلى مستويات الراحة للطعام والخيارات الصحية والنباتية.', avatar: File.open(File.join(Rails.root, "/app/assets/images/home/burger.png")))
-puts "Created Main Course Category."
+category_four = Category.create(title_en: 'Dinner', description_en: 'Hundreds of main dish recipes, choose from top-rated comfort food, healthy, and vegetarian options.', title_ar: 'الطبق الرئيسي', description_ar: 'المئات من وصفات الأطباق الرئيسية ، اختر من بين أعلى مستويات الراحة للطعام والخيارات الصحية والنباتية.', avatar: File.open(File.join(Rails.root, "/app/assets/images/home/burger.png")))
+puts "Created Dinner Category."
 
 
 
 #sub_categories
-if category_one.present?
-  menu_items_data = [
-    { title_en: 'Halloumi Sticks', description_en: 'Thymed breaded halloumi sticks.', title_ar: 'أصابع جبن الحلوم', description_ar: 'أصابع جبن الحلوم بالزعتر', price: 100, avatar: File.open(File.join(Rails.root, "/app/assets/images/seed/halloumi-sticks.png")) },
-    { title_en: 'Chicken Tenders', description_en: 'Breaded sliced chicken breast.', title_ar: 'قطع الدجاج تندرز', description_ar: 'شرائح الدجاج المقرمش', price: 100, avatar: File.open(File.join(Rails.root, "/app/assets/images/seed/chicken-tenders.png")) },
-    { title_en: 'Fries', description_en: 'Crispy fries topped with putin sauce or melted cheese.', title_ar: 'بطاطا مقلية', description_ar: 'بطاطا مقرمشة مع صلصة بوتين أو جبنة', price: 100, avatar: File.open(File.join(Rails.root, "/app/assets/images/seed/fries.png")) },
-    { title_en: 'Cheese/Putin Fries', description_en: 'Crispy fries topped with putin sauce or melted cheese.', title_ar: 'بطاطا مقلية مع الجبنة/ بطاطا بوتين', description_ar: 'بطاطا مقرمشة مع صلصة بوتين أو جبنة', price: 100, avatar: File.open(File.join(Rails.root, "/app/assets/images/seed/cheese-fries.png")) }
-  ]
-  menu_items_data.each do |menu_item|
-    category_one.menu_items.create(menu_item)
-  end
-end
+# if category_one.present?
+#   menu_items_data = [
+#     { title_en: 'Halloumi Sticks', description_en: 'Thymed breaded halloumi sticks.', title_ar: 'أصابع جبن الحلوم', description_ar: 'أصابع جبن الحلوم بالزعتر', price: 100, avatar: File.open(File.join(Rails.root, "/app/assets/images/seed/halloumi-sticks.png")) },
+#     { title_en: 'Chicken Tenders', description_en: 'Breaded sliced chicken breast.', title_ar: 'قطع الدجاج تندرز', description_ar: 'شرائح الدجاج المقرمش', price: 100, avatar: File.open(File.join(Rails.root, "/app/assets/images/seed/chicken-tenders.png")) },
+#     { title_en: 'Fries', description_en: 'Crispy fries topped with putin sauce or melted cheese.', title_ar: 'بطاطا مقلية', description_ar: 'بطاطا مقرمشة مع صلصة بوتين أو جبنة', price: 100, avatar: File.open(File.join(Rails.root, "/app/assets/images/seed/fries.png")) },
+#     { title_en: 'Cheese/Putin Fries', description_en: 'Crispy fries topped with putin sauce or melted cheese.', title_ar: 'بطاطا مقلية مع الجبنة/ بطاطا بوتين', description_ar: 'بطاطا مقرمشة مع صلصة بوتين أو جبنة', price: 100, avatar: File.open(File.join(Rails.root, "/app/assets/images/seed/cheese-fries.png")) }
+#   ]
+#   menu_items_data.each do |menu_item|
+#     category_one.menu_items.create(menu_item)
+#   end
+# end
 
 if category_two.present?
   menu_items_data = [
@@ -73,7 +73,7 @@ end
 
 
 #about_us
-about_us = About.create(heading_en: 'About us', is_active: true, description_en: 'Twenty Forty (20/40) is a sandwich wrap concept serving delicious freshly made wraps over breakfast lunch dinner as both an eat in and take out service. Although the menu does include a selection of starters and sides, the main attraction and our core product is our hero wrap which comes in a variety of choices; cold, hot savory and sweet. The flavors of the menu are inspired from ever corner of the world and we tailored to the taste pallet that we know and love of the consumers of the middle east region. The menu is expertly crafted to be delicious, meet quality standards and be afforable and accessible to consumers across the social economic spectrum.', heading_ar: 'عنّا', description_ar: 'توينتي فورتي (20/40) هو مفهوم التفاف شطيرة خدمة لذيذة طازجة يلف على وجبة الإفطار الغداء العشاء على حد سواء لتناول الطعام في وإخراج الخدمة. على الرغم من أن القائمة لا تشمل مجموعة من المقبلات والجانبين، وجذب الرئيسي و لدينا المنتج الأساسي هو بطلنا التفاف الذي يأتي في مجموعة متنوعة من الخيارات؛ الباردة، الساخنة لذيذة وحلوة. النكهات من القائمة مستوحاة من ركن من أي وقت مضى من العالم، ونحن مصممة خصيصا للطعم البليت التي نعرفها ونحب المستهلكين في منطقة الشرق الأوسط. يتم إعداد القائمة بخبرة لتكون لذيذة، وتلبية معايير الجودة وتكون أفورابل و في متناول المستهلكين عبر الطيف الاقتصادي الاجتماعي. تبينتصحيححذف')
+about_us = About.create(heading_en: 'About us', is_active: true, description_en: 'Chefit 24 is a sandwich wrap concept serving delicious freshly made wraps over breakfast lunch dinner as both an eat in and take out service. Although the menu does include a selection of starters and sides, the main attraction and our core product is our hero wrap which comes in a variety of choices; cold, hot savory and sweet. The flavors of the menu are inspired from ever corner of the world and we tailored to the taste pallet that we know and love of the consumers of the middle east region. The menu is expertly crafted to be delicious, meet quality standards and be afforable and accessible to consumers across the social economic spectrum.', heading_ar: 'عنّا', description_ar: 'توينتي فورتي (20/40) هو مفهوم التفاف شطيرة خدمة لذيذة طازجة يلف على وجبة الإفطار الغداء العشاء على حد سواء لتناول الطعام في وإخراج الخدمة. على الرغم من أن القائمة لا تشمل مجموعة من المقبلات والجانبين، وجذب الرئيسي و لدينا المنتج الأساسي هو بطلنا التفاف الذي يأتي في مجموعة متنوعة من الخيارات؛ الباردة، الساخنة لذيذة وحلوة. النكهات من القائمة مستوحاة من ركن من أي وقت مضى من العالم، ونحن مصممة خصيصا للطعم البليت التي نعرفها ونحب المستهلكين في منطقة الشرق الأوسط. يتم إعداد القائمة بخبرة لتكون لذيذة، وتلبية معايير الجودة وتكون أفورابل و في متناول المستهلكين عبر الطيف الاقتصادي الاجتماعي. تبينتصحيححذف')
 
 
 
@@ -84,6 +84,6 @@ puts "Created Menu Brochure"
 
 
 #locations
-location_one = Location.create(title_en: "Hitteen Square", address_en: "Unit # 3 - Hitteen Square Prince Turki Ibn Abdulaziz Al Awwal Road", country_en: "Saudi Arabia", title_ar: "ميدان حطين", address_ar: "الوحدة رقم 3 - ميدان حطين طريق الأمير تركي بن ​​عبدالعزيز الأول", country_ar: "المملكة العربية السعودية", phone: "+966-11-4003344", postal_code: "13513", lat: "24.753695", lng: "46.609788")
-location_two = Location.create(title_en: "Al Maather Extension", address_en: "Al Maather Extension, Unit # 16 Takhassusi St, Al Maather", country_en: "Saudi Arabia", title_ar: "ملحق المعذر", address_ar: "امتداد المعذر ، الوحدة رقم 16 ، شارع التخصصي ، المعذر", country_ar: "المملكة العربية السعودية", phone: "", postal_code: "12714", lat: "24.6646", lng: "46.6809")
-location_three = Location.create(title_en: "Al Nada Plaza", address_en: "Al Nada Plaza, Unit # 3 An Nada", country_en: "Saudi Arabia", title_ar: "الندى بلازا", address_ar: "الندى بلازا ، الوحدة رقم 3 الندى", country_ar: "المملكة العربية السعودية", phone: "", postal_code: "13317", lat: "24.8061", lng: "46.6908")
+location_one = Location.create(title_en: "Dilawar Colony", address_en: "Unit # 1 - House No-11 Street No-8 Dilawar Colony Yazman Road Bahawalpur", country_en: "Pakistan", title_ar: "ميدان حطين", address_ar: "الوحدة رقم 3 - ميدان حطين طريق الأمير تركي بن ​​عبدالعزيز الأول", country_ar: "المملكة العربية السعودية", phone: "+92302-0075311", postal_code: "63100", lat: "29.246646", lng: "71.7272311")
+# location_two = Location.create(title_en: "Al Maather Extension", address_en: "Al Maather Extension, Unit # 16 Takhassusi St, Al Maather", country_en: "Saudi Arabia", title_ar: "ملحق المعذر", address_ar: "امتداد المعذر ، الوحدة رقم 16 ، شارع التخصصي ، المعذر", country_ar: "المملكة العربية السعودية", phone: "", postal_code: "12714", lat: "24.6646", lng: "46.6809")
+# location_three = Location.create(title_en: "Al Nada Plaza", address_en: "Al Nada Plaza, Unit # 3 An Nada", country_en: "Saudi Arabia", title_ar: "الندى بلازا", address_ar: "الندى بلازا ، الوحدة رقم 3 الندى", country_ar: "المملكة العربية السعودية", phone: "", postal_code: "13317", lat: "24.8061", lng: "46.6908")

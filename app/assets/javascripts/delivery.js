@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   $('#order_state').on('change', function(){
     var state = $(this).val();
     $.ajax({

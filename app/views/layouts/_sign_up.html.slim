@@ -32,7 +32,7 @@ div.modal.fade id="sign-up-modal" aria-labelledby="myModalLabel" role="dialog" t
                   .form-group
                     = f.label t("signin_signup.email")
                     = f.email_field :email, class: 'form-control', id: 'check-signup-email', required: true
-                    span#email-availability
+                    span#email-availability.span-avalibility-color
               .row
                 .col-sm-6
                   .form-group
@@ -65,5 +65,5 @@ div.modal.fade id="sign-up-modal" aria-labelledby="myModalLabel" role="dialog" t
               .row
                 .col-sm-12
                   .form-group
-                    = f.submit t('signin_signup.sign_up'), class: 'btn btn-primary'
+                    = f.submit t('signin_signup.sign_up'), class: 'btn btn-primary sign-up-button'
                     = link_to t("signin_signup.already_have_account"), "javascript:void(0);", id: 'show-sign-in-modal'
