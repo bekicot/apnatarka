@@ -1,0 +1,82 @@
+= form_for [:admin, @order], html: { "data-parsley-validate" => true, class: 'admin-form' }, remote: true do |f|
+  - if @order.errors.full_messages.any?
+      - @order.errors.full_messages.each do |error_message|
+          = error_message if @order.errors.full_messages.first == error_message
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :phone, class: 'show'
+      = f.number_field :phone, required: true, class: 'form-control', id: "check-phone"
+      span#email-availability.collapsible
+      .content
+        .form-group.clearfix
+          .col-sm-12
+            = f.fields_for :user do |fff|
+              .form-group.clearfix
+                .col-sm-12
+                  = fff.label :first_name, class: 'show'
+                  = fff.text_field :first_name, class: 'form-control'
+              .form-group.clearfix
+                .col-sm-12
+                  = fff.label :last_name, class: 'show'
+                  = fff.text_field :last_name, class: 'form-control'
+              .form-group.clearfix
+                .col-sm-12
+                  = fff.label :phone, class: 'show'
+                  = fff.text_field :phone, class: 'form-control'
+              .form-group.clearfix
+                .col-sm-12
+                  = fff.label :email, class: 'show'
+                  = fff.email_field :email, class: 'form-control'
+              .form-group.clearfix
+                .col-sm-12
+                  = fff.label :country, class: 'show'
+                  = fff.text_field :country,value: @country , class: 'form-control', disabled: true
+                  = fff.hidden_field :country, value: @country
+              .form-group.clearfix
+                .col-sm-12
+                  = fff.label :state, class: 'show'
+                  = fff.select :state, options_for_select(@states.map{|k,v| [v,k] }), {}, { class: 'form-control country-states' }    
+                .form-group.clearfix
+                  .col-sm-12
+                    = fff.label :city, class: 'show'
+                    = fff.select :city, options_for_select({}.map{|k,v| [v,k] }), {}, { class: 'form-control cities' }
+              .form-group.clearfix
+                .col-sm-12
+                  = fff.label :address, class: 'show'
+                  = fff.text_field :address, class: 'form-control'
+  
+
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :select_category, class: 'show'
+      = f.select :address_one, options_for_select(@categories.map{ |k,v|[k.title,k.id] }),{}, required: true, class: 'form-control order-category'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :select_Item, class: 'show'
+      = f.select :address_two, options_for_select({}.map{|k,v| [k,v] }),{}, required: true, class: 'form-control order-category order-menu-item', id: "menu_item"
+  .form-group.clearfix
+    .col-sm-12
+      = f.fields_for :order_item do |ff|
+        .form-group.clearfix
+          .col-sm-12
+            = ff.label :select_chef, class: 'show'
+            = ff.select :chef_category_item_id,options_for_select({}.map{|k,v| [k,v] }),{}, required: true, class: 'form-control order-category order-menu-item', id: "chef"
+        .form-group.clearfix
+          .col-sm-12
+            = ff.label :quantity, class: 'show'
+            = ff.text_field :quantity, required: true, class: 'form-control order-category'
+        .form-group.clearfix
+          .col-sm-12
+            = ff.label :special_request, class: 'show'
+            = ff.text_field :special_request, required: true, class: 'form-control order-category'
+        .form-group.clearfix
+          .col-sm-12
+            = ff.label :total, class: 'show'
+            = ff.text_field :total, required: true, class: 'form-control order-category'
+  .col-sm-12
+    / = f.submit "Submit", class: 'btn btn-primary pull-right'
+    = f.button :submit, class: 'btn custom-btn btn-primary pull-right'
+      i.fa.fa-paper-plane
+
+      span
+        | Submit

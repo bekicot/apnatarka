@@ -89,4 +89,8 @@ header#topnav
             = link_to admin_chef_menus_path do
               i.fa.fa-user
               = t("header.chef_menu")
+          li[class="has-submenu #{active_class(new_admin_order_path)}"]
+            = link_to new_admin_order_path do
+              i.fa.fa-pencil
+              = t("header.customer_orders")
 

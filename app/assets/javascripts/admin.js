@@ -6,3 +6,4 @@
 //= require bootstrap-sprockets
 //= require select2
 //= require admin/users
+//= require admin/order

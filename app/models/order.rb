@@ -9,11 +9,12 @@ class Order < ApplicationRecord
 
   enum payment_method: {debit_credit_card: 0, from_branch: 1}
   enum delivery_mode: [:carry_out, :delivery]
-  enum ordered_as: [:registered_user, :guest_user]
+  enum ordered_as: [:registered_user, :guest_user, :order_from_branch ]
   enum status: [:unpaid, :paid]
 
   scope :registered_orders, -> { (where(ordered_as: Order.ordered_as[:registered_user])) }
   scope :guest_orders, -> { (where(ordered_as: Order.ordered_as[:guest_user])) }
+  scope :from_branch_orders, -> { (where(ordered_as: Order.ordered_as[:order_from_branch])) }
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validates_presence_of :first_name, :last_name, :email, :phone, :payment_method, :terms

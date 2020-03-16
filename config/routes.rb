@@ -85,6 +85,14 @@ Rails.application.routes.draw do
     root to: "dashboards#index"
     resources :dashboards
     resources :chef_mess
+    resources :orders do
+      collection do
+        get :order_items
+        get :order_chefs
+        get :checkemail
+        get :check_cities
+      end
+    end
     resources :mess_items
     resources :chef_menus do
       member do
