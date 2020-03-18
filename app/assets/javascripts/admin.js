@@ -8,5 +8,7 @@
 //= require admin/users
 //= require admin/order
 //= require cocoon
+//= require moment
+//= require bootstrap-datetimepicker
 //= require admin/inventory_items
 

@@ -91,6 +91,7 @@ Rails.application.routes.draw do
         get :order_chefs
         get :checkemail
         get :check_cities
+        get :add_form_field
       end
     end
     resources :mess_items
@@ -120,6 +121,13 @@ Rails.application.routes.draw do
       collection do
         get :customer_orders
       end
+      member do
+        post :change_status
+      end
+    end
+
+    resources :items
+    resources :inventory_items do
       member do
         post :change_status
       end
