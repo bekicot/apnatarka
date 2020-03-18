@@ -1,5 +1,6 @@
 $(document).ready(function(){
-  $('.order-category').on('change', function(){
+  $('body').on('change', '.order-category', function(){
+    var order_category = $(this)
     var category = $(this).val();
     $.ajax({
       type: 'GET',
@@ -7,19 +8,23 @@ $(document).ready(function(){
       dataType: 'json',
       data: {category: category}, 
       success: function(data){
-        var $mySelect = $('#menu_item');
+        var $mySelect = order_category.closest('.form-group').siblings('.order-item').find('.menu_item')
         jQuery.each(data, function(index, value) {
           var $option = $("<option/>", {
           value: value[0],
           text: value[1]
+          });
+          $mySelect.append($option);
         });
-        $mySelect.append($option);
-      });
       }
-     });
-  }); 
+    });
+  });
+  // $('.order-category').on('change', function(){
+    
+  // }); 
 
-  $('.order-menu-item').on('change', function(){
+  $('body').on('change', '.order-menu-item' , function(){
+    var order_menu_item = $(this)
     var menu_item = $(this).val().split(',')[0]
     $.ajax({
       type: 'GET',
@@ -27,7 +32,7 @@ $(document).ready(function(){
       dataType: 'json',
       data: {menu_item: menu_item}, 
       success: function(data){
-        var $mySelect = $('#chef');
+        var $mySelect = order_menu_item.closest('.form-group').siblings('.select-chef').find('.chef')
         jQuery.each(data, function(index, value) {
         var $option = $("<option/>", {
           value: value[0],
@@ -88,5 +93,10 @@ $(document).ready(function(){
       }
      });
   }); 
+
+  // $('.append-form').on('click', function(){
+  //   append_data = $('.collect-data').html();
+  //   $('.form-to-append').append(append_data);
+  // });
 
 });

@@ -1,0 +1,26 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-shopping-basket
+        | Items Details
+      = link_to "Add Item", new_admin_item_path, class: "btn custom-btn btn-primary pull-right", remote: true
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Item Title
+                th
+                  | Action
+            tbody
+            - @items.each do |item|
+              tr
+                td
+                  = item.title
+                td 
+                  = link_to "Edit", edit_admin_item_path(item), class: 'btn btn-primary btn-xs', remote: true
+                  = link_to "Delete", admin_item_path(item), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: "Are you sure!"}
+
+#items_modal

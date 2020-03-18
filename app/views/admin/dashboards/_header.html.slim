@@ -70,9 +70,9 @@ header#topnav
             = link_to admin_users_path do
               i.fa.fa-user
               = t("header.users")
-          li
-            .select-area
-              =<> select_tag :language, options_for_select(language_options, I18n.locale), class: 'change-language form-control'
+          / li
+          /   .select-area
+          /     =<> select_tag :language, options_for_select(language_options, I18n.locale), class: 'change-language form-control'
           li.dropdown
             a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
               = t("header.order_histories")
@@ -93,4 +93,16 @@ header#topnav
             = link_to new_admin_order_path do
               i.fa.fa-pencil
               = t("header.customer_orders")
+          li.dropdown
+            a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              = t("header.Inventory")
+              span.caret
+            ul.dropdown-menu
+              li[class="has-submenu #{active_class(admin_items_path)}"]
+                = link_to admin_items_path do
+                  = t("header.items")
+              li.divider role="separator"
+              li[class="has-submenu #{active_class(admin_inventory_items_path)}"]
+                = link_to admin_inventory_items_path do
+                  = t("header.inventory_items")
 

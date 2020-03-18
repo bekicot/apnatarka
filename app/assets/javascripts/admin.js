@@ -7,3 +7,6 @@
 //= require select2
 //= require admin/users
 //= require admin/order
+//= require cocoon
+//= require admin/inventory_items
+

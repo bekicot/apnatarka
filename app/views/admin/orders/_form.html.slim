@@ -9,8 +9,8 @@
       span#email-availability.collapsible
       .content
         .form-group.clearfix
-          .col-sm-12
-            = f.fields_for :user do |fff|
+          .col-sm-12.col-md-4
+            = f.fields_for :user, html: { class: "form-inline" } do |fff|
               .form-group.clearfix
                 .col-sm-12
                   = fff.label :first_name, class: 'show'
@@ -45,34 +45,14 @@
                   = fff.label :address, class: 'show'
                   = fff.text_field :address, class: 'form-control'
   
+  .form-group.clearfix.collect-data
+    .col-sm-12.col-md-12
+      = f.fields_for :order_items do |ff|
+        = render 'order_item_fields', f: ff
+        br
+        .links
+          = link_to_add_association 'add item', f, :order_items, class: "btn custom-btn btn-primary pull-right"
 
-  .form-group.clearfix
-    .col-sm-12
-      = f.label :select_category, class: 'show'
-      = f.select :address_one, options_for_select(@categories.map{ |k,v|[k.title,k.id] }),{}, required: true, class: 'form-control order-category'
-  .form-group.clearfix
-    .col-sm-12
-      = f.label :select_Item, class: 'show'
-      = f.select :address_two, options_for_select({}.map{|k,v| [k,v] }),{}, required: true, class: 'form-control order-category order-menu-item', id: "menu_item"
-  .form-group.clearfix
-    .col-sm-12
-      = f.fields_for :order_item do |ff|
-        .form-group.clearfix
-          .col-sm-12
-            = ff.label :select_chef, class: 'show'
-            = ff.select :chef_category_item_id,options_for_select({}.map{|k,v| [k,v] }),{}, required: true, class: 'form-control order-category order-menu-item', id: "chef"
-        .form-group.clearfix
-          .col-sm-12
-            = ff.label :quantity, class: 'show'
-            = ff.text_field :quantity, required: true, class: 'form-control order-category'
-        .form-group.clearfix
-          .col-sm-12
-            = ff.label :special_request, class: 'show'
-            = ff.text_field :special_request, required: true, class: 'form-control order-category'
-        .form-group.clearfix
-          .col-sm-12
-            = ff.label :total, class: 'show'
-            = ff.text_field :total, required: true, class: 'form-control order-category'
   .col-sm-12
     / = f.submit "Submit", class: 'btn btn-primary pull-right'
     = f.button :submit, class: 'btn custom-btn btn-primary pull-right'

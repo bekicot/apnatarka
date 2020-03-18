@@ -23,7 +23,7 @@ gem 'sendgrid-ruby'
 # Auth
 gem 'devise', '~> 4.4'
 gem 'bootstrap-tooltip-rails'
-
+gem "cocoon"
 # Front-end
 gem 'slim'
 gem 'sass-rails', '~> 5.0'

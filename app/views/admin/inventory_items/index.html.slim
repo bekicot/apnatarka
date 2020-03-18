@@ -1,0 +1,48 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-shopping-basket
+        | Inventory Items Details
+      = link_to "Add new Item", new_admin_inventory_item_path, class: "btn custom-btn btn-primary pull-right"
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Item Title
+                th
+                  | Item Quantity
+                th
+                  | Item Measure
+                th
+                  | Item Price
+                th
+                  | Item Used
+                th
+                  | Item In Date
+                th
+                  | Action
+            tbody
+            - @inventroy_items.each do |inventroy_item|
+              tr
+                td
+                  = inventroy_item.item.title
+                td
+                  = inventroy_item.quantity
+                td
+                  = inventroy_item.measure
+                td
+                  = inventroy_item.price
+                td 
+                  = form_for inventroy_item, url: change_status_admin_inventory_item_path(inventroy_item), method: :post, remote: true do |f|
+                        .col-sm-8
+                          = f.number_field :used, class: 'form-control'
+                        .col-sm-4
+                          = f.submit 'Update', class: 'btn btn-primary btn-xs custom-btn'
+                td
+                  = inventroy_item.indate
+                td 
+                  = link_to "Edit", edit_admin_inventory_item_path(inventroy_item), class: 'btn btn-primary btn-xs'
+                  = link_to "Delete", admin_inventory_item_path(inventroy_item), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: "Are you sure!"}

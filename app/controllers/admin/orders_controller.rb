@@ -7,9 +7,10 @@ class Admin::OrdersController < Admin::BaseController
   def new
     @categories = Category.all
     @order = Order.new
+    @order.order_items.build
     @country = "Pakistan"
-      @user = User.new
-      @states = CS.states(:PK)
+    @user = User.new
+    @states = CS.states(:PK)
   end
 
   def order_items
@@ -30,13 +31,13 @@ class Admin::OrdersController < Admin::BaseController
       @order = Order.new(order_params)
       @order.user_id = @exists.id
       @order.ordered_as = "order_from_branch"
-      @order.order_items.new(order_item_params)
+      # @order.order_items.new(order_item_params)
       @order.save(validate: false)
     else
       @user = User.new(user_params)
       @order = @user.orders.new(order_params)
       @order.ordered_as = "order_from_branch"
-      @order.order_items.new(order_item_params)
+      # @order.order_items.new(order_item_params)
       @user.save(validate: false)
       @order.save(validate: false)
     end
@@ -53,9 +54,16 @@ class Admin::OrdersController < Admin::BaseController
     render json: @cities
   end
 
+  def add_form_field
+    @categories = Category.all
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   def order_params
-    params.require(:order).permit(:phone)
+    params.require(:order).permit(:phone, order_items_attributes: [ :chef_category_item_id, :quantity, :special_request, :total ] )
   end
 
   def order_item_params
