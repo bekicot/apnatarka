@@ -1,5 +1,7 @@
 <% if @exists %>
-  $('#email-availability').html('This User is in list.');
+  $('#email-not-availability').html('This User is in list.');
+  $('#email-availability').html('');
 <% else %>
-  	$('#email-availability').html('This User is not in the list click to Add');
+  	$('#email-availability').html('This User is not in the list <strong style="color: #f3ae03"> Double Click </strong> to Add');
+	$('#email-not-availability').html('');
 <% end %>

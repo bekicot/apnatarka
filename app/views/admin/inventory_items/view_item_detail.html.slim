@@ -1,0 +1,36 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-shopping-basket
+        | Inventory Item Details
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Item Title
+                th
+                  | Item Quantity
+                th
+                  | Assigned To
+                th
+                  | Assigned By
+                / th
+                /   | Item Used
+                th
+                  | Date
+            tbody
+            - @assign_items.each do |assign_item|
+              tr
+                td
+                  = assign_item.inventory_item.item.title
+                td
+                  = assign_item.quantity
+                td
+                  = assign_item.assign_to
+                td
+                  = assign_item.user.first_name
+                td
+                  = assign_item.assign_date&.strftime('%Y-%m-%d')

@@ -1,3 +1,3 @@
 class Item < ApplicationRecord
-	has_one :inventroy_items, dependent: :destroy
+	has_many :inventroy_items, dependent: :destroy
 end

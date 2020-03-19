@@ -130,6 +130,11 @@ Rails.application.routes.draw do
     resources :inventory_items do
       member do
         post :change_status
+        get :assign_item
+        get :view_item_detail
+      end
+      collection do
+        post :save_assign_item
       end
     end
   end

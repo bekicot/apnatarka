@@ -7,6 +7,7 @@ class CreateInventoryItems < ActiveRecord::Migration[5.1]
       t.integer :measure, default: 0
       t.float :used
       t.datetime :indate
+      t.string :slug
       t.timestamps
     end
   end

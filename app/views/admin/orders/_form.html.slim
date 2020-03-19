@@ -6,6 +6,7 @@
     .col-sm-12
       = f.label :phone, class: 'show'
       = f.number_field :phone, required: true, class: 'form-control', id: "check-phone"
+      span#email-not-availability
       span#email-availability.collapsible
       .content
         .form-group.clearfix

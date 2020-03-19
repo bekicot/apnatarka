@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :chef_category_items, through: :chef_categories
   has_many :mess
   has_many :mess_items, through: :mess
+  has_many :assign_items
+  has_many :issued_items, through: :assign_items, source: :user, foreign_key: :chef_id
   # user_roles.each do |k, v|
   #   define_method "#{k}?" do
   #     role == v
