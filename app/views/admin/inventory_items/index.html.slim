@@ -5,47 +5,13 @@
         i.fa.fa-shopping-basket
         | Inventory Items Details
       = link_to "Add new Item", new_admin_inventory_item_path, class: "btn custom-btn btn-primary pull-right"
-    .card-body
-        .table-responsive
-          table.table.table-hover.mb-0
-            thead
-              tr
-                th
-                  | Item Title
-                th
-                  | Item Quantity
-                th
-                  | Item Measure
-                th
-                  | Item Price
-                / th
-                /   | Item Used
-                th
-                  | Item In Date
-                th
-                  | Action
-            tbody
-            - @inventroy_items.each do |inventroy_item|
-              tr
-                td
-                  = inventroy_item.item.title
-                td
-                  = inventroy_item.quantity
-                td
-                  = inventroy_item.measure
-                td
-                  = inventroy_item.price
-                / td 
-                /   = form_for inventroy_item, url: change_status_admin_inventory_item_path(inventroy_item), method: :post, remote: true do |f|
-                /         .col-sm-8
-                /           = f.number_field :used, class: 'form-control'
-                /         .col-sm-4
-                /           = f.submit 'Update', class: 'btn btn-primary btn-xs custom-btn'
-                td
-                  = inventroy_item.indate&.strftime('%Y-%m-%d')
-                td 
-                  = link_to "Assign Item", assign_item_admin_inventory_item_path(inventroy_item), class: 'btn btn-primary custom-btn'
-                  = link_to "View Item Detail", view_item_detail_admin_inventory_item_path(inventroy_item), class: 'btn btn-success btn-xs'
-                  = link_to "Edit", edit_admin_inventory_item_path(inventroy_item), class: 'btn btn-primary btn-xs'
-                  = link_to "Delete", admin_inventory_item_path(inventroy_item), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: "Are you sure!"}
-        = will_paginate @inventroy_items, param_name: "page"
+      .col-sm-3.pull-right
+        .row
+          label Item Detail Monthly
+        .row
+          = select_tag "year", options_for_select((2019 .. Date.today.year).to_a,Date.today.year.to_i), class: "select-tag-decoration year"
+          = select_tag "year", options_for_select((1 .. 12).to_a,Date.today.month.to_i), class: "select-tag-decoration inventory-item-by-year"
+    #inventory_details
+      = render 'inventory_items'
+
+#inventory_items_modal

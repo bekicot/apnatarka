@@ -135,6 +135,8 @@ Rails.application.routes.draw do
       end
       collection do
         post :save_assign_item
+        get :append_inventory_item
+        get :inventory_by_year
       end
     end
   end

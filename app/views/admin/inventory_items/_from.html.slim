@@ -12,11 +12,11 @@
       .form-group.clearfix.col-md-4
         .col-sm-12
           = f.label :Price, class: 'show'
-          = f.number_field  :price, required: true, class: 'form-control'
+          = f.number_field  :price, min: 0, required: true, class: 'form-control'
       .form-group.clearfix.col-md-4
         .col-sm-12
           = f.label :Quantity, class: 'show'
-          = f.number_field :quantity, required: true, class: 'form-control'
+          = f.number_field :quantity, min: 0, required: true, class: 'form-control'
       .form-group.clearfix.col-md-4
         .col-sm-12
           = f.label :Measure, class: 'show'
@@ -27,6 +27,6 @@
           = f.text_field :indate, required: true, class: 'form-control', id: 'datetimepicker1'
   .form-to-append
   .col-sm-12
-    span.btn.custom-btn.btn-primary.append-form Add More
+    = link_to "Add More", append_inventory_item_admin_inventory_items_path, class: "btn custom-btn btn-primary", remote: true
   .col-sm-12
     = f.submit "Submit", class: 'pull-right btn custom-btn btn-primary'

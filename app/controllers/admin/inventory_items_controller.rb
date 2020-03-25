@@ -1,9 +1,11 @@
 class Admin::InventoryItemsController < Admin::BaseController
   before_action :find_inventroy_item, only: [:edit, :update, :destroy, :assign_item, :view_item_detail]
-  before_action :find_item, only: [:new, :edit]
+  before_action :find_item, only: [:new, :edit, :append_inventory_item]
 
   def index
-    @inventroy_items = InventoryItem.all.order('created_at DESC').paginate(page: params[:page], per_page: 10)
+    @inventroy_items = InventoryItem.where('extract(year from indate) = ? AND extract(month from indate) = ?',
+                       Date.today.year, Date.today.month).order('created_at DESC')
+                      .paginate(page: params[:page], per_page: 10)
   end
   def new 
     @inventroy_item = InventoryItem.new
@@ -24,6 +26,9 @@ class Admin::InventoryItemsController < Admin::BaseController
   end
 
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update
@@ -59,6 +64,21 @@ class Admin::InventoryItemsController < Admin::BaseController
 
   def view_item_detail
     @assign_items = @inventroy_item.assign_items
+  end
+
+  def append_inventory_item
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def inventory_by_year
+    @inventroy_items = InventoryItem.where('extract(year from indate) = ? AND extract(month from indate) = ?',
+                        params[:year], params[:month]).order('created_at DESC')
+                        .paginate(page: params[:page], per_page: 10)
+    respond_to do |format|
+      format.js
+    end
   end
 
 

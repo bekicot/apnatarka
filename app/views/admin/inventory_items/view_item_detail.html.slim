@@ -14,11 +14,11 @@
                 th
                   | Item Quantity
                 th
+                  | Measure
+                th
                   | Assigned To
                 th
-                  | Assigned By
-                / th
-                /   | Item Used
+                  | Assign By
                 th
                   | Date
             tbody
@@ -29,7 +29,9 @@
                 td
                   = assign_item.quantity
                 td
-                  = assign_item.assign_to
+                  = assign_item.measure
+                td
+                  = assign_item.chef.first_name
                 td
                   = assign_item.user.first_name
                 td

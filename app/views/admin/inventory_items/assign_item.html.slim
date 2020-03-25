@@ -18,7 +18,7 @@
             .form-group.clearfix.col-md-4
               .col-sm-12
                 = f.label :Quantity, class: 'show'
-                = f.number_field :quantity, required: true, class: 'form-control'
+                = f.number_field :quantity, min: 0, max: @inventroy_item.quantity, required: true, class: 'form-control'
             .form-group.clearfix.col-md-4
               .col-sm-12
                 = f.label :Measure, class: 'show'
