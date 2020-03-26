@@ -1,0 +1,23 @@
+= fields_for :more_inventory_items do |f|
+  .collect-data
+    .row
+      .form-group.clearfix.col-md-4
+        .col-sm-12
+          = f.label :Select_Item, class: 'show'
+          = f.select :item_id, options_for_select(@items.map{|item| [item.title, item.id ]} ), {include_blank: "-- Select Item --"}, required: true, class: 'form-control'
+      .form-group.clearfix.col-md-4
+        .col-sm-12
+          = f.label :Price, class: 'show'
+          = f.number_field  :price, min: 0, required: true, class: 'form-control'
+      .form-group.clearfix.col-md-4
+        .col-sm-12
+          = f.label :Quantity, class: 'show'
+          = f.number_field :quantity, min: 0, required: true, class: 'form-control'
+      .form-group.clearfix.col-md-4
+        .col-sm-12
+          = f.label :Measure, class: 'show'
+          = f.select :measure, options_for_select(InventoryItem.measures.map{|k,v|[k,k]} ),{ include_blank: "-- Select Measure --" }, required: true, class: 'form-control'
+      .form-group.clearfix.col-md-4
+        .col-sm-12
+          = f.label :Indate, class: 'show'
+          = f.text_field :indate, required: true, class: 'form-control', id: 'datetimepicker1'

@@ -7,7 +7,7 @@
       = link_to "Add new Item", new_admin_inventory_item_path, class: "btn custom-btn btn-primary pull-right"
       .col-sm-3.pull-right
         .row
-          label Item Detail Monthly
+          label Monthly Items Detail
         .row
           = select_tag "year", options_for_select((2019 .. Date.today.year).to_a,Date.today.year.to_i), class: "select-tag-decoration year"
           = select_tag "year", options_for_select((1 .. 12).to_a,Date.today.month.to_i), class: "select-tag-decoration inventory-item-by-year"
