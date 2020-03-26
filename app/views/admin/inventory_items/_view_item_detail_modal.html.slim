@@ -1,0 +1,46 @@
+#view_item_details_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Assign Inventory Item
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        .container-fluid
+          .card-box
+            .heading-bar.clearfix
+              h4.pull-left
+                i.fa.fa-shopping-basket
+                | Inventory Item Details
+            .card-body
+                .table-responsive
+                  table.table.table-hover.mb-0
+                    thead
+                      tr
+                        th
+                          | Item Title
+                        th
+                          | Item Quantity
+                        th
+                          | Measure
+                        th
+                          | Assigned To
+                        th
+                          | Assign By
+                        th
+                          | Date
+                    tbody
+                    - @assign_items.each do |assign_item|
+                      tr
+                        td
+                          = assign_item.inventory_item.item.title
+                        td
+                          = assign_item.quantity
+                        td
+                          = assign_item.measure
+                        td
+                          = assign_item.chef.first_name
+                        td
+                          = assign_item.user.first_name
+                        td
+                          = assign_item.assign_date&.strftime('%Y-%m-%d')

@@ -1,0 +1,39 @@
+#assign_inventory_items_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Assign Inventory Item
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_for @assign_item, url: save_assign_item_admin_inventory_items_path , html: { "data-parsley-validate" => true } do |f|
+          - if @assign_item.errors.full_messages.any? 
+            - @assign_item.errors.full_messages.each do |error_message| 
+                = error_message if @assign_item.errors.full_messages.first == error_message
+          .collect-data
+            .row
+              .form-group.clearfix.col-md-4
+                .col-sm-12
+                  = f.label :inventory_item, class: 'show'
+                  = text_field_tag :inventory_item,nil, value: @inventroy_item.item.title, class: "form-control", disabled: true
+                  = f.hidden_field :inventory_item_id, value: @inventroy_item.id
+              .form-group.clearfix.col-md-4
+                .col-sm-12
+                  = f.label :Quantity, class: 'show'
+                  = f.number_field :quantity, min: 0, max: @inventroy_item.quantity, required: true, class: 'form-control'
+              .form-group.clearfix.col-md-4
+                .col-sm-12
+                  = f.label :Measure, class: 'show'
+                  = f.select :measure, options_for_select(InventoryItem.measures.map{|k,v|[k,k]}, selected: @inventroy_item.measure ),{ include_blank: "-- Select Measure --" }, required: true, class: 'form-control'
+              .form-group.clearfix.col-md-4
+                .col-sm-12
+                  = f.label :Assign_To, class: 'show'
+                  = f.select :chef_id, options_for_select(@chefs.map{| k |[ k.first_name, k.id ]}), { prompt: "Select Chef" }, required: true, class: 'form-control'
+              .form-group.clearfix.col-md-4
+                .col-sm-12
+                  = f.label :Assign_Date, class: 'show'
+                  = f.text_field :assign_date, required: true, class: 'form-control', id: 'datetimepicker1'
+                  = f.hidden_field :user_id, value: current_user.id
+              .form-to-append
+              .col-sm-12
+                = f.submit "Submit", class: 'pull-right btn custom-btn btn-primary'
