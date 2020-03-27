@@ -123,6 +123,7 @@ Rails.application.routes.draw do
       end
       member do
         post :change_status
+        post :rider_payment_status
       end
     end
 

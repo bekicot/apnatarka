@@ -53,7 +53,10 @@
         br
         .links
           = link_to_add_association 'add item', f, :order_items, class: "btn custom-btn btn-primary pull-right"
-
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :Sub_Total, class: 'show'
+      = f.number_field :sub_total, required: true, class: 'form-control'
   .col-sm-12
     / = f.submit "Submit", class: 'btn btn-primary pull-right'
     = f.button :submit, class: 'btn custom-btn btn-primary pull-right'

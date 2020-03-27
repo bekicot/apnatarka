@@ -15,7 +15,7 @@ class Admin::OrdersController < Admin::BaseController
 
   def order_items
     @data = MenuItem.where(category_id: params[:category])
-    @menu_items = @data.map{ |k| [k.id,k.title] }
+    @menu_items = @data.map{ |k| [k.id,k.title] if k.chef_category_items.present? }
     render json: @menu_items
   end
 
@@ -63,7 +63,7 @@ class Admin::OrdersController < Admin::BaseController
 
   private
   def order_params
-    params.require(:order).permit(:phone, order_items_attributes: [ :chef_category_item_id, :quantity, :special_request, :total ] )
+    params.require(:order).permit(:phone, :sub_total, order_items_attributes: [ :chef_category_item_id, :quantity, :special_request, :total ] )
   end
 
   def order_item_params

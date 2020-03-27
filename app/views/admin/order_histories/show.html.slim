@@ -20,7 +20,7 @@
                     td
                       strong
                         | Name
-                    td = "#{@order.user.first_name} #{@order.user.last_name}"
+                    td = "#{@order.first_name} #{@order.last_name}"
                   tr
                     td
                       strong
@@ -100,12 +100,12 @@
                     td
                       strong
                         | City
-                    td = @order.user.city
+                    td = @order.city
                   tr
                     td
                       strong
                         | State
-                    td = @order.user.state
+                    td = @order.state
                   tr
                     td
                       strong
@@ -131,6 +131,63 @@
                       strong
                         | Sub Total
                     td = "$#{@order.sub_total}"
+                  tr
+                    = form_for @order, url: change_status_admin_order_history_path(@order), method: :post do |f|
+                      td.col-sm-3
+                        = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, @order.status), {}, {class: 'form-control'})
+                      td.col-sm-9
+                        = f.fields_for :rider do |ff|
+                          .col-sm-4
+                            = ff.select :user_id, options_for_select(@riders.map{|k| [k.first_name, k.id]} ), {prompt: "Select Rider"}, {class: 'form-control'}
+                          = ff.hidden_field :order_id, value: @order.id
+                          .col-sm-4
+                            = ff.text_field :pickup_time, class: "form-control", id: "timepicker1"
+                          .col-sm-4
+                            = ff.text_field :delivery_time, class: "form-control", id: "timepicker2"
+                      td
+                        = f.submit 'Update', class: 'btn btn-primary btn-xs'
+    .row
+      .col-sm-12
+        .card-box
+          .heading-bar.clearfix
+            h4.pull-left
+              | Rider Details
+          .card-body
+            - if @rider.present?
+              .table-responsive
+                table.table.table-hover.mb-0
+                  thead
+                    tr
+                      th
+                        | Rider Name
+                      th
+                        | Contact
+                      th
+                        | Pick Up Time
+                      th
+                        | Delivery Time
+                      th
+                        | Payments
+                  tbody
+                    tr
+                      td
+                        = @rider.user.first_name
+                      td 
+                        = @rider.user.phone
+                      td
+                        = @rider.pickup_time.strftime("%I : %M %P")
+                      td
+                        = @rider.delivery_time.strftime("%I : %M %P")
+                      td 
+                        = form_for @rider, url: rider_payment_status_admin_order_history_path(@rider), method: :post do |f|
+                          .col-sm-8
+                            = f.select(:payment_status, options_for_select(Rider.payment_statuses.map{|k, v| [k.humanize, k]}, @rider.payment_status), {}, {class: 'form-control'})
+                          .col-sm-4
+                            = f.submit 'Update', class: 'btn btn-primary btn-xs custom-btn'
+            - else
+                p No Rider is Present
+
+
     .row
       .col-md-12
         .card.m-b-30.custom-card

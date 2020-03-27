@@ -26,12 +26,12 @@
                       td = order.order_number
                       td = order_item_names(order)
                       td = form_for order, url: change_status_admin_order_history_path(order), method: :post, remote: true do |f|
-                            .col-sm-8
-                              = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
-                            .col-sm-4
-                              = f.submit 'Update', class: 'btn btn-primary btn-xs'
+                            / .col-sm-8
+                            = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
+                            / .col-sm-4
+                      /         = f.submit 'Update', class: 'btn btn-primary btn-xs'
                       td = order.sub_total
-                      td = link_to "show", admin_order_history_path(order.id), class: "btn btn-xs btn-primary"
+                      td = link_to "show Detail", admin_order_history_path(order.id), class: "btn btn-xs btn-primary"
                 = will_paginate @reg_orders, param_name: 'reg_page'
             - else
               p
@@ -59,12 +59,12 @@
                         td = order.order_number
                         td = order_item_names(order)
                         td = form_for order, url: change_status_admin_order_history_path(order), method: :post, remote: true do |f|
-                            .col-sm-8
-                              = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
-                            .col-sm-4
-                              = f.submit 'Update', class: 'btn btn-primary btn-xs'
+                            /   .col-sm-8
+                            = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
+                        /     .col-sm-4
+                        /       = f.submit 'Update', class: 'btn btn-primary btn-xs'
                         td = order.sub_total
-                        td = link_to "show", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
+                        td = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
                 = will_paginate @guest_orders, param_name: 'guest_page'
             - else
               p
@@ -73,7 +73,7 @@
       .col-md-12
         .card.m-b-30.custom-card
           .card-body.block-head.order-height
-            - if @guest_orders.present?
+            - if @from_branch_orders.present?
               h4.mt-0.m-b-15.header-title
                 | Registerd Customer's who Orders from Branch
               .table-responsive
@@ -91,12 +91,12 @@
                         td = order.order_number
                         td = order_item_names(order)
                         td = form_for order, url: change_status_admin_order_history_path(order), method: :post, remote: true do |f|
-                            .col-sm-8
-                              = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
-                            .col-sm-4
-                              = f.submit 'Update', class: 'btn btn-primary btn-xs'
+                            /   .col-sm-8
+                            = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
+                        /     .col-sm-4
+                        /       = f.submit 'Update', class: 'btn btn-primary btn-xs'
                         td = order.sub_total
-                        td = link_to "show", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
+                        td = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
                 = will_paginate @guest_orders, param_name: 'guest_page'
             - else
               p

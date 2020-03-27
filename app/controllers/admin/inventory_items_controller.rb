@@ -67,9 +67,6 @@ class Admin::InventoryItemsController < Admin::BaseController
 
   def view_item_detail
     @assign_items = @inventroy_item.assign_items
-    respond_to do |format|
-      format.js
-    end
   end
 
   def append_inventory_item

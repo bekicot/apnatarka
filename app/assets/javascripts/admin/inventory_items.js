@@ -5,6 +5,18 @@ $(document).ready(function(){
       });
   });
 
+  $(function () {
+      $('#timepicker1').datetimepicker({
+        format:'HH:mm'
+      });
+  });
+
+  $(function () {
+      $('#timepicker2').datetimepicker({
+        format:'HH:mm'
+      });
+  });
+
   $('.inventory-item-by-year').on('change', function(){
   	month = $(this).val()
   	year = $('.year').val()

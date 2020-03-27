@@ -6,11 +6,11 @@
   .form-group.clearfix.col-md-3.order-item
     .col-sm-12
       = f.label :select_item, class: 'show'
-      = select_tag :select_item, options_for_select({}.map{|k,v| [k,v] }), { required: true, class: 'form-control order-category order-menu-item menu_item' }
+      = select_tag :select_item, options_for_select({}.map{|k,v| [k,v] }), { prompt: "Select Item", required: true, class: 'form-control order-category order-menu-item menu_item' }
   .form-group.clearfix.col-md-3.select-chef
     .col-sm-12
       = f.label :select_chef, class: 'show'
-      = f.select :chef_category_item_id,options_for_select({}.map{|k,v| [k,v] }),{}, required: true, class: 'form-control order-category order-menu-item chef'
+      = f.select :chef_category_item_id,options_for_select({}.map{|k,v| [k,v] }), { prompt: "Select Chef" }, required: true, class: 'form-control order-category order-menu-item chef'
   .form-group.clearfix.col-md-3
     .col-sm-12
       = f.label :quantity, class: 'show'
