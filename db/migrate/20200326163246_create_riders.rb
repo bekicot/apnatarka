@@ -6,6 +6,7 @@ class CreateRiders < ActiveRecord::Migration[5.1]
     	t.time :pickup_time
     	t.time :delivery_time
     	t.integer :payment_status, default: 0
+      t.time :reached_time
       t.timestamps
     end
   end

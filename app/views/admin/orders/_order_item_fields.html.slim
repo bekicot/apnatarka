@@ -14,7 +14,7 @@
   .form-group.clearfix.col-md-3
     .col-sm-12
       = f.label :quantity, class: 'show'
-      = f.text_field :quantity, required: true, class: 'form-control order-category'
+      = f.number_field :quantity, required: true, class: 'form-control order-category order-quantity', min: 1
   .form-group.clearfix.col-md-3
     .col-sm-12
       = f.label :special_request, class: 'show'
@@ -22,4 +22,4 @@
   .form-group.clearfix.col-md-3
     .col-sm-12
       = f.label :total, class: 'show'
-      = f.text_field :total, required: true, class: 'form-control order-category'
+      = f.text_field :total, required: true, class: 'form-control order-category total-amount', disabled: true

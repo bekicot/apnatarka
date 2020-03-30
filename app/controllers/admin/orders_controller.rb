@@ -31,13 +31,11 @@ class Admin::OrdersController < Admin::BaseController
       @order = Order.new(order_params)
       @order.user_id = @exists.id
       @order.ordered_as = "order_from_branch"
-      # @order.order_items.new(order_item_params)
       @order.save(validate: false)
     else
       @user = User.new(user_params)
       @order = @user.orders.new(order_params)
       @order.ordered_as = "order_from_branch"
-      # @order.order_items.new(order_item_params)
       @user.save(validate: false)
       @order.save(validate: false)
     end
@@ -61,9 +59,14 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
+  def menu_item
+    menu_item_price = MenuItem.find(params[:menu_item]).price
+    render json: menu_item_price
+  end
+
   private
   def order_params
-    params.require(:order).permit(:phone, :sub_total, order_items_attributes: [ :chef_category_item_id, :quantity, :special_request, :total ] )
+    params.require(:order).permit(:phone, :sub_total, :city, :state, :address_one, order_items_attributes: [ :chef_category_item_id, :quantity, :special_request, :total ] )
   end
 
   def order_item_params

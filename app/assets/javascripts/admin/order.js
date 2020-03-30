@@ -94,6 +94,36 @@ $(document).ready(function(){
      });
   }); 
 
+  $('.menu_item').on('change', function(){
+    menu_item = $(this).val();
+    $.ajax({
+      type: 'GET',
+      url: '/admin/orders/menu_item',
+      dataType: 'json',
+      data: {menu_item: menu_item}, 
+      success: function(data){
+        menu_item_price = data
+      }
+     });
+  });
+
+  $('.order-quantity').on('change',function (){
+    quantity = $(this).val();
+    total_amount = parseFloat(quantity) * parseFloat(menu_item_price)
+    $('.total-amount').val(total_amount);
+    total = $('.total-amount').val();
+    amount = parseFloat(total) + (parseFloat(total) * 0.05 )
+    $('.display-total').val(amount);
+  });
+
+//   $('.total-amount').keyup(function () {
+//     // var quantity = $('.order-quantity').val();
+//     var total =  $(this).val();
+//     var amount = parseFloat(total)
+//     amount = amount + ( amount * 0.05 )
+//     $('.display-total').val(amount);
+// });
+
   // $('.append-form').on('click', function(){
   //   append_data = $('.collect-data').html();
   //   $('.form-to-append').append(append_data);

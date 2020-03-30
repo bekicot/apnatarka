@@ -26,7 +26,6 @@
                       strong
                         | Phone
                     td = @order.phone
-
                   - if @order.address.present?
                     tr
                       td
@@ -106,6 +105,12 @@
                       strong
                         | State
                     td = @order.state
+                  - if @order.address_one.present?
+                     tr
+                      td
+                        strong
+                          | Address
+                      td = @order.address_one
                   tr
                     td
                       strong
@@ -134,15 +139,19 @@
                   tr
                     = form_for @order, url: change_status_admin_order_history_path(@order), method: :post do |f|
                       td.col-sm-3
+                        = f.label :Status
                         = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, @order.status), {}, {class: 'form-control'})
                       td.col-sm-9
                         = f.fields_for :rider do |ff|
                           .col-sm-4
+                            = ff.label :Select_Rider
                             = ff.select :user_id, options_for_select(@riders.map{|k| [k.first_name, k.id]} ), {prompt: "Select Rider"}, {class: 'form-control'}
                           = ff.hidden_field :order_id, value: @order.id
                           .col-sm-4
+                            = ff.label :Pickup_Time
                             = ff.text_field :pickup_time, class: "form-control", id: "timepicker1"
                           .col-sm-4
+                            = ff.label :Delivery_Time
                             = ff.text_field :delivery_time, class: "form-control", id: "timepicker2"
                       td
                         = f.submit 'Update', class: 'btn btn-primary btn-xs'
@@ -167,6 +176,8 @@
                       th
                         | Delivery Time
                       th
+                        | Rider Delivery Time
+                      th
                         | Payments
                   tbody
                     tr
@@ -178,6 +189,8 @@
                         = @rider.pickup_time.strftime("%I : %M %P")
                       td
                         = @rider.delivery_time.strftime("%I : %M %P")
+                      td
+                        = @rider.reached_time&.strftime("%I : %M %P") || "N/A"
                       td 
                         = form_for @rider, url: rider_payment_status_admin_order_history_path(@rider), method: :post do |f|
                           .col-sm-8
