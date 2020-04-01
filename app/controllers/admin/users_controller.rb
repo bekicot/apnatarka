@@ -61,7 +61,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def sign_up_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role, :country, :state, :city, :address, :avatar)
+    params.require(:user).permit(:first_name, :last_name, :phone, :email, :password, :password_confirmation, :role, :country, :state, :city, :address, :avatar)
   end
 
   def check_super_admin

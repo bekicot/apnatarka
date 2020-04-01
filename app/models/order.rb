@@ -2,6 +2,7 @@ class Order < ApplicationRecord
 
   belongs_to :user, optional: true
   belongs_to :address, optional: true
+  has_one :rider
   belongs_to :location, optional: true
   has_many :order_items, dependent: :destroy
   accepts_nested_attributes_for :order_items, reject_if: :all_blank, allow_destroy: true
@@ -11,7 +12,7 @@ class Order < ApplicationRecord
   enum payment_method: {debit_credit_card: 0, from_branch: 1}
   enum delivery_mode: [:carry_out, :delivery]
   enum ordered_as: [:registered_user, :guest_user, :order_from_branch ]
-  enum status: [:unpaid, :paid]
+  enum status: [:unpaid, :paid, :cash_on_delivery]
 
   scope :registered_orders, -> { (where(ordered_as: Order.ordered_as[:registered_user])) }
   scope :guest_orders, -> { (where(ordered_as: Order.ordered_as[:guest_user])) }

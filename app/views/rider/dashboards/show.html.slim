@@ -1,0 +1,106 @@
+.clearfix
+  .container-fluid
+    .row
+      .col-md-12
+        .page-title-box
+          h4 Order Details
+    .row
+      .col-md-12
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            .table-responsive
+              table.table.table-hover.order-history
+                tbody
+                  tr
+                    td
+                      strong
+                        | Order #
+                    td = @rider&.order&.order_number
+                  tr
+                    td
+                      strong
+                        | Name
+                    td = "#{@rider&.order&.first_name} #{@rider&.order&.last_name}"
+                  tr
+                    td
+                      strong
+                        | Phone
+                    td = @rider&.order&.phone
+
+                  - if @rider&.order&.address.present?
+                    tr
+                      td
+                        strong
+                          | Delivery Time
+                      td = @rider&.delivery_time&.strftime("%I : %M %P") || Time.now.strftime("%I : %M %P")
+                    tr
+                      td
+                        strong
+                          | Address Type
+                      td = @rider.order.address.address_type
+                    tr
+                      td
+                        strong
+                          | Building Name
+                      td = @rider.order.address.building_name
+                    tr
+                      td
+                        strong
+                          | Building Number
+                      td = @rider.order.address.building_number
+                    tr
+                      td
+                        strong
+                          | Room No
+                      td = @rider.order.address.room_no
+                    tr
+                      td
+                        strong
+                          | Directions
+                      td = @rider.order.address.direction
+                    tr
+                      td
+                        strong
+                          | Payment Status
+                      td = @rider.order.status.capitalize
+                  tr
+                    td
+                      strong
+                        | City
+                    td = @rider.order.city
+                  tr
+                    td
+                      strong
+                        | State
+                    td = @rider.order.state
+                  - if @rider.order.address_one?
+                    tr
+                      td
+                        strong
+                          | Address
+                      td = @rider.order.address_one
+                  tr
+                    td
+                      strong
+                        | Zip / Post Code
+                    td = @rider.order.post_code
+                  tr
+                    td
+                      strong
+                        | Payment Method
+                    td = @rider.order.payment_method
+                  tr
+                    td
+                      strong
+                        | Order Items
+                    td = order_item_names(@rider.order)
+                  tr
+                    td
+                      strong
+                        | VAT
+                    td = Order::VAT_DISPLAY
+                  tr
+                    td
+                      strong
+                        | Sub Total
+                    td = "$#{@rider.order.sub_total}"

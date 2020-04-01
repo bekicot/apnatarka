@@ -1,0 +1,2 @@
+module Rider::DashboardsHelper
+end

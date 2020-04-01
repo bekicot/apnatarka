@@ -6,7 +6,10 @@ class Admin::OrderHistoriesController < Admin::BaseController
   end
 
   def show
+    @rider = Rider.new
+    @riders = User.rider
     @order = Order.includes(order_items: [:chef_category_item]).find(params[:id])
+    @rider = @order.rider
   end
 
   def customer_orders
@@ -17,7 +20,30 @@ class Admin::OrderHistoriesController < Admin::BaseController
 
   def change_status
     order = Order.find(params[:id])
-    order.update_attribute(:status, params[:order][:status])
+    if order.rider.present?
+      order.rider.destroy
+    end
+      order.update_attribute(:status, params[:order][:status])
+      Rider.create(rider_params)
     redirect_to customer_orders_admin_order_histories_path
+  end
+
+  def rider_payment_status
+    rider = Rider.find(params[:id])
+    order = rider.order
+    if params[:rider][:payment_status] == "receive"
+      rider.update_attribute(:payment_status, params[:rider][:payment_status])
+      order.update_attribute(:status, "paid")
+    else
+      rider.update_attribute(:payment_status, params[:rider][:payment_status])
+    end
+    redirect_to customer_orders_admin_order_histories_path
+  end
+
+
+  private
+
+  def rider_params
+    params.require(:order).require(:rider).permit(:user_id, :order_id, :pickup_time, :delivery_time)
   end
 end

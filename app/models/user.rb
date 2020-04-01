@@ -8,7 +8,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2], authentication_keys: [:login]
   has_many :orders
   has_many :addresses
-  enum role: [:super_admin, :normal_user, :chef, :moderator_user]
+  enum role: [:super_admin, :normal_user, :chef, :moderator_user, :rider]
   enum gender: [:male, :female]
   enum status: [:active, :inactive]
 
@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :mess_items, through: :mess
   has_many :assign_items
   has_many :issued_items, through: :assign_items, source: :user, foreign_key: :chef_id
+  has_many :riders
   # user_roles.each do |k, v|
   #   define_method "#{k}?" do
   #     role == v

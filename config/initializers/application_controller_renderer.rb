@@ -9,3 +9,5 @@
 
 Rails.application.config.assets.precompile += %w( admin.sass )
 Rails.application.config.assets.precompile += %w( admin.js )
+Rails.application.config.assets.precompile += %w( rider.sass )
+Rails.application.config.assets.precompile += %w( rider.js )

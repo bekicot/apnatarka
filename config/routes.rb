@@ -81,6 +81,14 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :rider do
+    root to: "dashboards#index"
+    resources :dashboards, only: [ :index, :show ] do
+      member do
+        get :deliver_order
+      end
+    end
+  end
   namespace :admin do
     root to: "dashboards#index"
     resources :dashboards
@@ -92,6 +100,7 @@ Rails.application.routes.draw do
         get :checkemail
         get :check_cities
         get :add_form_field
+        get :menu_item
       end
     end
     resources :mess_items
@@ -123,6 +132,7 @@ Rails.application.routes.draw do
       end
       member do
         post :change_status
+        post :rider_payment_status
       end
     end
 

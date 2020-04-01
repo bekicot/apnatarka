@@ -50,6 +50,9 @@ class Admin::InventoryItemsController < Admin::BaseController
   def assign_item
     @chefs = User.chef
     @assign_item = AssignItem.new
+    respond_to do |format|
+      format.js
+    end
   end
 
   def save_assign_item

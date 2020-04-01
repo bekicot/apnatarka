@@ -42,6 +42,8 @@ class Users::SessionsController < Devise::SessionsController
       admin_dashboards_path
     elsif resource.normal_user?
       session[:cart].present? ? checkout_delivery_index_path : root_path
+    elsif resource.rider?
+      rider_dashboards_path
     end
   end
 
