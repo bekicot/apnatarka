@@ -11,6 +11,7 @@ class Admin::OrdersController < Admin::BaseController
     @country = "Pakistan"
     @user = User.new
     @states = CS.states(:PK)
+    @city = CS.cities(:PB,:PK).second
   end
 
   def order_items
@@ -28,6 +29,7 @@ class Admin::OrdersController < Admin::BaseController
   def create
     @exists = User.find_by_phone(params[:order][:phone])
     if @exists.present?
+      debugger
       @order = Order.new(order_params)
       @order.user_id = @exists.id
       @order.ordered_as = "order_from_branch"

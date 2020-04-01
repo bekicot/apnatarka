@@ -14,7 +14,8 @@ class User < ApplicationRecord
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validates_presence_of :email
-  # validates_uniqueness_of :phone, unless: -> { from_omniauth? }
+  validates_uniqueness_of :phone
+  # , unless: -> { from_omniauth? }
   has_many :chef_categories
   has_many :categories, through: :chef_categories 
   has_many :chef_avalibilities
