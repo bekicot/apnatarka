@@ -40,7 +40,7 @@ class Admin::OrdersController < Admin::BaseController
       @order.save(validate: false)
     end
     flash[:success] = "Order Created Successfullly"
-    redirect_to customer_orders_admin_order_histories_path
+    render :js => "window.location.pathname='#{customer_orders_admin_order_histories_path}'"
   end
 
   def checkemail
