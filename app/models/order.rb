@@ -13,6 +13,7 @@ class Order < ApplicationRecord
   enum delivery_mode: [:carry_out, :delivery]
   enum ordered_as: [:registered_user, :guest_user, :order_from_branch ]
   enum status: [:unpaid, :paid, :cash_on_delivery]
+  enum order_status: [:pending, :accept, :reject, :ready]
 
   scope :registered_orders, -> { (where(ordered_as: Order.ordered_as[:registered_user])) }
   scope :guest_orders, -> { (where(ordered_as: Order.ordered_as[:guest_user])) }

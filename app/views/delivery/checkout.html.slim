@@ -103,7 +103,7 @@
               .col-sm-6.mob-b-15.arabic-right
                 .form-group
                   = f.label t("delivery.town_city")
-                  = f.select :city, options_for_select(["Bahawalpur"], [ {}.map{|k,v| [v,k] } ]), {}, class: 'form-control',required: true
+                  = f.select :city, options_for_select(["Bahawalpur"], [ {}.map{|k,v| [v,k] }] ), {}, {class: 'form-control',required: true}
               .col-sm-6.mob-b-15.arabic-right
                 .form-group
                   = f.label t("delivery.zip_postcode")

@@ -1,0 +1,2 @@
+module Chef::BaseHelper
+end

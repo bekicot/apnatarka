@@ -1,0 +1,11 @@
+header#topnav
+  .topbar-main
+    .container-fluid.clearfix
+      .logo
+        = link_to image_tag("logo-2.png"), root_path, class: 'logo img-responsive'
+      .button-dropdown.pull-right
+        a.dropdown-toggle.drop-icon href="javascript:void(0)"
+          i.fa.fa-user
+        ul.dropdown-menu
+          li
+            = link_to t("header.logout"), destroy_user_session_path, method: :delete

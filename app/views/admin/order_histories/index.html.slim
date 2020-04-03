@@ -16,6 +16,7 @@
                       th Order #
                       th Menu Item
                       th Payment Status
+                      th Order Status
                       th Total Price
                       th Action
                   tbody
@@ -28,6 +29,7 @@
                               = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
                             .col-sm-4
                               = f.submit 'Update', class: 'btn btn-primary btn-xs'
+                      th = order.order_status
                       td = order.sub_total
                       td = link_to "show", admin_order_history_path(order.id), class: "btn btn-xs btn-primary"
               = will_paginate @orders, param_name: "page"

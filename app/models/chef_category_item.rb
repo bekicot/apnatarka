@@ -3,6 +3,7 @@ class ChefCategoryItem < ApplicationRecord
 	belongs_to :menu_item
 	has_many :chef_avalibilities
 	has_many :mess_items
+  has_many :order_items
 
 	@@cart_joiner = "chef_menu_item_"
   	@@quantity    = 1
