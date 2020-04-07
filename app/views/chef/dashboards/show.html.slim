@@ -1,0 +1,25 @@
+.clearfix
+  .container-fluid
+    .row
+      .col-md-12
+        .page-title-box
+          h4 Order Detail
+    .row
+      .col-md-12
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            .table-responsive
+              table.table.table-hover.order-history
+                thead
+                  tr
+                    th Menu Item
+                    th Quantity
+                    th Special Request
+                tbody
+                - @order_items.each do |order_item|
+                  tr
+                    td = order_item.chef_category_item.menu_item.title
+                    td = order_item.quantity
+                    th = order_item.special_request || "N/A"
+
+

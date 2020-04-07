@@ -36,11 +36,11 @@
               .form-group.clearfix.col-md-3
                 .col-sm-12
                   = fff.label :state, class: 'show'
-                  = fff.select :state, options_for_select(@states.map{|k,v| [v,k] }), {prompt: "Select State"}, { class: 'form-control country-states' }    
+                  = fff.select :state, options_for_select(@states.map{|k,v| [v,k] }, @states.keys[5]), {prompt: "Select State"}, { class: 'form-control country-states' }    
               .form-group.clearfix.col-md-3
                 .col-sm-12
                   = fff.label :city, class: 'show'
-                  = fff.select :city, options_for_select({}.map{|k,v| [v,k] }), {prompt: "Select City"}, { class: 'form-control cities' }
+                  = fff.select :city, options_for_select(["Bahawalpur"],{}.map{|k,v| [v,k] }), {}, { class: 'form-control cities' }
               .form-group.clearfix.col-md-3
                 .col-sm-12
                   = fff.label :address, class: 'show'
@@ -56,15 +56,15 @@
   .form-group.clearfix.col-md-4
     .col-sm-12
       = f.label :state, class: 'show'
-      = f.select :state, options_for_select(@states.map{|k,v| [v,k] }), {prompt: "Select State"}, { class: 'form-control country-states' }
+      = f.select :state, options_for_select(@states.map{|k,v| [v,k] }, @states.keys[5]), {}, { class: 'form-control country-states' }
   .form-group.clearfix.col-md-4
     .col-sm-12
       = f.label :city, class: 'show'
-      = f.select :city, options_for_select({}.map{|k,v| [v,k] }), {prompt: "Select City"}, { class: 'form-control cities' }
+      = f.select :city, options_for_select(["Bahawalpur"],[{}.map{|k,v| [v,k] }] ), {}, { class: 'form-control cities' }
   .form-group.clearfix.col-md-4
     .col-sm-12
       p Sub Total (Including 5% VAT)
-      = f.number_field :sub_total, required: true, class: 'form-control display-total', disabled: true
+      = f.number_field :sub_total, required: true, class: 'form-control display-total'
   .form-group.clearfix
     .col-sm-12
       = f.label :Address, class: 'show'

@@ -44,6 +44,8 @@ class Users::SessionsController < Devise::SessionsController
       session[:cart].present? ? checkout_delivery_index_path : root_path
     elsif resource.rider?
       rider_dashboards_path
+    elsif resource.chef?
+      chef_root_path
     end
   end
 

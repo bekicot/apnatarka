@@ -161,4 +161,13 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :chef do
+    root to: "dashboards#index"
+    resources :dashboards do
+      member do
+        post :change_order_status
+      end
+    end
+  end
 end

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChefIt 24 Dashboard</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= favicon_link_tag 'favicon.ico' %>
+  </head>
+
+  <body>
+    <%= stylesheet_link_tag 'chef', media: 'all' %>
+    <% if current_user.present? %><%= render 'chef/dashboards/header'%><% end %>
+    <div class="<%= current_user.present? ? 'wrapper' : 'wrapper-padding'%>">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+      <%= yield %>
+    </div>
+    <%= render 'chef/dashboards/footer'%>
+    <%= javascript_include_tag 'chef' %>
+  </body>
+</html>

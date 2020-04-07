@@ -30,12 +30,12 @@
   .form-group.clearfix
     .col-sm-12
       = f.label :state, class: 'show'
-      = f.select :state, options_for_select(@states.map{|k,v| [v,k] }), {}, { class: 'form-control' }
+      = f.select :state, options_for_select(@states.map{|k,v| [v,k] }, @states.keys[5]), {}, { class: 'form-control' }
   .cities    
     .form-group.clearfix
       .col-sm-12
         = f.label :city, class: 'show'
-        = f.select :city, options_for_select({}.map{|k,v| [v,k] }), {}, { class: 'form-control' }
+        = f.select :city, options_for_select(["Bahawalpur"],[{}.map{|k,v| [v,k] }]), {}, { class: 'form-control' }
   .form-group.clearfix
     .col-sm-12
       = f.label :address, class: 'show'

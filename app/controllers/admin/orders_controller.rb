@@ -11,6 +11,7 @@ class Admin::OrdersController < Admin::BaseController
     @country = "Pakistan"
     @user = User.new
     @states = CS.states(:PK)
+    @city = CS.cities(:PB,:PK).second
   end
 
   def order_items
