@@ -21,6 +21,8 @@
                   | Assign By
                 th
                   | Date
+                th
+                  | Status
             tbody
             - @assign_items.each do |assign_item|
               tr
@@ -36,3 +38,5 @@
                   = assign_item.user.first_name
                 td
                   = assign_item.assign_date&.strftime('%Y-%m-%d')
+                td 
+                  = assign_item.status.humanize

@@ -103,7 +103,7 @@
                         th = order.order_status
                         td = order.sub_total
                         td = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
-                = will_paginate @guest_orders, param_name: 'guest_page'
+                = will_paginate @from_branch_orders, param_name: 'branch_page'
             - else
               p
                 | No Order has been Booked form branch yet.

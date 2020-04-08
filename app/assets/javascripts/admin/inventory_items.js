@@ -6,6 +6,12 @@ $(document).ready(function(){
   });
 
   $(function () {
+      $('#datetimepicker3').datetimepicker({
+        format:'YYYY-MM-DD HH:mm:ss'
+      });
+  });
+
+  $(function () {
       $('#timepicker1').datetimepicker({
         format:'HH:mm'
       });
