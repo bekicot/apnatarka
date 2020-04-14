@@ -22,4 +22,33 @@
                     td = order_item.quantity
                     th = order_item.special_request || "N/A"
 
+    .row
+      .col-md-12
+        .page-title-box
+          h4 Rider Detail
+    .row
+      .col-md-12
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            - if @rider_detail.present?
+              .table-responsive
+                table.table.table-hover.order-history
+                  thead
+                    tr
+                      th Name
+                      th Contact
+                      th Pick Up Time
+                      th Delivery Time
+                      th Reach Time
+                  tbody
+                    tr
+                      td = "#{@rider_detail.user.first_name} #{@rider_detail.user.last_name}"
+                      td = @rider_detail.user.phone
+                      td = @rider_detail.pickup_time.strftime("%I : %M %P")
+                      td = @rider_detail.delivery_time.strftime("%I : %M %P")
+                      td = @rider_detail.reached_time&.strftime("%I : %M %P") || "N/A"
+            - else
+              | No Rider is Present!
+                         
+
 

@@ -1,7 +1,7 @@
 class Admin::ChefMenusController < Admin::BaseController
 	before_action :find_user, only: [:chef_menu_items, :new]
   def index
-  	@users = User.where.not(role: "super_admin")
+  	@users = User.chef
   end
 
   def chef_menu_items

@@ -15,7 +15,7 @@ class Admin::OrderHistoriesController < Admin::BaseController
   def customer_orders
     @reg_orders = Order.registered_orders.where.not(user_id: current_user.id).order('created_at DESC').paginate(page: params[:reg_page], per_page: 5)
     @guest_orders = Order.guest_orders.order('created_at DESC').paginate(page: params[:guest_page], per_page: 5)
-    @from_branch_orders = Order.from_branch_orders.order('created_at DESC').paginate(page: params[:guest_page], per_page: 5)
+    @from_branch_orders = Order.from_branch_orders.order('created_at DESC').paginate(page: params[:branch_page], per_page: 5)
   end
 
   def change_status

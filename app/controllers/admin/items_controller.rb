@@ -1,7 +1,7 @@
 class Admin::ItemsController < Admin::BaseController
   before_action :find_item, only: [:edit, :update, :destroy]
   def index
-    @items = Item.all
+    @items = Item.all.order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
 
   def new

@@ -87,3 +87,20 @@ puts "Created Menu Brochure"
 location_one = Location.create(title_en: "Dilawar Colony", address_en: "Unit # 1 - House No-11 Street No-8 Dilawar Colony Yazman Road Bahawalpur", country_en: "Pakistan", title_ar: "ميدان حطين", address_ar: "الوحدة رقم 3 - ميدان حطين طريق الأمير تركي بن ​​عبدالعزيز الأول", country_ar: "المملكة العربية السعودية", phone: "+92302-0075311", postal_code: "63100", lat: "29.246646", lng: "71.7272311")
 # location_two = Location.create(title_en: "Al Maather Extension", address_en: "Al Maather Extension, Unit # 16 Takhassusi St, Al Maather", country_en: "Saudi Arabia", title_ar: "ملحق المعذر", address_ar: "امتداد المعذر ، الوحدة رقم 16 ، شارع التخصصي ، المعذر", country_ar: "المملكة العربية السعودية", phone: "", postal_code: "12714", lat: "24.6646", lng: "46.6809")
 # location_three = Location.create(title_en: "Al Nada Plaza", address_en: "Al Nada Plaza, Unit # 3 An Nada", country_en: "Saudi Arabia", title_ar: "الندى بلازا", address_ar: "الندى بلازا ، الوحدة رقم 3 الندى", country_ar: "المملكة العربية السعودية", phone: "", postal_code: "13317", lat: "24.8061", lng: "46.6908")
+
+Item.create([
+  { title: "Cooking Oil" },{ title: "Gass" },{ title: "Butter (Makhan)" },{ title: "Milk" }, { title: "Egg (Anday)" },
+  { title: "Yogurt (Dahee)" }, { title: "Fish" }, { title: "Chicken" }, { title: "Beaf" }, { title: "Mutton" },
+  { title: "Pekoe (Chaye ki patti)" }, { title: "Cofee" }, { title: "Green Cardamom (Elachi)" }, { title: "Fennel Seed (Saunf)" },
+  { title: "Asafoetida (Hing)" },{ title: "Red Chilli (Lal March)" }, { title: "Black Cardamom (Kali Ilaychi)" },{ title: "White Paper (Saphed Mirch)" },
+  { title: "Black Pepper (Kali March)" },{ title: "peppercorns (Kali Mirch Sabat)" },{ title: "Black Cumin (Sahi Jira)" },{ title: "Capsicum (Simala Mirch)" },
+  { title: "Celery Seed (Ajmud)" },{ title: "Bay Leaf (Tej Patti)" },{ title: "Cinnamon (Dalachini)" },{ title: "Cloves (Laung)" },{ title: "Coriander Seed (Sukha Dhaniya)" },
+  { title: "Cubeb (Kabab Chini)" },{ title: "Cumin Seed (Zira)" },{ title: "Fenugreek Leaf (Kasuri Methi)" },{ title: "Fenugreek Seed (methī dānā)" },{ title: "Garam Masala (Garam Masala)" },
+  { title: "Garlic (Lahasun)" },{ title: "Ginger (Adrak)" },{ title: "Green cardamom (chhoṭī ilāichī)" },{ title: "Long Pepper (Pippali)" },{ title: "Mint (Pudina)" },{ title: "Brown mustard Seed (Rai)" },
+  { title: "Holy Basil (Tulsi)" },{ title: "Panch Phoron (Panch Phoron)" },{ title: "Pomegranate Seed (Anar dana)" },{ title: "Poppy Seed (Khas-Khas)" },{ title: "Saffron (Kesar)" },{ title: "Sesame Seed (Til)" },
+  { title: "Tamarind (Ilmi)" },{ title: "Carom seed (Ajwain)" },{ title: "Turmeric (Haldi)" },{ title: "Fresh basil (Tulsi)" },{ title: "Fresh Coriander (Hara Dhaniya)" },{ title: "Green Chili Pepper (Hari Mirch)" },
+  { title: "Dried Red Chili Pepper (Lal Mirch)" },{ title: "Lemon (Lemu)" },{ title: "Tomatto (Tamater)" },{ title: "Potatoes (Allu)" },{ title: "mushrooms" },{ title: "Cauliflower (Gobi)" },{ title: "Bread" },
+  { title: "Cookies (Biscuit)" },{ title: "Flour (Atta)" },{ title: "Sugar (Chinni)" },{ title: "Baking powder (Khany ka Soda)" },{ title: "Baking Soda (Mitha Soda)" },{ title: "Yeast (Khameer)" },{ title: "Vanilla extract (Wanila Natchor)" },
+  { title: "Chocolate chips" },{ title: "Vegetables (Sabzi)" },{ title: "Pasta Sauce" },{ title: "Piza Sauce" },{ title: "Apple Sauce" },{ title: "Soup" },{ title: "Soap (Sabun)" },{ title: "Beans (Phaliyan)" },{ title: "Burger Break" },{ title: "Shawarma Break" },
+  { title: "French Fries" },{ title: "Salt (Namak)" },{ title: "Hand Soap" },{ title: "Hand Soap" }
+])

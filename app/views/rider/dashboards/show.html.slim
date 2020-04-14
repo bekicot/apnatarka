@@ -20,7 +20,7 @@
                     td
                       strong
                         | Name
-                    td = "#{@rider&.order&.first_name} #{@rider&.order&.last_name}"
+                    td = @rider&.order&.first_name.present? ? "#{@rider&.order&.first_name} #{@rider&.order&.last_name}" : "#{@rider&.order&.user&.first_name} #{@rider&.order&.user&.last_name}"
                   tr
                     td
                       strong
@@ -79,16 +79,6 @@
                         strong
                           | Address
                       td = @rider.order.address_one
-                  tr
-                    td
-                      strong
-                        | Zip / Post Code
-                    td = @rider.order.post_code
-                  tr
-                    td
-                      strong
-                        | Payment Method
-                    td = @rider.order.payment_method
                   tr
                     td
                       strong
