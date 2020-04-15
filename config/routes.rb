@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
@@ -92,7 +93,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "dashboards#index"
     resources :dashboards
+    resources :inventory_categories
     resources :chef_mess
+    resources :taxes
     resources :orders do
       collection do
         get :order_items
@@ -167,6 +170,7 @@ Rails.application.routes.draw do
     resources :dashboards do
       member do
         post :change_order_status
+        post :change_assigned_item_status
       end
     end
   end

@@ -1,0 +1,4 @@
+$('#chef_category').html('<%= escape_javascript(render partial: "chef_category_edit_modal", locals: {chef_avalibility: @chef_avalibility, days: @days, day: @day}) %>')
+$('#chef_category_edit_modal').modal('show');
+$('.multi-select').select2({
+});

@@ -1,16 +1,16 @@
-#chef_category_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+#chef_category_edit_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
   .modal-dialog role="document" 
     .modal-content
       .modal-header
-        h5#exampleModalLabel.modal-title Add Availibility
+        h5#exampleModalLabel.modal-title Edit Category
         button.close aria-label="Close" data-dismiss="modal" type="button" 
           span aria-hidden="true"  &times;
       .modal-body
-        = form_for chef_avalibility, url: admin_chef_menus_path,method: :post, html: { "data-parsley-validate" => true } do |f|
+        = form_for chef_avalibility, url: admin_chef_menu_path,method: :put, html: { "data-parsley-validate" => true } do |f|
           .form-group.clearfix
             .col-sm-12
               = f.label :day, class: 'show'
-              = f.select :day, options_for_select(days.map{|k,v| [k,k]}), {}, class: 'form-control multi-select', required: true,multiple: true
+              = f.select :day, options_for_select(days.map{|k,v| [k,k]}, day), { }, class: 'form-control multi-select', required: true,multiple: true
               = f.hidden_field :user_id, value: @user.id
               = f.hidden_field :chef_category_item_id, value: @chef_category_item
           .col-sm-12

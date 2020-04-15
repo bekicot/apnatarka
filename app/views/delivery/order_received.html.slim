@@ -60,9 +60,9 @@
               th = t("delivery.delivery_time")
               th = t("delivery.total")
               th = t("delivery.payment_method")
-              - if @order.debit_credit_card?
-                th = t("delivery.payment")
-                th = t("delivery.payment_reference")
+              / - if @order.debit_credit_card?
+              /   th = t("delivery.payment")
+              /   th = t("delivery.payment_reference")
           tbody
             tr
               td = @order.order_number
@@ -70,9 +70,9 @@
               td = @order&.delivery_time&.strftime("%m-%d-%Y %I:%M") || Time.now.strftime("%m-%d-%Y %I:%M")
               td = "$#{number_with_precision(@order.sub_total, precision: 2)}"
               td = payment_method_translation(@order.payment_method)
-              - if @order.debit_credit_card?
-                td = @order.status.capitalize
-                td = @order&.payment_reference || 'N/A'
+              / - if @order.debit_credit_card?
+              /   td = @order.status.capitalize
+              /   td = @order&.payment_reference || 'N/A'
       .order-detail
         h2 = t("delivery.order_details")
         .product
@@ -95,7 +95,7 @@
 
         .subtotal
           strong = t("delivery.sub_total")
-          span = "$#{number_with_precision(@order.sub_total, precision: 2)} #{t('delivery.including')} #{Order::VAT_DISPLAY} #{t("delivery.vat")}"
+          span = "$#{number_with_precision(@order.sub_total, precision: 2)} #{t('delivery.including')} #{@tax}% Gst"
         .payment
           strong = t("delivery.payment_method")
           span = payment_method_translation(@order.payment_method)

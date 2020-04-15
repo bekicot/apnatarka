@@ -1,0 +1,19 @@
+#admin_tax_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Manage Tax
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_for [:admin, @tax], html: { "data-parsley-validate" => true } do |f|
+          - if @tax.errors.full_messages.any? 
+              - @tax.errors.full_messages.each do |tax| 
+                = tax
+          .form-group.clearfix
+            .col-sm-12
+              = f.label :Enter_Tax_Percentage, class: 'show'
+              = f.number_field :tax, class: 'form-control', place_holder: "%", required: true, min: 0
+          .col-sm-12
+          .modal-footer
+            = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'

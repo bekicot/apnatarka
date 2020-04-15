@@ -24,6 +24,9 @@
                   td
                     = chef_category_item.chef_avalibilities.map(&:day).join(", ")
                   td 
-                    = link_to "Add Avalibility", new_admin_chef_menu_path(chef_category_item:chef_category_item, id: @user ), class: 'btn btn-primary btn-xs', remote: true
+                    - if !chef_category_item.chef_avalibilities.present?
+                      = link_to "Add Avalibility", new_admin_chef_menu_path(chef_category_item:chef_category_item, id: @user ), class: 'btn btn-primary btn-xs', remote: true
+                    - else
+                      = link_to "Edit Avalibility", edit_admin_chef_menu_path( chef_category_item:chef_category_item, id: @user ), class: 'btn btn-danger btn-xs', remote: true
 #chef_category
 

@@ -1,0 +1,27 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-shopping-basket
+        | Inventory Categories Detail
+      = link_to "Add Category", new_admin_inventory_category_path, class: "btn custom-btn btn-primary pull-right", remote: true
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Category Title
+                th
+                  | Action
+            tbody
+            - @iventory_categories.each do |inventory_category|
+              tr
+                td
+                  = inventory_category.title
+                td 
+                  = link_to "Edit", edit_admin_inventory_category_path(inventory_category), class: 'btn btn-primary btn-xs', remote: true
+                  = link_to "Delete", admin_inventory_category_path(inventory_category), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: "Are you sure!"}
+        = will_paginate @iventory_categories, param_name: 'page'
+
+#category_modal

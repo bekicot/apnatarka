@@ -1,0 +1,19 @@
+#admin_category_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Add Category
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_for [:admin, @inventory_category], html: { "data-parsley-validate" => true } do |f|
+          - if @inventory_category.errors.full_messages.any? 
+              - @inventory_category.errors.full_messages.each do |inventory_category| 
+                = inventory_category
+          .form-group.clearfix
+            .col-sm-12
+              = f.label :title, class: 'show'
+              = f.text_field :title, class: 'form-control', required: true
+          .col-sm-12
+          .modal-footer
+            = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'

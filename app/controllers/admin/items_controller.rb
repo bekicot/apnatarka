@@ -1,10 +1,12 @@
 class Admin::ItemsController < Admin::BaseController
   before_action :find_item, only: [:edit, :update, :destroy]
+  
   def index
     @items = Item.all.order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
 
   def new
+    @inventory_categories = InventoryCategory.all
     @item = Item.new
     respond_to do |format|
       format.js
@@ -20,6 +22,7 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def edit
+    @inventory_categories = InventoryCategory.all
     respond_to do |format|
       format.js
     end
@@ -44,7 +47,7 @@ class Admin::ItemsController < Admin::BaseController
   private
 
   def item_params
-    params.require(:item).permit(:title)
+    params.require(:item).permit(:title, :inventory_category_id)
   end
 
   def find_item

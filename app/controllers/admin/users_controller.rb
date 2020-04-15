@@ -4,16 +4,15 @@ class Admin::UsersController < Admin::BaseController
   #before_action :check_moderator_user, only: [:destroy]
   before_action :check_admin_moderator_user, only: [:index]
 
-  skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :verify_authenticity_token, only: [:create, :update]
+  before_action :find_country_and_state, only: [:new, :edit]
 
   def index
     @users = User.all
   end
 
   def new
-    @country = "Pakistan"
     @user = User.new
-    @states = CS.states(:PK)
   end
 
   def create
@@ -33,7 +32,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def edit
-    @country = "Pakistan"
   end
 
   def update
@@ -69,5 +67,10 @@ class Admin::UsersController < Admin::BaseController
       flash[:alert] = t("crud.access_denied")
       redirect_back(fallback_location: root_path)
     end
+  end
+
+  def find_country_and_state
+    @country = "Pakistan"
+    @states = CS.states(:PK)
   end
 end
