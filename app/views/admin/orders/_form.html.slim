@@ -63,7 +63,8 @@
       = f.select :city, options_for_select(["Bahawalpur"],[{}.map{|k,v| [v,k] }] ), {}, { class: 'form-control cities' }
   .form-group.clearfix.col-md-4
     .col-sm-12
-      p Sub Total (Including 5% VAT)
+      p.gst
+        = "Sub Total (Including #{@tax} % GST)"
       = f.number_field :sub_total, required: true, class: 'form-control display-total'
   .form-group.clearfix
     .col-sm-12

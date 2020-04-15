@@ -9,7 +9,7 @@ class Order < ApplicationRecord
 
   after_create :generate_order_number
 
-  enum payment_method: {debit_credit_card: 0, from_branch: 1}
+  enum payment_method: { from_branch: 1}
   enum delivery_mode: [:carry_out, :delivery]
   enum ordered_as: [:registered_user, :guest_user, :order_from_branch ]
   enum status: [:unpaid, :paid, :cash_on_delivery]

@@ -85,6 +85,10 @@ header#topnav
               li[class="has-submenu #{active_class(customer_orders_admin_order_histories_path)}"]
                 = link_to customer_orders_admin_order_histories_path do
                   = t("header.customer_order_history")
+              li.divider role="separator"
+              li[class="has-submenu #{active_class(admin_taxes_path)}"]
+                = link_to admin_taxes_path do
+                  = t("header.manage_taxes")
           li[class="has-submenu #{active_class(admin_chef_menus_path)}"]
             = link_to admin_chef_menus_path do
               i.fa.fa-user
@@ -98,6 +102,10 @@ header#topnav
               = t("header.Inventory")
               span.caret
             ul.dropdown-menu
+              li[class="has-submenu #{active_class(admin_inventory_categories_path)}"]
+                = link_to admin_inventory_categories_path do
+                  = t("header.Categories")
+              li.divider role="separator"
               li[class="has-submenu #{active_class(admin_items_path)}"]
                 = link_to admin_items_path do
                   = t("header.items")

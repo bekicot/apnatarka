@@ -104,10 +104,7 @@
                 .form-group
                   = f.label t("delivery.town_city")
                   = f.select :city, options_for_select(["Bahawalpur"], [ {}.map{|k,v| [v,k] }] ), {}, {class: 'form-control',required: true}
-              .col-sm-6.mob-b-15.arabic-right
-                .form-group
-                  = f.label t("delivery.zip_postcode")
-                  = f.text_field :post_code, class: 'form-control',required: true, "data-parsley-type": "number"
+             
               .col-sm-12.mob-b-15.arabic-right
                 .form-group
                   = f.check_box :is_location_check, id: 'check', class: "custom-space"
@@ -152,11 +149,11 @@
                   h4 class="pull-left" = t("delivery.sub_total")
                   p class="pull-right" = "$#{number_with_precision(total, precision: 2)}"
                 .sub-total.clearfix
-                  h4.pull-left = t("delivery.vat")
-                  p.pull-right = Order::VAT_DISPLAY
+                  h4.pull-left = t("delivery.GST")
+                  p.pull-right = "#{@tax} %"
                 .total class="clearfix"
                   h4 class="pull-left" = t("delivery.total")
-                  p class="pull-right" = "$#{number_with_precision(total + (total * Order::VAT), precision: 2)}"
+                  p class="pull-right" = "$#{number_with_precision(total + (total * (@tax_percentage)), precision: 2)}"
                 .form-check
                   = f.collection_radio_buttons(:payment_method, Order.payment_methods, :first, :last, { checked: session[:address].present? ? Order.payment_methods.keys.first : Order.payment_methods.keys.last }) do |b|
                     = b.label(data: {value: b.text.zero? ? t("delivery.paytabs") : t("delivery.place_order")}) { b.radio_button + (b.text.zero? ? t("delivery.debit_credit") : t("delivery.pick_from_branch") ) }

@@ -112,7 +112,9 @@ $(document).ready(function(){
     total_amount = parseFloat(quantity) * parseFloat(menu_item_price)
     $('.total-amount').val(total_amount);
     total = $('.total-amount').val();
-    amount = parseFloat(total) + (parseFloat(total) * 0.05 )
+    gst_value = $('.gst').text().split(" ")[3]
+    gst = parseFloat(gst_value) / 100
+    amount = parseFloat(total) + (parseFloat(total) * parseFloat(gst) )
     $('.display-total').val(amount);
   });
 

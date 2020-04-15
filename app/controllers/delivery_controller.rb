@@ -1,6 +1,7 @@
 class DeliveryController < ApplicationController
   include DeliveryHelper
   include PayTabs
+  before_action :find_tax, only: [:checkout, :save_order, :order_received]
 
   skip_before_action :verify_authenticity_token, only: %i[paytabs_callback]
 
@@ -41,17 +42,17 @@ class DeliveryController < ApplicationController
                                total: (quantity * chef_menu_item.menu_item.price), special_request: special_request)
       end
 
-      @order.vat            = Order::VAT
+      @order.vat            = @tax_percentage
       sub_total_without_vat = @order.order_items.sum{|x| x.total}
       @order.sub_total      = sub_total_without_vat + (sub_total_without_vat * @order.vat)
       @order.ordered_as     = current_user.present? ? Order.ordered_as[:registered_user] : Order.ordered_as[:guest_user]
       @order.user_id        = current_user.id if current_user.present?
       @order.save!
-      if @order.debit_credit_card?
-        payment_integration(@order)
-      else
-        redirect_to order_received_delivery_path(@order.id)
-      end
+      # if @order.debit_credit_card?
+        # payment_integration(@order)
+      # else
+      redirect_to order_received_delivery_path(@order.id)
+      # end
     else
       redirect_to checkout_delivery_index_path
     end
@@ -189,6 +190,16 @@ def order_received
       @chef_menu_items = ChefCategoryItem.where(id: chef_menu_item_ids)
     else
       redirect_to root_path(anchor: 'complete_menu')
+    end
+  end
+
+  def find_tax
+    if Tax.any?
+      @tax = Tax.first.tax
+      @tax_percentage = @tax.to_f / 100
+    else
+      @tax = 0
+      @tax_percentage = 0
     end
   end
 end

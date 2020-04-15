@@ -1,4 +1,5 @@
 class Admin::OrdersController < Admin::BaseController
+  before_action :find_tax, only: [:new]
 
   def index
 
@@ -21,8 +22,9 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def order_chefs
-    @data = ChefCategoryItem.where(menu_item_id: params[:menu_item])
-    @chef_category = @data.map{ |k|[k.id,k.chef_category.user.first_name] }
+    @chef_data = ChefCategoryItem.where(menu_item_id: params[:menu_item])
+    @data = ChefAvalibility.where(chef_category_item_id: @chef_data.ids).where(day: Time.now.strftime("%A"))
+    @chef_category = @data.map{ |k|[k.chef_category_item_id, k.chef_category_item.chef_category.user.first_name] }
     render json: @chef_category
   end
 
@@ -76,5 +78,15 @@ class Admin::OrdersController < Admin::BaseController
 
   def user_params
     params.require(:order).require(:user).permit(:first_name, :last_name, :email, :phone, :country, :state, :city, :address)
+  end
+
+  def find_tax
+    if Tax.any?
+      @tax = Tax.first.tax
+      @tax_percentage = @tax.to_f / 100
+    else
+      @tax = 0
+      @tax_percentage = 0
+    end
   end
 end

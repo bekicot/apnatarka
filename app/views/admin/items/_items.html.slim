@@ -2,7 +2,7 @@
   .modal-dialog role="document" 
     .modal-content
       .modal-header
-        h5#exampleModalLabel.modal-title Add Category
+        h5#exampleModalLabel.modal-title Add Item
         button.close aria-label="Close" data-dismiss="modal" type="button" 
           span aria-hidden="true"  &times;
       .modal-body
@@ -12,8 +12,12 @@
                 = item
           .form-group.clearfix
             .col-sm-12
-              = f.label :title, class: 'show'
+              = f.label :Title, class: 'show'
               = f.text_field :title, class: 'form-control', required: true
+          .form-group.clearfix
+            .col-sm-12
+              = f.label :Inventory_Category, class: 'show'
+              = f.select :inventory_category_id, options_for_select(@inventory_categories.map{|k,v| [k.title, k.id] }), {prompt: "Select Category"}, { class: 'form-control country-states' }
           .col-sm-12
           .modal-footer
             = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'

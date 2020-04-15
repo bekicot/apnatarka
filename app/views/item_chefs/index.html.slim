@@ -53,25 +53,26 @@
             - @chef_category_items.each do |chef_cat_item|
               - chef = chef_cat_item.chef_category.user
               - if chef.present?
-                .col-lg-4.col-md-6.col-sm-12
-                  .card.border.border-warning.card-chef
-                    = image_tag( "chef_background.jpg", class: "image1-chef-card" )
-                    .item-chefs-image
-                      = image_tag chef.avatar.url, class: "rounded-circle mx-auto d-block"
-                    .card-body
-                      h3.card-title
-                        = "#{chef.first_name.titleize} #{chef.last_name.titleize}"
-                      p.textcolor-chef-card 
-                        = chef.address.truncate(35)
-                        i.fa.fa-info.information data-html="true" title=("#{ chef.address }") 
-                      hr
-                      .font-size
-                        h5. Available In :
-                        .row.mt-4.textcolor-chef-card2.text-center
-                          - if chef_cat_item.chef_avalibilities.present?
-                            - chef_cat_item.chef_avalibilities.each do |available|
-                              button.btn.btn-warning = "#{available.day}"
-                          - else
-                            button.btn.btn-warning = "Not Added Yet..!"
-                        .
-                          = link_to "Add to Cart", add_to_cart_delivery_index_path(chef_menu_item: chef_cat_item), class: 'btn btn-block btn-warning btn-font' , remote: true
+                - if chef_cat_item.chef_avalibilities.where(day: Time.now.strftime("%A")).present?
+                  .col-lg-4.col-md-6.col-sm-12
+                    .card.border.border-warning.card-chef
+                      = image_tag( "chef_background.jpg", class: "image1-chef-card" )
+                      .item-chefs-image
+                        = image_tag chef.avatar.url, class: "rounded-circle mx-auto d-block"
+                      .card-body
+                        h3.card-title
+                          = "#{chef.first_name.titleize} #{chef.last_name.titleize}"
+                        p.textcolor-chef-card 
+                          = chef.address.truncate(35)
+                          i.fa.fa-info.information data-html="true" title=("#{ chef.address }") 
+                        hr
+                        .font-size
+                          h5. Available In :
+                          .row.mt-4.textcolor-chef-card2.text-center
+                            - if chef_cat_item.chef_avalibilities.present?
+                              - chef_cat_item.chef_avalibilities.each do |available|
+                                button.btn.btn-warning = "#{available.day}"
+                            - else
+                              button.btn.btn-warning = "Not Added Yet..!"
+                          .
+                            = link_to "Add to Cart", add_to_cart_delivery_index_path(chef_menu_item: chef_cat_item), class: 'btn btn-block btn-warning btn-font' , remote: true

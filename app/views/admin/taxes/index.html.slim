@@ -1,0 +1,28 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-shopping-basket
+        | Tax Details
+      - if !@taxes.any?
+        = link_to "Add Tax Percentage", new_admin_tax_path, class: "btn custom-btn btn-primary pull-right", remote: true
+    .card-body
+      - if @taxes.present?
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Tax Percentage
+                th 
+                  | Actions
+            tbody
+            - @taxes.each do |tax|
+              tr
+                td
+                  = "#{tax.tax} %"
+                td 
+                  = link_to "Edit", edit_admin_tax_path(tax), class: 'btn btn-primary btn-xs', remote: true
+                  = link_to "Delete", admin_tax_path(tax), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: "Are you sure!"}
+
+#tax_modal
