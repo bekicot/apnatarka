@@ -163,7 +163,7 @@ en:
     order_complete: "Order Complete"
     billing_details: "Billing Details"
     your_order: "Your Order"
-    first_name: "First name"
+    first_name: "Name"
     last_name: "Last Name"
     email: "Email"
     phone: "Phone"

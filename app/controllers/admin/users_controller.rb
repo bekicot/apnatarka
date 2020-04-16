@@ -8,7 +8,7 @@ class Admin::UsersController < Admin::BaseController
   before_action :find_country_and_state, only: [:new, :edit]
 
   def index
-    @users = User.all
+    @users = User.where(role: "super_admin").order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -50,6 +50,13 @@ class Admin::UsersController < Admin::BaseController
     @user.destroy
     flash[:success] = t("crud.user_delete")
     redirect_back(fallback_location: root_path)
+  end
+
+  def user_roles
+    @users = User.where(role: params[:user_role]).order('created_at DESC').paginate(page: params[:page], per_page: 10)
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

@@ -19,14 +19,14 @@
             .col-sm-8.arabic-order
               .col-sm-12
                 h2 = t("delivery.billing_details")
-              .col-sm-6.mob-b-15.arabic-right
+              .col-sm-12.mob-b-15.arabic-right
                 .form-group
                   = f.label t("delivery.first_name")
                   = f.text_field :first_name, class: 'form-control', required: true, value: "#{current_user.first_name if current_user.present?}"
-              .col-sm-6.mob-b-15.arabic-right
-                .form-group
-                  = f.label t("delivery.last_name")
-                  = f.text_field :last_name,required: true, class: 'form-control', value: "#{current_user.last_name if current_user.present?}"
+              / .col-sm-6.mob-b-15.arabic-right
+              /   .form-group
+              /     = f.label t("delivery.last_name")
+              /     = f.text_field :last_name,required: true, class: 'form-control', value: "#{current_user.last_name if current_user.present?}"
               .col-sm-6.mob-b-15.arabic-right
                 .form-group
                   = f.label t("delivery.email")
@@ -60,30 +60,30 @@
 
                       = ff.hidden_field :user_id, value: "#{current_user.id}" if current_user.present?
                       .row
-                        .col-sm-6.mob-b-15.arabic-right
-                          .form-group
-                            = ff.label t("address.address_type")
-                            = ff.select :address_type, options_for_select(Address.address_types.map{|k,v| [k,k] }), {},class: 'form-control pointer'
-                            / ,readonly: true, value: "#{session[:address].try(:[], 'address_type').present? ? session[:address].try(:[], 'address_type') : session[:address].try(:[], 'address').try(:[], 'address_type')}"
+                      /   .col-sm-6.mob-b-15.arabic-right
+                      /     .form-group
+                      /       = ff.label t("address.address_type")
+                      /       = ff.select :address_type, options_for_select(Address.address_types.map{|k,v| [k,k] }), {},class: 'form-control pointer'
+                      /       / ,readonly: true, value: "#{session[:address].try(:[], 'address_type').present? ? session[:address].try(:[], 'address_type') : session[:address].try(:[], 'address').try(:[], 'address_type')}"
 
-                        .col-sm-6.mob-b-15.arabic-right
-                          .form-group
-                            = ff.label t("address.building_name")
-                            = ff.text_field :building_name, class: 'form-control pointer'
-                            / ,readonly: true, value: "#{session[:address].try(:[], 'building_name').present? ? session[:address].try(:[], 'building_name') : session[:address].try(:[], 'address').try(:[], 'building_name')}"
+                      /   .col-sm-6.mob-b-15.arabic-right
+                      /     .form-group
+                      /       = ff.label t("address.building_name")
+                      /       = ff.text_field :building_name, class: 'form-control pointer'
+                      /       / ,readonly: true, value: "#{session[:address].try(:[], 'building_name').present? ? session[:address].try(:[], 'building_name') : session[:address].try(:[], 'address').try(:[], 'building_name')}"
 
-                      .row
-                        .col-sm-6.mob-b-15.arabic-right
-                          .form-group
-                            = ff.label t("address.building_number")
-                            = ff.text_field :building_number, class: 'form-control pointer'
-                            / ,readonly: true, value: "#{session[:address].try(:[], 'building_number').present? ? session[:address].try(:[], 'building_number') : session[:address].try(:[], 'address').try(:[], 'building_number')}"
+                      / .row
+                      /   .col-sm-6.mob-b-15.arabic-right
+                      /     .form-group
+                      /       = ff.label t("address.building_number")
+                      /       = ff.text_field :building_number, class: 'form-control pointer'
+                      /       / ,readonly: true, value: "#{session[:address].try(:[], 'building_number').present? ? session[:address].try(:[], 'building_number') : session[:address].try(:[], 'address').try(:[], 'building_number')}"
 
-                        .col-sm-6.mob-b-15.arabic-right
-                          .form-group
-                            = ff.label t("address.room_no")
-                            = ff.text_field :room_no, class: 'form-control pointer'
-                            / ,readonly: true, value: "#{session[:address].try(:[], 'room_no').present? ? session[:address].try(:[], 'room_no') : session[:address].try(:[], 'address').try(:[], 'room_no')}"
+                      /   .col-sm-6.mob-b-15.arabic-right
+                      /     .form-group
+                      /       = ff.label t("address.room_no")
+                      /       = ff.text_field :room_no, class: 'form-control pointer'
+                      /       / ,readonly: true, value: "#{session[:address].try(:[], 'room_no').present? ? session[:address].try(:[], 'room_no') : session[:address].try(:[], 'address').try(:[], 'room_no')}"
 
                       .row
                         .col-sm-12.mob-b-15.arabic-right
@@ -104,6 +104,10 @@
                 .form-group
                   = f.label t("delivery.town_city")
                   = f.select :city, options_for_select(["Bahawalpur"], [ {}.map{|k,v| [v,k] }] ), {}, {class: 'form-control',required: true}
+              .col-sm-12.mob-b-15.arabic-right
+                .form-group
+                  = f.label t("delivery.address")
+                  = f.text_field :address_one,class: 'form-control',required: true
              
               .col-sm-12.mob-b-15.arabic-right
                 .form-group
@@ -156,7 +160,7 @@
                   p class="pull-right" = "$#{number_with_precision(total + (total * (@tax_percentage)), precision: 2)}"
                 .form-check
                   = f.collection_radio_buttons(:payment_method, Order.payment_methods, :first, :last, { checked: session[:address].present? ? Order.payment_methods.keys.first : Order.payment_methods.keys.last }) do |b|
-                    = b.label(data: {value: b.text.zero? ? t("delivery.paytabs") : t("delivery.place_order")}) { b.radio_button + (b.text.zero? ? t("delivery.debit_credit") : t("delivery.pick_from_branch") ) }
+                    = b.label(data: {value: b.text.zero? ? t("delivery.paytabs") : t("delivery.place_order")}) { b.radio_button + (b.text.zero? ? t("delivery.debit_credit") : t("delivery.home_delivery") ) }
                 .form-check.text-holder
                   = f.check_box :terms, required: true, "data-parsley-error-message": "You must accept terms to place order"
                   p class="text"

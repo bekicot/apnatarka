@@ -113,20 +113,23 @@
           .state
             span = @order.state.humanize
             strong = t("delivery.state")
+          .state
+            span = @order.address_one.humanize
+            strong = t("delivery.address")
 
           - if @order.address.present?
-            .adress-type
-              span = @order.address&.address_type || "N/A"
-              strong = t("address.address_type")
-            .building-name
-              span = @order.address&.building_name || "N/A"
-              strong = t("address.building_name")
-            .building-number
-              span = @order.address&.building_number || "N/A"
-              strong = t("address.building_number")
-            .room-number
-              span = @order.address&.room_no || "N/A"
-              strong = t("address.room_no")
+            / .adress-type
+            /   span = @order.address&.address_type || "N/A"
+            /   strong = t("address.address_type")
+            / .building-name
+            /   span = @order.address&.building_name || "N/A"
+            /   strong = t("address.building_name")
+            / .building-number
+            /   span = @order.address&.building_number || "N/A"
+            /   strong = t("address.building_number")
+            / .room-number
+            /   span = @order.address&.room_no || "N/A"
+            /   strong = t("address.room_no")
             .direction
               span = @order.address&.direction || "N/A"
               strong = t("address.direction")

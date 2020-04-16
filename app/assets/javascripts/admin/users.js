@@ -17,5 +17,15 @@ $(document).ready(function(){
       });
       }
      });
+  });
+
+  $('.user-role').on('change', function(){
+    user_role = $(this).val()
+    $.ajax({
+      type: 'GET',
+      url: '/admin/users/user_roles',
+      dataType: 'script',
+      data : { user_role: user_role}
+     });
   }); 
 });

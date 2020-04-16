@@ -176,7 +176,7 @@ def order_received
   def delivery_params
     params.require(:order).permit(:first_name, :last_name, :email, :phone, :address_two, :city,
                                   :state, :post_code, :payment_method, :terms, :long, :lat,
-                                  :is_location_check, :delivery_time, :address_id)
+                                  :is_location_check, :delivery_time, :address_id, :address_one)
   end
 
   def address_params
