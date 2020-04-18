@@ -48,4 +48,4 @@
               h4 = t("delivery.total")
               p = "$#{number_with_precision(total + (total * Order::VAT), precision: 2)}"
           .buttons
-            = link_to t("delivery.proceed_to_checkout"), checkout_delivery_index_path, class: 'btn btn-default'
+            = link_to t("delivery.Order_Now"), checkout_delivery_index_path, class: 'btn btn-default'

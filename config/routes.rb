@@ -116,6 +116,7 @@ Rails.application.routes.draw do
     resources :users do
       collection do
         get :get_cities
+        get :user_roles
       end
       resources :chef_categories do
         resources :chef_category_items  
