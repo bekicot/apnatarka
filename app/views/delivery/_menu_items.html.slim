@@ -5,12 +5,13 @@
       - if menu_items.present?
           ul.full-menus.text-center
             - menu_items.each do |menu_item|
-              li.col-md-4.col-sm-6
-                .img-box
-                  = image_tag menu_item.avatar.url(:medium), class: 'img-responsive'
-                  .order type="button" class="btn btn-primary btn-lg" id=("add-more-item-#{menu_item.id}")
-                  = render "add_link", menu_item: menu_item
-                .txt-holder.clearfix
-                  .price $558
-                  span.title.text-capitalize= menu_item.title
-                  span.title.text-capitalize= "$#{number_with_precision(menu_item.price, precision: 2)}"
+              -if check_chef_avalibility(menu_item)
+                li.col-md-4.col-sm-6
+                  .img-box
+                    = image_tag menu_item.avatar.url(:medium), class: 'img-responsive'
+                    .order type="button" class="btn btn-primary btn-lg" id=("add-more-item-#{menu_item.id}")
+                    = render "add_link", menu_item: menu_item
+                  .txt-holder.clearfix
+                    .price $558
+                    span.title.text-capitalize= menu_item.title
+                    span.title.text-capitalize= "$#{number_with_precision(menu_item.price, precision: 2)}"
