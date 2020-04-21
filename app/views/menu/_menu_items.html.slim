@@ -5,17 +5,18 @@
       - if menu_items.present?
           ul.full-menus.text-center
             - menu_items.each do |menu_item|
-              li.col-sm-4
-                .img-box
-                  = image_tag menu_item.avatar.url(:medium), class: 'img-responsive'
-                  .order type="button" class="btn btn-primary btn-lg"
-                    = link_to menu_item_chefs_path(menu_item.id), class: 'text-center item-modal' do
-                      .box
-                        .holder
-                          .fa.fa-cutlery
-                .txt-holder.clearfix
-                  .price $558
-                  span.title.text-capitalize= menu_item.title
-                  p= menu_item.description
+              -if check_chef_avalibility(menu_item)
+                li.col-sm-4
+                  .img-box
+                    = image_tag menu_item.avatar.url(:medium), class: 'img-responsive'
+                    .order type="button" class="btn btn-primary btn-lg"
+                      = link_to menu_item_chefs_path(menu_item.id), class: 'text-center item-modal' do
+                        .box
+                          .holder
+                            .fa.fa-cutlery
+                  .txt-holder.clearfix
+                    .price $558
+                    span.title.text-capitalize= menu_item.title
+                    p= menu_item.description
       - else
         = render partial: "menu/empty"

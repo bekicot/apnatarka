@@ -29,6 +29,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def create
+    debugger
     @exists = User.find_by_phone(params[:order][:phone])
     if @exists.present?
       @order = Order.new(order_params)
