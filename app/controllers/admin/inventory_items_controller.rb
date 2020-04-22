@@ -7,6 +7,7 @@ class Admin::InventoryItemsController < Admin::BaseController
                        Date.today.year, Date.today.month).order('created_at DESC')
                       .paginate(page: params[:page], per_page: 10)
   end
+  
   def new 
     @inventroy_item = InventoryItem.new
   end

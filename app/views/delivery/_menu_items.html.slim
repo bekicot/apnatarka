@@ -9,8 +9,13 @@
                 li.col-md-4.col-sm-6
                   .img-box
                     = image_tag menu_item.avatar.url(:medium), class: 'img-responsive'
-                    .order type="button" class="btn btn-primary btn-lg" id=("add-more-item-#{menu_item.id}")
-                    = render "add_link", menu_item: menu_item
+                    / .order type="button" class="btn btn-primary btn-lg" id=("add-more-item-#{menu_item.id}")
+                    / = render "add_link", menu_item: menu_item
+                    .order type="button" class="btn btn-primary btn-lg"
+                      = link_to chef_items_delivery_index_path(menu_id: menu_item.id), class: 'text-center item-modal', remote: true do
+                        .box
+                          .holder
+                            .fa.fa-cutlery
                   .txt-holder.clearfix
                     .price $558
                     span.title.text-capitalize= menu_item.title

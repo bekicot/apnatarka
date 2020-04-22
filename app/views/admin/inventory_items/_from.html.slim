@@ -3,28 +3,33 @@
     - @inventroy_item.errors.full_messages.each do |error_message| 
         = error_message if @inventroy_item.errors.full_messages.first == error_message
   .collect-data
+    .row.text-center
+      .form-group.clearfix.col-md-6
+        .col-sm-12
+          = f.label :Indate, class: 'show'
+          = f.text_field :indate, required: true, class: 'form-control', id: 'datetimepicker1'
     .row
-      .form-group.clearfix.col-md-4
+      .form-group.clearfix.col-md-2
         .col-sm-12
           = f.label :Select_Item, class: 'show'
           = f.select :item_id, options_for_select(@items.map{|item| [item.title, item.id ]},
             selected: @inventroy_item.item_id ), {include_blank: "-- Select Item --"}, required: true, class: 'form-control'
-      .form-group.clearfix.col-md-4
+      .form-group.clearfix.col-md-2
         .col-sm-12
           = f.label :Price, class: 'show'
-          = f.number_field  :price, min: 0, required: true, class: 'form-control'
-      .form-group.clearfix.col-md-4
+          = f.number_field  :price, min: 0, required: true, class: 'form-control item-price'
+      .form-group.clearfix.col-md-2
         .col-sm-12
           = f.label :Quantity, class: 'show'
-          = f.number_field :quantity, min: 0, required: true, class: 'form-control'
-      .form-group.clearfix.col-md-4
+          = f.number_field :quantity, min: 0, required: true, class: 'form-control item-quantity'
+      .form-group.clearfix.col-md-2
         .col-sm-12
           = f.label :Measure, class: 'show'
           = f.select :measure, options_for_select(InventoryItem.measures.map{|k,v|[k,k]}, selected: @inventroy_item.measure ),{ include_blank: "-- Select Measure --" }, required: true, class: 'form-control'
-      .form-group.clearfix.col-md-4
+      .form-group.clearfix.col-md-2
         .col-sm-12
-          = f.label :Indate, class: 'show'
-          = f.text_field :indate, required: true, class: 'form-control', id: 'datetimepicker1'
+          = f.label :Total_Price, class: 'show'
+          = f.number_field  :total_price, min: 0, required: true, class: 'form-control total-price'
   .form-to-append
   .col-sm-12
     = link_to "Add More", append_inventory_item_admin_inventory_items_path, class: "btn custom-btn btn-primary", remote: true

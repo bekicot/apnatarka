@@ -107,7 +107,7 @@ $(document).ready(function(){
      });
   });
 
-  $('.order-quantity').on('change',function (){
+  $('.order-quantity').on('keyup',function (){
     quantity = $(this).val();
     total_amount = parseFloat(quantity) * parseFloat(menu_item_price)
     $('.total-amount').val(total_amount);
@@ -116,6 +116,11 @@ $(document).ready(function(){
     gst = parseFloat(gst_value) / 100
     amount = parseFloat(total) + (parseFloat(total) * parseFloat(gst) )
     $('.display-total').val(amount);
+  });
+
+  $('#check-phone').on('keyup', function(){
+    phone = $(this).val();
+    $('.show-phone').val(phone);
   });
 
 //   $('.total-amount').keyup(function () {

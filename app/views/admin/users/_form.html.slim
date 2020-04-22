@@ -4,12 +4,8 @@
           = error_message if @user.errors.full_messages.first == error_message
   .form-group.clearfix
     .col-sm-12
-      = f.label :first_name, class: 'show'
+      = f.label :name, class: 'show'
       = f.text_field :first_name, required: true, class: 'form-control'
-  .form-group.clearfix
-    .col-sm-12
-      = f.label :last_name, class: 'show'
-      = f.text_field :last_name, required: true, class: 'form-control'
   .form-group.clearfix
     .col-sm-12
       = f.label :email, class: 'show'

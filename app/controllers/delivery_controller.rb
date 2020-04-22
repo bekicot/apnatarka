@@ -65,6 +65,8 @@ def order_received
   end
 
   def add_to_cart
+    @chef_menu_item = ChefCategoryItem.find(params[:chef_menu_item])
+    @total = 0
     if params[:chef_menu_item].present?
       session[:cart]            = {} if session[:cart].blank?
       session[:special_request] = {} if session[:special_request].blank?
@@ -169,6 +171,15 @@ def order_received
   def re_payment
     order = Order.find(params[:order])
     payment_integration(order)
+  end
+
+  def chef_items
+    @menu_item = MenuItem.find(params[:menu_id])
+    @chef_category_items = @menu_item.chef_category_items
+    @categories = Category.all
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

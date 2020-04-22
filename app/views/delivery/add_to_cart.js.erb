@@ -10,3 +10,4 @@ swal({
     text: "Check Delivery Menu to Process your order",
     type: "success",
 });
+$('#chef_menu_item').html('<%= escape_javascript(render(partial: "chef_menu_item", locals: {chef_menu_item: @chef_menu_item, total: @total})) %>');
