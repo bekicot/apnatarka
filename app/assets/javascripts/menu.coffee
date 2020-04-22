@@ -5,6 +5,9 @@
 $ ->
   $('body').on 'click', 'a.item-modal', (e) ->
     $('.loader-area').show()
+    setTimeout (->
+      $('.loader-area').hide()
+    ), 500
     return
 
   $('body').on 'click', '.nav-tabs li a', (e) ->

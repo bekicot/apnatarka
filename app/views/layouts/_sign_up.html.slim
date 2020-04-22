@@ -15,14 +15,10 @@ div.modal.fade id="sign-up-modal" aria-labelledby="myModalLabel" role="dialog" t
           .form-section
             = form_for :user, url: registration_path(:user), html: {"data-parsley-validate" => true} do |f|
               .row
-                .col-sm-6
+                .col-sm-12
                   .form-group
                     = f.label t("signin_signup.first_name")
                     = f.text_field :first_name, class: 'form-control', required: true
-                .col-sm-6
-                  .form-group
-                    = f.label t("signin_signup.last_name")
-                    = f.text_field :last_name, class: 'form-control', required: true
               .row
                 .col-sm-6
                   .form-group

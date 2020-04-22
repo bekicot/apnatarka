@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       get :re_payment
       get :all_favorite_orders
       get :get_cities
+      get :chef_items
     end
     member do
       get :remove_item

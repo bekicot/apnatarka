@@ -16,6 +16,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def order_items
+    debugger
     @data = MenuItem.where(category_id: params[:category])
     @menu_items = @data.map{ |k| [k.id,k.title] if k.chef_category_items.present? }
     render json: @menu_items
@@ -29,7 +30,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def create
-    debugger
+    new_user_params = params.require(:order).require(:user).permit(:first_name, :email, :phone, :country, :state, :city, :address)
     @exists = User.find_by_phone(params[:order][:phone])
     if @exists.present?
       @order = Order.new(order_params)
@@ -37,7 +38,10 @@ class Admin::OrdersController < Admin::BaseController
       @order.ordered_as = "order_from_branch"
       @order.save(validate: false)
     else
-      @user = User.new(user_params)
+      if !params[:order][:user][:email].present?
+        new_user_params = new_user_params.merge!({email: "customer_#{(User.last&.id || 0) + 1}@gmail.com"})
+      end
+      @user = User.new(new_user_params)
       @order = @user.orders.new(order_params)
       @order.ordered_as = "order_from_branch"
       @user.save(validate: false)
@@ -69,25 +73,26 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   private
-  def order_params
-    params.require(:order).permit(:phone, :sub_total, :city, :state, :address_one, order_items_attributes: [ :chef_category_item_id, :quantity, :special_request, :total ] )
-  end
 
-  def order_item_params
-    params.require(:order).require(:order_item).permit(:chef_category_item_id, :quantity, :special_request, :total)
-  end
-
-  def user_params
-    params.require(:order).require(:user).permit(:first_name, :last_name, :email, :phone, :country, :state, :city, :address)
-  end
-
-  def find_tax
-    if Tax.any?
-      @tax = Tax.first.tax
-      @tax_percentage = @tax.to_f / 100
-    else
-      @tax = 0
-      @tax_percentage = 0
+    def order_params
+      params.require(:order).permit(:phone, :sub_total, :city, :state, :address_one, order_items_attributes: [ :chef_category_item_id, :quantity, :special_request, :total ] )
     end
-  end
+
+    # def new_user_params
+    #   params.require(:order).require(:user).permit(:first_name, :email, :phone, :country, :state, :city, :address)
+    # end
+
+    def order_item_params
+      params.require(:order).require(:order_item).permit(:chef_category_item_id, :quantity, :special_request, :total)
+    end
+
+    def find_tax
+      if Tax.any?
+        @tax = Tax.first.tax
+        @tax_percentage = @tax.to_f / 100
+      else
+        @tax = 0
+        @tax_percentage = 0
+      end
+    end
 end

@@ -32,6 +32,13 @@ $(document).ready(function(){
       dataType: 'script',
       data : { year: year, month: month}
      });
+  });
+
+  $('.item-quantity, .item-price').on('change', function(){
+    price = $('.item-price').val();
+    quantity = $('.item-quantity').val();
+    total = parseFloat(price) * parseFloat(quantity)
+    $('.total-price').val(total)
 
   });
 
