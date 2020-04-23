@@ -69,6 +69,7 @@
               td = @order.created_at.strftime("%B %d, %Y")
               td = @order&.delivery_time&.strftime("%m-%d-%Y %I:%M") || Time.now.strftime("%m-%d-%Y %I:%M")
               td = "$#{number_with_precision(@order.sub_total, precision: 2)}"
+              - debugger
               td = payment_method_translation(@order.payment_method)
               / - if @order.debit_credit_card?
               /   td = @order.status.capitalize

@@ -1,5 +1,6 @@
 class Admin::OrderHistoriesController < Admin::BaseController
   before_action :check_admin_moderator_user, only: [:index]
+  before_action :find_tax, only: [:show]
 
   def index
     @orders = Order.includes(:order_items).where(user_id: current_user.id).paginate(page: params[:page], per_page: 10)
@@ -45,5 +46,15 @@ class Admin::OrderHistoriesController < Admin::BaseController
 
   def rider_params
     params.require(:order).require(:rider).permit(:user_id, :order_id, :pickup_time, :delivery_time)
+  end
+
+  def find_tax
+    if Tax.any?
+      @tax = Tax.first.tax
+      @tax_percentage = @tax.to_f / 100
+    else
+      @tax = 0
+      @tax_percentage = 0
+    end
   end
 end

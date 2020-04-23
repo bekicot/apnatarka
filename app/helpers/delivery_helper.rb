@@ -4,7 +4,7 @@ module DeliveryHelper
     if Order.payment_methods[method] == 0
       t('delivery.debited_credited')
     elsif Order.payment_methods[method] == 1
-      t('delivery.picked_from_branch')
+      t('delivery.home_delivery')
     end
   end
 

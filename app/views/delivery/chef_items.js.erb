@@ -1,2 +1,3 @@
-$('#add-more-items').html('<%= escape_javascript(render(partial: "chef_items", locals: {chef_cateogry_items: @chef_category_items})) %>');
-$('#add-more-items-modal').modal('show');
+$('#item-chefs').html('<%= escape_javascript(render(partial: "chef_items", locals: {chef_cateogry_items: @chef_category_items})) %>');
+$('#add-more-items-modal').modal('hide');
+$('#item-chefs-modal').modal('show');
