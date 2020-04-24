@@ -36,3 +36,9 @@ $(document).ready ->
     return
   return
 
+  $('#fields').on('cocoon:after-insert', (e, inserted_item) ->
+    debugger
+    num = $('.fields').length
+    inserted_item.find('.field-label').html('Field #'+num)
+  )
+

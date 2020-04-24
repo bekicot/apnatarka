@@ -1,7 +1,7 @@
 class DeliveryController < ApplicationController
   include DeliveryHelper
   include PayTabs
-  before_action :find_tax, only: [:checkout, :save_order, :order_received]
+  before_action :find_tax, only: [:checkout, :save_order, :order_received, :index]
 
   skip_before_action :verify_authenticity_token, only: %i[paytabs_callback]
 
@@ -79,6 +79,7 @@ def order_received
         @selected_item_text = t("delivery.added")
       end
     end
+    prepare_items
   end
 
   def special_request

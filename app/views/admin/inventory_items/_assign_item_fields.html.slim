@@ -1,0 +1,34 @@
+.row
+  .form-group.clearfix.col-md-2
+    .col-sm-12
+      = f.label :Select_Item, class: 'show'
+      = select_tag "item1[item_id]", options_for_select(@items.map{|item| [item.title, item.id ]},
+        selected: @inventroy_item.item_id ), required: true, class: 'form-control'
+  .form-group.clearfix.col-md-2
+    .col-sm-12
+      = f.label :Quantity, class: 'show'
+      = number_field_tag "item1[quantity]", nil, min: 0, required: true, class: 'form-control item-quantity'
+  .form-group.clearfix.col-md-2
+    .col-sm-12
+      = f.label :Measure, class: 'show'
+      = select_tag "item1[measure]", options_for_select(InventoryItem.measures.map{|k,v|[k,k]}, selected: @inventroy_item.measure ),required: true, class: 'form-control'
+  .form-group.clearfix.col-md-2
+    .col-sm-12
+      = f.label :rate, class: 'show'
+      = number_field_tag  "item1[price]", nil, min: 0, required: true, class: 'form-control item-price'
+  .form-group.clearfix.col-md-2
+    .col-sm-12
+      = f.label :stock_quantity, class: 'show'
+      = number_field_tag  "item1[stock_quantity]", nil, min: 0, required: true, class: 'form-control'
+  .form-group.clearfix.col-md-2
+    .col-sm-12
+      = f.label :Total_Price, class: 'show'
+      = number_field_tag  "item1[total_price]", nil, min: 0, required: true, class: 'form-control total-price'
+  .form-group.clearfix.col-md-2
+    .col-sm-12
+      = f.label :discount, class: 'show'
+      = number_field_tag  "item1[discount]", nil, min: 0, required: true, class: 'form-control'
+  .form-group.clearfix.col-md-2
+    .col-sm-12
+      = f.label :Total_expense, class: 'show'
+      = number_field_tag  "item1[total_expense]", nil, min: 0, required: true, class: 'form-control'

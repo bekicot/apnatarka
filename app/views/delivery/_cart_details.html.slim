@@ -11,9 +11,8 @@
         h3 = t("delivery.your_order")
     .table-body
       - total = 0
-      - @chef_menu_items.each do |chef_menu_item|
-        #chef_menu_item
-          = render 'chef_menu_item', chef_menu_item: chef_menu_item, total: total
+      #chef_menu_item
+        = render 'chef_menu_item', chef_menu_items: @chef_menu_items, total: total
   .lower-part.clearfix
     .row
       .col-sm-6.button-block
@@ -27,7 +26,7 @@
               p = "$#{number_with_precision(total, precision: 2)}"
             .sub-total
               h4 = t("delivery.vat")
-              p = Order::VAT_DISPLAY
+              p = @tax
             .total
               h4 = t("delivery.total")
               p = "$#{number_with_precision(total + (total * Order::VAT), precision: 2)}"

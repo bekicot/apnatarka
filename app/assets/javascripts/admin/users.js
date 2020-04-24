@@ -28,4 +28,11 @@ $(document).ready(function(){
       data : { user_role: user_role}
      });
   }); 
+
+  $('#fields').on('cocoon:after-insert', function(e, inserted_item) {
+    debugger
+    var num;
+    num = $('.fields').length;
+    return inserted_item.find('.field-label').html('Field #' + num);
+  });
 });
