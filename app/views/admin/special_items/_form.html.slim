@@ -1,0 +1,26 @@
+= form_for [:admin, @special_item], html: { "data-parsley-validate" => true } do |f|
+  - if @special_item.errors.full_messages.any? 
+      - @special_item.errors.full_messages.each do |error_message| 
+          = error_message if @special_item.errors.full_messages.first == error_message
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :name
+      = f.text_field  :name, class: 'form-control', required: true
+
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :Quantity
+      = f.number_field  :quantity, class: 'form-control', required: true
+
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :price
+      = f.text_field  :price, class: 'form-control', required: true
+
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :measurement
+      = f.select  :measurement, options_for_select(SpecialItem.measurements.map{|key, val| [key, val] }), {prompt: 'Leave If no measurment'}, class: 'form-control'
+
+  .col-sm-12
+    = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'
