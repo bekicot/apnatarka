@@ -20,7 +20,7 @@
                     td
                       strong
                         | Name
-                    td = "#{@order.first_name} #{@order.last_name}"
+                    td = @order.first_name.present? ? "#{@order.first_name}" : "#{@order.user.first_name}"
                   tr
                     td
                       strong
@@ -37,31 +37,26 @@
                         strong
                           | Delivery Time
                       td = @order&.delivery_time&.strftime("%m-%d-%Y %I:%M%p") || Time.now.strftime("%m-%d-%Y %I:%M%p")
-                    tr
-                      td
-                        strong
-                          | Address Type
-                      td = @order.address.address_type
-                    tr
-                      td
-                        strong
-                          | Building Name
-                      td = @order.address.building_name
-                    tr
-                      td
-                        strong
-                          | Building Number
-                      td = @order.address.building_number
-                    tr
-                      td
-                        strong
-                          | Room No
-                      td = @order.address.room_no
-                    tr
-                      td
-                        strong
-                          | Directions
-                      td = @order.address.direction
+                    / tr
+                    /   td
+                    /     strong
+                    /       | Address Type
+                    /   td = @order.address.address_type
+                    / tr
+                    /   td
+                    /     strong
+                    /       | Building Name
+                    /   td = @order.address.building_name
+                    / tr
+                    /   td
+                    /     strong
+                    /       | Building Number
+                    /   td = @order.address.building_number
+                    / tr
+                    /   td
+                    /     strong
+                    /       | Room No
+                    /   td = @order.address.room_no
                     tr
                       td
                         strong
@@ -114,8 +109,13 @@
                   tr
                     td
                       strong
-                        | Zip / Post Code
-                    td = @order.post_code
+                        | Nearby Place
+                    td = @order.address.direction
+                  / tr
+                  /   td
+                  /     strong
+                  /       | Zip / Post Code
+                  /   td = @order.post_code
                   tr
                     td
                       strong
@@ -129,8 +129,8 @@
                   tr
                     td
                       strong
-                        | VAT
-                    td = Order::VAT_DISPLAY
+                        | Tax
+                    td = @tax
                   tr
                     td
                       strong

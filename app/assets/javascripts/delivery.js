@@ -17,8 +17,7 @@ $(document).ready(function(){
       });
       }
      });
-  }); 
-
+  });
 
   if ($("#load_login_modals").length > 0) {
     $.ajax({
@@ -136,6 +135,11 @@ $('body').on('click', '#new_address_btn', function(){
     }
   });
 });
+
+function close_modal(){
+  $('#item-chefs-modal').modal('hide');
+  $('#add-more-items-modal').modal('show');
+}
 
 function radio_button_checked(value) {
   if ( value == undefined ) {

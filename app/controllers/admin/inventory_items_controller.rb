@@ -10,14 +10,18 @@ class Admin::InventoryItemsController < Admin::BaseController
   
   def new 
     @inventroy_item = InventoryItem.new
+    @inventroy_item.assign_items.build
   end
 
   def create
+    debugger
     @inventroy_item = InventoryItem.new(inventory_item_params)
     if @inventroy_item.save
       flash[:success] = "You Have Add Inventory Item Sucessfully"
+      redirect_to admin_inventory_items_path
+    else
+      render 'new'
     end
-    redirect_to admin_inventory_items_path
   end
 
   def change_status

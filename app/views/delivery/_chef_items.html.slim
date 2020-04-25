@@ -1,9 +1,8 @@
-div.modal.fade.bs-example-modal-lg id="add-more-items-modal" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+div.modal.fade.bs-example-modal-lg id="item-chefs-modal" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
   .modal-dialog.modal-lg role="document"
     .modal-content
       button.close aria-label="Close" data-dismiss="modal" type="button" 
         span aria-hidden="true"  ×
-
       #complete_menu.menu-block
       	.container
 	        .chefs
@@ -26,6 +25,6 @@ div.modal.fade.bs-example-modal-lg id="add-more-items-modal" aria-labelledby="my
 	                          i.fa.fa-info.information data-html="true" title=("#{ chef.address }") 
 	                        hr
 	                          .
-	                            = link_to "Add to Cart", add_to_cart_delivery_index_path(chef_menu_item: chef_cat_item), class: 'btn btn-block btn-warning btn-font' , remote: true
+	                            = link_to "Add to Cart", add_to_cart_delivery_index_path(chef_menu_item: chef_cat_item), class: 'btn btn-block btn-warning btn-font order-now-button' , remote: true, disabled: false
       		.twenty-forty
-	      		= link_to 'Back', :back, class: "btn btn-primary btn-custom login back-btn-margin"
+	      		button.btn.login.back-btn-margin onclick="close_modal()" back

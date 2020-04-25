@@ -16,7 +16,6 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def order_items
-    debugger
     @data = MenuItem.where(category_id: params[:category])
     @menu_items = @data.map{ |k| [k.id,k.title] if k.chef_category_items.present? }
     render json: @menu_items
