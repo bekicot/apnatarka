@@ -97,6 +97,7 @@ Rails.application.routes.draw do
     resources :inventory_categories
     resources :chef_mess
     resources :taxes
+    resources :special_items
     resources :orders do
       collection do
         get :order_items
