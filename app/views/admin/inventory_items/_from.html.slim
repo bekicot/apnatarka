@@ -42,7 +42,7 @@
         .col-sm-12
           = f.label :Total_expense, class: 'show'
           = f.number_field  :total_expense, min: 0, required: true, class: 'form-control'
-      .form-group.clearfix.col-md-12
+      .form-group.clearfix.col-md-12#inventry
         .col-sm-12#fields
           = f.fields_for :assign_items do |ff|
             br

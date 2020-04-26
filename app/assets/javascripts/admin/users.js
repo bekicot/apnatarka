@@ -29,10 +29,12 @@ $(document).ready(function(){
      });
   }); 
 
-  $('#fields').on('cocoon:after-insert', function(e, inserted_item) {
-    debugger
-    var num;
-    num = $('.fields').length;
-    return inserted_item.find('.field-label').html('Field #' + num);
+  $('#inventry #fields').on('cocoon:after-insert', function(e, inserted_item) {
+    $(".in_fields:last input, select").each(function(i) {
+      val1 = $(this).attr('name').split('[')[0]
+      val2 = $(this).attr('name').split('[')[1]
+      value = val1.concat($('.in_fields').length + '[').concat(val2)
+      $(this).attr('name', value);
+    });
   });
 });
