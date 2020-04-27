@@ -4,7 +4,6 @@ class CreateSpecialItems < ActiveRecord::Migration[5.1]
       t.string :name
       t.integer :quantity
       t.float :price
-      t.integer :measurement      
       t.timestamps
     end
   end

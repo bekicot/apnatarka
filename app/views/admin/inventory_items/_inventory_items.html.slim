@@ -4,17 +4,23 @@
       thead
         tr
           th
-            | Item Title
+            | Item
           th
-            | Item Quantity
+            | Quantity
           th
-            | Item Measure
+            | Measure
           th
-            | Item Price
-          / th
-          /   | Item Used
+            | Rate
           th
-            | Item In Date
+            | Stock Quantity
+          th
+            | Total Price
+          th
+            | Discount
+          th
+            | Total Expense
+          th
+            | In Date
           th
             | Action
       tbody
@@ -28,6 +34,14 @@
             = inventroy_item.measure
           td
             = inventroy_item.price
+          td 
+            = inventroy_item.stock_quantity
+          td
+            = inventroy_item.total_price
+          td
+            = inventroy_item.discount
+          td
+            = inventroy_item.total_expense
           / td 
           /   = form_for inventroy_item, url: change_status_admin_inventory_item_path(inventroy_item), method: :post, remote: true do |f|
           /         .col-sm-8
@@ -35,7 +49,7 @@
           /         .col-sm-4
           /           = f.submit 'Update', class: 'btn btn-primary btn-xs custom-btn'
           td
-            = inventroy_item.indate&.strftime('%Y-%m-%d')
+            = inventroy_item.indate&.strftime('%d/%m/%Y')
           td 
             = link_to "Assign Item", assign_item_admin_inventory_item_path(inventroy_item), class: 'btn btn-primary custom-btn', remote: true
             = link_to "View Item Detail", view_item_detail_admin_inventory_item_path(inventroy_item), class: 'btn btn-success btn-xs'

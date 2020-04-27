@@ -15,7 +15,7 @@
                 th
                   | Quantity
                 th
-                  | Measurement
+                  | Price
                 th
                   | Action
             tbody
@@ -26,10 +26,10 @@
                   td
                     = special_item.quantity
                   td
-                    = special_item.measurement
+                    = special_item.price
                   td
-                    = link_to admin_special_item_path(special_item), class: 'btn btn-primary btn-xs' do
-                      i.fa.fa-eye
+                    / = link_to admin_special_item_path(special_item), class: 'btn btn-primary btn-xs' do
+                    /   i.fa.fa-eye
                     = link_to edit_admin_special_item_path(special_item), class: 'btn btn-success btn-xs' do
                       i.fa.fa-pencil
                     - unless current_user.moderator_user?

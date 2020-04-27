@@ -49,7 +49,7 @@ class Admin::SpecialItemsController < Admin::BaseController
   end
 
   def special_item_prams
-    params.require(:special_item).permit(:name, :measurement, :price, :quantity)
+    params.require(:special_item).permit(:name, :price, :quantity)
   end
 
 end
