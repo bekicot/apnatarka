@@ -14,7 +14,6 @@ class Admin::InventoryItemsController < Admin::BaseController
   end
 
   def create
-    debugger
     @inventroy_items = []
     @inventroy_item = InventoryItem.create(inventory_item_params)
     if params[:inventry].present?

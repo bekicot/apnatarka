@@ -47,7 +47,7 @@ $(document).ready(function(){
   $('body').on('focusout', '.item-discount', function(){
     discount = $(this).val()
     total_price = $(this).closest('.item_discount').prev().find('.total-price').val()
-    after_discount_total = parseFloat(total_price) - ( parseFloat(total_price) * parseFloat(discount) / 100 )
+    after_discount_total =  parseFloat(total_price) - (parseFloat(discount))
     $(this).closest('.form-group').siblings('.total_expense').find('.total-expense').val(after_discount_total)
   });
 
