@@ -15,13 +15,18 @@ class Admin::InventoryItemsController < Admin::BaseController
 
   def create
     debugger
-    @inventroy_item = InventoryItem.new(inventory_item_params)
-    if @inventroy_item.save
+    @inventroy_items = []
+    @inventroy_item = InventoryItem.create(inventory_item_params)
+    if params[:inventry].present?
+      params[:inventry].each do |k,v|
+        @inventroy_items << InventoryItem.new( item_id: v[:item_id], price: v[:price], quantity: v[:quantity],
+              indate: params[:inventory_item][:indate], measure: v[:measure], stock_quantity: v[:stock_quantity],
+              total_price: v[:total_price], discount: v[:discount], total_expense: v[:total_expense])
+      end
+      InventoryItem.import @inventroy_items
+    end
       flash[:success] = "You Have Add Inventory Item Sucessfully"
       redirect_to admin_inventory_items_path
-    else
-      render 'new'
-    end
   end
 
   def change_status
@@ -93,7 +98,8 @@ class Admin::InventoryItemsController < Admin::BaseController
   private
 
   def inventory_item_params
-    params.require(:inventory_item).permit(:item_id, :price, :quantity, :measure, :indate)
+    params.require(:inventory_item).permit(:item_id, :price, :quantity, :measure, :indate,
+                                 :stock_quantity, :total_price, :discount, :total_expense)
   end
 
   def find_inventroy_item

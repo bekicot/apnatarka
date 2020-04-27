@@ -4,7 +4,7 @@
         = error_message if @inventroy_item.errors.full_messages.first == error_message
   .collect-data
     .row.text-center
-      .form-group.clearfix.col-md-6
+      .form-group.clearfix.col-md-12
         .col-sm-12
           = f.label :Indate, class: 'show'
           = f.text_field :indate, required: true, class: 'form-control', id: 'datetimepicker1'
@@ -22,35 +22,35 @@
         .col-sm-12
           = f.label :Measure, class: 'show'
           = f.select :measure, options_for_select(InventoryItem.measures.map{|k,v|[k,k]}, selected: @inventroy_item.measure ),{ include_blank: "Select" }, required: true, class: 'form-control'
-      .form-group.clearfix.col-md-2
+      .form-group.clearfix.col-md-2.item_price.price
         .col-sm-12
           = f.label :rate, class: 'show'
           = f.number_field  :price, min: 0, required: true, class: 'form-control item-price'
-      .form-group.clearfix.col-md-2
+      .form-group.clearfix.col-md-2.stock_quantity
         .col-sm-12
           = f.label :stock_quantity, class: 'show'
-          = f.number_field  :stock_quantity, min: 0, required: true, class: 'form-control'
-      .form-group.clearfix.col-md-2
+          = f.number_field  :stock_quantity, min: 0, required: true, class: 'form-control stock-quantity'
+      .form-group.clearfix.col-md-2.total_price
         .col-sm-12
           = f.label :Total_Price, class: 'show'
           = f.number_field  :total_price, min: 0, required: true, class: 'form-control total-price'
-      .form-group.clearfix.col-md-2
+      .form-group.clearfix.col-md-2.item_discount
         .col-sm-12
           = f.label :discount, class: 'show'
-          = f.number_field  :discount, min: 0, required: true, class: 'form-control'
-      .form-group.clearfix.col-md-2
+          = f.number_field  :discount, min: 0, required: true, class: 'form-control item-discount'
+      .form-group.clearfix.col-md-2.total_expense
         .col-sm-12
           = f.label :Total_expense, class: 'show'
-          = f.number_field  :total_expense, min: 0, required: true, class: 'form-control'
-      .form-group.clearfix.col-md-12
+          = f.number_field  :total_expense, min: 0, required: true, class: 'form-control total-expense'
+      .form-group.clearfix.col-md-12#inventry
         .col-sm-12#fields
           = f.fields_for :assign_items do |ff|
             br
             .links
-              = link_to_add_association 'add item', f, :assign_items, class: "btn custom-btn btn-primary pull-right"
+              = link_to_add_association 'Add More', f, :assign_items, class: "btn custom-btn btn-primary pull-right"
 
-  .form-to-append
-  .col-sm-12
-    = link_to "Add More", append_inventory_item_admin_inventory_items_path, class: "btn custom-btn btn-primary", remote: true
+  / .form-to-append
+  / .col-sm-12
+  /   = link_to "Add More", append_inventory_item_admin_inventory_items_path, class: "btn custom-btn btn-primary", remote: true
   .col-sm-12
     = f.submit "Submit", class: 'pull-right btn custom-btn btn-primary'

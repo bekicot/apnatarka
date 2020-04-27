@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   $(function () {
       $('#datetimepicker1').datetimepicker({
       	format:'YYYY-MM-DD HH:mm:ss'
@@ -34,12 +35,20 @@ $(document).ready(function(){
      });
   });
 
-  $('.item-quantity, .item-price').on('change', function(){
-    price = $('.item-price').val();
-    quantity = $('.item-quantity').val();
-    total = parseFloat(price) * parseFloat(quantity)
-    $('.total-price').val(total)
+  $('body').on('focusout', '.stock-quantity' , function(){
+    item_price = $(this).closest('.stock_quantity').prev().find('.item-price').val()
+    stock_quantity = $(this).val();
+    item_quantity = $(this).closest('.stock_quantity').prev().prev().prev().find('.item-quantity').val()
+    total = ( parseFloat(stock_quantity) / parseFloat(item_quantity) ) * parseFloat(item_price)
+    $(this).closest('.form-group').siblings('.total_price').find('.total-price').val(total)
 
+  });
+
+  $('body').on('focusout', '.item-discount', function(){
+    discount = $(this).val()
+    total_price = $(this).closest('.item_discount').prev().find('.total-price').val()
+    after_discount_total = parseFloat(total_price) - ( parseFloat(total_price) * parseFloat(discount) / 100 )
+    $(this).closest('.form-group').siblings('.total_expense').find('.total-expense').val(after_discount_total)
   });
 
   // $('.append-form').on('click', function(){

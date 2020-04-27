@@ -17,10 +17,5 @@
       = f.label :price
       = f.text_field  :price, class: 'form-control', required: true
 
-  .form-group.clearfix
-    .col-sm-12
-      = f.label :measurement
-      = f.select  :measurement, options_for_select(SpecialItem.measurements.map{|key, val| [key, val] }), {prompt: 'Leave If no measurment'}, class: 'form-control'
-
   .col-sm-12
     = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'
