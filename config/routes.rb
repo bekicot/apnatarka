@@ -35,11 +35,13 @@ Rails.application.routes.draw do
       get :checkout
       get :add_to_cart
       get :update_quantity
+      get :update_special_item_quantity
       get :demo_shopping_cart
       get :demo_checkout
       get :demo_order_received
       post :save_order
       get :add_more_items
+      get :add_special_items
       get :guest_order
       get :special_request
       get :set_delivery_mode
@@ -50,9 +52,11 @@ Rails.application.routes.draw do
       get :all_favorite_orders
       get :get_cities
       get :chef_items
+      post :save_special_item
     end
     member do
       get :remove_item
+      get :remove_special_item
       get :order_received
       get :add_to_favorite
       get :show_favorite_order

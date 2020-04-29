@@ -1,0 +1,2 @@
+$('#add-special-items').html('<%= escape_javascript(render(partial: "special_items", locals: {categories: @categories})) %>');
+$('#add-special-items-modal').modal('show');

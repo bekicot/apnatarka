@@ -7,6 +7,7 @@ class DeliveryController < ApplicationController
 
   def index
     prepare_items
+    prepare_special_item
   end
 
   def checkout
@@ -18,6 +19,9 @@ class DeliveryController < ApplicationController
       gon.longitude = @longitude
       gon.loc       = Geocoder.search([@latitude, @longitude])&.first&.address
       prepare_items
+      if session[:special_item].present?
+        prepare_special_item
+      end
     else
       redirect_to delivery_index_path
     end
@@ -34,6 +38,7 @@ class DeliveryController < ApplicationController
       @order.location_id = Location.find_by(address: params[:order][:location])&.id if params[:order][:location].present?
       @order.build_address(address_params) unless (params[:order][:address_id].present? || session[:delivery_details].present?)
       prepare_items
+      prepare_special_item
 
       @chef_menu_items.each do |chef_menu_item|
         quantity        = session[:cart][ChefCategoryItem.item_key_for_cart(chef_menu_item.id)]
@@ -41,9 +46,17 @@ class DeliveryController < ApplicationController
         @order.order_items.new(chef_category_item_id: chef_menu_item.id, quantity: quantity,
                                total: (quantity * chef_menu_item.menu_item.price), special_request: special_request)
       end
+      if @special_items.present?
+        @special_items.each do |special_item|
+          quantity = session[:special_item][SpecialItem.item_key_for_cart(special_item.id)]
+          @order.order_special_items.new(special_item_id: special_item.id, quantity: quantity, price: (quantity.to_i * special_item.price) )
+        end
+      end
 
       @order.vat            = @tax_percentage
-      sub_total_without_vat = @order.order_items.sum{|x| x.total}
+      total_order_items     = @order.order_items.sum{|x| x.total}
+      special_items_total   = @order.order_special_items.sum{|x| x.price }
+      sub_total_without_vat = total_order_items + special_items_total
       @order.sub_total      = sub_total_without_vat + (sub_total_without_vat * @order.vat)
       @order.ordered_as     = current_user.present? ? Order.ordered_as[:registered_user] : Order.ordered_as[:guest_user]
       @order.user_id        = current_user.id if current_user.present?
@@ -97,6 +110,15 @@ def order_received
     key_to_update = ChefCategoryItem.item_key_for_cart(item)
     session[:cart][key_to_update] = params[:quantity].to_i
     prepare_items
+    prepare_special_item
+  end
+
+  def update_special_item_quantity
+    item = params[:special_item_id]
+    key_to_update = SpecialItem.item_key_for_cart(item)
+    session[:special_item][key_to_update] = params[:quantity].to_i
+    prepare_special_item
+    prepare_items
   end
 
   def remove_item
@@ -106,8 +128,33 @@ def order_received
     redirect_to delivery_index_path
   end
 
+  def remove_special_item
+    key_to_delete = SpecialItem.item_key_for_cart(params[:id])
+    session[:special_item].delete(key_to_delete)
+    redirect_to delivery_index_path
+  end
+
   def add_more_items
     @categories = Category.includes(:menu_items)
+  end
+
+  def add_special_items
+    @special_items = SpecialItem.all
+  end
+
+  def save_special_item
+    if params[:order_special_item].present?
+      session[:special_item]   = {} if session[:special_item].blank?
+      special_item = params[:order_special_item][:special_item_id]
+      quantity = params[:order_special_item][:quantity]
+      session[:special_item].merge!(SpecialItem.add_special_item(special_item, quantity))
+    end
+    prepare_special_item
+    prepare_items
+    @total = 0
+    respond_to do |format|
+      format.js
+    end
   end
 
   def guest_order
@@ -202,6 +249,13 @@ def order_received
       @chef_menu_items = ChefCategoryItem.where(id: chef_menu_item_ids)
     else
       redirect_to root_path(anchor: 'complete_menu')
+    end
+  end
+
+  def prepare_special_item
+    if session[:special_item].present?
+      special_item_ids = session[:special_item].keys.map {|key| SpecialItem.get_item_from_special_item(key) }
+      @special_items = SpecialItem.where(id: special_item_ids )
     end
   end
 

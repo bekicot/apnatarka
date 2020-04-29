@@ -14,3 +14,13 @@ swal({
 
 $('.order-now-button').attr("disabled", true);
 $('#chef_menu_item').html('<%= escape_javascript(render(partial: "chef_menu_item", locals: {chef_menu_items: @chef_menu_items, total: @total})) %>');
+
+  total = 0
+  $('.item-price').each(function(i) { 
+    total = total + parseFloat($(this).text().split('-')[1]) 
+  })
+  if ($('.custom-total').length > 0 )
+  {
+   $('.custom-total').text(total)
+   $('.overall-total').text(total) 
+  }

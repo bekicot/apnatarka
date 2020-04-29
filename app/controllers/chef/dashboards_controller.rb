@@ -3,8 +3,8 @@ class Chef::DashboardsController < Chef::BaseController
   skip_before_action :verify_authenticity_token, only: [:change_order_status, :change_assigned_item_status]
   before_action :find_order, only: [:show, :change_order_status]
   def index
-    @chef_category_items = @chef.chef_category_items.includes(order_items: [:order]).order('created_at DESC').paginate(page: params[:page], per_page: 5)
-    @chef_items = AssignItem.where(chef_id: @chef.id).includes(inventory_item: [:item]).order('created_at DESC').paginate(page: params[:oitem_page], per_page: 5)
+    @chef_category_items = @chef.chef_category_items.includes(order_items: [:order]).order('created_at DESC').paginate(page: params[:page], per_page: 10)
+    @chef_items = AssignItem.where(chef_id: @chef.id).includes(inventory_item: [:item]).order('created_at DESC').paginate(page: params[:item_page], per_page: 5)
   end
 
   def change_order_status
@@ -16,6 +16,7 @@ class Chef::DashboardsController < Chef::BaseController
   def show
   	@order_items = @order.order_items
     @rider_detail = @order.rider
+    @special_items = @order.order_special_items
   end
 
   def change_assigned_item_status

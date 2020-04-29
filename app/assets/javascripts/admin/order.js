@@ -125,6 +125,13 @@ $(document).ready(function(){
     $('.show-phone').val(phone);
   });
 
+  $('body').on('focusout', '.special-item-quantity', function(){
+    special_item_quantity = $(this).val()
+    price = $(this).parent().parent().prev().find('.special-item').text().split('(')[1].split(')')[0]
+    total = parseFloat(special_item_quantity) * parseFloat(price)
+    $(this).closest('.form-group').siblings('.item_price').find('.price').val(total)
+  });
+
 //   $('.total-amount').keyup(function () {
 //     // var quantity = $('.order-quantity').val();
 //     var total =  $(this).val();

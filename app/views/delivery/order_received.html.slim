@@ -68,8 +68,7 @@
               td = @order.order_number
               td = @order.created_at.strftime("%B %d, %Y")
               td = @order&.delivery_time&.strftime("%m-%d-%Y %I:%M") || Time.now.strftime("%m-%d-%Y %I:%M")
-              td = "$#{number_with_precision(@order.sub_total, precision: 2)}"
-              - debugger
+              td = "RS-#{number_with_precision(@order.sub_total, precision: 2)}"
               td = payment_method_translation(@order.payment_method)
               / - if @order.debit_credit_card?
               /   td = @order.status.capitalize
@@ -77,32 +76,37 @@
       .order-detail
         h2 = t("delivery.order_details")
         .product
-          strong = t("header.menu_items")
+          strong = t("header.order_items")
           strong.special-request = t("delivery.special_request")
           strong.amount = t("delivery.total")
         - @order.order_items.each do |order_item|
           .item
-          - chef_menu_item = order_item.chef_category_item.menu_item
+            - chef_menu_item = order_item.chef_category_item.menu_item
             span
               .img-box
-                = image_tag order_item.chef_menu_item.avatar.url
-              h4= "#{order_item.chef_menu_item.title} x  #{order_item.quantity}"
-            span class="price" = "$#{number_with_precision(order_item.chef_menu_item.price*order_item.quantity, precision: 2)}"
+                = image_tag chef_menu_item.avatar.url
+              h4= "#{chef_menu_item.title} x  #{order_item.quantity}"
+            span class="price" = "RS-#{number_with_precision(chef_menu_item.price*order_item.quantity, precision: 2)}"
             span.special-request-message
               = ChefCategoryItem.special_request(order_item)&.truncate(30)
               - if ChefCategoryItem.special_request(order_item)&.length > 30
                   = link_to "javascript:void(0)", "data-toggle": "tooltip", title: ChefCategoryItem.special_request(order_item) do
                     i.fa.fa-exclamation-circle
+        - @order.order_special_items.each do |special_item|
+          .item
+            span
+              = "#{special_item&.special_item&.name} x #{special_item.quantity}"
+            span class="price" = "RS-#{number_with_precision(special_item&.special_item&.price * special_item&.quantity, precision: 2)}"
 
         .subtotal
           strong = t("delivery.sub_total")
-          span = "$#{number_with_precision(@order.sub_total, precision: 2)} #{t('delivery.including')} #{@tax}% Gst"
+          span = "RS-#{number_with_precision(@order.sub_total, precision: 2)} #{t('delivery.including')} #{@tax}% Gst"
         .payment
           strong = t("delivery.payment_method")
           span = payment_method_translation(@order.payment_method)
         .total
           strong = t("delivery.total")
-          span = "$#{number_with_precision(@order.sub_total, precision: 2)}"
+          span = "RS-#{number_with_precision(@order.sub_total, precision: 2)}"
         .address
           h2 = t("delivery.billing_address")
           .phone

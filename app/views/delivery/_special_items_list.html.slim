@@ -1,0 +1,17 @@
+- if special_items.present?
+	- special_items.each do |special_item|
+	  - quantity = session[:special_item][SpecialItem.item_key_for_cart(special_item.id)]
+	  - total = total + (quantity.to_i * special_item.price)
+	  .field.clearfix
+	    .box
+	      .text-box
+	        h4 = special_item.name
+	    .box = "RS-#{special_item.price}"
+	    .box = number_field_tag :number, quantity, class: 'special-quantity-count', id: "special-item-#{special_item.id}", "data-value": quantity, min: 1
+	    .box.item-price = "RS-#{special_item.price * quantity.to_i}"
+	    .box 
+	    .box.mobile-right
+	      = link_to 'javascript:void(0)', title: t('delivery.add_more'), id: "special-item-#{special_item.id}", "data-value": quantity, class: "special-item-quantity table-icon" do
+        	i.fa.fa-plus
+	      = link_to remove_special_item_delivery_path(special_item.id), title: t('delivery.remove_item'), class: "table-icon" do
+	        i.fa.fa-times

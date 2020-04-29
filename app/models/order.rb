@@ -5,8 +5,9 @@ class Order < ApplicationRecord
   has_one :rider
   belongs_to :location, optional: true
   has_many :order_items, dependent: :destroy
+  has_many :order_special_items, dependent: :destroy
   accepts_nested_attributes_for :order_items, reject_if: :all_blank, allow_destroy: true
-
+  accepts_nested_attributes_for :order_special_items, reject_if: :all_blank, allow_destroy: true
   after_create :generate_order_number
 
   enum payment_method: { home_delivery: 1}

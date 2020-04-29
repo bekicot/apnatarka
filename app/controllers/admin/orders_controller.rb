@@ -9,10 +9,12 @@ class Admin::OrdersController < Admin::BaseController
     @categories = Category.all
     @order = Order.new
     @order.order_items.build
+    @order.order_special_items.build
     @country = "Pakistan"
     @user = User.new
     @states = CS.states(:PK)
     @city = CS.cities(:PB,:PK).second
+    @special_items = SpecialItem.all
   end
 
   def order_items
@@ -74,7 +76,8 @@ class Admin::OrdersController < Admin::BaseController
   private
 
     def order_params
-      params.require(:order).permit(:phone, :sub_total, :city, :state, :address_one, order_items_attributes: [ :chef_category_item_id, :quantity, :special_request, :total ] )
+      debugger
+      params.require(:order).permit(:phone, :sub_total, :city, :state, :address_one, order_items_attributes: [ :chef_category_item_id, :quantity, :special_request, :total ], order_special_items_attributes: [ :special_item_id, :quantity, :price] )
     end
 
     # def new_user_params

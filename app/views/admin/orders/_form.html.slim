@@ -49,6 +49,14 @@
         br
         .links
           = link_to_add_association 'add item', f, :order_items, class: "btn custom-btn btn-primary pull-right"
+
+  .form-group.clearfix.collect-data
+    .col-sm-12.col-md-12
+      = f.fields_for :order_special_items do |fff|
+        br
+        .links
+          = link_to_add_association 'Add Special Item', f, :order_special_items, class: "btn custom-btn btn-primary pull-right"
+
   .form-group.clearfix.col-md-3
     .col-sm-12
       = f.label :state, class: 'show'

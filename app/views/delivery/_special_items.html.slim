@@ -1,0 +1,33 @@
+div.modal.fade.bs-example-modal-lg id="add-special-items-modal" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog.modal-lg role="document"
+    .modal-content
+      button.close aria-label="Close" data-dismiss="modal" type="button" 
+        span aria-hidden="true"  ×
+
+      #complete_menu.menu-block
+        .tabs-block
+          .text-center
+            .showcase-left
+              strong.heading= t('menu.heading')
+            .showcase-right
+              h2= t('menu.sub_heading')
+          .clearfix
+            .row
+              = form_for  OrderSpecialItem.new, url: save_special_item_delivery_index_path, metod: :post, remote: true do |f|
+                .form-group.clearfix.col-md-3
+                  .col-sm-12
+                    = f.label :select_special_item, class: 'show'
+                    = f.select :special_item_id, options_for_select(@special_items.map{ |k,v|["#{k.name} (#{k.price})",k.id] }), {prompt: "Special Item"}, required: true, class: 'form-control order-category special-item'
+
+                .form-group.clearfix.col-md-3
+                  .col-sm-12
+                    = f.label :quantity, class: 'show'
+                    = f.number_field :quantity, required: true, class: 'form-control order-category quantity-item', min: 1
+                .form-group.clearfix.col-md-3
+                  .col-sm-12
+                    = f.label :price, class: 'show'
+                    = f.number_field :price, required: true, class: 'form-control order-category special-item-total-price', disabled: true
+                .form-group.clearfix.col-md-3
+                  .col-sm-12
+                    = f.submit "Add Special Item", class: 'login pull-right'
+                      i.fa.fa-paper-plane

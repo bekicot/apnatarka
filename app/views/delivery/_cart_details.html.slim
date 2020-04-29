@@ -10,25 +10,33 @@
       .mobile-cart-header
         h3 = t("delivery.your_order")
     .table-body
-      - total = 0
+      - total =0
       #chef_menu_item
         = render 'chef_menu_item', chef_menu_items: @chef_menu_items, total: total
+      #special_items
+        = render 'special_items_list', special_items: @special_items, total: total
   .lower-part.clearfix
     .row
       .col-sm-6.button-block
         = link_to t("order.more_food"), add_more_items_delivery_index_path, remote: true, title: t('delivery.add_more'), class: "add-more-btn btn"
+        = link_to t("order.add_special_item"), add_special_items_delivery_index_path, remote: true, title: t('delivery.add_special_item'), class: "add-more-btn btn pl-3"
       .col-sm-6.cart-block
         .card-box
           .cart-total
             h3 = t("delivery.cart_total")
             .sub-total.custom-sub
               h4 = t("delivery.sub_total")
-              p = "$#{number_with_precision(total, precision: 2)}"
+              p.custom-total = "#{number_with_precision(total, precision: 2)}"
+              p
+                = "RS-"
             .sub-total
-              h4 = t("delivery.vat")
-              p = @tax
+              h4 = t("delivery.gst")
+              p = "#{@tax} %"
             .total
               h4 = t("delivery.total")
-              p = "$#{number_with_precision(total + (total * Order::VAT), precision: 2)}"
+              p.overall-total = "#{number_with_precision(total, precision: 2)}"
+              p
+                = "RS-"
+              
           .buttons
             = link_to t("delivery.Order_Now"), checkout_delivery_index_path, class: 'btn btn-default'

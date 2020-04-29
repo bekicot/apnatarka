@@ -127,15 +127,21 @@
                         | Order Items
                     td = order_item_names(@order)
                   tr
+                  - if @order.order_special_items.present?
+                    tr
+                      td
+                        strong
+                          | Special Items
+                      td = order_special_items(@order)
                     td
                       strong
                         | Tax
-                    td = @tax
+                    td = "#{@tax} %"
                   tr
                     td
                       strong
                         | Sub Total
-                    td = "$#{@order.sub_total}"
+                    td = "RS-#{@order.sub_total}"
       .col-md-4
         .card.m-b-30.custom-card
           .card-body.block-head
@@ -232,6 +238,14 @@
                             i.fa.fa-exclamation-circle
                       td = order_item.quantity
                       td = (order_item.quantity * order_item.chef_category_item.menu_item.price)
+                  - if @order.order_special_items.present?
+                    - @order.order_special_items.each do |special_item|
+                      tr
+                        td = special_item.special_item.name
+                        td = special_item.special_item.price
+                        td N/A
+                        td = special_item.quantity
+                        td = (special_item.quantity * special_item.special_item.price)
         .button
           = link_to "Back", admin_order_histories_path, class: "btn custom-btn btn-primary pull-right"
 

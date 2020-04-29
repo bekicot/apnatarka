@@ -1,0 +1,14 @@
+.row
+  .form-group.clearfix.col-md-4
+    .col-sm-12
+      = f.label :select_special_item, class: 'show'
+      = f.select :special_item_id, options_for_select(@special_items.map{ |k,v|["#{k.name} (#{k.price})",k.id] }), {prompt: "Special Item"}, required: true, class: 'form-control order-category special-item'
+
+  .form-group.clearfix.col-md-4.item_quantity
+    .col-sm-12
+      = f.label :quantity, class: 'show'
+      = f.number_field :quantity, required: true, class: 'form-control order-category special-item-quantity', min: 1
+  .form-group.clearfix.col-md-4.item_price
+    .col-sm-12
+      = f.label :price, class: 'show'
+      = f.number_field :price, required: true, class: 'form-control order-category price'

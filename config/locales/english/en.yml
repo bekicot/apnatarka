@@ -33,6 +33,7 @@ en:
   hello: "Hello World"
 
   order:
+    add_special_item: "Add Special Items"
     now: "Order Now"
     start_order: "Start Your Order"
     want: "I want"
@@ -148,6 +149,7 @@ en:
     fri_sat_time: "Fri - Sat 11:30 - 24:00"
 
   delivery:
+    add_special_item: "Add Special Items"
     sub_total: "Sub-total"
     total: "Total"
     cart_total: "Cart Total"

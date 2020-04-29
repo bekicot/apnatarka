@@ -1,0 +1,13 @@
+$('#chef_menu_item').html('<%= escape_javascript(render(partial: "chef_menu_item", locals: {chef_menu_items: @chef_menu_items, total: @total})) %>');
+$('#special_items').html('<%= escape_javascript(render(partial: "special_items_list", locals: {special_items: @special_items, total: @total})) %>');
+$('#add-special-items-modal').modal('hide');
+
+  total = 0
+  $('.item-price').each(function(i) { 
+    total = total + parseFloat($(this).text().split('-')[1]) 
+  })
+  if ($('.custom-total').length > 0 )
+  {
+   $('.custom-total').text(total)
+   $('.overall-total').text(total) 
+  }

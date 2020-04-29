@@ -16,6 +16,6 @@ module DeliveryHelper
   end
 
   def clear_all_sessions
-    %i[address delivery_details cart special_request delivery_time].each{|x| session.delete(x)}
+    %i[address delivery_details cart special_request delivery_time special_item].each{|x| session.delete(x)}
   end
 end
