@@ -38,4 +38,14 @@ $(document).ready(function(){
       $(this).attr('name', value);
     });
   });
+
+  $('#inventry-item #item-fields').on('cocoon:after-insert', function(e, inserted_item) {
+    $(".assign-item-fields:last input, .assign-item-fields:last select").each(function(i) {
+      val1 = $(this).attr('name').split('[')[0]
+      val2 = val1.concat(('['+ $('.assign-item-fields').length).concat($(this).attr('name').split('[')[1]))
+      val3 = $(this).attr('name').split('[')[2]
+      value = val2.concat('['+val3)
+      $(this).attr('name', value);
+    });
+  });
 });

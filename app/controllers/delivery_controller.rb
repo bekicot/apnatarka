@@ -1,7 +1,7 @@
 class DeliveryController < ApplicationController
   include DeliveryHelper
   include PayTabs
-  before_action :find_tax, only: [:checkout, :save_order, :order_received, :index]
+  before_action :find_tax
 
   skip_before_action :verify_authenticity_token, only: %i[paytabs_callback]
 
@@ -30,6 +30,11 @@ class DeliveryController < ApplicationController
   def get_cities
     @cities = CS.cities(params[:state], :pk)
     render json: @cities
+  end
+
+  def get_special_item
+    price = SpecialItem.find(params[:special_item_id]).price
+    render json: price
   end
 
   def save_order

@@ -8,6 +8,6 @@
       .col-sm-3.pull-right
         .row
           label Users Filtered By Role   
-          = select_tag "role", options_for_select(User.roles.map{|k,v|[k.humanize,k]}), class: "select-tag-decoration user-role"
+          = select_tag "role", options_for_select(User.roles.map{|k,v|[k.humanize,k]}),:include_blank => 'Select Role', class: "select-tag-decoration user-role"
     #user_details
       = render 'users_form'

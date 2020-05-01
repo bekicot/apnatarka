@@ -1,6 +1,7 @@
 class Admin::InventoryItemsController < Admin::BaseController
-  before_action :find_inventroy_item, only: [:edit, :update, :destroy, :assign_item, :view_item_detail]
+  before_action :find_inventroy_item, only: [:edit, :update, :destroy, :view_item_detail]
   before_action :find_item, only: [:new, :edit, :append_inventory_item]
+  before_action :find_inventory, only: [:new, :edit, :append_inventory_item]
 
   def index
     @inventroy_items = InventoryItem.where('extract(year from indate) = ? AND extract(month from indate) = ?',
@@ -25,6 +26,20 @@ class Admin::InventoryItemsController < Admin::BaseController
       InventoryItem.import @inventroy_items
     end
       flash[:success] = "You Have Add Inventory Item Sucessfully"
+      redirect_to admin_inventory_items_path
+  end
+
+  def save_assign_item
+    @assign_items = []
+    @assign_item = AssignItem.create(assign_item_params)
+    if params[:inventry].present?
+      params[:inventry].each do |k, v|
+        @assign_items << AssignItem.new(user_id: params[:assign_item][:user_id], assign_date: params[:assign_item][:assign_date],
+                      chef_id: params[:assign_item][:chef_id], inventory_item_id: v[:inventory_item_id], quantity: v[:quantity], measure: v[:measure])
+      end
+      AssignItem.import @assign_items
+    end
+      flash[:success] = "You Have Assign Inventory Item Sucessfully"
       redirect_to admin_inventory_items_path
   end
 
@@ -57,21 +72,9 @@ class Admin::InventoryItemsController < Admin::BaseController
   end
 
   def assign_item
+    @inventroy_items = InventoryItem.all
     @chefs = User.chef
     @assign_item = AssignItem.new
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def save_assign_item
-    @assign_item = AssignItem.new(assign_item_params)
-    if @assign_item.save
-      flash[:success] = "You Have Assign Inventory Item Sucessfully"
-      redirect_to admin_inventory_items_path
-    else
-      render :back
-    end
   end
 
   def view_item_detail
@@ -107,6 +110,10 @@ class Admin::InventoryItemsController < Admin::BaseController
 
   def find_item
     @items = Item.all
+  end
+
+  def find_inventory
+    @inventory_items = InventoryItem.all
   end
 
   def assign_item_params

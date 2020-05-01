@@ -5,10 +5,10 @@ class Admin::UsersController < Admin::BaseController
   before_action :check_admin_moderator_user, only: [:index]
 
   skip_before_action :verify_authenticity_token, only: [:create, :update]
-  before_action :find_country_and_state, only: [:new, :edit, :index]
+  before_action :find_country_and_state, only: [:new, :edit, :create, :update]
 
   def index
-    @users = User.where(role: "super_admin").order('created_at DESC').paginate(page: params[:page], per_page: 10)
+    @users = User.all.order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
 
   def new

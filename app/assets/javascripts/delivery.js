@@ -25,15 +25,24 @@ $(document).ready(function(){
   })
   if ($('.custom-total').length > 0 )
   {
+   tax_percentage = parseFloat($('.tax-percentage').text().split(" ")[0]) / 100
+   total_after_tax = total + (total * tax_percentage)
    $('.custom-total').text(total)
-   $('.overall-total').text(total) 
+   $('.overall-total').text(total_after_tax)
   }
 
   $('body').on('keyup', '.quantity-item', function(){
-    price = $(".special-item option:selected").text().split('(')[1].split(')')[0]
+    special_item_id = $('.special-item').val()
     quantity = $(this).val()
-    total = parseFloat(price) * parseFloat(quantity)
-    $('.special-item-total-price').val(total)
+    $.ajax({
+      type: 'GET',
+      url: '/delivery/get_special_item',
+      data: { special_item_id: special_item_id },
+      success: function(data){
+        total_price = data * parseFloat(quantity)
+        $('.special-item-total-price').val(total_price)
+      }
+      });
   });
 
   if ($("#load_login_modals").length > 0) {

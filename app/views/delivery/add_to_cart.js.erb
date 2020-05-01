@@ -21,6 +21,8 @@ $('#chef_menu_item').html('<%= escape_javascript(render(partial: "chef_menu_item
   })
   if ($('.custom-total').length > 0 )
   {
+   tax_percentage = parseFloat($('.tax-percentage').text().split(" ")[0]) / 100
+   total_after_tax = total + (total * tax_percentage)
    $('.custom-total').text(total)
-   $('.overall-total').text(total) 
+   $('.overall-total').text(total_after_tax)
   }

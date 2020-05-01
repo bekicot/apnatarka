@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       get :get_cities
       get :chef_items
       post :save_special_item
+      get :get_special_item
     end
     member do
       get :remove_item
@@ -150,10 +151,10 @@ Rails.application.routes.draw do
     resources :inventory_items do
       member do
         post :change_status
-        get :assign_item
         get :view_item_detail
       end
       collection do
+        get :assign_item
         post :save_assign_item
         get :append_inventory_item
         get :inventory_by_year

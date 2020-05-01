@@ -31,7 +31,7 @@
                 = "RS-"
             .sub-total
               h4 = t("delivery.gst")
-              p = "#{@tax} %"
+              p.tax-percentage = "#{@tax} %"
             .total
               h4 = t("delivery.total")
               p.overall-total = "#{number_with_precision(total, precision: 2)}"

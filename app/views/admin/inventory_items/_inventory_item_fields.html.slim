@@ -1,0 +1,13 @@
+.row.assign-item-fields
+  .form-group.clearfix.col-md-4
+    .col-sm-12
+      = f.label :Inventory_Item, class: 'show'
+      = select_tag "inventry[item][inventory_item_id]", options_for_select(@inventroy_items.map{|item| [item.item.title, item.id ]} ), include_blank: "Select Inventory Item", required: true, class: 'form-control'
+  .form-group.clearfix.col-md-4
+    .col-sm-12
+      = f.label :Quantity, class: 'show'
+      = number_field_tag "inventry[item][quantity]",nil, min: 0, required: true, class: 'form-control'
+  .form-group.clearfix.col-md-4
+    .col-sm-12
+      = f.label :Measure, class: 'show'
+      = select_tag "inventry[item][measure]", options_for_select(InventoryItem.measures.map{|k,v|[k,k]} ),include_blank: "Select Measure" , required: true, class: 'form-control'

@@ -225,8 +225,10 @@
                     th Special Request
                     th Quantity
                     th Total
+                    / th Chef Details
                 tbody
                   - @order.order_items.each do |order_item|
+                    - chef = order_item.chef_category_item.chef_category.user
                     tr
                       td = order_item.chef_category_item.menu_item.title
                       td = order_item.chef_category_item.menu_item.price
@@ -238,6 +240,7 @@
                             i.fa.fa-exclamation-circle
                       td = order_item.quantity
                       td = (order_item.quantity * order_item.chef_category_item.menu_item.price)
+                      / td = "#{chef&.first_name} (#{chef&.phone})"
                   - if @order.order_special_items.present?
                     - @order.order_special_items.each do |special_item|
                       tr
