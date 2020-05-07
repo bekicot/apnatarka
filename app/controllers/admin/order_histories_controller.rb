@@ -10,7 +10,7 @@ class Admin::OrderHistoriesController < Admin::BaseController
     @rider = Rider.new
     @riders = User.rider
     @order = Order.includes(order_items: [:chef_category_item]).find(params[:id])
-    @rider = @order.rider
+    @rider = @order.rider.where.not(order_status: "reject").first
   end
 
   def customer_orders
@@ -21,12 +21,13 @@ class Admin::OrderHistoriesController < Admin::BaseController
 
   def change_status
     order = Order.find(params[:id])
-    if order.rider.present?
-      order.rider.destroy
+    order.update_attribute(:status, params[:order][:status])
+    rider = Rider.new(rider_params)
+    rider.order_status = "pending"
+    if rider.save
+      flash[:success] = "Rider has been Assign to Order"
+      redirect_to customer_orders_admin_order_histories_path
     end
-      order.update_attribute(:status, params[:order][:status])
-      Rider.create(rider_params)
-    redirect_to customer_orders_admin_order_histories_path
   end
 
   def rider_payment_status

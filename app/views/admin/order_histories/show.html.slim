@@ -145,21 +145,23 @@
       .col-md-4
         .card.m-b-30.custom-card
           .card-body.block-head
-
-            = form_for @order, url: change_status_admin_order_history_path(@order), method: :post do |f|
-              .form-group
-                = f.fields_for :rider do |ff|
-                  = ff.label :Select_Rider
-                  = ff.select :user_id, options_for_select(@riders.map{|k| [k.first_name, k.id]} ), {prompt: "Select Rider"}, {class: 'form-control'}
-                  = ff.hidden_field :order_id, value: @order.id
-                  = ff.label :Pickup_Time
-                  = ff.text_field :pickup_time, class: "form-control", id: "timepicker1"
-                  = ff.label :Delivery_Time
-                  = ff.text_field :delivery_time, class: "form-control", id: "timepicker2"
-              .form-group
-                = f.label :Status
-                = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, @order.status), {}, {class: 'form-control'})
-              = f.submit 'Update', class: 'btn btn-primary btn-xs'
+            -  if !@rider.present?
+              = form_for @order, url: change_status_admin_order_history_path(@order), method: :post do |f|
+                .form-group
+                  = f.fields_for :rider do |ff|
+                    = ff.label :Select_Rider
+                    = ff.select :user_id, options_for_select(@riders.map{|k| [k.first_name, k.id]} ), {prompt: "Select Rider"}, {class: 'form-control'}
+                    = ff.hidden_field :order_id, value: @order.id
+                    = ff.label :Pickup_Time
+                    = ff.text_field :pickup_time, class: "form-control", id: "timepicker1"
+                    = ff.label :Delivery_Time
+                    = ff.text_field :delivery_time, class: "form-control", id: "timepicker2"
+                .form-group
+                  = f.label :Status
+                  = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, @order.status), {}, {class: 'form-control'})
+                = f.submit 'Update', class: 'btn btn-primary btn-xs'
+            - else
+              p Rider has been assigned to this order
       .col-md-5
         .card.m-b-30.custom-card
           .card-body.block-head

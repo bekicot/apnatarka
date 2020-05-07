@@ -1,0 +1,49 @@
+.card-body
+  - if @orders.present?
+    .table-responsive
+      table.table.table-hover.mb-0
+        thead
+          tr
+            th
+              | Order Number
+            th
+              | Name
+            th
+              | Contact
+            th 
+              | Payment
+            th
+              | Pick Up Time
+            th
+              | Delivery Time
+            th 
+              | My Delivery Time
+            th 
+              | Action
+        tbody
+          - @orders.each do |order|
+            tr
+              td
+                = order&.order&.order_number
+              td
+                = order&.order&.first_name.present? ? "#{order&.order&.first_name}" : "#{order&.order&.user&.first_name}"
+              td
+                = order&.order&.phone
+              td
+                = order&.payment_status&.humanize
+              td
+                = order&.pickup_time&.strftime("%I : %M %P")
+              td
+                = order&.delivery_time&.strftime("%I : %M %P")
+              td 
+                = order&.reached_time&.strftime("%I : %M %P") || "N/A"
+              td
+                - if order.order_status != "pending" && !order.reached_time.present?
+                  = link_to "Detail", rider_dashboard_path(order), class: "btn btn-primary custom-btn"
+
+                  = link_to "Deliver", deliver_order_rider_dashboard_path(order), class: "btn btn-success", remote: true
+                - elsif order.order_status == "pending"
+                  = link_to "Accept", accept_order_rider_dashboard_path(order), class: "btn btn-success", remote: true
+                  = link_to "Reject", reject_order_rider_dashboard_path(order), class: "btn btn-danger", remote: true
+
+      = will_paginate @orders, param_name: 'page'

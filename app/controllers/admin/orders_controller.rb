@@ -76,7 +76,6 @@ class Admin::OrdersController < Admin::BaseController
   private
 
     def order_params
-      debugger
       params.require(:order).permit(:phone, :sub_total, :city, :state, :address_one, order_items_attributes: [ :chef_category_item_id, :quantity, :special_request, :total ], order_special_items_attributes: [ :special_item_id, :quantity, :price] )
     end
 

@@ -1,45 +1,36 @@
-.container-fluid
-  .col-sm-12
-    .text-center.text-capitalize.admin-heading
-      h1
-        | Assign Inventroy Item
-    .card-box.clearfix
-    	 = form_for @assign_item, url: save_assign_item_admin_inventory_items_path , html: { "data-parsley-validate" => true } do |f|
-          - if @assign_item.errors.full_messages.any? 
-            - @assign_item.errors.full_messages.each do |error_message| 
-                = error_message if @assign_item.errors.full_messages.first == error_message
-          .collect-data
-            .row
-              .form-group.clearfix.col-md-6
-                .col-sm-12
-                  = f.label :Assign_To, class: 'show'
-                  = f.select :chef_id, options_for_select(@chefs.map{| k |[ k.first_name, k.id ]}), { prompt: "Select Chef" }, required: true, class: 'form-control'
-              .form-group.clearfix.col-md-6
-                .col-sm-12
-                  = f.label :Assign_Date, class: 'show'
-                  = f.text_field :assign_date, required: true, class: 'form-control', id: 'datetimepicker3'
-            .row
-              .form-group.clearfix.col-md-4
-                .col-sm-12
-                  = f.label :inventory_item, class: 'show'
-                  = f.select :inventory_item_id, options_for_select(@inventroy_items.map{|k,v|[k.item.title, k.id]}),{ include_blank: "Select Inventory Item" },  class: "form-control"
-              .form-group.clearfix.col-md-4
-                .col-sm-12
-                  = f.label :Quantity, class: 'show'
-                  = f.number_field :quantity, min: 0, required: true, class: 'form-control'
-              .form-group.clearfix.col-md-4
-                .col-sm-12
-                  = f.label :Measure, class: 'show'
-                  = f.select :measure, options_for_select(InventoryItem.measures.map{|k,v|[k,k]}),{ include_blank: " Select Measure " }, required: true, class: 'form-control'
-                  = f.hidden_field :user_id, value: current_user.id
-              .form-group.clearfix.col-md-12#inventry-item
-                .col-sm-12#item-fields
-                  = f.fields_for :inventory_item do |ff|
-                    br
-                    .links
-                      = link_to_add_association 'Add More', f, :inventory_item, class: "btn custom-btn btn-primary pull-right"
-            / .form-to-append
-            / .col-sm-12
-            /   = link_to "Add More", append_inventory_item_admin_inventory_items_path, class: "btn custom-btn btn-primary more-assign-item", remote: true
-            .col-sm-12
-              = f.submit "Submit", class: 'pull-right btn custom-btn btn-primary'
+
+            / .collect-data
+            /   .row
+            /     .form-group.clearfix.col-md-6
+            /       .col-sm-12
+            /         = f.label :Assign_To, class: 'show'
+            /         = f.select :chef_id, options_for_select(@chefs.map{| k |[ k.first_name, k.id ]}), { prompt: "Select Chef" }, required: true, class: 'form-control'
+            /     .form-group.clearfix.col-md-6
+            /       .col-sm-12
+            /         = f.label :Assign_Date, class: 'show'
+            /         = f.text_field :assign_date, required: true, class: 'form-control', id: 'datetimepicker3'
+            /   .row
+            /     .form-group.clearfix.col-md-4
+            /       .col-sm-12
+            /         = f.label :inventory_item, class: 'show'
+            /         = f.select :inventory_item_id, options_for_select(@inventroy_items.map{|k,v|[k.item.title, k.id]}),{ include_blank: "Select Inventory Item" },  class: "form-control"
+            /     .form-group.clearfix.col-md-4
+            /       .col-sm-12
+            /         = f.label :Quantity, class: 'show'
+            /         = f.number_field :quantity, min: 0, required: true, class: 'form-control'
+            /     .form-group.clearfix.col-md-4
+            /       .col-sm-12
+            /         = f.label :Measure, class: 'show'
+            /         = f.select :measure, options_for_select(InventoryItem.measures.map{|k,v|[k,k]}),{ include_blank: " Select Measure " }, required: true, class: 'form-control'
+            /         = f.hidden_field :user_id, value: current_user.id
+            /     .form-group.clearfix.col-md-12#inventry-item
+            /       .col-sm-12#item-fields
+            /         = f.fields_for :inventory_item do |ff|
+            /           br
+            /           .links
+            /             = link_to_add_association 'Add More', f, :inventory_item, class: "btn custom-btn btn-primary pull-right"
+            /   / .form-to-append
+            /   / .col-sm-12
+            /   /   = link_to "Add More", append_inventory_item_admin_inventory_items_path, class: "btn custom-btn btn-primary more-assign-item", remote: true
+            /   .col-sm-12
+            /     = f.submit "Submit", class: 'pull-right btn custom-btn btn-primary'

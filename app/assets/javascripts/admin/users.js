@@ -48,4 +48,22 @@ $(document).ready(function(){
       $(this).attr('name', value);
     });
   });
+
+  $(function () {
+    $('#userdatetimepicker').datetimepicker({
+      format:'YYYY-MM-DD',
+      defaultDate: new Date
+    });
+  });
+
+  $('body').on('focusout', '.rider-order-by-date' , function(){
+    date = $(this).val()
+    user_id = location.href.split('/')[5]
+   $.ajax({
+     type: 'GET',
+     url: '/admin/users/record_by_date',
+     dataType: 'script',
+     data : { date: date, user_id: user_id}
+     });
+  });
 });

@@ -1,0 +1,26 @@
+- if @chef_items.present?
+  .table-responsive
+    table.table.table-hover.order-history
+      thead
+        tr
+          th Title
+          th Quantity
+          th Measure
+          th Assign Date
+          th Change Status
+      tbody
+        - @chef_items.each do |chef_item|
+          tr
+            td = chef_item.inventory_item.item.title
+            td = chef_item.quantity 
+            td = chef_item.measure 
+            td = chef_item.assign_date&.strftime('%Y-%m-%d')
+            td 
+              = form_for chef_item, url: change_assigned_item_status_chef_dashboard_path(chef_item), method: :post, remote: true do |f|
+                    .col-sm-8
+                      = f.select(:status, options_for_select(AssignItem.statuses.map{|k, v| [k.humanize, k]}, chef_item.status), {}, {class: 'form-control'})
+                    .col-sm-4
+                      = f.submit 'Update', class: 'btn btn-primary btn-xs'
+    = will_paginate @chef_items, param_name: 'item_page'
+- else
+  | No Item is present yet!

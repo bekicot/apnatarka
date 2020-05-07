@@ -9,3 +9,17 @@ header#topnav
         ul.dropdown-menu
           li
             = link_to t("header.logout"), destroy_user_session_path, method: :delete
+  .navbar-custom
+    .container-fluid
+      #navigation
+        /! Navigation Menu
+        ul.navigation-menu
+          li[class="has-submenu #{active_class(chef_dashboards_path)}"]
+            = link_to chef_dashboards_path do
+              i.fa.fa-home
+              = t("header.dashboard")
+
+          li[class="has-submenu #{active_class(chef_inventory_chef_dashboards_path)}"]
+            = link_to chef_inventory_chef_dashboards_path do
+              i.fa.fa-info-circle
+              = t("header.Inventory")

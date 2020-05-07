@@ -1,0 +1,12 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-user
+        | Rider History
+      .col-sm-3.pull-right
+        .row
+          label Order History by Date   
+          = text_field_tag "select_date",nil, required: true, class: 'form-control rider-history', id: 'riderdatetimepicker2'
+    #rider_history
+      = render 'rider_history_page'

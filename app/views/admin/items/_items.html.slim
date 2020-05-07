@@ -17,7 +17,14 @@
           .form-group.clearfix
             .col-sm-12
               = f.label :Inventory_Category, class: 'show'
-              = f.select :inventory_category_id, options_for_select(@inventory_categories.map{|k,v| [k.title, k.id] }), {prompt: "Select Category"}, { class: 'form-control country-states' }
+              = f.select :inventory_category_id, options_for_select(@inventory_categories.map{|k,v| [k.title, k.id] }, selected: @item.inventory_category), {prompt: "Select Category"}, { class: 'form-control country-states' }
+          .form-group.clearfix
+            .col-sm-6
+              = f.label :Alert_At, class: 'show'
+              = f.number_field :alert_at, class: 'form-control', required: true, min: 0
+            .col-sm-6
+              = f.label :measure, class: 'show'
+              = f.select :measure, options_for_select(Item.measures.map{|k,v| [k,k]},selected: @item.measure), {prompt: "Select Measure"}, class: 'form-control', required: true
           .col-sm-12
           .modal-footer
             = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'

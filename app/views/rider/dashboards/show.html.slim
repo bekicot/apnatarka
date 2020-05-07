@@ -20,7 +20,7 @@
                     td
                       strong
                         | Name
-                    td = @rider&.order&.first_name.present? ? "#{@rider&.order&.first_name} #{@rider&.order&.last_name}" : "#{@rider&.order&.user&.first_name} #{@rider&.order&.user&.last_name}"
+                    td = @rider&.order&.first_name.present? ? "#{@rider&.order&.first_name}" : "#{@rider&.order&.user&.first_name}"
                   tr
                     td
                       strong
@@ -80,3 +80,31 @@
                       strong
                         | Sub Total
                     td = "$#{@rider&.order&.sub_total}"
+
+    .col-md-12
+      .card.m-b-30.custom-card
+        .card-body.block-head
+          .table-responsive
+            table.table.table-hover.mb-0
+              thead
+                tr
+                  th
+                    | Chef Name
+                  th 
+                    | Contact
+                  th
+                    | City
+                  th
+                    | Address
+              tbody
+                - @rider.order.order_items.each do |order_item|
+                  - chef = order_item.chef_category_item.chef_category.user
+                  tr
+                    td
+                      = chef.first_name
+                    td
+                      = chef.phone
+                    td
+                      = chef.city
+                    td
+                     

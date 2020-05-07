@@ -13,6 +13,7 @@ module TwentyForty
 
     config.i18n.load_path += Dir["#{Rails.root.to_s}/config/locales/**/*.{rb,yml}"]
     config.autoload_paths += %W(#{config.root}/lib)
+    config.time_zone = 'Islamabad'
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

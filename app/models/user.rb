@@ -7,6 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2], authentication_keys: [:login]
   has_many :orders
+  has_many :rider_amounts
   has_many :addresses
   enum role: [:super_admin, :normal_user, :chef, :moderator_user, :rider]
   enum gender: [:male, :female]

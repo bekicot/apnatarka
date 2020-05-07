@@ -1,0 +1,6 @@
+<% if @rider.delivery_time.strftime("%I:%M %p") >= Time.now.strftime("%I:%M %p") %>
+	$('#rider_index_page').html('<%= escape_javascript(render(partial: "rider_index_page")) %>')
+<% else %>
+	$('#order_modal').html('<%= escape_javascript(render(partial: "order_deliver_modal")) %>')
+	$('#deliver_order_modal').modal('show');
+<% end %>

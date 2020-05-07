@@ -16,16 +16,30 @@ class Admin::InventoryItemsController < Admin::BaseController
 
   def create
     @inventroy_items = []
+    item_record = InventoryItemRecord.where(item_id: params[:inventory_item][:item_id])
+    if item_record.present?
+      total = item_record.first.total_quantity + params[:inventory_item][:stock_quantity].to_i
+      item_record.first.update_attribute(:total_quantity, total )
+    else
+      InventoryItemRecord.create(item_id: params[:inventory_item][:item_id], total_quantity: params[:inventory_item][:stock_quantity])
+    end
     @inventroy_item = InventoryItem.create(inventory_item_params)
     if params[:inventry].present?
       params[:inventry].each do |k,v|
+        record = InventoryItemRecord.where(item_id: v[:item_id])
+        if record.present?
+          amount = record.first.total_quantity + v[:stock_quantity].to_i
+          record.first.update_attribute(:total_quantity, amount)
+        else
+          InventoryItemRecord.create(item_id: v[:item_id], total_quantity: v[:stock_quantity])
+        end
         @inventroy_items << InventoryItem.new( item_id: v[:item_id], price: v[:price], quantity: v[:quantity],
               indate: params[:inventory_item][:indate], measure: v[:measure], stock_quantity: v[:stock_quantity],
               total_price: v[:total_price], discount: v[:discount], total_expense: v[:total_expense])
       end
       InventoryItem.import @inventroy_items
     end
-      flash[:success] = "You Have Add Inventory Item Sucessfully"
+      flash[:success] = "You Have Add Inventory Items Sucessfully"
       redirect_to admin_inventory_items_path
   end
 
@@ -73,6 +87,11 @@ class Admin::InventoryItemsController < Admin::BaseController
 
   def assign_item
     @inventroy_items = InventoryItem.all
+    @items = Item.all
+    @assign_items = []
+    @inventroy_items.each do |item|
+      @assign_items << AssignItem.new(inventory_item_id: item.id)
+    end
     @chefs = User.chef
     @assign_item = AssignItem.new
   end

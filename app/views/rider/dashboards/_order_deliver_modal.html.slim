@@ -1,0 +1,16 @@
+#deliver_order_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Specify The Reson, Why You are Late ?
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+      	= form_for Rider.new, url: save_reason_rider_dashboard_path(@rider.id), html: { "data-parsley-validate" => true } do |f|
+		      .row
+			      .form-group.clearfix
+			        .col-sm-12
+			          = f.label :reason, class: 'show'
+			          = f.text_field :reason, required: true, class: 'form-control'
+					.col-sm-12.top-margin-rider
+					   = f.submit "Submit", class: 'pull-right btn custom-btn btn-primary'

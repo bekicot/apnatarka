@@ -1,0 +1,37 @@
+.card-body
+  .table-responsive
+    table.table.table-hover.mb-0
+      thead
+        tr
+          th Order ID
+          th Order Amount
+          th Pickup Time
+          th Delivery Time
+          th Reach Time
+          th Payment Status
+          th Order_status
+          th Delivery_status
+          th Reason
+      tbody
+      - @rider_history.each do |history|
+        tr
+          td
+            = history.order.id
+          td
+            = history.order_status == "reject" ? "N/A" : history.order.sub_total
+          td
+            = history.pickup_time&.strftime("%I:%M %p") || "N/A"
+          td
+            = history.delivery_time&.strftime("%I:%M %p") || "N/A"
+          td
+            = history.reached_time&.strftime("%I:%M %p") || "N/A"
+          td
+            = history.payment_status&.humanize
+          td 
+            = history.order_status&.humanize
+          td
+            = history.delivery_status&.humanize || "N/A"
+          td
+            = history.reason&.truncate(15) || "N/A"
+
+  = will_paginate @rider_history, param_name: "rider_page"

@@ -20,6 +20,7 @@
                       th Payment Status
                       th Order Status
                       th Total Price
+                      th Rider Status
                       th Actions
                   tbody
                     - @from_branch_orders.each do |order|
@@ -33,6 +34,11 @@
                         /       = f.submit 'Update', class: 'btn btn-primary btn-xs'
                         th = order.order_status
                         td = order.sub_total
+                        td 
+                          - if order&.rider&.any?
+                            = order&.rider&.where.not(order_status: "reject").first&.order_status || "Rider Reject the order"
+                          - else
+                            = "Rider Not Assigned"
                         td = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
                 = will_paginate @from_branch_orders, param_name: 'branch_page'
             - else
@@ -55,6 +61,7 @@
                       th Payment Status
                       th Order Status
                       th Total Price
+                      th Rider Status
                       th Actions
                   tbody
                   - @reg_orders.each do |order|
@@ -68,6 +75,11 @@
                       /         = f.submit 'Update', class: 'btn btn-primary btn-xs'
                       td = order.order_status
                       td = order.sub_total
+                      td 
+                        - if order&.rider&.any?
+                          = order&.rider&.where.not(order_status: "reject").first&.order_status || "Rider Reject the order"
+                        - else
+                          = "Rider Not Assigned"
                       td = link_to "show Detail", admin_order_history_path(order.id), class: "btn btn-xs btn-primary"
                 = will_paginate @reg_orders, param_name: 'reg_page'
             - else
@@ -90,6 +102,7 @@
                       th Payment Status
                       th Order Status
                       th Total Price
+                      th Rider Status
                       th Actions
                   tbody
                     - @guest_orders.each do |order|
@@ -103,6 +116,11 @@
                         /       = f.submit 'Update', class: 'btn btn-primary btn-xs'
                         th = order.order_status
                         td = order.sub_total
+                        td 
+                          - if order&.rider&.any?
+                            = order&.rider&.where.not(order_status: "reject").first&.order_status || "Rider Reject the order"
+                          - else
+                            = "Rider Not Assigned"
                         td = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
                 = will_paginate @guest_orders, param_name: 'guest_page'
             - else

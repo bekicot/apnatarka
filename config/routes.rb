@@ -93,6 +93,14 @@ Rails.application.routes.draw do
     resources :dashboards, only: [ :index, :show ] do
       member do
         get :deliver_order
+        get :accept_order
+        get :reject_order
+        post :save_reason
+      end
+      collection do 
+        get :rider_history
+        get :record_by_date
+        get :history_by_date
       end
     end
   end
@@ -124,6 +132,11 @@ Rails.application.routes.draw do
       collection do
         get :get_cities
         get :user_roles
+        get :record_by_date
+      end
+      member do
+        get :order_history
+        get :pay_amount
       end
       resources :chef_categories do
         resources :chef_category_items  
@@ -179,6 +192,11 @@ Rails.application.routes.draw do
       member do
         post :change_order_status
         post :change_assigned_item_status
+      end
+      collection do
+        get :order_by_date
+        get :chef_inventory
+        get :inventory_by_date
       end
     end
   end

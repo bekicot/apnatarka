@@ -2,7 +2,7 @@ class Order < ApplicationRecord
 
   belongs_to :user, optional: true
   belongs_to :address, optional: true
-  has_one :rider
+  has_many :rider
   belongs_to :location, optional: true
   has_many :order_items, dependent: :destroy
   has_many :order_special_items, dependent: :destroy
@@ -14,7 +14,7 @@ class Order < ApplicationRecord
   enum delivery_mode: [:carry_out, :delivery]
   enum ordered_as: [:registered_user, :guest_user, :order_from_branch ]
   enum status: [:unpaid, :paid, :cash_on_delivery]
-  enum order_status: [:pending, :accept, :reject, :ready]
+  enum order_status: [:pending, :accept, :reject, :ready, :given_to_rider]
 
   scope :registered_orders, -> { (where(ordered_as: Order.ordered_as[:registered_user])) }
   scope :guest_orders, -> { (where(ordered_as: Order.ordered_as[:guest_user])) }

@@ -1,9 +1,8 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :find_user, only: [:show, :destroy, :edit, :update]
+  before_action :find_user, only: [:show, :destroy, :edit, :update, :order_history, :pay_amount]
   before_action :check_super_admin, only: [:destroy, :edit, :update]
   #before_action :check_moderator_user, only: [:destroy]
   before_action :check_admin_moderator_user, only: [:index]
-
   skip_before_action :verify_authenticity_token, only: [:create, :update]
   before_action :find_country_and_state, only: [:new, :edit, :create, :update]
 
@@ -57,6 +56,27 @@ class Admin::UsersController < Admin::BaseController
     respond_to do |format|
       format.js
     end
+  end
+
+  def order_history
+    @total_amount = 0
+    @rider_history = @user.riders.where('created_at::date = ?', Date.today).order('created_at DESC').paginate(page: params[:rider_page], per_page: 10)
+    @amount = RiderAmount.where(user_id: @user.id).map{|x| x.total }
+    @amount.each { |total| @total_amount += total }
+  end
+
+  def record_by_date
+    @user = User.find(params[:user_id])
+    @rider_history = @user.riders.where("created_at::date = ?", params[:date]).order('created_at DESC').paginate(page: params[:rider_page], per_page: 10)
+  end
+
+  def pay_amount
+    order_status = @user.riders.where(order_status: "deliver")
+    ids = order_status.map{|x| x.order_id }
+    orders = Order.where(id: ids)
+    orders.update_all(status: "paid")
+    @user.rider_amounts.destroy_all
+    redirect_to order_history_admin_user_path(@user)
   end
 
   private

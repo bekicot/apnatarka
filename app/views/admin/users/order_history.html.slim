@@ -1,0 +1,16 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-user
+        | Rider History
+      .col-sm-3.pull-right
+        .row
+          label Rider History by Date   
+          = text_field_tag "select_date",nil, required: true, class: 'form-control rider-order-by-date', id: 'userdatetimepicker'
+      .col-sm-4.pull-right.margin-pay
+        | Total Payable Amount : 
+        b = "#{@total_amount}/RS" || 0
+        = link_to "Pay Now", pay_amount_admin_user_path(@user.id), class: "btn btn-primary custom-btn", data: {confirm: "Are You Sure !"}
+    #rider_order_history
+      = render 'rider_order_history'

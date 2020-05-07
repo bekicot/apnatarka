@@ -2,7 +2,7 @@ class Admin::ItemsController < Admin::BaseController
   before_action :find_item, only: [:edit, :update, :destroy]
   
   def index
-    @items = Item.all.order('created_at DESC').paginate(page: params[:page], per_page: 10)
+    @items = Item.all.includes(:inventory_item_record).order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -47,7 +47,7 @@ class Admin::ItemsController < Admin::BaseController
   private
 
   def item_params
-    params.require(:item).permit(:title, :inventory_category_id)
+    params.require(:item).permit(:title, :inventory_category_id, :alert_at, :measure)
   end
 
   def find_item
