@@ -19,6 +19,7 @@
           td
             - if user.chef?
               = link_to "Categories", admin_user_chef_categories_path(user), class: 'btn btn-primary btn-xs'
+              = link_to "History", chef_history_admin_user_path(user), class: "btn custom-btn btn-xs"
             - if user.rider?
               = link_to "Order History", order_history_admin_user_path(user), class: "btn custom-btn btn-xs"
             = link_to admin_user_path(user), class: 'btn btn-primary btn-xs' do

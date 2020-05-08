@@ -11,7 +11,7 @@
       tbody
         - @chef_items.each do |chef_item|
           tr
-            td = chef_item.inventory_item.item.title
+            td = chef_item.item.title
             td = chef_item.quantity 
             td = chef_item.measure 
             td = chef_item.assign_date&.strftime('%Y-%m-%d')

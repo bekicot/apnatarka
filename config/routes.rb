@@ -133,10 +133,12 @@ Rails.application.routes.draw do
         get :get_cities
         get :user_roles
         get :record_by_date
+        get :chef_inventory_by_date
       end
       member do
         get :order_history
         get :pay_amount
+        get :chef_history
       end
       resources :chef_categories do
         resources :chef_category_items  

@@ -7,6 +7,6 @@
       .col-sm-3.pull-right
         .row
           label Inventory History by Date   
-          = text_field_tag "select_date",nil, required: true, class: 'form-control chef-inventory-by-date', id: 'chefdatetimepicker2'
+          = text_field_tag "select_date",nil, required: true, class: 'form-control chef-inventory-by-date', id: 'chefdatetimepicker2', placeholder: "Select Date"
     #chef_inventory
       = render 'chef_items'

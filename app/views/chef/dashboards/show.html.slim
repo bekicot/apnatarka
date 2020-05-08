@@ -1,60 +1,58 @@
-.clearfix
-  .container-fluid
-    .row
-      .col-md-12
-        .page-title-box
-          h4 Order Detail
-    .row
-      .col-md-12
-        .card.m-b-30.custom-card
-          .card-body.block-head
-            .table-responsive
-              table.table.table-hover.order-history
-                thead
-                  tr
-                    th Menu Item
-                    th Quantity
-                    th Special Request
-                tbody
-                - @order_items.each do |order_item|
-                  tr
-                    td = order_item.chef_category_item.menu_item.title
-                    td = order_item.quantity
-                    th = order_item.special_request || "N/A"
-                - if @special_items.present?
-                  - @special_items.each do |special_item|
-                    tr
-                      td = special_item.special_item.name
-                      td = special_item.quantity
-                      td N/A
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-user
+        | Order Detail
+    .card-body
+      .table-responsive
+        table.table.table-hover.order-history
+          thead
+            tr
+              th Menu Item
+              th Quantity
+              th Special Request
+          tbody
+          - @order_items.each do |order_item|
+            tr
+              td = order_item.chef_category_item.menu_item.title
+              td = order_item.quantity
+              td = order_item.special_request || "N/A"
+          - if @special_items.present?
+            - @special_items.each do |special_item|
+              tr
+                td = special_item.special_item.name
+                td = special_item.quantity
+                td N/A
 
-    .row
-      .col-md-12
-        .page-title-box
-          h4 Rider Detail
-    .row
-      .col-md-12
-        .card.m-b-30.custom-card
-          .card-body.block-head
-            - if @rider_detail.present?
-              .table-responsive
-                table.table.table-hover.order-history
-                  thead
-                    tr
-                      th Name
-                      th Contact
-                      th Pick Up Time
-                      th Delivery Time
-                      th Reach Time
-                  tbody
-                    tr
-                      td = "#{@rider_detail.user.first_name} #{@rider_detail.user.last_name}"
-                      td = @rider_detail.user.phone
-                      td = @rider_detail.pickup_time.strftime("%I : %M %P")
-                      td = @rider_detail.delivery_time.strftime("%I : %M %P")
-                      td = @rider_detail.reached_time&.strftime("%I : %M %P") || "N/A"
-            - else
-              | No Rider is Present!
-                         
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-user
+        | Rider Detail
+    .card-body
+      .table-responsive
+        - if @rider_detail.present?
+          table.table.table-hover.order-history
+            thead
+              tr
+                th Name
+                th Contact
+                th Pick Up Time
+                th Delivery Time
+                th Reach Time
+            tbody
+            - @rider_detail.each do |rider|
+              - if rider.order_status != "reject"
+                tr
+                  td = rider.user.first_name
+                  td = rider.user.phone
+                  td = rider.pickup_time&.strftime("%I : %M %P")
+                  td = rider.delivery_time&.strftime("%I : %M %P")
+                  td = rider.reached_time&.strftime("%I : %M %P") || "N/A"
+        - else
+          | No Rider is Present!
+                       
 
 

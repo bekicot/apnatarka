@@ -2,7 +2,7 @@ class Chef::DashboardsController < Chef::BaseController
   before_action :check_chef
   skip_before_action :verify_authenticity_token, only: [:change_order_status, :change_assigned_item_status]
   before_action :find_order, only: [:show, :change_order_status]
-  before_action :find_chef_order, only: [:index, :order_by_date]
+  before_action :find_chef_order, only: [:index, :order_by_date, :show]
   def index
     @chef_order_items = OrderItem.where("created_at::date = ? ", Date.today).where(chef_category_item_id: @chef_category_item_ids).includes(:order).order('created_at DESC').paginate(page: params[:page], per_page: 10)
     # @chef_category_items = @chef.chef_category_items.includes(order_items: [:order]).order('created_at DESC').paginate(page: params[:page], per_page: 10)
@@ -10,7 +10,7 @@ class Chef::DashboardsController < Chef::BaseController
   end
 
   def chef_inventory
-    @chef_items = AssignItem.where(chef_id: @chef.id).includes(inventory_item: [:item]).order('created_at DESC').paginate(page: params[:item_page], per_page: 5)
+    @chef_items = AssignItem.where(chef_id: @chef.id).includes(:item).order('created_at DESC').paginate(page: params[:item_page], per_page: 10)
   end
 
   def order_by_date
@@ -18,7 +18,7 @@ class Chef::DashboardsController < Chef::BaseController
   end
 
   def inventory_by_date
-    @chef_items = AssignItem.where(chef_id: @chef.id).where("assign_date::date = ? ", params[:date]).includes(inventory_item: [:item]).order('created_at DESC').paginate(page: params[:item_page], per_page: 5)
+    @chef_items = AssignItem.where(chef_id: @chef.id).where("assign_date::date = ? ", params[:date]).includes(inventory_item: [:item]).order('created_at DESC').paginate(page: params[:item_page], per_page: 10)
   end
 
   def change_order_status
@@ -28,8 +28,7 @@ class Chef::DashboardsController < Chef::BaseController
   end
 
   def show
-    debugger
-  	@order_items = @order.order_items
+  	@order_items = @order.order_items.where(chef_category_item_id: @chef_category_item_ids)
     @rider_detail = @order.rider
     @special_items = @order.order_special_items
   end

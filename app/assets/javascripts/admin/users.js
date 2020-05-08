@@ -56,6 +56,19 @@ $(document).ready(function(){
     });
   });
 
+  $(function () {
+    $('#userdatetimepicke1').datetimepicker({
+      format:'YYYY-MM-DD'
+    });
+  });
+
+  $(function () {
+    $('#userdatetimepicke2').datetimepicker({
+      format:'YYYY-MM-DD',
+      defaultDate: new Date
+    });
+  });
+
   $('body').on('focusout', '.rider-order-by-date' , function(){
     date = $(this).val()
     user_id = location.href.split('/')[5]
@@ -63,7 +76,18 @@ $(document).ready(function(){
      type: 'GET',
      url: '/admin/users/record_by_date',
      dataType: 'script',
-     data : { date: date, user_id: user_id}
+     data : { date: date, id: user_id}
+     });
+  });
+
+  $('body').on('focusout', '.chef-inventory-by-date' , function(){
+    date = $(this).val()
+    user_id = location.href.split('/')[5]
+   $.ajax({
+     type: 'GET',
+     url: '/admin/users/chef_inventory_by_date',
+     dataType: 'script',
+     data : { date: date, id: user_id}
      });
   });
 });

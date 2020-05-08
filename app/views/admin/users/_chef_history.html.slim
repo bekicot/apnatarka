@@ -1,0 +1,25 @@
+.card-body
+  .table-responsive
+    table.table.table-hover.mb-0
+      thead
+        tr
+          th Item
+          th Quantity
+          th Measure
+          th Assign Date
+          th Status
+      tbody
+      - @assign_items.each do |item|
+        tr
+          td
+            = item.item.title
+          td
+            = item.quantity
+          td
+            = item.measure
+          td
+            = item.assign_date&.strftime("%F %I:%M %p") || "N/A"
+          td 
+            = item.status.humanize
+
+  = will_paginate @assign_items, param_name: "chef_page"

@@ -28,7 +28,7 @@ class Admin::InventoryItemsController < Admin::BaseController
       params[:inventry].each do |k,v|
         record = InventoryItemRecord.where(item_id: v[:item_id])
         if record.present?
-          amount = record.first.total_quantity + v[:stock_quantity].to_i
+          amount = record.first.total_quantity + v[:stock_quantity].to_f
           record.first.update_attribute(:total_quantity, amount)
         else
           InventoryItemRecord.create(item_id: v[:item_id], total_quantity: v[:stock_quantity])
@@ -45,16 +45,20 @@ class Admin::InventoryItemsController < Admin::BaseController
 
   def save_assign_item
     @assign_items = []
-    @assign_item = AssignItem.create(assign_item_params)
-    if params[:inventry].present?
-      params[:inventry].each do |k, v|
-        @assign_items << AssignItem.new(user_id: params[:assign_item][:user_id], assign_date: params[:assign_item][:assign_date],
-                      chef_id: params[:assign_item][:chef_id], inventory_item_id: v[:inventory_item_id], quantity: v[:quantity], measure: v[:measure])
+    params[:assign_items].each do |item|
+      if item[:quantity].present? && item[:quantity].to_f != 0
+        item_record = InventoryItemRecord.where(item_id: item[:item_id])
+        if item_record.present?
+          quantity = item_record.first.used_quantity.to_f + item[:quantity].to_f
+          item_record.first.update_attribute(:used_quantity, quantity)
+          @assign_items << AssignItem.new(chef_id: params[:chef_id], assign_date: params[:assign_date],
+            item_id: item[:item_id], quantity: item[:quantity], measure: item[:measure], user_id: current_user.id)
+        end
       end
-      AssignItem.import @assign_items
     end
-      flash[:success] = "You Have Assign Inventory Item Sucessfully"
-      redirect_to admin_inventory_items_path
+    AssignItem.import @assign_items
+    flash[:success] = "You Have Assign Inventory Item Sucessfully"
+    redirect_to admin_inventory_items_path
   end
 
   def change_status
@@ -86,14 +90,12 @@ class Admin::InventoryItemsController < Admin::BaseController
   end
 
   def assign_item
-    @inventroy_items = InventoryItem.all
     @items = Item.all
-    @assign_items = []
-    @inventroy_items.each do |item|
-      @assign_items << AssignItem.new(inventory_item_id: item.id)
-    end
     @chefs = User.chef
-    @assign_item = AssignItem.new
+    @assign_items = []
+    @items.each do |item|
+      @assign_items << AssignItem.new(item_id: item.id)
+    end
   end
 
   def view_item_detail

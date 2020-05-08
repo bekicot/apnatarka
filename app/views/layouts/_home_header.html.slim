@@ -25,6 +25,10 @@
           .dropdown-menu.custom-dropdown aria-labelledby="dropdownMenuLink"
             - if current_user.super_admin? || current_user.moderator_user?
               = link_to t("header.dashboard"), admin_dashboards_path
+            - if current_user.rider?
+              = link_to t("header.dashboard"), rider_dashboards_path
+            - if current_user.chef?
+              = link_to t("header.dashboard"), chef_dashboards_path
             = link_to t("header.favorites"), all_favorite_orders_delivery_index_path
             = link_to t("header.logout"), destroy_user_session_path, method: :delete
 

@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :find_user, only: [:show, :destroy, :edit, :update, :order_history, :pay_amount]
+  before_action :find_user, only: [:show, :destroy, :edit, :update, :order_history, :pay_amount, :chef_history, :record_by_date, :chef_inventory_by_date ]
   before_action :check_super_admin, only: [:destroy, :edit, :update]
   #before_action :check_moderator_user, only: [:destroy]
   before_action :check_admin_moderator_user, only: [:index]
@@ -66,7 +66,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def record_by_date
-    @user = User.find(params[:user_id])
     @rider_history = @user.riders.where("created_at::date = ?", params[:date]).order('created_at DESC').paginate(page: params[:rider_page], per_page: 10)
   end
 
@@ -77,6 +76,14 @@ class Admin::UsersController < Admin::BaseController
     orders.update_all(status: "paid")
     @user.rider_amounts.destroy_all
     redirect_to order_history_admin_user_path(@user)
+  end
+
+  def chef_history
+    @assign_items = AssignItem.where(chef_id: @user.id).order('created_at DESC').paginate(page: params[:chef_page], per_page: 5)
+  end
+
+  def chef_inventory_by_date
+    @assign_items = AssignItem.where(chef_id: @user.id).where("assign_date::date = ?", params[:date]).order('created_at DESC').paginate(page: params[:chef_page], per_page: 5)
   end
 
   private

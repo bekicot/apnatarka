@@ -1,0 +1,24 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-user
+        | Chef  Orders History
+      .col-sm-3.pull-right
+        .row
+          label Chef Orders History by Date   
+          = text_field_tag "select_date",nil, required: true, class: 'form-control chef-order-by-date', id: 'userdatetimepicke2'
+    #chef_orders_history
+      / = render 'chef_history'
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-user
+        | Chef  Inventory History
+      .col-sm-3.pull-right
+        .row
+          label Chef Inventory History by Date   
+          = text_field_tag "select_date",nil, required: true, class: 'form-control chef-inventory-by-date', id: 'userdatetimepicke1', placeholder: "Select Date"
+    #chef_inventory_history
+      = render 'chef_history'
