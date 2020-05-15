@@ -1,5 +1,5 @@
 class Admin::ItemsController < Admin::BaseController
-  before_action :find_item, only: [:edit, :update, :destroy]
+  before_action :find_item, only: [:edit, :update, :destroy, :show]
   
   def index
     @items = Item.all.includes(:inventory_item_record).order('created_at DESC').paginate(page: params[:page], per_page: 10)
@@ -35,6 +35,10 @@ class Admin::ItemsController < Admin::BaseController
     else
       render :back
     end
+  end
+
+  def show
+    @assign_items = @item.assign_items
   end
 
   def destroy

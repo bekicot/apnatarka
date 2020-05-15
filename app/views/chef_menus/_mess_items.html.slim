@@ -1,0 +1,40 @@
+- if @mess.present?
+  .tab-content.container-fluid.clearfix
+    - @mess.each_with_index do |mess, index|
+      div[class="tab-panel tab fade #{'in active' if index == 0}" id="tab#{mess.id}"]
+        - mess_items = mess&.mess_items
+        - if mess_items.present?
+          .container-fluid
+            .row
+              .center-card
+                .card.card-chef.chef-mess-table
+                  .card-body
+                    h3.card-title
+                      i.fa.fa-shopping-basket
+                      | Chef Mess Detail
+                      span#mess-availability.pull-right
+                      = link_to "Join Mess", mess_request_chef_menu_path(mess, user_id: mess.user.id), class: "join-mess-btn btn join-mess pull-right ml-2", remote: true
+                      span#custom-mess-availability.pull-right
+                      = link_to "Customize Mess", mess_customise_chef_menu_path(mess, user_id: mess.user.id), class: "custom-mess-btn btn join-mess pull-right", remote: true
+                    hr
+                    .table-responsive
+                      table.table.table-hover.mb-0
+                        thead
+                          tr
+                            th
+                              | Item
+                            th
+                              | Day
+                            th
+                              | Available At
+                        tbody
+                          - mess_items.each do |mess_item|
+                            tr
+                              td
+                                = mess_item.chef_category_item.menu_item.title
+                              td
+                                = mess_item.day&.humanize
+                              td
+                                = mess_item.avalible_in&.humanize
+- else
+  = render partial: "empty"

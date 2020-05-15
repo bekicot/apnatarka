@@ -16,9 +16,9 @@
             td
               = order_item.order.id
             td 
-              = form_for order_item.order, url: change_order_status_chef_dashboard_path(order_item.order), method: :post, remote: true do |f|
+              = form_for order_item, url: change_order_status_chef_dashboard_path(order_item.order), method: :post, remote: true do |f|
                 .col-sm-8
-                  = f.select(:order_status, options_for_select(Order.order_statuses.map{|k, v| [k.humanize, k]}, order_item.order.order_status), {}, {class: 'form-control'})
+                  = f.select(:item_status, options_for_select(OrderItem.item_statuses.map{|k, v| [k.humanize, k]}, order_item.item_status), {}, {class: 'form-control'})
                 .col-sm-4
                   = f.submit 'Update', class: 'btn btn-primary btn-xs'
               - order_id_id = order_item.order.id

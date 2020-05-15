@@ -1,6 +1,7 @@
 class Admin::OrderHistoriesController < Admin::BaseController
   before_action :check_admin_moderator_user, only: [:index]
   before_action :find_tax, only: [:show]
+  before_action :find_order, only: [:show, :order_detail]
 
   def index
     @orders = Order.includes(:order_items).where(user_id: current_user.id).paginate(page: params[:page], per_page: 10)
@@ -9,7 +10,6 @@ class Admin::OrderHistoriesController < Admin::BaseController
   def show
     @rider = Rider.new
     @riders = User.rider
-    @order = Order.includes(order_items: [:chef_category_item]).find(params[:id])
     @rider = @order.rider.where.not(order_status: "reject").first
   end
 
@@ -42,11 +42,21 @@ class Admin::OrderHistoriesController < Admin::BaseController
     redirect_to customer_orders_admin_order_histories_path
   end
 
+  def order_detail
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
   private
 
   def rider_params
     params.require(:order).require(:rider).permit(:user_id, :order_id, :pickup_time, :delivery_time)
+  end
+
+  def find_order
+    @order = Order.includes(order_items: [:chef_category_item]).find(params[:id])
   end
 
   def find_tax

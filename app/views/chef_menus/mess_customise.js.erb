@@ -1,0 +1,6 @@
+<% if !current_user.mess_request.present? %>
+	$('#mess-customise').html('<%= escape_javascript(render(partial: "customise_mess_modal")) %>');
+	$('#customise-mess-modal').modal('show');
+<% else %>
+	$('#custom-mess-availability').html('Already Joined');
+<% end %>

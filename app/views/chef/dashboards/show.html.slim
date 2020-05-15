@@ -18,12 +18,6 @@
               td = order_item.chef_category_item.menu_item.title
               td = order_item.quantity
               td = order_item.special_request || "N/A"
-          - if @special_items.present?
-            - @special_items.each do |special_item|
-              tr
-                td = special_item.special_item.name
-                td = special_item.quantity
-                td N/A
 
 .container-fluid
   .card-box

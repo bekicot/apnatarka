@@ -1,0 +1,12 @@
+<% if !current_user.mess_request.present? %>
+	swal({
+	    title: "your Mess Request Has Been Placed",
+	    text: "Soon Our Team will contact you",
+	    type: "success",
+	});
+
+	$('#mess_items').html('<%= escape_javascript(render(partial: "mess_items")) %>');
+<% else %>
+	$('#mess-availability').html("")
+	$('#mess-availability').html('Already Joined');
+<%end%>

@@ -23,3 +23,8 @@ header#topnav
             = link_to chef_inventory_chef_dashboards_path do
               i.fa.fa-info-circle
               = t("header.Inventory")
+
+          li[class="has-submenu #{active_class(chef_messes_path)}"]
+            = link_to chef_messes_path do
+              i.fa.fa-pencil
+              = t("header.Mess_Management")

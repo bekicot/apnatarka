@@ -1,0 +1,13 @@
+.row
+  .form-group.clearfix.col-md-4
+    .col-sm-12
+      = f.label :chef_category_item_id, class: 'show'
+  		= f.select :chef_category_item_id, options_for_select(@chef_categories.map{ |category| [category&.menu_item&.title, category.id ] }), {prompt: "Select Item"}, {class: 'form-control', required: true}
+  .form-group.clearfix.col-md-4
+    .col-sm-12
+      = f.label :day, class: 'show'
+  		= f.select :day, options_for_select(@days.map{|k,v| [k.humanize, k] }), {prompt: "Select Day"}, class: 'form-control', required: true
+  .form-group.clearfix.col-md-4
+    .col-sm-12
+      = f.label :avalible_in, class: 'show'
+  		= f.select :avalible_in, options_for_select(@avalible_in.map{|k,v| [k.humanize, k] }), {prompt: "Select Avalibility"}, class: 'form-control', required: true

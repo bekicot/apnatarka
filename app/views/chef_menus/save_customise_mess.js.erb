@@ -1,0 +1,8 @@
+swal({
+	    title: "your Mess Request Has Been Placed",
+	    text: "Soon Our Team will contact you",
+	    type: "success",
+	});
+$('#customise-mess-modal').modal('hide');
+
+$('#mess_items').html('<%= escape_javascript(render(partial: "mess_items")) %>');

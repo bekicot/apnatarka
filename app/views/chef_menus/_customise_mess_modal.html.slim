@@ -1,0 +1,76 @@
+div.modal.fade.bs-example-modal-lg id="customise-mess-modal" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog.modal-lg role="document" style="width: 100%"
+    .modal-content 
+      button.close aria-label="Close" data-dismiss="modal" type="button" 
+        span aria-hidden="true"  ×
+
+      #complete_menu.menu-block
+        .tabs-block
+          .clearfix
+            .container-fluid
+              .card-box.clearfix
+                .row
+                  .col-sm-4
+                    table.table.table-striped.table-no-bordered.able-hover
+                      h2.text-center Break Fast
+                      thead
+                        tr
+                          th Items
+                          th Day
+                          th Check
+                        tbody
+                          - @user_mess.each do |mess|
+                            - mess_id = mess.mess_item.id
+                            - if mess.mess_item.avalible_in == "break_fast"
+                              = fields_for 'break_fast[]', mess do |a|
+                                tr
+                                  td 
+                                    = mess.mess_item.chef_category_item.menu_item.title
+                                  td 
+                                    = mess.mess_item.day&.humanize
+                                  td 
+                                    = a.check_box :is_checked, include_hidden: false, id: mess_id
+
+                  .col-sm-4
+                    table.table.table-striped.table-no-bordered.able-hover
+                      h2.text-center Lunch
+                      thead
+                        tr
+                          th Items
+                          th Day
+                          th Check
+                        tbody
+                          - @user_mess.each do |mess|
+                            - mess_id = mess.mess_item.id
+                            - if mess.mess_item.avalible_in == "lunch"
+                              = fields_for 'lunch[]', mess do |a|
+                                tr
+                                  td 
+                                    = mess.mess_item.chef_category_item.menu_item.title
+                                  td 
+                                    = mess.mess_item.day&.humanize
+                                  td 
+                                    = a.check_box :is_checked, include_hidden: false, id: mess_id
+
+                  .col-sm-4
+                    table.table.table-striped.table-no-bordered.able-hover
+                      h2.text-center Dinner
+                      thead
+                        tr
+                          th Items
+                          th Day
+                          th Check
+                        tbody
+                          - @user_mess.each do |mess|
+                            - mess_id = mess.mess_item.id
+                            - if mess.mess_item.avalible_in == "dinner"
+                              = fields_for 'dinner[]', mess do |a|
+                                tr
+                                  td 
+                                    = mess.mess_item.chef_category_item.menu_item.title
+                                  td 
+                                    = mess.mess_item.day&.humanize
+                                  td 
+                                    = a.check_box :is_checked, include_hidden: false, id: mess_id
+
+                button.custom-mess.mess-table.pull-right.btn Join Mess              

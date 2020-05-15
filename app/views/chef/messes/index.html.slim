@@ -1,0 +1,29 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-shopping-basket
+        | Chef Mess
+      = link_to "Add Mess", new_chef_mess_path, class: "btn custom-btn btn-primary pull-right"
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Mess Title
+                th
+                  | Action
+            tbody
+            - @mess.each do |mess|
+              tr
+                td
+                  = mess.title
+                td 
+                  = link_to "Mess Items", chef_mess_items_path(mess_id: mess), class: "btn custom-btn btn-primary"
+                  = link_to "Edit", edit_chef_mess_path(mess), class: 'btn btn-primary btn-xs', remote: true
+                  = link_to "Delete", chef_mess_path(mess), data: {confirm: "Are you sure!"}, class: 'btn btn-danger btn-xs', method: :delete
+                  
+
+#chef_mess_modal
+

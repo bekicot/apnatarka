@@ -107,8 +107,17 @@
   .frontside .card .card-body img
     width: 120px
     height: 120px
-    border-radius: 50%  
-
+    border-radius: 50% 
+#mess-availability 
+  margin-top: -24px
+  color: #F32013
+#custom-mess-availability
+  margin-top: -24px
+  color: #F32013
+.mess-table
+  margin-bottom: 10px !important
+.mess-custom-item
+  font: 20px/24px "cf_jack_storyregular"
 .card-chef:hover
   border: 3px solid #fdc741
 .card-chef
@@ -166,7 +175,25 @@
       border: 3px solid white
       margin: auto
       border-radius: 85px
+.join-mess
+  font: 20px/24px "cf_jack_storyregular"
+  margin: 0
+  padding: 0
+  z-index: 999
+  margin-left: 8px
+  display: inline-block
+  vertical-align: middle
+  padding: 12px 20px 8px
+  background: $light-yellow
+  border: 1px solid $light-yellow
+  border-radius: 10px
+  color: $black
+  text-decoration: none
 
+  &:hover
+    background: inherit
+    text-decoration: none
+    color: $light-yellow
 .textcolor-chef-card
   font-size: 1.9rem
   font-weight: 400
@@ -289,7 +316,7 @@ body
 .center-card
   margin: auto
   position: relative
-  width: 550px
+  margin-top: 20px
 .span-avalibility-color
   color: white
 .back-btn-margin

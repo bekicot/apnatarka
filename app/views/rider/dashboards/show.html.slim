@@ -20,7 +20,7 @@
                     td
                       strong
                         | Name
-                    td = @rider&.order&.first_name.present? ? "#{@rider&.order&.first_name}" : "#{@rider&.order&.user&.first_name}"
+                    td = @rider&.order&.first_name&.present? ? "#{@rider&.order&.first_name}" : "#{@rider&.order&.user&.first_name}"
                   tr
                     td
                       strong

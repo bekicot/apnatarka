@@ -3,43 +3,72 @@
   #myCarousel.carousel.slide.clearfix data-ride="carousel" data-lang="#{session[:locale] == "ar" ? true : false}"
     .carousel-inner role="listbox"
       .item.active
-        = image_tag "home/burger-home-#{session[:locale] || "en"}.jpg", class: 'img-responsive'
-        .carousel-caption
-          .banner.text-left.clearfix
-            .box
-              .holder
-                .container-fluid
-                  .showcase-right
-                    span.home-arabic= t('home.carousel.caption.ar')
-                  .showcase-left
-                    strong= t('home.carousel.caption.en')
-                  .order-area.clearfix.text-left.text-capitalize
-                    = link_to delivery_index_path, class: "btn" do
-                      = t("order.now")
-                  .download-menu.clearfix.text-left.text-capitalize
-#complete_menu.menu-block
-    .tabs-block
-      .text-center
-        .showcase-left
-          strong.heading= t('menu.heading')
-        .showcase-right
-          h2= t('menu.sub_heading')
-      .container
-        .chefs
-          h5.section-title.h1 OUR Chefs
-          .row
-            - @chefs.each do |chef|
-              .col-lg-3.col-md-4.col-sm-6.col-xs-12.chef-card-margin-top
-                .card.border.border-warning.card-chef
-                  = image_tag( "chef_background.jpg", class: "image1-chef-card" )
-                  .chef-menu-chef-image
-                    = image_tag chef.avatar.url, class: "rounded-circle mx-auto d-block"
-                  .card-body
-                    h3.card-title
-                      = "#{chef.first_name.titleize} #{chef.last_name.titleize}"
-                    p.card-text 
-                      = "#{chef.city&.titleize}, #{chef.state&.titleize}, #{chef.country&.titleize}"
-                    hr/
-                    .
-                      = link_to "Check Mess", chef_mess_items_chef_menu_path(chef), class: "btn btn-block btn-warning btn-font"
-= will_paginate @chefs
+        = image_tag "home/krahi.jpg", class: 'img-responsive'
+        / .carousel-caption
+        /   .banner.text-left.clearfix
+        /     .box
+        /       .holder
+        /         .container-fluid
+        /           .showcase-right
+        /             span.home-arabic= t('home.carousel.caption.ar')
+        /           .showcase-left
+        /             strong= t('home.carousel.caption.en')
+        /           .order-area.clearfix.text-left.text-capitalize
+        /             = link_to delivery_index_path, class: "btn" do
+        /               = t("order.now")
+        /           .download-menu.clearfix.text-left.text-capitalize
+
+      .item
+        = image_tag "home/krahi2.jpg", class: 'img-responsive'
+        / .carousel-caption
+        /   .banner.text-left.clearfix
+        /     .box
+        /       .holder
+        /         .container-fluid
+        /           span.home-arabic= t('home.carousel.caption.ar')
+        /           strong= t('home.carousel.caption.en')
+        /           .order-area.clearfix.text-left.text-capitalize
+        /             = link_to delivery_index_path, class: "btn" do
+        /               = t("order.now")
+        /           .download-menu.clearfix.text-left.text-capitalize
+                    
+      .item
+        = image_tag "home/dessert-home-#{session[:locale] || "en"}.jpg", class: 'img-responsive'
+        / .carousel-caption
+        /   .banner.text-left.clearfix
+        /     .box
+        /       .holder
+        /         .container-fluid
+        /           span.home-arabic= t('home.carousel.caption.ar')
+        /           strong= t('home.carousel.caption.en')
+        /           .order-area.clearfix.text-left.text-capitalize
+        /             = link_to delivery_index_path, class: "btn" do
+        /               = t("order.now")
+        /           .download-menu.clearfix.text-left.text-capitalize
+               
+      .menu-block
+        .tabs-block
+          .text-center
+            .showcase-left
+              strong.heading= t('menu.heading')
+            .showcase-right
+              h2= t('menu.sub_heading')
+          .tab-content.container-fluid.clearfix
+            ul.full-menus.text-center
+              - @chefs.each do |chef|
+                li.col-md-4.col-sm-6
+                  .img-box
+                    = image_tag chef.avatar.url(:medium), class: 'img-responsive'
+                    .order type="button" class="btn btn-primary btn-lg"
+                      = link_to chef_mess_items_chef_menu_path(chef), class: "text-center item-modal"
+                        .box
+                          .holder
+                            .fa.fa-cutlery
+                  .txt-holder.clearfix
+                    .price
+                    span.title.text-capitalize= chef&.first_name&.titleize
+                    p= "#{chef.city&.titleize}, #{chef.state&.titleize}, #{chef.country&.titleize}"
+                    p= chef&.address
+              = will_paginate @chefs
+
+              

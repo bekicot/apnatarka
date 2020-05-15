@@ -94,10 +94,18 @@ header#topnav
               li[class="has-submenu #{active_class(admin_taxes_path)}"]
                 = link_to admin_taxes_path do
                   = t("header.manage_taxes")
-          li[class="has-submenu #{active_class(admin_chef_menus_path)}"]
-            = link_to admin_chef_menus_path do
-              i.fa.fa-user
+          li.dropdown
+            a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
               = t("header.chef_menu")
+              span.caret
+            ul.dropdown-menu
+              li[class="has-submenu #{active_class(admin_chef_menus_path)}"]
+                = link_to admin_chef_menus_path do
+                  = t("header.chef_details")
+              li.divider role="separator"
+              li[class="has-submenu #{active_class(admin_mess_requests_path)}"]
+                = link_to admin_mess_requests_path do
+                  = t("header.Chef_mess_requests")
           li[class="has-submenu #{active_class(new_admin_order_path)}"]
             = link_to new_admin_order_path do
               i.fa.fa-pencil

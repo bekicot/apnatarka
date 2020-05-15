@@ -14,4 +14,9 @@ module Admin::InventoryItemsHelper
 			0
 		end 
 	end
+
+	def order_status(order)
+		order_items = order.order_items.map{|x| x.item_status if x.item_status == "pending"}
+		order_items.any? ? "Pending" : "Accept"
+	end
 end
