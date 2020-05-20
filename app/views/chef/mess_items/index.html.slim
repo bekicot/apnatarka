@@ -19,6 +19,8 @@
                 th
                   | Mess Avalibility Time
                 th
+                  | Price
+                th
                   | Action
             tbody
             - if @mess_items.present?
@@ -32,6 +34,8 @@
                     = mess_item.day&.humanize
                   td
                     = mess_item.avalible_in&.humanize
+                  td 
+                    = mess_item.price
                   td
                     = link_to "Edit", edit_chef_mess_item_path(mess_item, mess_id: @mess.id), class: 'btn btn-primary btn-xs', remote: true
                     = link_to "Delete", chef_mess_item_path(mess_item), data: {confirm: "Are you sure!"}, class: 'btn btn-danger btn-xs', method: :delete

@@ -1,9 +1,9 @@
 - menu_item = MenuItem.first
-#home-page
-  #myCarousel.carousel.slide.clearfix data-ride="carousel" data-lang="#{session[:locale] == "ar" ? true : false}"
-    .carousel-inner role="listbox"
-      .item.active
-        = image_tag "home/krahi.jpg", class: 'img-responsive'
+/ #home-page
+/   #myCarousel.carousel.slide.clearfix data-ride="carousel" data-lang="#{session[:locale] == "ar" ? true : false}"
+/     .carousel-inner role="listbox"
+/       .item.active
+/         = image_tag "home/krahi.jpg", class: 'img-responsive'
         / .carousel-caption
         /   .banner.text-left.clearfix
         /     .box
@@ -46,29 +46,29 @@
         /               = t("order.now")
         /           .download-menu.clearfix.text-left.text-capitalize
                
-      .menu-block
-        .tabs-block
-          .text-center
-            .showcase-left
-              strong.heading= t('menu.heading')
-            .showcase-right
-              h2= t('menu.sub_heading')
-          .tab-content.container-fluid.clearfix
-            ul.full-menus.text-center
-              - @chefs.each do |chef|
-                li.col-md-4.col-sm-6
-                  .img-box
-                    = image_tag chef.avatar.url(:medium), class: 'img-responsive'
-                    .order type="button" class="btn btn-primary btn-lg"
-                      = link_to chef_mess_items_chef_menu_path(chef), class: "text-center item-modal"
-                        .box
-                          .holder
-                            .fa.fa-cutlery
-                  .txt-holder.clearfix
-                    .price
-                    span.title.text-capitalize= chef&.first_name&.titleize
-                    p= "#{chef.city&.titleize}, #{chef.state&.titleize}, #{chef.country&.titleize}"
-                    p= chef&.address
-              = will_paginate @chefs
+.menu-block
+  .tabs-block
+    .text-center
+      .showcase-left
+        strong.heading= t('menu.forther_process')
+      .showcase-right
+        h2= t('menu.select_chef')
+    .tab-content.container-fluid.clearfix
+      ul.full-menus.text-center
+        - @chefs.each do |chef|
+          li.col-md-4.col-sm-6
+            .img-box
+              = image_tag chef.avatar.url(:medium), class: 'img-responsive'
+              .order type="button" class="btn btn-primary btn-lg"
+                = link_to chef_mess_items_chef_menu_path(chef), class: "text-center item-modal"
+                  .box
+                    .holder
+                      .fa.fa-cutlery
+            .txt-holder.clearfix
+              .price
+              span.title.text-capitalize= chef&.first_name&.titleize
+              p= "#{chef.city&.titleize}, #{chef.state&.titleize}, #{chef.country&.titleize}"
+              p= chef&.address
+        = will_paginate @chefs
 
               

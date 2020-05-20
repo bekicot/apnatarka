@@ -53,7 +53,7 @@ class Chef::MessesController < Chef::BaseController
 		end
 
 		def mess_params
-			params.require(:mess).permit(:title, mess_items_attributes: [:chef_category_item_id, :day, :avalible_in])
+			params.require(:mess).permit(:title, mess_items_attributes: [:chef_category_item_id, :day, :avalible_in, :price])
 		end
 
 		def find_chef_details

@@ -52,7 +52,7 @@ class Chef::MessItemsController < Chef::BaseController
 	private
 
 		def mess_item_params
-			params.require(:mess_item).permit(:chef_category_item_id, :day, :avalible_in, :mess_id)
+			params.require(:mess_item).permit(:chef_category_item_id, :day, :avalible_in, :mess_id, :price)
 		end
 		def find_mess
 			@mess = current_user.mess.where(id: params[:mess_id]).first

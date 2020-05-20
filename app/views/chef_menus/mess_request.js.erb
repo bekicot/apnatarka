@@ -1,12 +1,17 @@
-<% if !current_user.mess_request.present? %>
+<% if (current_user.blank?) %>
+  $("#login_signup_modals").html("<%= escape_javascript(render(partial: 'layouts/sign_in')) %>");
+  $("#login_signup_modals").append("<%= escape_javascript(render(partial: 'layouts/sign_up')) %>");
+
+  $('#sign-in-modal').modal('show');
+ 	login_signup_modals()
+  var geocoder = new google.maps.Geocoder();
+
+  map_initialize(24.8061, 46.6908);
+<%else%>
 	swal({
 	    title: "your Mess Request Has Been Placed",
 	    text: "Soon Our Team will contact you",
 	    type: "success",
 	});
-
 	$('#mess_items').html('<%= escape_javascript(render(partial: "mess_items")) %>');
-<% else %>
-	$('#mess-availability').html("")
-	$('#mess-availability').html('Already Joined');
 <%end%>

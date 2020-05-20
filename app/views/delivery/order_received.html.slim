@@ -49,8 +49,10 @@
   /       .container
   /         .favorite.text-center
   /             = link_to t("delivery.payment_again"), re_payment_delivery_index_path(order: @order), class: 'btn btn-default'
-  .clearfix
+  .clearfix#margin_top_order
     .container
+      / .table-responsive
+      /   h2.text-center Your Order Has Been Placed go to Dashboard's Order detail Menu
       .table-responsive
         table
           thead
@@ -74,7 +76,7 @@
               /   td = @order.status.capitalize
               /   td = @order&.payment_reference || 'N/A'
       .order-detail
-        h2 = t("delivery.order_details")
+        h3 = t("delivery.order_details")
         .product
           strong = t("header.order_items")
           strong.special-request = t("delivery.special_request")
@@ -85,7 +87,7 @@
             span
               .img-box
                 = image_tag chef_menu_item.avatar.url
-              h4= "#{chef_menu_item.title} x  #{order_item.quantity}"
+              h5= "#{chef_menu_item.title} x  #{order_item.quantity}"
             span class="price" = "RS-#{number_with_precision(chef_menu_item.price*order_item.quantity, precision: 2)}"
             span.special-request-message
               = ChefCategoryItem.special_request(order_item)&.truncate(30)
@@ -108,19 +110,25 @@
           strong = t("delivery.total")
           span = "RS-#{number_with_precision(@order.sub_total, precision: 2)}"
         .address
-          h2 = t("delivery.billing_address")
-          .phone
-            span = @order.phone
-            strong = t("delivery.phone")
-          .city
-            span = @order.city.humanize
-            strong = t("delivery.city")
-          .state
-            span = @order.state.humanize
-            strong = t("delivery.state")
-          .state
-            span = @order.address_one.humanize
-            strong = t("delivery.address")
+          h3 = t("delivery.billing_address")
+          .col-sm-12
+            .col-sm-4
+              .phone
+                span = @order.phone
+                strong Phone : 
+            .col-sm-4
+              .city
+                span = @order.city.humanize
+                strong City : 
+            .col-sm-4
+              .state
+                span = @order.state.humanize
+                strong State :   
+          .col-sm-12
+            .col-sm-12
+              .state
+                span = @order.address_one.humanize
+                strong Address : 
 
           - if @order.address.present?
             / .adress-type

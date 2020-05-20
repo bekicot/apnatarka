@@ -7,7 +7,7 @@
       .img-box
         = image_tag menu_item.avatar.url
       .text-box
-        h4 = menu_item.title
+        h5 = menu_item.title
     .box.mobile-right = "RS-#{menu_item.price}"
     .box = number_field_tag :number, quantity, class: 'quantity-count', id: "menu-item-#{chef_menu_item.id}", "data-value": quantity, min: 1
     .box.mobile-right.item-price = "RS-#{menu_item.price * quantity}"

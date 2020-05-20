@@ -40,7 +40,9 @@ class Admin::OrdersController < Admin::BaseController
       @order.save(validate: false)
     else
       if !params[:order][:user][:email].present?
-        new_user_params = new_user_params.merge!({email: "customer_#{(User.last&.id || 0) + 1}@gmail.com"})
+        new_user_params = new_user_params.merge!({email: "customer_#{(User.last&.id || 0) + 1}@gmail.com", password: "123456"})
+      else
+        new_user_params = new_user_params.merge!({password: "123456"})
       end
       @user = User.new(new_user_params)
       @order = @user.orders.new(order_params)

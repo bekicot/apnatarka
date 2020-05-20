@@ -4,8 +4,11 @@ module MenuHelper
     session[:cart].present? && session[:cart].keys.include?(MenuItem.item_key_for_cart(menu_item))
   end
 
-  def check_chef_avalibility(chef)
-  	chef.user.chef_avalibilities.where(day: Time.now.strftime("%A")).any?
+  def check_chef_avalibility(menu_item)
+  	# chef.user.chef_avalibilities.where(day: Time.now.strftime("%A")).any?
+    chef_cat_ids = menu_item.chef_category_items.map{|x| x.id }
+    ChefAvalibility.where(chef_category_item_id: chef_cat_ids).where(day: Time.now.strftime("%A")).any?
+
   	# menu_item&.chef_category_items.includes(:chef_avalibilities)&.map{ |item| item&.chef_avalibilities.where(day: Time.now.strftime("%A")).first}.any?
   end
 

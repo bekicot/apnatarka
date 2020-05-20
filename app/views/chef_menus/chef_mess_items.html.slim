@@ -1,9 +1,9 @@
-- menu_item = MenuItem.first
-#home-page
-  #myCarousel.carousel.slide.clearfix data-ride="carousel" data-lang="#{session[:locale] == "ar" ? true : false}"
-    .carousel-inner role="listbox"
-      .item.active
-        = image_tag "home/krahi.jpg", class: 'img-responsive'
+/ - menu_item = MenuItem.first
+/ #home-page
+/   #myCarousel.carousel.slide.clearfix data-ride="carousel" data-lang="#{session[:locale] == "ar" ? true : false}"
+/     .carousel-inner role="listbox"
+/       .item.active
+/         = image_tag "home/krahi.jpg", class: 'img-responsive'
         / .carousel-caption
         /   .banner.text-left.clearfix
         /     .box
@@ -18,8 +18,8 @@
         /               = t("order.now")
         /           .download-menu.clearfix.text-left.text-capitalize
 
-      .item
-        = image_tag "home/krahi2.jpg", class: 'img-responsive'
+      / .item
+      /   = image_tag "home/krahi2.jpg", class: 'img-responsive'
         / .carousel-caption
         /   .banner.text-left.clearfix
         /     .box
@@ -32,8 +32,8 @@
         /               = t("order.now")
         /           .download-menu.clearfix.text-left.text-capitalize
                     
-      .item
-        = image_tag "home/dessert-home-#{session[:locale] || "en"}.jpg", class: 'img-responsive'
+      / .item
+      /   = image_tag "home/dessert-home-#{session[:locale] || "en"}.jpg", class: 'img-responsive'
         / .carousel-caption
         /   .banner.text-left.clearfix
         /     .box
@@ -47,7 +47,7 @@
         /           .download-menu.clearfix.text-left.text-capitalize
                
 
-#complete_menu.menu-block
+.menu-block
   .tabs-block
     - if @mess.present?
       .text-center

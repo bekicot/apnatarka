@@ -17,13 +17,13 @@
         = render 'special_items_list', special_items: @special_items, total: total
   .lower-part.clearfix
     .row
-      .col-sm-6.button-block
+      .col-sm-8.button-block
         = link_to t("order.more_food"), add_more_items_delivery_index_path, remote: true, title: t('delivery.add_more'), class: "add-more-btn btn"
         = link_to t("order.add_special_item"), add_special_items_delivery_index_path, remote: true, title: t('delivery.add_special_item'), class: "add-more-btn btn pl-3"
-      .col-sm-6.cart-block
+      .col-sm-4.cart-block
         .card-box
           .cart-total
-            h3 = t("delivery.cart_total")
+            / h3 = t("delivery.cart_total")
             .sub-total.custom-sub
               h4 = t("delivery.sub_total")
               p.custom-total = "#{number_with_precision(total, precision: 2)}"

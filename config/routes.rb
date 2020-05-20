@@ -26,6 +26,19 @@ Rails.application.routes.draw do
   resources :chef_menus, only: [:index] do
     member do
       get :chef_mess_items
+      get :mess_request
+      get :mess_customise
+    end
+    collection do
+      get :save_customise_mess
+    end
+  end
+
+  resources :dashboards do
+    collection do
+      get :get_cities
+      post :update_profile
+      get :today_mess_detail
     end
   end
 
@@ -111,6 +124,7 @@ Rails.application.routes.draw do
     resources :chef_mess
     resources :taxes
     resources :special_items
+    resources :mess_requests
     resources :orders do
       collection do
         get :order_items
@@ -159,6 +173,7 @@ Rails.application.routes.draw do
       member do
         post :change_status
         post :rider_payment_status
+        get :order_detail
       end
     end
 
@@ -179,7 +194,7 @@ Rails.application.routes.draw do
 
    namespace :customer do
     root to: "dashboards#index"
-    resources :order_histories, only: [:index, :show]
+    resources :order_customercustomerhistories, only: [:index, :show]
     resources :users do
       member do
         get :confirm_email
@@ -201,5 +216,7 @@ Rails.application.routes.draw do
         get :inventory_by_date
       end
     end
+    resources :messes
+    resources :mess_items
   end
 end

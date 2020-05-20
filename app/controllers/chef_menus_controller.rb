@@ -1,6 +1,5 @@
 class ChefMenusController < ApplicationController
   before_action :find_chef, only: [:chef_mess_items]
-  before_action :authenticate_user!, only: [:mess_request, :mess_customise]
   before_action :find_mess, only: [:mess_request, :mess_customise]
   before_action :find_chef_detail, only: [:mess_request]
 
@@ -14,24 +13,28 @@ class ChefMenusController < ApplicationController
   end
 
   def mess_request
-    if !current_user.mess_request.present?
-      mess_request = MessRequest.create(mess_id: params[:id], user_id: current_user.id, status: "pending", chef_id: params[:user_id])
-      mess_item = @chef_mess.mess_items
-      user_mess = []
-      mess_item.each do |item|
-        user_mess << UserMess.new(mess_item_id: item.id, mess_request_id: mess_request.id)
+    if current_user.present?
+      if !current_user.mess_request.present?
+        mess_request = MessRequest.create(mess_id: params[:id], user_id: current_user.id, status: "pending", chef_id: params[:user_id])
+        mess_item = @chef_mess.mess_items
+        user_mess = []
+        mess_item.each do |item|
+          user_mess << UserMess.new(mess_item_id: item.id, mess_request_id: mess_request.id)
+        end
+        UserMess.import user_mess
       end
-      UserMess.import user_mess
     end
   end
 
   def mess_customise
-    if !current_user.mess_request.present?
-      @chef = @chef_mess.user
-      @mess_items = @chef_mess.mess_items
-      @user_mess = []
-      @mess_items.each do |item|
-        @user_mess << UserMess.new(mess_item_id: item.id)
+    if current_user.present?
+      if !current_user.mess_request.present?
+        @chef = @chef_mess.user
+        @mess_items = @chef_mess.mess_items
+        @user_mess = []
+        @mess_items.each do |item|
+          @user_mess << UserMess.new(mess_item_id: item.id)
+        end
       end
     end
     respond_to do |format|
@@ -41,13 +44,13 @@ class ChefMenusController < ApplicationController
 
   def save_customise_mess
     user_mess = []
-    ids = params[:ids].map(&:to_i)
+    ids = params[:ids]
     mess_items = MessItem.where(id: ids)
     mess_id = mess_items.first.mess_id
     chef = MessItem.where(id: ids).first.mess.user
     mess_request = MessRequest.create(mess_id: mess_id, chef_id: chef.id, user_id: current_user.id, status: "pending")
     mess_items.each do |item|
-      user_mess << UserMess.new(mess_item_id: item, mess_request_id: mess_request.id)
+      user_mess << UserMess.new(mess_item_id: item.id, mess_request_id: mess_request.id)
     end
     UserMess.import user_mess
     # values that are required for render page

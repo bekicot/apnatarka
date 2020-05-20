@@ -4,7 +4,8 @@
       h4.pull-left
         i.fa.fa-shopping-basket
         | Chef Mess
-      = link_to "Add Mess", new_chef_mess_path, class: "btn custom-btn btn-primary pull-right"
+      - if !current_user.mess.any?
+        = link_to "Add Mess", new_chef_mess_path, class: "btn custom-btn btn-primary pull-right"
     .card-body
         .table-responsive
           table.table.table-hover.mb-0
