@@ -7,4 +7,8 @@ module Admin::ItemsHelper
 			used.present? ? total - used : total 
 		end
 	end
+
+	def chef_name_and_contact(order_item)
+		"#{order_item.chef_category_item.chef_category.user.first_name} (#{order_item.chef_category_item.chef_category.user.phone})"
+	end
 end

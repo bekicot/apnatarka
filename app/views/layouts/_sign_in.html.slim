@@ -28,17 +28,17 @@ div.modal.fade id="sign-in-modal" aria-labelledby="myModalLabel" role="dialog" t
               = link_to t("signin_signup.guest_order"), guest_order_delivery_index_path, class: 'btn btn-primary pull-right guest-checktout'
               = link_to t("signin_signup.no_account_message"), "javascript:void(0);", id: 'show-sign-up-modal'
 
-          .row.text-center
+          / .row.text-center
 
-            span.seperation OR
+          /   span.seperation OR
 
-            = link_to user_facebook_omniauth_authorize_path, class: "facebook-link btn" do
-              i.fa.fa-facebook
-              span
-                = t('header.signin_with_facebook')
+          /   = link_to user_facebook_omniauth_authorize_path, class: "facebook-link btn" do
+          /     i.fa.fa-facebook
+          /     span
+          /       = t('header.signin_with_facebook')
 
-            = link_to user_google_oauth2_omniauth_authorize_path, class: "google-link btn" do
-              i.fa.fa-google
-              span
-                = t('header.signin_with_google')
+          /   = link_to user_google_oauth2_omniauth_authorize_path, class: "google-link btn" do
+          /     i.fa.fa-google
+          /     span
+          /       = t('header.signin_with_google')
 

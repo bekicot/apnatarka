@@ -1,0 +1,30 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-user
+        | Mess Requests Detail
+      / = link_to "Add User", new_admin_user_path, class: "btn custom-btn btn-primary pull-right"
+    .card-body
+      .table-responsive
+        table.table.table-hover.mb-0
+          thead
+            tr
+              th Mess Titile
+              th Item Name
+              th Day
+              th Avalible At
+          tbody
+          - @user_mess.each do |user_mess|
+            tr
+              td
+                = user_mess.mess_item.mess.title
+              td
+                = user_mess.mess_item.chef_category_item.menu_item.title
+              td
+                = user_mess.mess_item.day&.humanize
+              td
+                = user_mess.mess_item.avalible_in&.humanize
+              
+
+      = will_paginate @user_mess, param_name: "show_page"

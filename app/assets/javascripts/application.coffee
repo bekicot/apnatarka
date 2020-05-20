@@ -29,3 +29,4 @@
 //= require bootstrap/bootstrap-tooltip
 //= require item_chefs
 //= require sweetalert
+//= require visitors

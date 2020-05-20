@@ -1,9 +1,9 @@
-- menu_item = MenuItem.first
-#home-page
-  #myCarousel.carousel.slide.clearfix data-ride="carousel" data-lang="#{session[:locale] == "ar" ? true : false}"
-    .carousel-inner role="listbox"
-      .item.active
-        = image_tag "home/krahi.jpg", class: 'img-responsive'
+/ - menu_item = MenuItem.first
+/ #home-page
+/   #myCarousel.carousel.slide.clearfix data-ride="carousel" data-lang="#{session[:locale] == "ar" ? true : false}"
+/     .carousel-inner role="listbox"
+/       .item.active
+/         = image_tag "home/krahi.jpg", class: 'img-responsive'
         / .carousel-caption
         /   .banner.text-left.clearfix
         /     .box
@@ -46,33 +46,29 @@
         /               = t("order.now")
         /           .download-menu.clearfix.text-left.text-capitalize
                     
-      .container
-        .chefs
-          h5.section-title.h1 OUR TEAM
-          .row
-            - @chef_category_items.each do |chef_cat_item|
-              - chef = chef_cat_item.chef_category.user
-              - if chef.present?
-                - if chef_cat_item.chef_avalibilities.where(day: Time.now.strftime("%A")).present?
-                  .col-lg-4.col-md-6.col-sm-12
-                    .card.border.border-warning.card-chef
-                      = image_tag( "chef_background.jpg", class: "image1-chef-card" )
-                      .item-chefs-image
-                        = image_tag chef.avatar.url, class: "rounded-circle mx-auto d-block"
-                      .card-body
-                        h3.card-title
-                          = "#{chef.first_name.titleize} #{chef.last_name.titleize}"
-                        p.textcolor-chef-card 
-                          = chef.address.truncate(35)
-                          i.fa.fa-info.information data-html="true" title=("#{ chef.address }") 
-                        hr
-                        .font-size
-                          h5. Available In :
-                          .row.mt-4.textcolor-chef-card2.text-center
-                            - if chef_cat_item.chef_avalibilities.present?
-                              - chef_cat_item.chef_avalibilities.each do |available|
-                                button.btn.btn-warning = "#{available.day}"
-                            - else
-                              button.btn.btn-warning = "Not Added Yet..!"
-                          .
-                            = link_to "Add to Cart", add_to_cart_delivery_index_path(chef_menu_item: chef_cat_item), class: 'btn btn-block btn-warning btn-font order-now-button' , remote: true, disabled: false
+.menu-block
+  .tabs-block
+    .text-center
+      .showcase-left
+        strong.heading= t('menu.heading')
+      .showcase-right
+        h2= t('menu.sub_heading')
+    .tab-content.container-fluid.clearfix
+      ul.full-menus.text-center
+        - if @chef_category_items.present?
+          - @chef_category_items.each do |item|
+            - if chef_item_avalibility(item)
+              li.col-sm-4
+                .img-box
+                  = image_tag item.menu_item.avatar.url(:medium), class: 'img-responsive'
+                  .order type="button" class="btn btn-primary btn-lg"
+                    = link_to add_to_cart_delivery_index_path(chef_menu_item: item), class: 'text-center item-modal' , remote: true do
+                      .box
+                        .holder
+                          .fa.fa-cutlery
+                .txt-holder.clearfix
+                  .price = item.menu_item.price
+                  span.title.text-capitalize= item.menu_item.title
+                  p= item.menu_item.description
+                  p= "Price: #{item.menu_item.price}/RS"
+

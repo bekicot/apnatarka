@@ -71,9 +71,12 @@ class Admin::UsersController < Admin::BaseController
 
   def pay_amount
     order_status = @user.riders.where(order_status: "deliver")
+    rider_status = @user.riders.where(payment_status: "cash_on_delivery")
     ids = order_status.map{|x| x.order_id }
     orders = Order.where(id: ids)
     orders.update_all(status: "paid")
+    rider_status.update_all(payment_status: "receive")
+    rider_status
     @user.rider_amounts.destroy_all
     redirect_to order_history_admin_user_path(@user)
   end

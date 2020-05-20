@@ -18,8 +18,8 @@
               .form-group.clearfix.col-md-6
                 .col-sm-12
                   = text_field_tag :assign_date,nil, required: true, class: 'form-control', id: 'datetimepicker3', placeholder: "Select Date"
-          - @assign_items.each do |item|
-            = fields_for 'assign_items[]', item do |a|
+          - @user_mess.each do |item|
+            = fields_for 'user_mess[]', item do |a|
               tr
                 td = item_name(item.item_id)
                 td = a.number_field :quantity, min: 0, max: max_quantity_value(item), class: 'form-control'

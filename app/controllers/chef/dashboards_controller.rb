@@ -2,7 +2,7 @@ class Chef::DashboardsController < Chef::BaseController
   before_action :check_chef
   skip_before_action :verify_authenticity_token, only: [:change_order_status, :change_assigned_item_status]
   before_action :find_order, only: [:show, :change_order_status]
-  before_action :find_chef_order, only: [:index, :order_by_date, :show]
+  before_action :find_chef_order, only: [:index, :order_by_date, :show, :change_order_status]
   def index
     @chef_order_items = OrderItem.where("created_at::date = ? ", Date.today).where(chef_category_item_id: @chef_category_item_ids).includes(:order).order('created_at DESC').paginate(page: params[:page], per_page: 10)
     # @chef_category_items = @chef.chef_category_items.includes(order_items: [:order]).order('created_at DESC').paginate(page: params[:page], per_page: 10)
@@ -22,8 +22,9 @@ class Chef::DashboardsController < Chef::BaseController
   end
 
   def change_order_status
-  	@order.update_attribute(:order_status, params[:order][:order_status])
-    flash[:success] = "Order Status Has Been Changed to #{@order.order_status}"
+    chef_items = @order.order_items.where(chef_category_item_id: @chef_category_item_ids)
+  	chef_items.update_all(item_status: params[:order_item][:item_status])
+    flash[:success] = "Order Status Has Been Changed"
   	redirect_to chef_dashboards_path
   end
 

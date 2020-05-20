@@ -1,5 +1,6 @@
 class Admin::ChefMenusController < Admin::BaseController
 	before_action :find_user, only: [:chef_menu_items, :new, :edit]
+  
   def index
   	@users = User.chef
   end

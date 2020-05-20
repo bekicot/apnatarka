@@ -1,22 +1,17 @@
 class Rider::DashboardsController < Rider::BaseController
 	before_action :find_tax, only: [:show]
-	before_action :find_rider, only: [:accept_order, :reject_order, :save_reason]
+	before_action :find_rider, only: [:deliver_order,:accept_order, :reject_order, :save_reason]
 	before_action :find_order, only: [:index, :deliver_order, :accept_order, :reject_order]
 	def index
 		
 	end
 
 	def deliver_order
-		@rider = Rider.find(params[:id])
-		if @rider.order.status == "cash_on_delivery"
-			RiderAmount.create(user_id: current_user.id, total: @rider.order.sub_total)
-		end
 		if @rider.delivery_time.strftime("%I:%M %p") >= Time.now.strftime("%I:%M %p")
 			@rider.update_attributes(reached_time: Time.now, order_status: "deliver", delivery_status: "on_time" )
-			# flash[:success] = "Order has be Deliverd Sucessfully"
-			# redirect_to rider_dashboards_path
-		else
-			@rider.update_attributes(reached_time: Time.now, order_status: "deliver", delivery_status: "late" )
+			if @rider.order.status == "cash_on_delivery"
+				RiderAmount.create(user_id: current_user.id, total: @rider.order.sub_total)
+			end
 		end
 		respond_to do |formate|
 			formate.js
@@ -24,7 +19,10 @@ class Rider::DashboardsController < Rider::BaseController
 	end
 
 	def save_reason
-		@rider.update_attribute(:reason, params[:rider][:reason])
+		if @rider.order.status == "cash_on_delivery"
+				RiderAmount.create(user_id: current_user.id, total: @rider.order.sub_total)
+			end
+		@rider.update_attributes(reached_time: Time.now, order_status: "deliver", delivery_status: "late" , reason: params[:rider][:reason])
 		redirect_to rider_dashboards_path
 		flash[:success] = "Thanks for Your Feeback"
 	end

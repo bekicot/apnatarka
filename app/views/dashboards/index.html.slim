@@ -1,0 +1,262 @@
+.card-top-padding
+  .tabs-block style="background: beige"
+    hr/
+  .container.bootstrap.snippet
+    .row
+      .col-sm-3
+        /! left col
+        .text-center
+          - if @user.avatar.present?
+            = image_tag @user.avatar.url(:medium), class: 'avatar img-circle img-thumbnail fixed img-responsive'
+          - else
+            = image_tag "home/avatar_2x.png", class: 'avatar img-circle img-thumbnail fixed img-responsive'
+          h6 Upload a different photo...
+          .row
+            = form_for @user, url: update_profile_dashboards_path, method: :post do |f|
+              .col-sm-12
+                .col-sm-9
+                  = f.file_field :avatar, required: true, class: "text-center center-block file-upload"
+                .col-sm-3  
+                  = f.submit "Update", class: "btn btn-primary default-padding"
+        br/
+        / .panel.panel-default
+        /   .panel-heading
+            
+        /   .panel-body
+        /     a href="http://bootnipets.com" Leave Tomorrow mess
+        /     br
+        /     a Today Mess
+        ul.list-group
+          .panel.panel-default
+            .panel-heading
+              i.fa.fa-tasks.fa-1x
+              span.others Other Options
+            .panel-body
+              li.list-group-item.text-center
+                = link_to "Today Mess Details", today_mess_detail_dashboards_path, remote: true
+              li.list-group-item.text-center
+                a
+                  strong Leave Tomorrow Mess
+        / .panel.panel-default
+        /   .panel-heading Social Media
+        /   .panel-body
+        /     i.fa.fa-facebook.fa-2x
+        /     i.fa.fa-github.fa-2x
+        /     i.fa.fa-twitter.fa-2x
+        /     i.fa.fa-pinterest.fa-2x
+        /     i.fa.fa-google-plus.fa-2x
+      /! /col-3
+      .col-sm-9.padding-bottom
+        ul.nav.nav-tabs
+          li.active
+            a data-toggle="tab" href="#home"  Profile
+          li
+            a data-toggle="tab" href="#messages"  Mess Details
+          li
+            a data-toggle="tab" href="#settings"  Today Orders
+        .tab-content
+          #home.tab-pane.active
+            hr/
+            = form_for @user, url: dashboard_path(@user), html: { "data-parsley-validate" => true, class: 'admin-form' }, method: :put do |f|
+              - if @user.errors.full_messages.any?
+                - @user.errors.full_messages.each do |error_message|
+                    = error_message if @user.errors.full_messages.first == error_message
+              .col-sm-12
+                .col-sm-6
+                  .form-group.clearfix
+                    .col-sm-12
+                      = f.label :name, class: 'show'
+                      = f.text_field :first_name, required: true, class: 'form-control'
+                .col-sm-6
+                  .form-group.clearfix
+                    .col-sm-12
+                      = f.label :email, class: 'show'
+                      = f.email_field :email, autocomplete: "email", required: true, class: 'form-control'
+              .col-sm-12
+                .col-sm-6
+                  .form-group.clearfix
+                    .col-sm-12
+                      = f.label :phone, class: 'show'
+                      = f.number_field :phone, required: true, class: 'form-control'
+                .col-sm-6
+                  .form-group.clearfix
+                    .col-sm-12
+                      = f.label :country, class: 'show'
+                      = f.text_field :country,value: @country , required: true, class: 'form-control', disabled: true
+                      = f.hidden_field :country, value: @country
+              .col-sm-12
+                .col-sm-6
+                  .form-group.clearfix
+                    .col-sm-12
+                      = f.label :state, class: 'show'
+                      = f.select :state, options_for_select(@states.map{|k,v| [v,k] }, @user.state), {}, { class: 'form-control', id: "customer_state" }
+                .col-sm-6
+                  .cities    
+                    .form-group.clearfix
+                      .col-sm-12
+                        = f.label :city, class: 'show'
+                        = f.select :city, options_for_select([@user.city],[{}.map{|k,v| [v,k] }]), {}, { class: 'form-control', id: "customer_city" }
+              .col-sm-12
+                .col-sm-12
+                  .form-group.clearfix
+                    .col-sm-12
+                      = f.label :address, class: 'show'
+                      = f.text_field :address, required: true, class: 'form-control'
+              / .form-group.clearfix
+              /   .col-sm-12
+              /     = f.label :avatar, class: 'show'
+              /     = f.file_field :avatar, required: true, class: 'form-control'
+              .col-sm-12
+                .col-sm-6
+                  .form-group.clearfix
+                    .col-sm-12
+                      = f.label :password, class: 'show'
+                      = f.password_field :password, autocomplete: "off", required: true, class: 'form-control'
+                .col-sm-6
+                  .form-group.clearfix
+                    .col-sm-12
+                      = f.label :password_confirmation, class: 'show'
+                      = f.password_field :password_confirmation, autocomplete: "off", required: true, class: 'form-control'
+              .col-sm-12
+                / = f.submit "Submit", class: 'btn btn-primary pull-right'
+                = f.button :submit, class: 'btn login btn-primary pull-right'
+                  i.glyphicon.glyphicon-ok-sign
+
+                  span
+                    | Save
+              / .form-group
+              /   .col-xs-12
+              /     br/
+              /     button.btn.btn-lg.btn-success type="submit" 
+              /       i.glyphicon.glyphicon-ok-sign
+              /       | Save
+              /     button.btn.btn-lg type="reset" 
+              /       i.glyphicon.glyphicon-repeat
+              /       | Reset
+            hr/
+          /! /tab-pane
+          #messages.tab-pane
+            h2
+            hr/
+            .row
+              .center-card
+                -if @user_mess.present?
+                  .card.card-chef.chef-mess-table
+                    .card-body
+                      .row
+                        .col-sm-4
+                          table.table.table-striped.table-no-bordered.able-hover
+                            h2.text-center.font Break Fast
+                            thead
+                              tr
+                                th
+                                  | Item
+                                th
+                                  | Day
+                                th
+                                  | Availability
+                            tbody
+                              - @user_mess.each do |user_mess|
+                                - if user_mess&.mess_item&.avalible_in == "break_fast"  
+                                  tr
+                                    td
+                                      = "#{user_mess.mess_item.chef_category_item.menu_item.title} (#{user_mess.mess_item&.price})"
+                                    td
+                                      = user_mess.mess_item.day&.humanize
+                                    td
+                                      = user_mess&.mess_item&.avalible_in&.humanize
+                        .col-sm-4
+                          table.table.table-striped.table-no-bordered.able-hover
+                            h2.text-center.font Lunch
+                            thead
+                              tr
+                                th
+                                  | Item
+                                th
+                                  | Day
+                                th
+                                  | Availability
+                            tbody
+                              - @user_mess.each do |user_mess|
+                                - if user_mess&.mess_item&.avalible_in == "lunch"  
+                                  tr
+                                    td
+                                      = "#{user_mess.mess_item.chef_category_item.menu_item.title} (#{user_mess.mess_item&.price})"
+                                    td
+                                      = user_mess.mess_item.day&.humanize
+                                    td
+                                      = user_mess&.mess_item&.avalible_in&.humanize
+                        .col-sm-4
+                          table.table.table-striped.table-no-bordered.able-hover
+                            h2.text-center.font Dinner
+                            thead
+                              tr
+                                th
+                                  | Item
+                                th
+                                  | Day
+                                th
+                                  | Availability
+                            tbody
+                              - @user_mess.each do |user_mess|
+                                - if user_mess&.mess_item&.avalible_in == "dinner"  
+                                  tr
+                                    td
+                                      = "#{user_mess.mess_item.chef_category_item.menu_item.title} (#{user_mess.mess_item&.price})"
+                                    td
+                                      = user_mess.mess_item.day&.humanize
+                                    td
+                                      = user_mess&.mess_item&.avalible_in&.humanize
+                - else
+                  .alert.alert-danger role="alert"
+                    | You have Not Joind Mess Yet. Visit the Mess System Menu to Join
+          /! /tab-pane
+          #settings.tab-pane
+            hr/
+            - if @today_orders.present?
+              .card.chef-mess-table
+                .card-body
+                  table.table.table-striped.table-no-bordered.able-hover
+                    thead
+                      tr
+                        th
+                          | Order Number
+                        th
+                          | Total Amount
+                        th
+                          | Contact
+                        th 
+                          | Delivery Address
+                        th 
+                          | Order Items
+                        th 
+                          | Special Items
+                    tbody
+                      - @today_orders.each do |order|
+                        
+                        
+                        tr
+                          td
+                            = order.order_number
+                          td
+                            = order.sub_total
+                          td
+                            = order.phone
+                          td 
+                            = order.address_one
+                          td
+                            = customer_order_items(order)
+                          td
+                            = customer_special_items(order)
+                        
+
+
+            - else
+              .alert.alert-danger role="alert"
+                | You Have Not Placed Any Order Today. Visit Menu To Place Order
+            /! <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button
+        /! /tab-pane
+      /! /tab-content
+    /! /col-9
+
+#today_mess

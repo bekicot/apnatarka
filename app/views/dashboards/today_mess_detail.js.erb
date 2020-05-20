@@ -1,0 +1,2 @@
+$('#today_mess').html('<%= escape_javascript(render partial: "today_mess_details", locals: {mess_item: @mess_item}) %>')
+$('#today_mess_details_modal').modal('show');

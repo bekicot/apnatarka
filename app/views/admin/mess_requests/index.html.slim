@@ -1,0 +1,38 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-user
+        | Mess Requests
+      / = link_to "Add User", new_admin_user_path, class: "btn custom-btn btn-primary pull-right"
+    .card-body
+      .table-responsive
+        table.table.table-hover.mb-0
+          thead
+            tr
+              th Name
+              th Email
+              th Phone
+              th Mess Title
+              th Chef
+              th Status
+              th Action
+          tbody
+          - @mess_requests.each do |request|
+            tr
+              td
+                = request.user.first_name
+              td
+                = request.user.email
+              td
+                = request.user.phone
+              td
+                = request.mess.title
+              td
+                = request.chef.first_name
+              td
+                = request.status&.humanize
+              td 
+                = link_to "Detils", admin_mess_request_path(request), class: "btn btn-primary custom-btn"
+
+      = will_paginate @mess_requests, param_name: "page"

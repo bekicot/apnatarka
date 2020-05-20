@@ -1,58 +1,70 @@
-- menu_item = MenuItem.first
-#home-page
-  #myCarousel.carousel.slide.clearfix data-ride="carousel" data-lang="#{session[:locale] == "ar" ? true : false}"
-    .carousel-inner role="listbox"
-      .item.active
-        = image_tag "home/burger-home-#{session[:locale] || "en"}.jpg", class: 'img-responsive'
-        .carousel-caption
-          .banner.text-left.clearfix
-            .box
-              .holder
-                .container-fluid
-                  .showcase-right
-                    span.home-arabic= t('home.carousel.caption.ar')
-                  .showcase-left
-                    strong= t('home.carousel.caption.en')
-                  .order-area.clearfix.text-left.text-capitalize
-                    = link_to delivery_index_path, class: "btn" do
-                      = t("order.now")
-                  .download-menu.clearfix.text-left.text-capitalize
-#complete_menu.menu-block
+/ - menu_item = MenuItem.first
+/ #home-page
+/   #myCarousel.carousel.slide.clearfix data-ride="carousel" data-lang="#{session[:locale] == "ar" ? true : false}"
+/     .carousel-inner role="listbox"
+/       .item.active
+/         = image_tag "home/krahi.jpg", class: 'img-responsive'
+        / .carousel-caption
+        /   .banner.text-left.clearfix
+        /     .box
+        /       .holder
+        /         .container-fluid
+        /           .showcase-right
+        /             span.home-arabic= t('home.carousel.caption.ar')
+        /           .showcase-left
+        /             strong= t('home.carousel.caption.en')
+        /           .order-area.clearfix.text-left.text-capitalize
+        /             = link_to delivery_index_path, class: "btn" do
+        /               = t("order.now")
+        /           .download-menu.clearfix.text-left.text-capitalize
+
+      / .item
+      /   = image_tag "home/krahi2.jpg", class: 'img-responsive'
+        / .carousel-caption
+        /   .banner.text-left.clearfix
+        /     .box
+        /       .holder
+        /         .container-fluid
+        /           span.home-arabic= t('home.carousel.caption.ar')
+        /           strong= t('home.carousel.caption.en')
+        /           .order-area.clearfix.text-left.text-capitalize
+        /             = link_to delivery_index_path, class: "btn" do
+        /               = t("order.now")
+        /           .download-menu.clearfix.text-left.text-capitalize
+                    
+      / .item
+      /   = image_tag "home/dessert-home-#{session[:locale] || "en"}.jpg", class: 'img-responsive'
+        / .carousel-caption
+        /   .banner.text-left.clearfix
+        /     .box
+        /       .holder
+        /         .container-fluid
+        /           span.home-arabic= t('home.carousel.caption.ar')
+        /           strong= t('home.carousel.caption.en')
+        /           .order-area.clearfix.text-left.text-capitalize
+        /             = link_to delivery_index_path, class: "btn" do
+        /               = t("order.now")
+        /           .download-menu.clearfix.text-left.text-capitalize
+               
+
+.menu-block
   .tabs-block
-    .text-center
-      .showcase-left
-        strong.heading= t('menu.heading')
-      .showcase-right
-        h2= t('menu.sub_heading')
-    .container-fluid
-      .row
-        .center-card
-          .card.card-chef.chef-mess-table
-            .card-body
-              h3.card-title.text-center
-                i.fa.fa-shopping-basket
-                | Chef Mess Detail
-              hr
-              .table-responsive
-                table.table.table-hover.mb-0
-                  thead
-                    tr
-                      th
-                        | Title
-                      th
-                        | Item
-                      th
-                        | Day
-                      th
-                        | Time
-                  tbody
-                    - @mess_items.each do |mess_item|
-                      tr
-                        td
-                          = mess_item.mess.title
-                        td
-                          = mess_item.chef_category_item.menu_item.title
-                        td
-                          = mess_item.day
-                        td
-                          = mess_item.avalible_in
+    - if @mess.present?
+      .text-center
+        .showcase-left
+          strong.heading= t('menu.heading')
+        .showcase-right
+          h2= t('menu.sub_heading')
+      .container
+        ul.nav.nav-tabs.text-center
+          - @mess.each_with_index do |mess, index|
+            li class=(['menu-col col-sm-3', 'showcase-left', index == 0 ? 'active' : ''].compact.join(' '))
+              = link_to "#tab#{mess.id}", class: "text-capitalize menu_category", data: {'id': mess.id, 'toggle': "tab"}
+                strong.title.text-capitalize
+                  = mess.title
+  .menu#mess_items
+    = render partial: 'mess_items'
+
+
+
+#mess-customise

@@ -2,21 +2,22 @@
   - @categories.each_with_index do |category, index|
     div[class="tab-panel tab fade #{'in active' if index == 0}" id="tab#{category.id}"]
       - menu_items = category&.menu_items
-      - if menu_items.present?
+      - chefs = category&.chef_categories
+      - if chefs.present?
           ul.full-menus.text-center
-            - menu_items.each do |menu_item|
-              -if check_chef_avalibility(menu_item)
+            - chefs.each do |chef|
+              -if check_chef_avalibility(chef)
                 li.col-sm-4
                   .img-box
-                    = image_tag menu_item.avatar.url(:medium), class: 'img-responsive'
+                    = image_tag chef.user.avatar.url(:medium), class: 'img-responsive'
                     .order type="button" class="btn btn-primary btn-lg"
-                      = link_to menu_item_chefs_path(menu_item.id), class: 'text-center item-modal' do
+                      = link_to menu_item_chefs_path(chef.id), class: 'text-center item-modal' do
                         .box
                           .holder
                             .fa.fa-cutlery
                   .txt-holder.clearfix
                     .price $558
-                    span.title.text-capitalize= menu_item.title
-                    p= menu_item.description
+                    span.title.text-capitalize= chef.user.first_name
+                    p= chef.user.address
       - else
         = render partial: "menu/empty"

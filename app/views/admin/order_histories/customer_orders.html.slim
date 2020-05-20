@@ -32,14 +32,17 @@
                             = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
                         /     .col-sm-4
                         /       = f.submit 'Update', class: 'btn btn-primary btn-xs'
-                        th = order.order_status
+                        td = order_status(order)
                         td = order.sub_total
                         td 
                           - if order&.rider&.any?
-                            = order&.rider&.where.not(order_status: "reject").first&.order_status || "Rider Reject the order"
+                            = order&.rider&.where.not(order_status: "reject").first&.order_status&.humanize || "Rider Reject the order"
                           - else
                             = "Rider Not Assigned"
-                        td = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
+                        td 
+                          = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
+                          = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
+                            i class="fa fa-plus"
                 = will_paginate @from_branch_orders, param_name: 'branch_page'
             - else
               p
@@ -73,14 +76,17 @@
                             = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
                             / .col-sm-4
                       /         = f.submit 'Update', class: 'btn btn-primary btn-xs'
-                      td = order.order_status
+                      td = order_status(order)
                       td = order.sub_total
                       td 
                         - if order&.rider&.any?
-                          = order&.rider&.where.not(order_status: "reject").first&.order_status || "Rider Reject the order"
+                          = order&.rider&.where.not(order_status: "reject").first&.order_status&.humanize || "Rider Reject the order"
                         - else
                           = "Rider Not Assigned"
-                      td = link_to "show Detail", admin_order_history_path(order.id), class: "btn btn-xs btn-primary"
+                      td 
+                        = link_to "show Detail", admin_order_history_path(order.id), class: "btn btn-xs btn-primary"
+                        = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
+                          i class="fa fa-plus"
                 = will_paginate @reg_orders, param_name: 'reg_page'
             - else
               p
@@ -114,14 +120,17 @@
                             = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
                         /     .col-sm-4
                         /       = f.submit 'Update', class: 'btn btn-primary btn-xs'
-                        th = order.order_status
+                        td = order_status(order)
                         td = order.sub_total
                         td 
                           - if order&.rider&.any?
-                            = order&.rider&.where.not(order_status: "reject").first&.order_status || "Rider Reject the order"
+                            = order&.rider&.where.not(order_status: "reject").first&.order_status&.humanize || "Rider Reject the order"
                           - else
                             = "Rider Not Assigned"
-                        td = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
+                        td 
+                          = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
+                          = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
+                            i class="fa fa-plus"
                 = will_paginate @guest_orders, param_name: 'guest_page'
             - else
               p
@@ -129,3 +138,4 @@
     
 
 
+#order_modal

@@ -10,12 +10,14 @@
           .form-group.clearfix
             .col-sm-12
               = f.label :chef_category_item_id, class: 'show'
-              = f.select :chef_category_item_id, options_for_select(@chef_categories.map{ |category| [category&.menu_item&.title, category.id ] }, mess_item.chef_category_item&.chef_category&.category&.title ), {prompt: ""}, {class: 'form-control', required: true}
+              = f.select :chef_category_item_id, options_for_select(@chef_categories.map{ |category| [category&.menu_item&.title&.humanize, category.id ] }, mess_item.chef_category_item&.chef_category&.category&.title ), {prompt: ""}, {class: 'form-control', required: true}
               = f.label :day, class: 'show'
               = f.select :day, options_for_select(@days.map{|k,v| [k, k] }, mess_item.day), {prompt: ""}, class: 'form-control', required: true
               = f.label :avalible_in, class: 'show'
-              = f.select :avalible_in, options_for_select(@avalible_in.map{|k,v| [k, k] }, mess_item.avalible_in), {prompt: ""}, class: 'form-control', required: true
+              = f.select :avalible_in, options_for_select(@avalible_in.map{|k,v| [k.humanize, k] }, mess_item.avalible_in), {prompt: ""}, class: 'form-control', required: true
               = f.hidden_field :mess_id, value: @mess.id
+              = f.label :price, class: 'show'
+              = f.number_field :price, class: "form-control", required: true
           .col-sm-12
           .modal-footer
             = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'

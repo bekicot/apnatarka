@@ -1,0 +1,29 @@
+#order_details_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        .container-fluid
+          .card-box
+            .heading-bar.clearfix
+              h4.pull-left
+                i.fa.fa-user
+                | Order Items Detail
+            .card-body
+              .table-responsive
+                table.table.table-hover.order-history
+                  thead
+                    tr
+                      th Item Name
+                      th Chef Order Status
+                      th Chef Details
+                      / th Chef Details
+                  tbody
+                    - @order.order_items.each do |order_item|
+                      - chef = order_item.chef_category_item.chef_category.user
+                      tr
+                        td = order_item.chef_category_item.menu_item.title
+                        td = order_item.item_status&.humanize
+                        td = chef_name_and_contact(order_item)

@@ -60,6 +60,8 @@ en:
     back: "Back"
   menu:
     download: "Download Menu"
+    forther_process: "For Further Process"
+    select_chef: "Select Chef"
 
   header:
     dashboard: "Dashboard"

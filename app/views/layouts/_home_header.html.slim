@@ -29,6 +29,8 @@
               = link_to t("header.dashboard"), rider_dashboards_path
             - if current_user.chef?
               = link_to t("header.dashboard"), chef_dashboards_path
+            - if current_user.normal_user?
+              = link_to t("header.dashboard"),dashboards_path
             = link_to t("header.favorites"), all_favorite_orders_delivery_index_path
             = link_to t("header.logout"), destroy_user_session_path, method: :delete
 

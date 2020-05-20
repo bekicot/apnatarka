@@ -1,0 +1,33 @@
+#today_mess_details_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        .card.m-b-30.custom-card
+          .card-body.block-head
+            .card-box
+                .heading-bar.clearfix
+                  h4.pull-left
+                    | Today Mess Details
+                .card-body
+                  - if @today_mess.present?
+                    .table-responsive
+                      table.table.table-hover.mb-0
+                        tbody
+                          tr
+                            th
+                              | Break Fast
+                            td 
+                              = break_fast(@today_mess)
+                          tr
+                            th 
+                              | Lunch
+                            td
+                              = lunch(@today_mess)
+                          tr
+                            th 
+                              | Dinner
+                            td
+                              = dinner(@today_mess)

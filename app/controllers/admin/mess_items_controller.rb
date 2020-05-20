@@ -33,7 +33,7 @@ class Admin::MessItemsController < Admin::BaseController
   def update
     if @mess_item.update(mess_item_params) 
       flash[:success] = "You Have Updated Mess Item Successfullly"
-      redirect_to admin_chef_mess_items_path(mess_id: params[:mess_item][:mess_id])
+      redirect_to admin_mess_items_path(mess_id: params[:mess_item][:mess_id])
     else
       flash[:alert] = "Something Went Wrong Try Again"
       render :back
@@ -45,7 +45,7 @@ class Admin::MessItemsController < Admin::BaseController
     if @mess_item.destroy
       flash[:success] = "You Have Deleted Mess Item Successfullly"
     end
-    redirect_to admin_chef_mess_items_path(@mess)
+    redirect_to admin_mess_items_path(mess_id: @mess)
   end
 
   private
@@ -59,7 +59,7 @@ class Admin::MessItemsController < Admin::BaseController
   end
 
   def mess_item_params
-    params.require(:mess_item).permit(:chef_category_item_id, :day, :avalible_in, :mess_id)
+    params.require(:mess_item).permit(:chef_category_item_id, :day, :avalible_in, :mess_id, :price)
   end
 
   def days_avaliblty_chef_categories
