@@ -142,16 +142,14 @@
                         .price class="pull-left"
                           .item-box
                             strong
-                              | x #{quantity}
+                              | #{number_with_precision(menu_item.price, precision: 2)} x #{quantity}
                               span
                                 | #{menu_item.title}
-                                br
-                                | (Base Price: #{number_with_precision(menu_item.price, precision: 2)}-RS)
                             / h4 = t("delivery.base")
                             / p = "$#{number_with_precision(menu_item.price, precision: 2)}"
 
                         .total class="pull-right"
-                          p = "$#{number_with_precision(quantity * menu_item.price, precision:2)}"
+                          p = "#{number_with_precision(quantity * menu_item.price, precision:2)}/RS"
                   - total2 = 0
                   - if @special_items.present?
                     - @special_items.each do |special_item|
@@ -162,23 +160,23 @@
                           .price class="pull-left"
                             .item-box
                               strong
-                                | x #{quantity}
+                                | #{number_with_precision(special_item.price, precision: 2)} x #{quantity}
                                 span
                                   | #{special_item.name}
-                              h4 = t("delivery.base")
-                              p = "$#{number_with_precision(special_item.price, precision: 2)}"
+                              / h4 = t("delivery.base")
+                              / p = "$#{number_with_precision(special_item.price, precision: 2)}"
                           .total class="pull-right"
-                            p = "$#{number_with_precision(quantity.to_i * special_item.price, precision:2)}"
+                            p = "#{number_with_precision(quantity.to_i * special_item.price, precision:2)}/RS"
                 .sub-total class="clearfix"
                   h4 class="pull-left" = t("delivery.sub_total")
-                  p class="pull-right" = "$#{number_with_precision(total + total2, precision: 2)}"
+                  p class="pull-right" = "#{number_with_precision(total + total2, precision: 2)}/RS"
                 .sub-total.clearfix
                   h4.pull-left = t("delivery.GST")
                   p.pull-right = "#{@tax} %"
                 .total class="clearfix"
                   h4 class="pull-left" = t("delivery.total")
                   - over_all_total = total + total2
-                  p class="pull-right" = "$#{number_with_precision(over_all_total + (over_all_total * (@tax_percentage)), precision: 2)}"
+                  p class="pull-right" = "#{number_with_precision(over_all_total + (over_all_total * (@tax_percentage)), precision: 2)}/RS"
                 .form-check
                   = f.collection_radio_buttons(:payment_method, Order.payment_methods, :first, :last, { checked: session[:address].present? ? Order.payment_methods.keys.first : Order.payment_methods.keys.last }) do |b|
                     = b.label(data: {value: b.text.zero? ? t("delivery.paytabs") : t("delivery.place_order")}) { b.radio_button + (b.text.zero? ? t("delivery.debit_credit") : t("delivery.home_delivery") ) }

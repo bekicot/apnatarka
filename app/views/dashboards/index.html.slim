@@ -56,7 +56,6 @@
             a data-toggle="tab" href="#settings"  Today Orders
         .tab-content
           #home.tab-pane.active
-            hr/
             = form_for @user, url: dashboard_path(@user), html: { "data-parsley-validate" => true, class: 'admin-form' }, method: :put do |f|
               - if @user.errors.full_messages.any?
                 - @user.errors.full_messages.each do |error_message|
@@ -233,8 +232,6 @@
                           | Special Items
                     tbody
                       - @today_orders.each do |order|
-                        
-                        
                         tr
                           td
                             = order.order_number
@@ -248,9 +245,19 @@
                             = customer_order_items(order)
                           td
                             = customer_special_items(order)
-                        
-
-
+              / - @today_orders.each do |order|
+              /   h3 Order Status
+              /   - if order.order_status == "given_to_rider"
+              /   - else
+              /     .container
+              /       .row.justify-content-center.mt-5.mb-2
+              /         h2 Your Order is On your Way
+              /       #countdown.row.justify-content-center.border.rounded-pill
+                    
+              /     .alert.alert-success role="alert" 
+              /       | Your Order No: 
+              /       strong=order.order_number  
+              /       | is Being processed it will be assignt to rider as soon as it will be ready
             - else
               .alert.alert-danger role="alert"
                 | You Have Not Placed Any Order Today. Visit Menu To Place Order
