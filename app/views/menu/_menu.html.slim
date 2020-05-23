@@ -8,7 +8,7 @@
     .container
       ul.nav.nav-tabs.text-center
         - @categories.each_with_index do |category, index|
-          li class=(['menu-col col-sm-3', 'showcase-left', index == 0 ? 'active' : ''].compact.join(' '))
+          li class=(['menu-col col-sm-3', 'showcase-left', index == 1 ? 'active' : ''].compact.join(' '))
             = link_to "#tab#{category.id}", class: "text-capitalize menu_category", data: {'id': category.id, 'toggle': "tab"}
               strong.title.text-capitalize
                 = category.title

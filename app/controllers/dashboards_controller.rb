@@ -2,8 +2,14 @@ class DashboardsController < ApplicationController
 	before_action :find_user
 	
 	def index
+		# order = @user.orders.where("created_at::date = ?", Date.today).where(order_status: "given_to_rider").first
+		# rider = order.rider.where(order_status: "accept").first
+		# if rider.present?
+		# 	gon.pickup_time = rider.pickup_time.strftime("%I:%M")
+		# 	gon.delivery_time = rider.delivery_time.strftime("%I:%M")
+		# end
 		@today_orders = @user.orders.where("created_at::date = ?", Date.today)
-		@user_mess = @user.mess_request.user_messes
+		@user_mess = @user&.mess_request&.user_messes
 		@country = "Pakistan"
 		@states = CS.states(:PK)
 	end
@@ -30,7 +36,7 @@ class DashboardsController < ApplicationController
   end
 
   def today_mess_detail
-  	mess_ids = @user.mess_request.user_messes.map{|x| x.mess_item_id}
+  	mess_ids = @user&.mess_request&.user_messes&.map{|x| x.mess_item_id}
   	@today_mess = MessItem.where(id: mess_ids).where(day: Date.today.strftime("%A").downcase)
   	respond_to do |format|
       format.js

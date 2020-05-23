@@ -1,6 +1,6 @@
 .tab-content.container-fluid.clearfix
   - @categories.each_with_index do |category, index|
-    div[class="tab-panel tab fade #{'in active' if index == 0}" id="tab#{category.id}"]
+    div[class="tab-panel tab fade #{'in active' if index == 1}" id="tab#{category.id}"]
       - menu_items = category&.menu_items
       - chefs = category&.chef_categories
       - if chefs.present?

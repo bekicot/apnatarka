@@ -8,26 +8,29 @@
         .card.m-b-30.custom-card
           .card-body.block-head
             .card-box
+              - if @today_mess.present?
                 .heading-bar.clearfix
                   h4.pull-left
                     | Today Mess Details
                 .card-body
-                  - if @today_mess.present?
-                    .table-responsive
-                      table.table.table-hover.mb-0
-                        tbody
-                          tr
-                            th
-                              | Break Fast
-                            td 
-                              = break_fast(@today_mess)
-                          tr
-                            th 
-                              | Lunch
-                            td
-                              = lunch(@today_mess)
-                          tr
-                            th 
-                              | Dinner
-                            td
-                              = dinner(@today_mess)
+                  .table-responsive
+                    table.table.table-hover.mb-0
+                      tbody
+                        tr
+                          th
+                            | Break Fast
+                          td 
+                            = break_fast(@today_mess)
+                        tr
+                          th 
+                            | Lunch
+                          td
+                            = lunch(@today_mess)
+                        tr
+                          th 
+                            | Dinner
+                          td
+                            = dinner(@today_mess)
+              - else
+                .alert.alert-danger role="alert"
+                  | You Have Not Joined Mess Yet. Visit Mess Menu to Join
