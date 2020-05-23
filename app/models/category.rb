@@ -20,6 +20,6 @@ class Category < ApplicationRecord
   default_scope { includes(:translations) }
 
   has_many :menu_items, dependent: :destroy
-  has_many :chef_categories
+  has_many :chef_categories, dependent: :destroy
   has_many :chefs, through: :chef_categories, source: :user
 end
