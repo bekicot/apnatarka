@@ -88,9 +88,10 @@ a
     background: rgba(0,0,0,0.1)
 
 .carousel-inner
-  height: 445px
+  height: 380px
   > .item
     > img
+      height: 380px
       width: 100%
 
 
@@ -483,14 +484,14 @@ h1
   height: 500px
 
 ul.social-icons
-  margin: -50px 0 0
   padding: 0
   list-style: none
   font-size: 20px
-  position: fixed
-  top: 50%
+  position: absolute
+  top: 118px
   right: 15px
-  background: $dark-blue-rgba
+  background: rgba(33, 39, 57, 0.8)
+  z-index: 9
 
   li
     display: block
@@ -598,9 +599,10 @@ ul.social-icons
 
 @media only screen and (max-width: 1199px)
   .carousel-inner
+    height: 219px
     > .item
       > img
-        height: auto
+        height: 220px
         width: 100%
 
     .banner
@@ -616,9 +618,10 @@ ul.social-icons
 
 @media only screen and (max-width: 1023px)
   .carousel-inner
+    height: 181px
     > .item
       > img
-        height: auto
+        height: 180px
         width: 100%
 
     .banner
@@ -641,6 +644,12 @@ ul.social-icons
       padding: 15px 0 0 !important
 
 @media only screen and (max-width: 767px)
+  .carousel-inner
+    height: 151px
+    > .item
+      > img
+        height: 150px !important
+        width: 100%
   #sign-in-modal, #sign-up-modal, #delivery_details_modal
     .datetimepicker1
       color: $black
