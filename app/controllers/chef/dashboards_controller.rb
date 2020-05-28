@@ -22,8 +22,9 @@ class Chef::DashboardsController < Chef::BaseController
   end
 
   def change_order_status
-    chef_items = @order.order_items.where(chef_category_item_id: @chef_category_item_ids)
-  	chef_items.update_all(item_status: params[:order_item][:item_status])
+   #  chef_items = @order.order_items.where(chef_category_item_id: @chef_category_item_ids)
+  	# chef_items.update_all(item_status: params[:order_item][:item_status])
+    @order.update_attribute(:order_status, params[:order][:order_status])
     flash[:success] = "Order Status Has Been Changed"
   	redirect_to chef_dashboards_path
   end

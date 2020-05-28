@@ -3,6 +3,10 @@ class VisitorsController < ApplicationController
   before_action :set_emails, only: [:submit_feedback, :submit_franchise, :contact_request]
 
   def home
+    # if session[:cart].present?
+    #   chef_cat_id = session[:cart].first.first.split('_')[3]
+    #   chef_id = ChefCategoryItem.find(chef_cat_id).chef_category.user.id
+    # end
     @about                = About.with_translations(session_language).where(is_active: true).first
     @locations            = Location.with_translations(session_language).pluck(:id, :address, :title)
     @menu                 = MenuList.first

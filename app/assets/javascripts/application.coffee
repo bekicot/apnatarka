@@ -14,11 +14,9 @@
 //= require jquery_ujs
 //= require delivery
 //= require scrollreveal.min
-//= require animations
 //= require bootstrap-sprockets
 //= require underscore
 //= require gmaps/google
-//= require custom
 //= require parsley
 //= require menu
 //= require location
@@ -30,3 +28,4 @@
 //= require item_chefs
 //= require sweetalert
 //= require visitors
+//= require custom

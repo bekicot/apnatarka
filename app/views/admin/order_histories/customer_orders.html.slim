@@ -32,7 +32,8 @@
                             = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
                         /     .col-sm-4
                         /       = f.submit 'Update', class: 'btn btn-primary btn-xs'
-                        td = order_status(order)
+                        / td = order_status(order)
+                        td = order.order_status&.humanize
                         td = order.sub_total
                         td 
                           - if order&.rider&.any?
@@ -76,7 +77,7 @@
                             = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
                             / .col-sm-4
                       /         = f.submit 'Update', class: 'btn btn-primary btn-xs'
-                      td = order_status(order)
+                      td = order.order_status&.humanize
                       td = order.sub_total
                       td 
                         - if order&.rider&.any?
@@ -120,7 +121,7 @@
                             = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
                         /     .col-sm-4
                         /       = f.submit 'Update', class: 'btn btn-primary btn-xs'
-                        td = order_status(order)
+                        td = order.order_status&.humanize
                         td = order.sub_total
                         td 
                           - if order&.rider&.any?

@@ -1,4 +1,6 @@
 #header.clearifx
+  .row.text-center.bahawalpur-only
+    | Bahawalpur Only
   .container-fluid
     .logo.pull-left
       = link_to root_path
@@ -87,12 +89,12 @@
               = link_to t("header.login"), login_page_visitors_path, remote: true, class: "login"
 
   ul.social-icons
-    li
-      a
-        i.fa.fa-tumblr
-    li
-      a
-        i.fa.fa-instagram
+    / li
+    /   a
+    /     i.fa.fa-tumblr
+    / li
+    /   a
+    /     i.fa.fa-instagram
     li
       a href = "https://www.facebook.com/chefit24" target = "_blank"
         i.fa.fa-facebook-f
