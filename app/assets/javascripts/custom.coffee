@@ -9,51 +9,6 @@ $ ->
       $('.loader-area').show()
       return
 
-  # Select all links with hashes
-  $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').not('[data-toggle="tab"]').click (event) ->
-    if $('#header').hasClass('fixed-header') || $('body').width() > 767
-      navbar_height = 86
-    else
-      navbar_height = 0
-
-    # On-page links
-    if location.pathname.replace(/^\//, '') == @pathname.replace(/^\//, '') && location.hostname == @hostname
-      # Figure out element to scroll to
-      target = $(@hash)
-      target = if target.length then target else $('[name=' + @hash.slice(1) + ']')
-      # Does a scroll target exist?
-      if target.length
-        # Only prevent default if animation is actually gonna happen
-        event.preventDefault()
-
-        $('html, body').animate { scrollTop: (target.offset().top - navbar_height) }, 1000, ->
-          # Callback after animation
-          # Must change focus!
-          $target = $(target)
-          # $target.focus()
-          if $target.is(':focus')
-            # Checking if the target was focused
-            return false
-          else
-            $target.attr 'tabindex', '-1'
-            # Adding tabindex for elements not focusable
-            # $target.focus()
-            # Set focus again
-          return
-    return
-
-  #Adding dynamically active classes on nav links when hovered over their content section
-  $(window).on 'scroll', ->
-    $('ul.navbar-nav li a').each ->
-      windScroll = $(window).scrollTop()
-      blockArea = $($(this).attr('href').replace('/', ''))
-      if blockArea.position() != undefined && windScroll > (blockArea.position().top - $('#header').outerHeight() - $('.scroll-btn').height() - 1) && windScroll < (blockArea.position().top + blockArea.height())
-        $('ul.navbar-nav').children("li").removeClass 'active'
-        $(this).closest('li').addClass 'active'
-        if $(this).closest('li').parent(".dropdown-menu").length
-          $(this).closest('li').parent(".dropdown-menu").closest('li').addClass 'active'
-      return
-
 
   setTimeout (->
     $('.loader-area').hide()
