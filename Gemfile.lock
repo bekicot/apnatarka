@@ -53,6 +53,9 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-tooltip-rails (0.1)
+      rails (>= 3.1)
+      thor
     bootstrap3-datetimepicker-rails (4.17.47)
       momentjs-rails (>= 2.8.1)
     builder (3.2.3)
@@ -74,6 +77,7 @@ GEM
     climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
+    cocoon (1.2.14)
     code_analyzer (0.4.8)
       sexp_processor
     coderay (1.1.2)
@@ -303,6 +307,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sweetalert-rails (1.1.3)
+      railties (>= 3.1.0)
     temple (0.8.0)
     thor (0.20.0)
     thread_safe (0.3.6)
@@ -335,12 +341,14 @@ DEPENDENCIES
   activerecord-import
   annotate
   bootstrap-sass (~> 3.3.6)
+  bootstrap-tooltip-rails
   bootstrap3-datetimepicker-rails (~> 4.17.37)
   bullet
   bundler
   byebug
   capybara (~> 2.13)
   city-state
+  cocoon
   coffee-rails (~> 4.2)
   devise (~> 4.4)
   figaro
@@ -378,6 +386,7 @@ DEPENDENCIES
   slim
   spring
   spring-watcher-listen (~> 2.0.0)
+  sweetalert-rails
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
@@ -385,4 +394,4 @@ DEPENDENCIES
   zip-zip
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
