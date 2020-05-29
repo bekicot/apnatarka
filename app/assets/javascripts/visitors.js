@@ -118,6 +118,8 @@ function startCountdown() {
     intervalHandle = setInterval(tick, 1000);
     // hide the form
 }
+if ($("#time").length > 0) {
   startCountdown();
+}
 
 });
