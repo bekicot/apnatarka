@@ -42,7 +42,6 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def destroy
-    debugger
     if @item.destroy
       flash[:success] = "You Have Deleted Item Sucessfully"
       redirect_to admin_items_path
