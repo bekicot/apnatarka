@@ -19,7 +19,11 @@ class Admin::OrdersController < Admin::BaseController
 
   def order_items
     @data = MenuItem.where(category_id: params[:category])
-    @menu_items = @data.map{ |k| [k.id,k.title] if k.chef_category_items.present? }
+    ids = @data.map{|x| x.id }
+    chef_category_items = ChefCategoryItem.where(menu_item_id: ids).map{|x| x.id }
+    avalibility = ChefAvalibility.where(chef_category_item_id: chef_category_items).where(day: Time.now.strftime("%A"))
+    @menu_items = avalibility.map{|k|[k.chef_category_item.menu_item.id, k.chef_category_item.menu_item.title ]}.uniq
+    # @menu_items = @data.map{ |k| [k.id,k.title] if k.chef_category_items.present? }
     render json: @menu_items
   end
 

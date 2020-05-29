@@ -54,7 +54,7 @@ class Admin::MenuItemsController < Admin::BaseController
   end
 
   def menu_item_params
-    permitted = MenuItem.globalize_attribute_names + [:category_id, :avatar, :price]
-    params.require(:menu_item).permit(*permitted)
+    # permitted = MenuItem.globalize_attribute_names + [:category_id, :avatar, :price]
+    params.require(:menu_item).permit(:title_en, :description_en, :avatar, :price, :category_id)
   end
 end

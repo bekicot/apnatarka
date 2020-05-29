@@ -2,11 +2,14 @@
   - if @category.errors.full_messages.any? 
       - @category.errors.full_messages.each do |error_message| 
           = error_message if @category.errors.full_messages.first == error_message
-  - Category.globalize_attribute_names.each do |lang|
-    .form-group.clearfix
-      .col-sm-12
-        = f.label lang, class: 'show'
-        = f.text_field lang, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :title, class: 'show'
+      = f.text_field :title_en, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :description, class: 'show'
+      = f.text_field :description_en, required: true, class: 'form-control'
   .form-group.clearfix
     .col-sm-12
       = f.label :image, class: 'show'

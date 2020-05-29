@@ -6,11 +6,14 @@
     .col-sm-12
       = f.label :Category, class: 'show'
       = f.select :category_id, options_for_select(@categories.map{|category| [category.title, category.id ]}, selected: @menu_item.category_id), {include_blank: "-- Select Category --"}, required: true, class: 'form-control'
-  - MenuItem.globalize_attribute_names.each do |lang|
-    .form-group.clearfix
-      .col-sm-12
-        = f.label lang, class: 'show'
-        = f.text_field lang, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :Title, class: 'show'
+      = f.text_field :title_en, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :Description, class: 'show'
+      = f.text_field :description_en, required: true, class: 'form-control'
   .form-group.clearfix
     .col-sm-12
       = f.label :image, class: 'show'

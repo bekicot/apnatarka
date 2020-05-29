@@ -52,7 +52,6 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def category_params
-    permitted = Category.globalize_attribute_names + [:avatar]
-    params.require(:category).permit(*permitted)
+    params.require(:category).permit(:title_en, :description_en, :avatar)
   end
 end
