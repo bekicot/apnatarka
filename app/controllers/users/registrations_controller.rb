@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
-    resource.skip_confirmation!
+    resource.confirmed_at = Time.now
     # resource.role = User.user_roles[:normal_user]
     resource.save
     yield resource if block_given?

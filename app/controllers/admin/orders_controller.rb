@@ -45,6 +45,7 @@ class Admin::OrdersController < Admin::BaseController
         new_user_params = new_user_params.merge!({password: "123456"})
       end
       @user = User.new(new_user_params)
+      @user.confirmed_at = Time.now
       @order = @user.orders.new(order_params)
       @order.ordered_as = "order_from_branch"
       @user.save(validate: false)

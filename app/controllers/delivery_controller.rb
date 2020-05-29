@@ -76,10 +76,13 @@ class DeliveryController < ApplicationController
     end
   end
 
-def order_received
+  def order_received
     flash[:success] = "Your Order Has Been Placed Successfully"
     clear_all_sessions
     @order = Order.includes(order_items: [:chef_category_item]).find(params[:id])
+    remaining_time = @order.time_diff(@order.created_at, Time.now).split(":")
+    gon.minutes = remaining_time[1]
+    gon.seconds = remaining_time[2]
   end
 
   def add_to_cart

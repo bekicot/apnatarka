@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     member do
       get :single_item
     end
-    resources :item_chefs
+    resources :item_chefs do
+      collection do
+        get :check_chef
+      end
+    end
   end
 
   resources :address do

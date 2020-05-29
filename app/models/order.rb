@@ -29,4 +29,20 @@ class Order < ApplicationRecord
   def generate_order_number
     update_attribute(:order_number, Digest::SHA1.hexdigest("order-#{id}")[0..5])
   end
+
+  def time_diff(start_time, end_time)
+    seconds_diff = (30.minutes -  (end_time - start_time )).to_i
+
+    hours = seconds_diff / 3600
+    seconds_diff -= hours * 3600
+
+    minutes = seconds_diff / 60
+    seconds_diff -= minutes * 60
+
+    seconds = seconds_diff
+
+    "#{hours.to_s.rjust(2, '0')}:#{minutes.to_s.rjust(2, '0')}:#{seconds.to_s.rjust(2, '0')}"
+    # or, as hagello suggested in the comments:
+    # '%02d:%02d:%02d' % [hours, minutes, seconds]
+  end
 end

@@ -51,6 +51,11 @@
   /             = link_to t("delivery.payment_again"), re_payment_delivery_index_path(order: @order), class: 'btn btn-default'
   .clearfix#margin_top_order
     .container
+      .delivery-counter
+        #container
+          #time_area
+            h1#time 0:00
+
       / .table-responsive
       /   h2.text-center Your Order Has Been Placed go to Dashboard's Order detail Menu
       .table-responsive

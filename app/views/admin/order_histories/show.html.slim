@@ -32,11 +32,11 @@
                         strong
                           | Order Type
                       td = t("delivery.delivery")
-                    tr
-                      td
-                        strong
-                          | Delivery Time
-                      td = @order&.delivery_time&.strftime("%m-%d-%Y %I:%M%p") || Time.now.strftime("%m-%d-%Y %I:%M%p")
+                    / tr
+                    /   td
+                    /     strong
+                    /       | Delivery Time
+                    /   td = @order&.delivery_time&.strftime("%m-%d-%Y %I:%M%p") || Time.now.strftime("%m-%d-%Y %I:%M%p")
                     / tr
                     /   td
                     /     strong

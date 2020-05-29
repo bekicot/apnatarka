@@ -25,7 +25,7 @@ div.modal.fade id="sign-in-modal" aria-labelledby="myModalLabel" role="dialog" t
 
             .form-group.clearfix
               = f.submit t('signin_signup.sign_in'), class: 'btn btn-primary'
-              = link_to t("signin_signup.guest_order"), guest_order_delivery_index_path, class: 'btn btn-primary pull-right guest-checktout'
+              / = link_to t("signin_signup.guest_order"), guest_order_delivery_index_path, class: 'btn btn-primary pull-right guest-checktout'
               = link_to t("signin_signup.no_account_message"), "javascript:void(0);", id: 'show-sign-up-modal'
 
           / .row.text-center

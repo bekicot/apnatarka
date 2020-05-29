@@ -14,7 +14,7 @@
                 .img-box
                   = image_tag item.menu_item.avatar.url(:medium), class: 'img-responsive'
                   .order type="button" class="btn btn-primary btn-lg"
-                    = link_to add_to_cart_delivery_index_path(chef_menu_item: item), class: 'text-center item-modal' , remote: true do
+                    = link_to 'javascript:void(0)', class: 'text-center item-modal add_to_cart_item', id: "chef_menu_item_#{item.id}" do
                       .box
                         .holder
                           .fa.fa-cutlery

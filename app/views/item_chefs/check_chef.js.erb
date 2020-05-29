@@ -1,0 +1,25 @@
+<% if @chef_id.present? && @current_chef_id != @chef_id %>
+	swal({
+    title: "Are you sure?",
+    text: "You want to Remove Your Cart!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: '#DD6B55',
+    confirmButtonText: 'Yes, I am sure!',
+    cancelButtonText: "No, cancel it!",
+    closeOnConfirm: false,
+    closeOnCancel: false
+ },
+ function(isConfirm){
+
+   if (isConfirm){
+   	debugger
+   	session.delete(cart)
+     // swal("Shortlisted!", "Candidates are successfully shortlisted!", "success");
+
+    } else {
+      swal("Cancelled", "Kindly Visit Delivery Menu to Proccess", "error");
+         e.preventDefault();
+    }
+ });
+<% end %>
