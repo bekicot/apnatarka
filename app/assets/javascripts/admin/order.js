@@ -125,11 +125,30 @@ $(document).ready(function(){
     $('.show-phone').val(phone);
   });
 
+  // $('body').on('focusout', '.special-item-quantity', function(){
+  //   special_item_quantity = $(this).val()
+  //   price = $(this).parent().parent().prev().find('.special-item').text().split('(')[1].split(')')[0]
+  //   total = parseFloat(special_item_quantity) * parseFloat(price)
+  //   $(this).closest('.form-group').siblings('.item_price').find('.price').val(total)
+  // });
+
+
   $('body').on('focusout', '.special-item-quantity', function(){
-    special_item_quantity = $(this).val()
-    price = $(this).parent().parent().prev().find('.special-item').text().split('(')[1].split(')')[0]
-    total = parseFloat(special_item_quantity) * parseFloat(price)
-    $(this).closest('.form-group').siblings('.item_price').find('.price').val(total)
+    id = $(this).parent().parent().prev().find('.special-item :selected').val()
+    quantity = parseFloat($(this).val())
+    get_quantity = $(this)
+    if ( $('.display-total').val() != ""){ total_amount = parseFloat($('.display-total').val()) } else{total_amount = 0}
+    $.ajax({
+      type: 'GET',
+      url: '/admin/orders/special_item_price',
+      dataType: 'json',
+      data: {id: id}, 
+      success: function(data){
+        total = data * quantity
+        get_quantity.closest('.form-group').siblings('.item_price').find('.price').val(total)
+        $('.display-total').val(total + parseFloat(total_amount));
+      }
+     });
   });
 
 //   $('.total-amount').keyup(function () {

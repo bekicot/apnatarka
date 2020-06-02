@@ -82,7 +82,7 @@ function resetPage() {
 
 function tick() {
     // grab the h1
-    var timeDisplay = document.getElementById("time");
+    var timeDisplay = document.getElementById("time") || '0:00';
     
     // turn seconds into mm:ss
     var min = Math.floor(secondsRemaining / 60);

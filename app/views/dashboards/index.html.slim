@@ -230,6 +230,8 @@
                           | Order Items
                         th 
                           | Special Items
+                        th
+                          | Action
                     tbody
                       - @today_orders.each do |order|
                         tr
@@ -245,6 +247,8 @@
                             = customer_order_items(order)
                           td
                             = customer_special_items(order)
+                          td
+                            = link_to "Detail", order_received_delivery_path(order), class: "btn btn-primary login"
               / - @today_orders.each do |order|
               /   h3 Order Status
               /   - if order.order_status == "given_to_rider"

@@ -2,21 +2,21 @@
   - @categories.each_with_index do |category, index|
     div[class="tab-panel tab fade #{'in active' if index == 0}" id="tab#{category.id}"]
       - menu_items = category&.menu_items
-      - if menu_items.present?
+      - chefs = category&.chef_categories
+      - if chefs.present?
           ul.full-menus.text-center
-            - menu_items.each do |menu_item|
-              -if check_chef_avalibility(menu_item)
-                li.col-md-4.col-sm-6
+            - chefs.each do |chef|
+              -if check_chef_avalibility(chef)
+                li.col-sm-4
                   .img-box
-                    = image_tag menu_item.avatar.url(:medium), class: 'img-responsive'
-                    / .order type="button" class="btn btn-primary btn-lg" id=("add-more-item-#{menu_item.id}")
-                    / = render "add_link", menu_item: menu_item
+                    = image_tag chef.user.avatar.url(:medium), class: 'img-responsive'
                     .order type="button" class="btn btn-primary btn-lg"
-                      = link_to chef_items_delivery_index_path(menu_id: menu_item.id), class: 'text-center item-modal', remote: true do
+                      = link_to chef_items_delivery_index_path(menu_id: chef.id), class: 'text-center item-modal', remote: true do
                         .box
                           .holder
                             .fa.fa-cutlery
+                      / , data: ( session[:cart].present? ? {confirm: "Are you sure you want to clear your cart ?"} : nil)
                   .txt-holder.clearfix
                     .price $558
-                    span.title.text-capitalize= menu_item.title
-                    span.title.text-capitalize= "$#{number_with_precision(menu_item.price, precision: 2)}"
+                    span.title.text-capitalize= chef.user.first_name
+                    p= chef.user.address

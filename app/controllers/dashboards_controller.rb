@@ -8,10 +8,13 @@ class DashboardsController < ApplicationController
 		# 	gon.pickup_time = rider.pickup_time.strftime("%I:%M")
 		# 	gon.delivery_time = rider.delivery_time.strftime("%I:%M")
 		# end
-		@today_orders = @user.orders.where("created_at::date = ?", Date.today)
+		@today_orders = @user.orders.where("created_at::date = ?", Date.today).order('created_at DESC')
 		@user_mess = @user&.mess_request&.user_messes
 		@country = "Pakistan"
 		@states = CS.states(:PK)
+		# remaining_time = @today_orders.last.time_diff(@today_orders.last.created_at, Time.now).split(":")
+  		# gon.minutes = remaining_time[1]
+  		# gon.seconds = remaining_time[2]
 	end
 
 	def update

@@ -42,6 +42,7 @@
                             = "Rider Not Assigned"
                         td 
                           = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
+                          = link_to "Recipt", order_bill_admin_order_path(order), class: "btn btn-primary"
                           = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
                             i class="fa fa-plus"
                 = will_paginate @from_branch_orders, param_name: 'branch_page'
@@ -86,6 +87,7 @@
                           = "Rider Not Assigned"
                       td 
                         = link_to "show Detail", admin_order_history_path(order.id), class: "btn btn-xs btn-primary"
+                        = link_to "Recipt", order_bill_admin_order_path(order), class: "btn btn-primary"
                         = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
                           i class="fa fa-plus"
                 = will_paginate @reg_orders, param_name: 'reg_page'
@@ -130,6 +132,7 @@
                             = "Rider Not Assigned"
                         td 
                           = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
+                          = link_to "Recipt", order_bill_admin_order_path(order), class: "btn btn-primary"
                           = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
                             i class="fa fa-plus"
                 = will_paginate @guest_orders, param_name: 'guest_page'

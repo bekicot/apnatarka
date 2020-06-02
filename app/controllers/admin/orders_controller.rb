@@ -1,5 +1,5 @@
 class Admin::OrdersController < Admin::BaseController
-  before_action :find_tax, only: [:new]
+  before_action :find_tax, only: [:new, :order_bill]
 
   def index
 
@@ -56,7 +56,7 @@ class Admin::OrdersController < Admin::BaseController
       @order.save(validate: false)
     end
     flash[:success] = "Order Created Successfullly"
-    render :js => "window.location.pathname='#{customer_orders_admin_order_histories_path}'"
+    render :js => "window.location.pathname='#{order_bill_admin_order_path(@order)}'"
   end
 
   def checkemail
@@ -78,6 +78,17 @@ class Admin::OrdersController < Admin::BaseController
   def menu_item
     menu_item_price = MenuItem.find(params[:menu_item]).price
     render json: menu_item_price
+  end
+
+  def order_bill
+    @order = Order.includes(:order_items, :user).find(params[:id])
+    @order_items = @order.order_items
+    @special_items = @order.order_special_items
+  end
+
+  def special_item_price
+    special_item_price = SpecialItem.find(params[:id]).price
+    render json: special_item_price 
   end
 
   private
