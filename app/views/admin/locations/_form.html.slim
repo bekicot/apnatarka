@@ -2,11 +2,23 @@
   - if @location.errors.full_messages.any?
       - @location.errors.full_messages.each do |error_message|
           = error_message if @location.errors.full_messages.first == error_message
-  - Location.globalize_attribute_names.each do |lang|
-    .form-group.clearfix
-      .col-sm-12
-        = f.label lang, class: 'show'
-        = f.text_field lang, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :Title, class: 'show'
+      = f.text_field :title_en, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :Address, class: 'show'
+      = f.text_field :address_en, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :Country, class: 'show'
+      = f.text_field :country_en, required: true, class: 'form-control'
+  / - Location.globalize_attribute_names.each do |lang|
+  /   .form-group.clearfix
+  /     .col-sm-12
+  /       = f.label lang, class: 'show'
+  /       = f.text_field lang, required: true, class: 'form-control'
   .form-group.clearfix
     .col-sm-12
       = f.label :phone, class: 'show'

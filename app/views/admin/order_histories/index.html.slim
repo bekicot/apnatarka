@@ -33,6 +33,7 @@
                       td = order.sub_total
                       td 
                         = link_to "show", admin_order_history_path(order.id), class: "btn btn-xs btn-primary"
+                        = link_to "Recipt", order_bill_admin_order_path(order), class: "btn btn-primary"
                         = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
                             i class="fa fa-plus"
               = will_paginate @orders, param_name: "page"

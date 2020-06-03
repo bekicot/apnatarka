@@ -43,3 +43,4 @@
                   - unless current_user.moderator_user?
                       = link_to admin_menu_item_path(menu_item), method: :delete, data: {confirm: "Are you sure!"}, class: 'btn btn-danger btn-xs' do
                         i.fa.fa-times
+          = will_paginate @menu_items, param_name: "page"

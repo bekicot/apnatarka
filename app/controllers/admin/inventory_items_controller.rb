@@ -45,7 +45,7 @@ class Admin::InventoryItemsController < Admin::BaseController
 
   def save_assign_item
     @assign_items = []
-    params[:assign_items].each do |item|
+    params[:assign_item].each do |item|
       if item[:quantity].present? && item[:quantity].to_f != 0
         item_record = InventoryItemRecord.where(item_id: item[:item_id])
         if item_record.present?

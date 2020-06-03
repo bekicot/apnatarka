@@ -93,7 +93,7 @@ $(document).ready(function(){
 
 
   $(".print-btn").click(function(){
-    PrintPageContent($(".order_bill").html());
+    PrintPageContent($("#bill").html());
   });
   function PrintPageContent(content)
   {

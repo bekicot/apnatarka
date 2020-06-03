@@ -51,7 +51,8 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def location_params
-    permitted = Location.globalize_attribute_names + [:state, :city, :phone, :postal_code, :lat, :lng]
-    params.require(:location).permit(*permitted)
+    # permitted = Location.globalize_attribute_names + [:state, :city, :phone, :postal_code, :lat, :lng]
+    # params.require(:location).permit(*permitted)
+    params.require(:location).permit(:title_en, :address_en, :country_en, :phone, :postal_code, :lat, :lng)
   end
 end
