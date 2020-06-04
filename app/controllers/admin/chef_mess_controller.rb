@@ -50,7 +50,7 @@ class Admin::ChefMessController < Admin::BaseController
 
   private
   def find_user
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
   end
 
   def mess_params

@@ -1,0 +1,19 @@
+#admin_measure_modal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title= params[:action]=="new" ? "Add Measure" : "Edit Measure"
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_for [:admin, @measure], html: { "data-parsley-validate" => true } do |f|
+          - if @measure.errors.full_messages.any? 
+              - @measure.errors.full_messages.each do |measure| 
+                = measure
+          .form-group.clearfix
+            .col-sm-12
+              = f.label :Title, class: 'show'
+              = f.text_field :title, class: 'form-control', required: true
+          .col-sm-12
+          .modal-footer
+            = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'

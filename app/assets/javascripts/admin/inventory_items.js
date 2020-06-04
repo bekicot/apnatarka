@@ -35,7 +35,7 @@ $(document).ready(function(){
      });
   });
 
-  $('body').on('focusout', '.stock-quantity' , function(){
+  $('body').on('keyup', '.stock-quantity' , function(){
     item_price = $(this).closest('.stock_quantity').prev().find('.item-price').val()
     stock_quantity = $(this).val();
     item_quantity = $(this).closest('.stock_quantity').prev().prev().prev().find('.item-quantity').val()
@@ -44,7 +44,7 @@ $(document).ready(function(){
 
   });
 
-  $('body').on('focusout', '.item-discount', function(){
+  $('body').on('keyup', '.item-discount', function(){
     discount = $(this).val()
     total_price = $(this).closest('.item_discount').prev().find('.total-price').val()
     after_discount_total =  parseFloat(total_price) - (parseFloat(discount))

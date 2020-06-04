@@ -60,6 +60,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def checkemail
+    debugger
     @exists = User.find_by_phone(params[:phone]).present?
   end
 

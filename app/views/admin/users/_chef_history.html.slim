@@ -20,6 +20,6 @@
           td
             = item.assign_date&.strftime("%F %I:%M %p") || "N/A"
           td 
-            = item.status.humanize
+            = item&.status&.humanize
 
   = will_paginate @assign_items, param_name: "chef_page"

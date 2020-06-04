@@ -24,7 +24,7 @@
               = f.number_field :alert_at, class: 'form-control', required: true, min: 0
             .col-sm-6
               = f.label :measure, class: 'show'
-              = f.select :measure, options_for_select(Item.measures.map{|k,v| [k,k]},selected: @item.measure), {prompt: "Select Measure"}, class: 'form-control', required: true
+              = f.select :measure, options_for_select(Measure.all.map{|k| [k.title.humanize,k.title.downcase]},selected: @item.measure), {prompt: "Select Measure"}, class: 'form-control', required: true
           .col-sm-12
           .modal-footer
             = f.submit "Submit", class: 'pull-right custom-btn btn btn-primary'

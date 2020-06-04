@@ -1,0 +1,27 @@
+.container-fluid
+  .card-box
+    .heading-bar.clearfix
+      h4.pull-left
+        i.fa.fa-shopping-basket
+        | Manage Measures
+      = link_to "Add Measure", new_admin_measure_path, class: "btn custom-btn btn-primary pull-right", remote: true
+    .card-body
+        .table-responsive
+          table.table.table-hover.mb-0
+            thead
+              tr
+                th
+                  | Measure Title
+                th
+                  | Action
+            tbody
+            - if @measures.present?
+              - @measures.each do |measure|
+                tr
+                  td
+                    = measure.title&.humanize
+                  td 
+                    = link_to "Edit", edit_admin_measure_path(measure), class: 'btn btn-primary btn-xs', remote: true
+                    = link_to "Delete", admin_measure_path(measure), class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: "Are you sure!"}
+
+#measures_modal

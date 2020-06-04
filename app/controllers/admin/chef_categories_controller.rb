@@ -38,6 +38,6 @@ class Admin::ChefCategoriesController < Admin::BaseController
   end
 
   def find_user
-      @chef = User.find_by(id: params[:user_id])
+      @chef = User.friendly.find(params[:user_id])
   end
 end

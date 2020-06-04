@@ -4,5 +4,5 @@ class Item < ApplicationRecord
 	belongs_to :inventory_category
 	has_many :assign_items
 
-	enum measure: [ :litter, :kg, :ml, :gram, :pack, :piece, :no_measure ]
+	# enum measure: [ :litter, :kg, :ml, :gram, :pack, :piece, :no_measure ]
 end

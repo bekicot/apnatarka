@@ -83,7 +83,7 @@ class Admin::InventoryItemsController < Admin::BaseController
   end
 
   def destroy
-    if @inventory_item.destroy
+    if @inventroy_item.destroy
       flash[:success] = "You Have Deleted Inventory Item Sucessfully"
       redirect_to admin_inventory_items_path
     end

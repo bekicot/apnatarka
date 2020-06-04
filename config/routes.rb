@@ -130,6 +130,7 @@ Rails.application.routes.draw do
     resources :taxes
     resources :special_items
     resources :mess_requests
+    resources :measures
     resources :orders do
       collection do
         get :order_items

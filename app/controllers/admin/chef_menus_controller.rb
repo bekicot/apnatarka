@@ -49,6 +49,6 @@ class Admin::ChefMenusController < Admin::BaseController
 
   private
   def find_user
-  	@user = User.find(params[:id])
+  	@user = User.friendly.find(params[:id])
   end
 end

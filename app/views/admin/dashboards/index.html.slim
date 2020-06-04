@@ -122,7 +122,7 @@
                       td = user.first_name
                       td = user.last_name
                       td = user.email
-                      td = user.role_name
+                      td = user.role&.humanize
     .row
       .col-md-12
         .card.m-b-30.custom-card

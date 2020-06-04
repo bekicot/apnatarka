@@ -24,7 +24,7 @@
                 tr
                   td = item_name(item.item_id)
                   td = a.number_field :quantity, min: 0, max: max_quantity_value(item), class: 'form-control'
-                  td = a.select :measure, options_for_select(Item.measures.map{|k,v|[k,k]}),{ include_blank: " Select Measure " }, class: 'form-control'
+                  td = a.select :measure, options_for_select(Measure.all.map{|k| [k.title.humanize,k.title.downcase]}),{ include_blank: " Select Measure " }, class: 'form-control'
                   = a.hidden_field :item_id, value: item.item_id
           = submit_tag "Assign", class: "assign-item-btn pull-right btn custom-btn btn-primary"
 

@@ -92,7 +92,7 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def find_user
-    @user = User.find_by_id(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def sign_up_params
