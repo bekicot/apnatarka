@@ -8,137 +8,74 @@
       .col-md-12
         .card.m-b-30.custom-card
           .card-body.block-head.order-height
-            - if @from_branch_orders.present?
-              h4.mt-0.m-b-15.header-title
+            .row
+              h4.mt-0.m-b-15.header-title.col-sm-9
                 | Registerd Customer's who Orders from Branch
-              .table-responsive
-                table.table.table-hover.order-history
-                  thead
-                    tr
-                      th Order #
-                      th Menu Item
-                      th Payment Status
-                      th Order Status
-                      th Total Price
-                      th Rider Status
-                      th Actions
-                  tbody
-                    - @from_branch_orders.each do |order|
-                      tr
-                        td = order.order_number
-                        td = order_item_names(order)
-                        td = form_for order, url: change_status_admin_order_history_path(order), method: :post, remote: true do |f|
-                            /   .col-sm-8
-                            = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
-                        /     .col-sm-4
-                        /       = f.submit 'Update', class: 'btn btn-primary btn-xs'
-                        / td = order_status(order)
-                        td = order.order_status&.humanize
-                        td = order.sub_total
-                        td 
-                          - if order&.rider&.any?
-                            = order&.rider&.where.not(order_status: "reject").first&.order_status&.humanize || "Rider Reject the order"
-                          - else
-                            = "Rider Not Assigned"
-                        td 
-                          = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
-                          = link_to "Recipt", order_bill_admin_order_path(order), class: "btn btn-primary"
-                          = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
-                            i class="fa fa-plus"
-                = will_paginate @from_branch_orders, param_name: 'branch_page'
-            - else
-              p
-                | No Order has been Booked form branch yet.
+              .col-sm-3.pull-right
+                .row
+                  label From Branch Order History by Date   
+                  = text_field_tag "select_date",nil, required: true, class: 'form-control from-branch-orders-by-date', id: 'from_branch_datetimepicker'
+            #from_branch_orders
+              = render 'from_branch_orders'
 
     .row
       .col-md-12
         .card.m-b-30.custom-card
           .card-body.block-head.order-height
-            - if @reg_orders.present?
-              h4.mt-0.m-b-15.header-title
+            .row
+              h4.mt-0.m-b-15.header-title.col-sm-9
                 | Registered Customer's Orders
-              .table-responsive
-                table.table.table-hover.order-history
-                  thead
-                    tr
-                      th Order #
-                      th Menu Item
-                      th Payment Status
-                      th Order Status
-                      th Total Price
-                      th Rider Status
-                      th Actions
-                  tbody
-                  - @reg_orders.each do |order|
-                    tr
-                      td = order.order_number
-                      td = order_item_names(order)
-                      td = form_for order, url: change_status_admin_order_history_path(order), method: :post, remote: true do |f|
-                            / .col-sm-8
-                            = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
-                            / .col-sm-4
-                      /         = f.submit 'Update', class: 'btn btn-primary btn-xs'
-                      td = order.order_status&.humanize
-                      td = order.sub_total
-                      td 
-                        - if order&.rider&.any?
-                          = order&.rider&.where.not(order_status: "reject").first&.order_status&.humanize || "Rider Reject the order"
-                        - else
-                          = "Rider Not Assigned"
-                      td 
-                        = link_to "show Detail", admin_order_history_path(order.id), class: "btn btn-xs btn-primary"
-                        = link_to "Recipt", order_bill_admin_order_path(order), class: "btn btn-primary"
-                        = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
-                          i class="fa fa-plus"
-                = will_paginate @reg_orders, param_name: 'reg_page'
-            - else
-              p
-                | No registered user has ordered yet.
+              .col-sm-3.pull-right
+                  .row
+                    label Reg Customer Order History by Date   
+                    = text_field_tag "select_date",nil, required: true, class: 'form-control reg-customer-orders-by-date', id: 'reg_customer_datetimepicker'
+            #register_orders
+              = render 'register_orders'
 
-    .row
-      .col-md-12
-        .card.m-b-30.custom-card
-          .card-body.block-head.order-height
-            - if @guest_orders.present?
-              h4.mt-0.m-b-15.header-title
-                | Guest Customer's Orders
-              .table-responsive
-                table.table.table-hover.order-history
-                  thead
-                    tr
-                      th Order #
-                      th Menu Item
-                      th Payment Status
-                      th Order Status
-                      th Total Price
-                      th Rider Status
-                      th Actions
-                  tbody
-                    - @guest_orders.each do |order|
-                      tr
-                        td = order.order_number
-                        td = order_item_names(order)
-                        td = form_for order, url: change_status_admin_order_history_path(order), method: :post, remote: true do |f|
-                            /   .col-sm-8
-                            = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
-                        /     .col-sm-4
-                        /       = f.submit 'Update', class: 'btn btn-primary btn-xs'
-                        td = order.order_status&.humanize
-                        td = order.sub_total
-                        td 
-                          - if order&.rider&.any?
-                            = order&.rider&.where.not(order_status: "reject").first&.order_status&.humanize || "Rider Reject the order"
-                          - else
-                            = "Rider Not Assigned"
-                        td 
-                          = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
-                          = link_to "Recipt", order_bill_admin_order_path(order), class: "btn btn-primary"
-                          = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
-                            i class="fa fa-plus"
-                = will_paginate @guest_orders, param_name: 'guest_page'
-            - else
-              p
-                | No guest user has ordered yet.
+    / .row
+    /   .col-md-12
+    /     .card.m-b-30.custom-card
+    /       .card-body.block-head.order-height
+    /         - if @guest_orders.present?
+    /           h4.mt-0.m-b-15.header-title
+    /             | Guest Customer's Orders
+    /           .table-responsive
+    /             table.table.table-hover.order-history
+    /               thead
+    /                 tr
+    /                   th Order #
+    /                   th Menu Item
+    /                   th Payment Status
+    /                   th Order Status
+    /                   th Total Price
+    /                   th Rider Status
+    /                   th Actions
+    /               tbody
+    /                 - @guest_orders.each do |order|
+    /                   tr
+    /                     td = order.order_number
+    /                     td = order_item_names(order)
+    /                     td = form_for order, url: change_status_admin_order_history_path(order), method: :post, remote: true do |f|
+    /                         /   .col-sm-8
+    /                         = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
+    /                     /     .col-sm-4
+    /                     /       = f.submit 'Update', class: 'btn btn-primary btn-xs'
+    /                     td = order.order_status&.humanize
+    /                     td = order.sub_total
+    /                     td 
+    /                       - if order&.rider&.any?
+    /                         = order&.rider&.where.not(order_status: "reject").first&.order_status&.humanize || "Rider Reject the order"
+    /                       - else
+    /                         = "Rider Not Assigned"
+    /                     td 
+    /                       = link_to "show Detail", admin_order_history_path(order.id), class: 'btn btn-xs btn-primary'
+    /                       = link_to "Recipt", order_bill_admin_order_path(order), class: "btn btn-primary"
+    /                       = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
+    /                         i class="fa fa-plus"
+    /             = will_paginate @guest_orders, param_name: 'guest_page'
+    /         - else
+    /           p
+    /             | No guest user has ordered yet.
     
 
 

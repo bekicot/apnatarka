@@ -4,7 +4,11 @@ class Admin::OrderHistoriesController < Admin::BaseController
   before_action :find_order, only: [:show, :order_detail]
 
   def index
-    @orders = Order.includes(:order_items).where(user_id: current_user.id).paginate(page: params[:page], per_page: 10)
+    @orders = Order.includes(:order_items).where("created_at::date = ? ", Date.today).where(user_id: current_user.id).order('created_at DESC').paginate(page: params[:page], per_page: 10)
+  end
+
+  def admin_orders
+    @orders = Order.includes(:order_items).where("created_at::date = ? ", params[:date]).where(user_id: current_user.id).order('created_at DESC').paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -14,9 +18,9 @@ class Admin::OrderHistoriesController < Admin::BaseController
   end
 
   def customer_orders
-    @reg_orders = Order.registered_orders.where.not(user_id: current_user.id).order('created_at DESC').paginate(page: params[:reg_page], per_page: 5)
-    @guest_orders = Order.guest_orders.order('created_at DESC').paginate(page: params[:guest_page], per_page: 5)
-    @from_branch_orders = Order.from_branch_orders.order('created_at DESC').paginate(page: params[:branch_page], per_page: 5)
+    @reg_orders = Order.where("created_at::date = ? ", Date.today).registered_orders.where.not(user_id: current_user.id).includes(:order_items).order('created_at DESC').paginate(page: params[:reg_page], per_page: 5)
+    @from_branch_orders = Order.where("created_at::date = ? ", Date.today).from_branch_orders.includes(:order_items).order('created_at DESC').paginate(page: params[:branch_page], per_page: 5)
+    # @guest_orders = Order.guest_orders.order('created_at DESC').paginate(page: params[:guest_page], per_page: 5)
   end
 
   def change_status
@@ -46,6 +50,14 @@ class Admin::OrderHistoriesController < Admin::BaseController
     respond_to do |format|
       format.js
     end
+  end
+
+  def reg_customer_orders
+    @reg_orders = Order.where("created_at::date = ? ", params[:date]).registered_orders.where.not(user_id: current_user.id).includes(:order_items).order('created_at DESC').paginate(page: params[:reg_page], per_page: 5)
+  end
+
+  def oder_from_branch
+    @from_branch_orders = Order.where("created_at::date = ? ", params[:date]).includes(:order_items).from_branch_orders.order('created_at DESC').paginate(page: params[:branch_page], per_page: 5)
   end
 
 

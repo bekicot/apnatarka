@@ -179,6 +179,9 @@ Rails.application.routes.draw do
     resources :order_histories, only: [:index, :show] do
       collection do
         get :customer_orders
+        get :reg_customer_orders
+        get :oder_from_branch
+        get :admin_orders
       end
       member do
         post :change_status

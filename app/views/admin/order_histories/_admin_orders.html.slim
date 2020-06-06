@@ -1,0 +1,35 @@
+- if @orders.present?
+  .table-responsive
+    table.table.table-hover.order-history
+      thead
+        tr
+          th Order #
+          th Menu Item
+          th Payment Status
+          th Order Status
+          th Total Price
+          th Order Date
+          th Action
+      tbody
+      - @orders.each do |order|
+        tr
+          td = order.order_number
+          td = order_item_names(order)
+          td = form_for order, url: change_status_admin_order_history_path(order), method: :post, remote: true do |f|
+                / .col-sm-8
+                = f.select(:status, options_for_select(Order.statuses.map{|k, v| [k.humanize, k]}, order.status), {}, {class: 'form-control'})
+                / .col-sm-4
+                  = f.submit 'Update', class: 'btn btn-primary btn-xs'
+          td = order.order_status&.humanize
+          td = order.sub_total
+          td
+            = order.created_at.strftime("%Y-%m-%d %a")
+          td 
+            = link_to "show", admin_order_history_path(order.id), class: "btn btn-xs btn-primary"
+            = link_to "Recipt", order_bill_admin_order_path(order), class: "btn btn-primary"
+            = link_to order_detail_admin_order_history_path(order), class: "btn-lg", remote: true do
+                i class="fa fa-plus"
+  = will_paginate @orders, param_name: "page"
+- else
+  p
+    | You don't have any orders on this Date.

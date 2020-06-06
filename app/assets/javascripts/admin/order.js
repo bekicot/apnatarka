@@ -151,6 +151,57 @@ $(document).ready(function(){
      });
   });
 
+  $(function () {
+    $('#from_branch_datetimepicker').datetimepicker({
+    format:'YYYY-MM-DD',
+    defaultDate: new Date
+    });
+  });
+
+  $('body').on('focusout', '.from-branch-orders-by-date' , function(){
+    date = $(this).val()
+   $.ajax({
+     type: 'GET',
+     url: '/admin/order_histories/oder_from_branch',
+     dataType: 'script',
+     data : { date: date}
+     });
+  });
+
+  $(function () {
+    $('#reg_customer_datetimepicker').datetimepicker({
+    format:'YYYY-MM-DD',
+    defaultDate: new Date
+    });
+  });
+
+  $('body').on('focusout', '.reg-customer-orders-by-date' , function(){
+    date = $(this).val()
+   $.ajax({
+     type: 'GET',
+     url: '/admin/order_histories/reg_customer_orders',
+     dataType: 'script',
+     data : { date: date}
+     });
+  });
+
+  $(function () {
+    $('#admin_datetimepicker').datetimepicker({
+    format:'YYYY-MM-DD',
+    defaultDate: new Date
+    });
+  });
+
+  $('body').on('focusout', '.admin-orders-by-date' , function(){
+    date = $(this).val()
+   $.ajax({
+     type: 'GET',
+     url: '/admin/order_histories/admin_orders',
+     dataType: 'script',
+     data : { date: date}
+     });
+  });
+
 //   $('.total-amount').keyup(function () {
 //     // var quantity = $('.order-quantity').val();
 //     var total =  $(this).val();
