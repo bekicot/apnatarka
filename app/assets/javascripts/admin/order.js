@@ -125,11 +125,81 @@ $(document).ready(function(){
     $('.show-phone').val(phone);
   });
 
+  // $('body').on('focusout', '.special-item-quantity', function(){
+  //   special_item_quantity = $(this).val()
+  //   price = $(this).parent().parent().prev().find('.special-item').text().split('(')[1].split(')')[0]
+  //   total = parseFloat(special_item_quantity) * parseFloat(price)
+  //   $(this).closest('.form-group').siblings('.item_price').find('.price').val(total)
+  // });
+
+
   $('body').on('focusout', '.special-item-quantity', function(){
-    special_item_quantity = $(this).val()
-    price = $(this).parent().parent().prev().find('.special-item').text().split('(')[1].split(')')[0]
-    total = parseFloat(special_item_quantity) * parseFloat(price)
-    $(this).closest('.form-group').siblings('.item_price').find('.price').val(total)
+    id = $(this).parent().parent().prev().find('.special-item :selected').val()
+    quantity = parseFloat($(this).val())
+    get_quantity = $(this)
+    if ( $('.display-total').val() != ""){ total_amount = parseFloat($('.display-total').val()) } else{total_amount = 0}
+    $.ajax({
+      type: 'GET',
+      url: '/admin/orders/special_item_price',
+      dataType: 'json',
+      data: {id: id}, 
+      success: function(data){
+        total = data * quantity
+        get_quantity.closest('.form-group').siblings('.item_price').find('.price').val(total)
+        $('.display-total').val(total + parseFloat(total_amount));
+      }
+     });
+  });
+
+  $(function () {
+    $('#from_branch_datetimepicker').datetimepicker({
+    format:'YYYY-MM-DD',
+    defaultDate: new Date
+    });
+  });
+
+  $('body').on('focusout', '.from-branch-orders-by-date' , function(){
+    date = $(this).val()
+   $.ajax({
+     type: 'GET',
+     url: '/admin/order_histories/oder_from_branch',
+     dataType: 'script',
+     data : { date: date}
+     });
+  });
+
+  $(function () {
+    $('#reg_customer_datetimepicker').datetimepicker({
+    format:'YYYY-MM-DD',
+    defaultDate: new Date
+    });
+  });
+
+  $('body').on('focusout', '.reg-customer-orders-by-date' , function(){
+    date = $(this).val()
+   $.ajax({
+     type: 'GET',
+     url: '/admin/order_histories/reg_customer_orders',
+     dataType: 'script',
+     data : { date: date}
+     });
+  });
+
+  $(function () {
+    $('#admin_datetimepicker').datetimepicker({
+    format:'YYYY-MM-DD',
+    defaultDate: new Date
+    });
+  });
+
+  $('body').on('focusout', '.admin-orders-by-date' , function(){
+    date = $(this).val()
+   $.ajax({
+     type: 'GET',
+     url: '/admin/order_histories/admin_orders',
+     dataType: 'script',
+     data : { date: date}
+     });
   });
 
 //   $('.total-amount').keyup(function () {

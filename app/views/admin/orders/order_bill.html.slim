@@ -1,0 +1,78 @@
+button.btn.btn-primary.print-btn Print
+#bill
+  .order_bill style=" width: 1100px; margin: auto; text-align: center;"
+    .card-box style="padding-bottom: 3px; border: 1px solid; font-size: 23px;"
+      = image_tag "home/Logo.gif", style: "height: 200px; width: 200px; position: relative; left: 4px"
+      p www.chefit24.com
+      hr
+
+      .product style="padding-left: 318px; "
+        .row
+          span.pull-left style="font-weight: bold" Order ID
+          span = @order.order_number
+        .row
+          span.pull-left style="font-weight: bold" Name
+          span = @order&.first_name || @order&.user&.first_name
+        .row
+          p.pull-left style="font-weight: bold" Contact
+          p = @order&.phone || @order&.user&.phone
+      .row
+        span.pull-left style="font-weight: bold; padding-left: 40px" Address : &nbsp
+        span.pull-left style="padding-left: 20px" = @order&.address_one
+      hr
+      .row style="padding: 0 40px 0px 40px"
+        h3.pull-left style="font-weight: bold" Products
+        h3.pull-right Total
+      - total = 0
+      - if @order_items.present?
+        - @order_items.each do |order_item|
+          - menu_item = order_item.chef_category_item.menu_item
+          - quantity = order_item.quantity
+          - total = total + (quantity * menu_item.price)
+          .row style="padding: 0 40px 0px 40px"
+            .price class="pull-left"
+              .item-box
+                | #{number_with_precision(menu_item.price, precision: 2)} x #{quantity} &nbsp
+                strong
+                  span
+                    | #{menu_item.title}
+                / h4 = t("delivery.base")
+                / p = "$#{number_with_precision(menu_item.price, precision: 2)}"
+
+            .total class="pull-right"
+              p = "#{number_with_precision(quantity * menu_item.price, precision:2)}/RS"
+      - total2 = 0
+      - if @special_items.present?
+        - @special_items.each do |special_item|
+          - quantity = special_item.quantity
+          - total2 = total2 + (quantity.to_i * special_item.special_item.price)
+          .row style="padding: 0 40px 0px 40px"
+            .price class="pull-left"
+              .item-box
+                | #{number_with_precision(special_item.special_item.price, precision: 2)} x #{quantity} &nbsp
+                strong
+                  span
+                    | #{special_item.special_item.name}
+                / h4 = t("delivery.base")
+                / p = "$#{number_with_precision(special_item.price, precision: 2)}"
+            .total class="pull-right" 
+              p = "#{number_with_precision(quantity.to_i * special_item.special_item.price, precision:2)}/RS"
+      hr
+      .sub-total class="clearfix" style="padding: 0 40px 0px 40px"
+        h3 class="pull-left" = t("delivery.sub_total")
+        p class="pull-right" = "#{number_with_precision(total + total2, precision: 2)}/RS"
+      .sub-total.clearfix style="padding: 0 40px 0px 40px"
+        h3.pull-left = t("delivery.GST")
+        p.pull-right = "#{@tax} %"
+      .total class="clearfix" style="padding: 0 40px 0px 40px"
+        h3 class="pull-left" = t("delivery.total")
+        - over_all_total = total + total2
+        p class="pull-right" = "#{number_with_precision(over_all_total + (over_all_total * (@tax_percentage)), precision: 2)}/RS"
+      hr
+      .margin-top style="margin-top: -17px"
+        .row 
+          span
+           strong Contact :  
+          span 0302-0075311
+        .row
+          span sublimesolutions@gmail.com

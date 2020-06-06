@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :item_chefs do
       collection do
         get :check_chef
+        get :remove_cart_item
       end
     end
   end
@@ -129,6 +130,7 @@ Rails.application.routes.draw do
     resources :taxes
     resources :special_items
     resources :mess_requests
+    resources :measures
     resources :orders do
       collection do
         get :order_items
@@ -137,6 +139,10 @@ Rails.application.routes.draw do
         get :check_cities
         get :add_form_field
         get :menu_item
+        get :special_item_price
+      end
+      member do
+        get :order_bill
       end
     end
     resources :mess_items
@@ -173,6 +179,9 @@ Rails.application.routes.draw do
     resources :order_histories, only: [:index, :show] do
       collection do
         get :customer_orders
+        get :reg_customer_orders
+        get :oder_from_branch
+        get :admin_orders
       end
       member do
         post :change_status

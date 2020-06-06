@@ -104,3 +104,7 @@ Item.create([
   { title: "Chocolate chips" },{ title: "Vegetables (Sabzi)" },{ title: "Pasta Sauce" },{ title: "Piza Sauce" },{ title: "Apple Sauce" },{ title: "Soup" },{ title: "Soap (Sabun)" },{ title: "Beans (Phaliyan)" },{ title: "Burger Break" },{ title: "Shawarma Break" },
   { title: "French Fries" },{ title: "Salt (Namak)" },{ title: "Hand Soap" },{ title: "Hand Soap" }
 ])
+Measure.create([
+  { title: "litter" }, { title: "kl" }, { title: "ml" }, { title: "gram" },
+  { title: "pack" }, { title: "piece" }, { title: "no_measure" }
+])

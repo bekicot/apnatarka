@@ -3,7 +3,7 @@ class Admin::MenuItemsController < Admin::BaseController
   before_action :check_admin_moderator_user, only: [:destroy]
 
   def index
-    @menu_items = MenuItem.with_translations(session_language)
+    @menu_items = MenuItem.with_translations(session_language).paginate(page: params[:page], per_page: 10)
   end
 
   def new

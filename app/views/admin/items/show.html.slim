@@ -21,8 +21,8 @@
                   | Assign By
                 th
                   | Date
-                th
-                  | Status
+                / th
+                /   | Status
             tbody
             - if @assign_items.present?
               - @assign_items.each do |assign_item|
@@ -39,5 +39,6 @@
                     = assign_item.user.first_name
                   td
                     = assign_item.assign_date&.strftime('%Y-%m-%d')
-                  td 
-                    = assign_item.status.humanize
+                  / td 
+                  /   - debugger
+                  /   = assign_item.status.humanize

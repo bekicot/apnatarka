@@ -26,7 +26,7 @@ class Admin::ChefCategoryItemsController < Admin::BaseController
   private
 
   def find_user
-    @chef = User.find_by(id: params[:user_id])
+    @chef = User.friendly.find(params[:user_id])
   end
 
   def find_chef_category

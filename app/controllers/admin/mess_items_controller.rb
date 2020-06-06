@@ -3,7 +3,7 @@ class Admin::MessItemsController < Admin::BaseController
   before_action :find_mess_item, only: [:edit, :destroy, :update]
   before_action :days_avaliblty_chef_categories, only: [:new, :edit]
   def index
-    @mess_items = @mess.mess_items
+    @mess_items = @mess.mess_items.paginate(page: params[:page], per_page: 10)
   end
 
   def new

@@ -16,6 +16,7 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     @user = User.new(sign_up_params)
+    @user.confirmed_at = Time.now
     if @user.save
       # UserMailer.delay.account_creation_email(user)
       flash[:success] =  t("crud.user_created")
@@ -92,7 +93,7 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def find_user
-    @user = User.find_by_id(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def sign_up_params

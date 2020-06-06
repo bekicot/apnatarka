@@ -60,7 +60,7 @@ class ChefMenusController < ApplicationController
 
   private
   def find_chef
-    @chef = User.find(params[:id])
+    @chef = User.friendly.find(params[:id])
   end
 
   def find_mess

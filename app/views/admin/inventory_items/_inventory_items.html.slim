@@ -27,21 +27,21 @@
       - @inventroy_items.each do |inventroy_item|
         tr
           td
-            = inventroy_item.item.title
+            = inventroy_item&.item&.title
           td
-            = inventroy_item.quantity
+            = inventroy_item&.quantity
           td
-            = inventroy_item.measure
+            = inventroy_item&.measure
           td
-            = inventroy_item.price
+            = inventroy_item&.price
           td 
-            = inventroy_item.stock_quantity
+            = inventroy_item&.stock_quantity
           td
-            = inventroy_item.total_price
+            = inventroy_item&.total_price
           td
-            = inventroy_item.discount
+            = inventroy_item&.discount
           td
-            = inventroy_item.total_expense
+            = inventroy_item&.total_expense
           / td 
           /   = form_for inventroy_item, url: change_status_admin_inventory_item_path(inventroy_item), method: :post, remote: true do |f|
           /         .col-sm-8

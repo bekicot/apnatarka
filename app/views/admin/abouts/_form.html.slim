@@ -2,13 +2,21 @@
   - if @about.errors.full_messages.any? 
       - @about.errors.full_messages.each do |error_message| 
           = error_message if @about.errors.full_messages.first == error_message 
-  - About.globalize_attribute_names.each do |lang|
-    .form-group.clearfix
-      .col-sm-12
-        = f.label lang, class: 'show'
-        - if lang.to_s.include?("description")
-          = f.text_area lang, size: "25x4", required: true, class: 'form-control'
-        - else
-          = f.text_field lang, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :Heading, class: 'show'
+      = f.text_field :heading_en, required: true, class: 'form-control'
+  .form-group.clearfix
+    .col-sm-12
+      = f.label :Description, class: 'show'
+      = f.text_field :description_en, required: true, class: 'form-control'
+  / - About.globalize_attribute_names.each do |lang|
+  /   .form-group.clearfix
+  /     .col-sm-12
+  /       = f.label lang, class: 'show'
+  /       - if lang.to_s.include?("description")
+  /         = f.text_area lang, size: "25x4", required: true, class: 'form-control'
+  /       - else
+  /         = f.text_field lang, required: true, class: 'form-control'
   .col-sm-12
     = f.submit "Submit", class: 'pull-right btn custom-btn btn-primary'

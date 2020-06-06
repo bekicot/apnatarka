@@ -5,26 +5,24 @@ div.modal.fade.bs-example-modal-lg id="item-chefs-modal" aria-labelledby="myModa
         span aria-hidden="true"  ×
       #complete_menu.menu-block
       	.container
-	        .chefs
-	          h5.section-title.h1 OUR TEAM
-	          .row
-	            - chef_cateogry_items.each do |chef_cat_item|
-	              - chef = chef_cat_item.chef_category.user
-	              - if chef.present?
-	                - if chef_cat_item.chef_avalibilities.where(day: Time.now.strftime("%A")).present?
-	                  .col-lg-3.col-md-4.col-sm-6.col-xs-12
-	                    .card.border.border-warning.card-chef
-	                      = image_tag( "chef_background.jpg", class: "image1-chef-card" )
-	                      .chef-menu-chef-image
-	                        = image_tag chef.avatar.url, class: "rounded-circle mx-auto d-block"
-	                      .card-body
-	                        h3.card-title
-	                          = "#{chef.first_name.titleize} #{chef.last_name.titleize}"
-	                        p.textcolor-chef-card 
-	                          = chef.address.truncate(35)
-	                          i.fa.fa-info.information data-html="true" title=("#{ chef.address }") 
-	                        hr
-	                          .
-	                            = link_to "Add to Cart", add_to_cart_delivery_index_path(chef_menu_item: chef_cat_item), class: 'btn btn-block btn-warning btn-font order-now-button' , remote: true, disabled: false
+      		.row
+	          .tab-content.container-fluid.clearfix
+	            ul.full-menus.text-center
+			        - if @chef_category_items.present?
+			          - @chef_category_items.each do |item|
+			            - if chef_item_avalibility(item)
+			              li.col-sm-3
+			                .img-box
+			                  = image_tag item.menu_item.avatar.url(:medium), class: 'img-responsive'
+			                  .order type="button" class="btn btn-primary btn-lg"
+			                    = link_to 'javascript:void(0)', class: 'text-center item-modal add_to_cart_item', id: "chef_menu_item_#{item.id}" do
+			                      .box
+			                        .holder
+			                          .fa.fa-cutlery
+			                .txt-holder.clearfix
+			                  .price = item.menu_item.price
+			                  span.title.text-capitalize= item.menu_item.title
+			                  p= item.menu_item.description
+			                  p= "Price: #{item.menu_item.price}/RS"
       		.twenty-forty
 	      		button.btn.login.back-btn-margin onclick="close_modal()" back

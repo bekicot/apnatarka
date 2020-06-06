@@ -90,4 +90,19 @@ $(document).ready(function(){
      data : { date: date, id: user_id}
      });
   });
+
+
+  $(".print-btn").click(function(){
+    PrintPageContent($("#bill").html());
+  });
+  function PrintPageContent(content)
+  {
+      var mywindow = window.open('', '', '');
+      mywindow.document.write('<html><title>Bill Recipt</title><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></head><body>');
+      mywindow.document.write(content);
+      mywindow.document.write('</body></html>');
+      mywindow.document.close();
+      mywindow.print();
+      return true;
+  }
 });

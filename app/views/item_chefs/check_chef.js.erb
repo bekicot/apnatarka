@@ -1,7 +1,7 @@
 <% if @chef_id.present? && @current_chef_id != @chef_id %>
 	swal({
     title: "Are you sure?",
-    text: "You want to Remove Your Cart!",
+    text: "You want to Remove Your Cart! Beacuse You can only order from one chef",
     type: "warning",
     showCancelButton: true,
     confirmButtonColor: '#DD6B55',
@@ -13,13 +13,17 @@
  function(isConfirm){
 
    if (isConfirm){
-   	debugger
-   	session.delete(cart)
+      chef_menu_item_id = gon.chef_menu_item
+      $.ajax({
+        type: 'GET',
+        url: '/menu/:menu_id/item_chefs/remove_cart_item',
+        data: { chef_menu_item: "<%= @chef_menu %>" }
+      });
+   	// session.delete(cart)
      // swal("Shortlisted!", "Candidates are successfully shortlisted!", "success");
-
     } else {
       swal("Cancelled", "Kindly Visit Delivery Menu to Proccess", "error");
-         e.preventDefault();
+         // e.preventDefault();
     }
  });
 <% end %>

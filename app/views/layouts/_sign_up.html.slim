@@ -42,7 +42,7 @@ div.modal.fade id="sign-up-modal" aria-labelledby="myModalLabel" role="dialog" t
                 .col-sm-12
                   .form-group
                     = f.label 'Register As'
-                    = f.select :role, options_for_select( User.roles.map{|k, v| k if ["normal_user", "chef", "rider"].include? k }.compact.map{|k,v| [k.humanize ,k] }, User.roles.keys.last), {prompt: '<---------- Register As ----------->'}, class: 'form-control', required: true
+                    = f.select :role, options_for_select( User.roles.map{|k, v| k if ["normal_user", "chef"].include? k }.compact.map{|k,v| [k.humanize ,k] }, User.roles.keys.last), {prompt: '<---------- Register As ----------->'}, class: 'form-control', required: true
               .row
                 .col-sm-12
                   .form-group

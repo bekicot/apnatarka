@@ -28,7 +28,7 @@
 				      .form-group.clearfix.col-md-4
 				        .col-sm-12
 				          = f.label :Measure, class: 'show'
-				          = f.select :measure, options_for_select(InventoryItem.measures.map{|k,v|[k,k]}, selected: @inventroy_item.measure ),{ include_blank: "-- Select Measure --" }, required: true, class: 'form-control'
+				          = f.select :measure, options_for_select(Measure.all.map{|k| [k.title.humanize,k.title.downcase]}, selected: @inventroy_item.measure ),{ include_blank: "-- Select Measure --" }, required: true, class: 'form-control'
 				      .form-group.clearfix.col-md-4
 				        .col-sm-12
 				          = f.label :Indate, class: 'show'

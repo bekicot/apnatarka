@@ -59,7 +59,8 @@ class Admin::AboutsController < Admin::BaseController
   end
 
   def abouts_params
-    permitted = About.globalize_attribute_names
-    params.require(:about).permit(*permitted)
+    params.require(:about).permit(:heading_en, :description_en)
+    # permitted = About.globalize_attribute_names
+    # params.require(:about).permit(*permitted)
   end
 end

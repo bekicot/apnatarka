@@ -21,7 +21,7 @@
       .form-group.clearfix.col-md-2
         .col-sm-12
           = f.label :Measure, class: 'show'
-          = f.select :measure, options_for_select(InventoryItem.measures.map{|k,v|[k,k]}, selected: @inventroy_item.measure ),{ include_blank: "Select" }, required: true, class: 'form-control'
+          = f.select :measure, options_for_select(Measure.all.map{|k| [k.title.humanize,k.title.downcase]}, selected: @inventroy_item.measure ),{ include_blank: "Select" }, required: true, class: 'form-control'
       .form-group.clearfix.col-md-2.item_price.price
         .col-sm-12
           = f.label :rate, class: 'show'

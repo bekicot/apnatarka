@@ -45,7 +45,7 @@ class Admin::InventoryItemsController < Admin::BaseController
 
   def save_assign_item
     @assign_items = []
-    params[:assign_items].each do |item|
+    params[:assign_item].each do |item|
       if item[:quantity].present? && item[:quantity].to_f != 0
         item_record = InventoryItemRecord.where(item_id: item[:item_id])
         if item_record.present?
@@ -83,7 +83,7 @@ class Admin::InventoryItemsController < Admin::BaseController
   end
 
   def destroy
-    if @inventory_item.destroy
+    if @inventroy_item.destroy
       flash[:success] = "You Have Deleted Inventory Item Sucessfully"
       redirect_to admin_inventory_items_path
     end
