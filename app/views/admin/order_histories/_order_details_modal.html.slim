@@ -27,3 +27,7 @@
                         td = order_item.chef_category_item.menu_item.title
                         / td = order_item.item_status&.humanize
                         td = chef_name_and_contact(order_item)
+                    - if @order.order_special_items.present?
+                      - @order.order_special_items.each do |special_item|
+                        tr
+                          td = special_item.special_item.name

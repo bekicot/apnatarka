@@ -45,4 +45,8 @@ class Order < ApplicationRecord
     # or, as hagello suggested in the comments:
     # '%02d:%02d:%02d' % [hours, minutes, seconds]
   end
+
+  after_create_commit {
+    OrderBroadcastJob.perform_later(self)
+  }
 end
