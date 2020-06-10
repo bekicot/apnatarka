@@ -116,7 +116,11 @@ class DeliveryController < ApplicationController
   def update_quantity
     item = params[:chef_menu_item_id]
     key_to_update = ChefCategoryItem.item_key_for_cart(item)
-    session[:cart][key_to_update] = params[:quantity].to_i
+    if params[:quantity].present?
+      session[:cart][key_to_update] = params[:quantity].to_i
+    else
+      session[:cart][key_to_update] = session[:cart][key_to_update] + 1
+    end
     prepare_items
     prepare_special_item
   end
