@@ -11,4 +11,4 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require admin/inventory_items
-
+//= require cable

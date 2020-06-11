@@ -4,6 +4,7 @@
       - menu_items = category&.menu_items
       - chefs = category&.chef_categories
       - if chefs.present?
+        - if check_chefs(menu_items)
           ul.full-menus.text-center
             - chefs.each do |chef|
               -if check_chef_avalibility(chef)
@@ -20,5 +21,7 @@
                     .price $558
                     span.title.text-capitalize= chef.user.first_name
                     p= chef.user.address
+        - else
+          = render partial: "menu/chef_avalibility"
       - else
         = render partial: "menu/empty"

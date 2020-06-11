@@ -15,4 +15,10 @@ module MenuHelper
   def chef_item_avalibility(item)
   	item.chef_avalibilities.where(day: Time.now.strftime("%A")).first.present?
   end
+
+  def check_chefs(menu_items)
+    ids = menu_items.map{|x| x.id }
+    chef_item_ids = ChefCategoryItem.where(menu_item_id: ids)
+    ChefAvalibility.where(chef_category_item_id: chef_item_ids).where(day: Time.now.strftime("%A")).any?
+  end
 end

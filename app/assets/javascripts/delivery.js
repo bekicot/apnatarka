@@ -234,9 +234,9 @@ function geocodePosition(pos) {
   });
 }
 
-function updateMarkerAddress(str) {
-  document.getElementById('user_address').value = str;
-}
+// function updateMarkerAddress(str) {
+//   document.getElementById('user_address').value = str;
+// }
 
 function map_initialize(lat, lng) {
   var latLng = new google.maps.LatLng(lat, lng);

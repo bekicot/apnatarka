@@ -1,3 +1,23 @@
+<% if @chef_menu_item_ids.include? @chef_menu %>
+  swal({
+    title: "This item is Already Selected",
+    text: "Do want to Increase the Quantity...?",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: '#DD6B55',
+    confirmButtonText: 'Yes',
+    cancelButtonText: "No",
+  },
+  function(isConfirm){
+   if (isConfirm){
+      $.ajax({
+        type: 'GET',
+        url: '/delivery/update_quantity',
+        data: { chef_menu_item_id: "<%= @chef_menu %>" }
+      });
+    }
+  });
+<% end %>
 <% if @chef_id.present? && @current_chef_id != @chef_id %>
 	swal({
     title: "Are you sure?",

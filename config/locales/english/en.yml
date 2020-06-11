@@ -224,7 +224,7 @@ en:
     password: "Password"
     no_account_message: "Don't have an account?"
     note: "Note*:  Please confirm your email first if you have not confirmed yet."
-    first_name: "First name"
+    first_name: "Name"
     last_name: "Last name"
     phone: "Phone"
     address: "Address"
